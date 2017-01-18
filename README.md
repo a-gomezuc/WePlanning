@@ -14,3 +14,7 @@ Rubén Golderos Serrano, r.golderos@alumnos.urjc.es, rgolderos</br>
 Guillermo Navas García, g.navasg@alumnos.urjc.es, westernsquad</br>
 Jorge Sánchez Márquez, j.sanchezmarq@alumnos.urjc.es, jorge0594</br>
 Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
+
+- Trello: https://trello.com/b/eZYgeXfU/weplanning
+
+
