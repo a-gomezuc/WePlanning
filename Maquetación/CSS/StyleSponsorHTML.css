@@ -50,7 +50,7 @@ body {
     right: 0;
 }
 
-.card.hovercard .useravatar img {
+.card.hovercard .useravatar #imagenSponsor {
     width: 100px;
     height: 100px;
     max-width: 100px;
@@ -68,7 +68,7 @@ body {
     right: 0;
 }
 
-.card.hovercard .card-info .card-title {
+.card.hovercard .card-info #tituloSponsor {
     padding: 0 5px;
     font-size: 20px;
     line-height: 1;
@@ -95,43 +95,10 @@ body {
 .btn-pref .btn {
     -webkit-border-radius: 0 !important;
 }
-
-.btn-primary {
-    color: #d97d00;
-    background-color: rgb(0, 0, 0);
-    border-color: #d97d00;
-}
-
-.btn-default {
-    color: #d97d00;
-    background-color: rgb(0, 0, 0);
-    border-color: #d97d00;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-    background-color: rgba(241, 124, 4, 0.78);
-    color: rgb(0, 0, 0);
-    border-color: #000000;
-}
-
-.btn-default:hover,
-.btn-default:focus,
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-    background-color: rgba(241, 124, 4, 0.78);
-    color: rgb(0, 0, 0);
-    border-color: #000000;
-}
-
-.well {
+#escrituraSponsor {
     min-height: 20px;
     padding: 19px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background-color: rgb(196, 63, 14);
     border: 1px solid #d97d00;
     border-radius: 4px;
@@ -142,6 +109,7 @@ body {
 .hidden-xs {
     font-weight: 600;
 }
+
 
 #btnAgregar {
     background-color: #0000e6;
@@ -155,6 +123,24 @@ body {
     color:#ffffff;
     border-color: #001653;
 }
-h3{
+#btninfoSponsor, #btnamigosSponsor,#btnplanesSponsor{
+    color: #d97d00;
+    background-color: rgb(0, 0, 0);
+    border-color: #d97d00;
+}
+#btninfoSponsor:hover,
+#btninfoSponsor:focus,
+#btninfoSponsor:active,
+#btnamigosSponsor:hover,
+#btnamigosSponsor:focus,
+#btnamigosSponsor:active,
+#btnplanesSponsor:hover,
+#btnplanesSponsor:focus,
+#btnplanesSponsor:active {
+    background-color: rgba(241, 124, 4, 0.78);
+    color: rgb(0, 0, 0);
+    border-color: #000000;
+}
+.tab-content h3{
     color:black;
 }
