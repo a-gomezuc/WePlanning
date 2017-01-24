@@ -4,7 +4,7 @@ Se trata de una web donde los usuarios pueden publicar planes que han realizado 
 
 ## Entidades principales </br>
 **Usuario:** El usuario tendrá nombre, apellidos, ubicación y lista de amigos y podrá añadir planes y valorar y comentar planes de otros usuarios.</br>
-Patrocinador: Se trata de un perfil de empresa que tendrá planes patrocinados, nombre, email, página web y seguidores.</br>
+**Patrocinador:** Se trata de un perfil de empresa que tendrá planes patrocinados, nombre, email, página web y seguidores.</br>
 **Plan:** Los planes podrán ser experiencias pasadas o propuestas, contarán con una ubicación, una hora, usuarios que asisten o han asistido y una descripción. Estos planes podrán ser patrocinados por un patrocinador o ser un plan de usuario simple. </br>
 **Categoría de planes:** Los planes se podrán clasificar en distintas categorías nocturnos, escapadas, deportes, gastronomía, cultural, ocio, etc...</br>
 **Comentario/Valoración:** Los planes podrán tener valoraciones y comentarios con imágenes adjuntas.</br>
