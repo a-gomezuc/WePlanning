@@ -1,44 +1,42 @@
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 50px;
+    background:url("../IMG/background.png");
+   
+    margin:0px;
+}
+/* ---------------- navbar ---------*/
+.dropdown-tc{
+    background:#222;
+    padding:5%;
+}
+.dropdown-tc label{
+    color:white;
+}
+.dropdown-tc a{
+    text-decoration:none;
 }
 
+/* ---------------- /navbar ---------*/
+/* ---------------- jumbotron ---------*/
+.jumbo{
+    width:100%;
+    margin:0px;
+    padding:0px;
+}
+.jumbo .jumbotron{
+    background:url("http://lorempixel.com/1300/400");
+    margin:0px;
+    color:white;
+    border-radius:0px;
+    box-shadow: 2px 3px 3px #333;
+}
+/* ---------------- /jumbotron ---------*/
 .img-center {
 	margin: 0 auto;
 }
 
-footer {
-    margin: 50px 0;
-}
 
-
-.inic{
-    
-}
-
-.inibtn{
-   margin-top:8px; 
-}
-
-.section1{
-    height:300px;
-    border: 2px solid red;
-    width:100%;
-    margin:0px;
-    margin-top:-20px;
-}
-.events{
-    border:2px solid green;
-    height:300px;
-}
-.event{
-    border:1px dashed black;
-    height:300px;
-}
-.top_plans{
-    border:2px solid yellow;
-    
-}
 /* ----------- Register -------- */
 h1.title { 
 	font-size: 50px;
