@@ -1,0 +1,36 @@
+#logo, #redesSociales{
+
+}
+.row{
+    background-image: url("../IMG/background.png");
+    padding:10px;
+}
+a{
+    color:black;
+}
+a:hover{
+    color:darkgray;
+    text-decoration: none;
+} 
+a:active{
+    text-decoration: none;
+}
+a:focus{
+    text-decoration: none;
+    color:black;
+}
+a:link{
+    color:darkgray;
+    text-decoration: none;
+}
+#links{
+    font-size:1.3em;
+    font-weight: 600;
+}
+#copyright{
+    margin-left:5px;
+}
+hr{
+    color:black;
+    border-top: 2px solid black;
+}
