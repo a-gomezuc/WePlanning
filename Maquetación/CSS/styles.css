@@ -74,6 +74,12 @@ body {
 
 
 /* ----------- Register -------- */
+
+#busquedaprovincia{
+    height:30px;
+    width:100%;
+}
+
 h1.title { 
 	font-size: 50px;
 	font-weight: 400; 
@@ -345,10 +351,6 @@ input::-webkit-input-placeholder {
     text-decoration: none;
     color:black;
 }
-#redesSociales  a:link{
-    color:darkgray;
-    text-decoration: none;
-}
 #links a{
     color:black;
 }
@@ -363,10 +365,7 @@ input::-webkit-input-placeholder {
     text-decoration: none;
     color:black;
 }
-#links  a:link{
-    color:darkgray;
-    text-decoration: none;
-}
+
 #links{
     font-size:1.3em;
     font-weight: 600;
@@ -378,5 +377,8 @@ input::-webkit-input-placeholder {
     color:black;
     border-top: 2px solid black;
     width:20%;
+}
+.footer{
+    margin-top:20px;
 }
 /* ----------- /Footer -------- */

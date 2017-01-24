@@ -2,51 +2,36 @@
 <html lang="es">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>WePlanning - Registrate y empieza a planear!</title>
-
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
     <!-- Custom CSS -->
+    <link rel="stylesheet" href="CSS/font-awesome.min.css">
     <link href="css/styles.css" rel="stylesheet">
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">WePlanning</a>
-            </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">WePlanning</a> </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
                 <ul class="nav navbar-nav pull-right">
-                    <li>
-                        <a href="aboutus.html">¿Qué es WePlanning?</a>
-                    </li>
+                    <li> <a href="aboutus.html">¿Qué es WePlanning?</a> </li>
                     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-tc">
                             <form class="form-horizontal form_ini" role="form">
@@ -54,149 +39,193 @@
                                     <div class="form-group">
                                         <label for="ejemplo_email_3" class="col-lg-2 control-label">Email</label>
                                         <div class="col-lg-10">
-                                            <input type="email" class="form-control" id="ejemplo_email_3" placeholder="Email">
+                                            <input type="email" class="form-control" id="ejemplo_email_3" placeholder="Email"> </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="ejemplo_password_3" class="col-lg-2 control-label">Contraseña</label>
+                                        <div class="col-lg-10">
+                                            <input type="password" class="form-control" id="ejemplo_password_3" placeholder="Contraseña"> </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button type="submit" class="btn btn-default">Entrar</button>
                                         </div>
                                     </div>
                                 </li>
-                                <li><div class="form-group">
-                                    <label for="ejemplo_password_3" class="col-lg-2 control-label">Contraseña</label>
-                                    <div class="col-lg-10">
-                                      <input type="password" class="form-control" id="ejemplo_password_3" 
-                                             placeholder="Contraseña">
-                                    </div>
-                                    </div>
-                                    </li>
-                                <li class="divider"></li>
-                                <li><div class="form-group">
-                                    <div class="col-lg-offset-2 col-lg-10">
-                                      <button type="submit" class="btn btn-default">Entrar</button>
-                                    </div>
-                                  </div></li>
                                 <li><a href="register.html">No tengo usuario. Registrarme</a></li>
                             </form>
                         </ul>
                     </li>
-                    <li>
-                        <a href="contact.html">Contacta</a>
-                    </li>
+                    <li> <a href="contact.html">Contacta</a> </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
-    </nav> 
-<!--register row -->
+    </nav>
+    <!--register row -->
     <div class="container">
-			<div class="row main">
-				<div class="panel-heading">
-	               <div class="panel-title text-center">
-	               		<h1 class="title">WePlanning</h1>
-	               		<hr />
-	               	</div>
-	            </div> 
-				<div class="main-login main-center">
-					<form class="form-horizontal" method="post" action="#">
-						
-						<div class="form-group">
-							<label for="name" class="cols-sm-2 control-label">Nombre y Apellidos</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="name" id="name"  placeholder="Introduzca su nombre completo"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="email" class="cols-sm-2 control-label">Email</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="email" id="email"  placeholder="Introduzca su email"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="username" class="cols-sm-2 control-label">Nombre de usuario</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-									<input type="text" class="form-control" name="username" id="username"  placeholder="Introduzca su nombre de usuario"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="password" class="cols-sm-2 control-label">Contraseña</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="password" id="password"  placeholder="Contraseña"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group">
-							<label for="confirm" class="cols-sm-2 control-label">Confirma la contraseña</label>
-							<div class="cols-sm-10">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Repita su contraseña"/>
-								</div>
-							</div>
-						</div>
-
-						<div class="form-group ">
-							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Registrar</button>
-						</div>
-					
-					</form>
-				</div>
-			</div>
-		</div>
-    
-<!--/register row -->
-<!-- Footer -->
-     <!--Footer-->
-<div class="footer">
-    <nav class="navbar navbar-bottom">
-        <div class="container">
-            <div class="row" >
-                <center>
-                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="http://lorempixel.com/200/100/" /> </div>
-                </center>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
-                    <center>
-                        <a href="#" class="fa fa-facebook-square fa-5x" aria-hidden="true"></a>
-                        <a href="#" class="fa fa-twitter-square fa-5x" aria-hidden="true"></a>
-                        <a href="#" class="fa fa-instagram fa-5x" aria-hidden="true"></a>
-                    </center>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="#" id="aboutUs">Conócenos<br></a> <a href="#" id="contacto">Contacto<br></a> <a href="#" id="#">Más<br></a> </center>
-                </div>
+        <div class="row main">
+            <div class="panel-heading">
+                <div class="panel-title text-center">
+                    <h1 class="title">WePlanning</h1>
+                    <hr /> </div>
             </div>
-            <div class="row">
-                <div id="copyright">
-                    <center>
-                        <hr id="lineaCopyright">
-                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
-                    </center>
-                </div>
+            <div class="main-login main-center">
+                <form class="form-horizontal" method="post" action="#">
+                    <div class="form-group">
+                        <div class="cols-sm-10">
+                            <div class="input-group">
+                                <label for="empresa" class="cols-sm-2 control-label">
+                                    <input type="checkbox" id="empresa" value=""> ¿Eres una empresa?</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="cols-sm-2 control-label">Nombre y Apellidos</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="name" id="name" placeholder="Introduzca su nombre completo" /> </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="provincia" class="cols-sm-2 control-label">Provincia</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                                <select id="busquedaprovincia">
+                                    <option value='alava'>Álava</option>
+                                    <option value='albacete'>Albacete</option>
+                                    <option value='alicante'>Alicante/Alacant</option>
+                                    <option value='almeria'>Almería</option>
+                                    <option value='asturias'>Asturias</option>
+                                    <option value='avila'>Ávila</option>
+                                    <option value='badajoz'>Badajoz</option>
+                                    <option value='barcelona'>Barcelona</option>
+                                    <option value='burgos'>Burgos</option>
+                                    <option value='caceres'>Cáceres</option>
+                                    <option value='cadiz'>Cádiz</option>
+                                    <option value='cantabria'>Cantabria</option>
+                                    <option value='castellon'>Castellón/Castelló</option>
+                                    <option value='ceuta'>Ceuta</option>
+                                    <option value='ciudadreal'>Ciudad Real</option>
+                                    <option value='cordoba'>Córdoba</option>
+                                    <option value='cuenca'>Cuenca</option>
+                                    <option value='girona'>Girona</option>
+                                    <option value='laspalmas'>Las Palmas</option>
+                                    <option value='granada'>Granada</option>
+                                    <option value='guadalajara'>Guadalajara</option>
+                                    <option value='guipuzcoa'>Guipúzcoa</option>
+                                    <option value='huelva'>Huelva</option>
+                                    <option value='huesca'>Huesca</option>
+                                    <option value='illesbalears'>Illes Balears</option>
+                                    <option value='jaen'>Jaén</option>
+                                    <option value='acoruña'>A Coruña</option>
+                                    <option value='larioja'>La Rioja</option>
+                                    <option value='leon'>León</option>
+                                    <option value='lleida'>Lleida</option>
+                                    <option value='lugo'>Lugo</option>
+                                    <option value='madrid'>Madrid</option>
+                                    <option value='malaga'>Málaga</option>
+                                    <option value='melilla'>Melilla</option>
+                                    <option value='murcia'>Murcia</option>
+                                    <option value='navarra'>Navarra</option>
+                                    <option value='ourense'>Ourense</option>
+                                    <option value='palencia'>Palencia</option>
+                                    <option value='pontevedra'>Pontevedra</option>
+                                    <option value='salamanca'>Salamanca</option>
+                                    <option value='segovia'>Segovia</option>
+                                    <option value='sevilla'>Sevilla</option>
+                                    <option value='soria'>Soria</option>
+                                    <option value='tarragona'>Tarragona</option>
+                                    <option value='santacruztenerife'>Santa Cruz de Tenerife</option>
+                                    <option value='teruel'>Teruel</option>
+                                    <option value='toledo'>Toledo</option>
+                                    <option value='valencia'>Valencia/Valéncia</option>
+                                    <option value='valladolid'>Valladolid</option>
+                                    <option value='vizcaya'>Vizcaya</option>
+                                    <option value='zamora'>Zamora</option>
+                                    <option value='zaragoza'>Zaragoza</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="cols-sm-2 control-label">Email</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="email" id="email" placeholder="Introduzca su email" /> </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username" class="cols-sm-2 control-label">Nombre de usuario</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Introduzca su nombre de usuario" /> </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="cols-sm-2 control-label">Contraseña</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" /> </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm" class="cols-sm-2 control-label">Confirma la contraseña</label>
+                        <div class="cols-sm-10">
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Repita su contraseña" /> </div>
+                        </div>
+                    </div>
+                    <div class="form-group ">
+                        <button type="button" class="btn btn-primary btn-lg btn-block login-button">Registrar</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </nav>
-</div>
-<!--FooterEnd-->
+    </div>
+    <!--/register row -->
+    <!--Footer-->
+    <div class="footer">
+        <nav class="navbar navbar-bottom">
+            <div class="container">
+                <div class="row">
+                    <center>
+                        <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="http://lorempixel.com/200/100/" /> </div>
+                    </center>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+                        <center>
+                            <a href="#" class="fa fa-facebook-square fa-5x" aria-hidden="true"></a>
+                            <a href="#" class="fa fa-twitter-square fa-5x" aria-hidden="true"></a>
+                            <a href="#" class="fa fa-instagram fa-5x" aria-hidden="true"></a>
+                        </center>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                        <center> <a href="#" id="aboutUs">Conócenos<br></a> <a href="#" id="contacto">Contacto<br></a> <a href="#" id="#">Más<br></a> </center>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="copyright">
+                        <center>
+                            <hr id="lineaCopyright">
+                            <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!--FooterEnd-->
     <!-- /.container -->
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
-
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
-
 </body>
 
 </html>
