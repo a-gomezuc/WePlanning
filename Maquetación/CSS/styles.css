@@ -105,3 +105,256 @@ input::-webkit-input-placeholder {
 }
 
 /* ----------- /Register -------- */
+/* ----------- /Profile & Sponsor -------- */
+.card {
+    margin-top: 20px;
+    padding: 30px;
+    background-color: rgba(214, 224, 226, 0.2);
+    -webkit-border-top-left-radius: 5px;
+    -moz-border-top-left-radius: 5px;
+    border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -moz-border-top-right-radius: 5px;
+    border-top-right-radius: 5px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card.hovercard {
+    position: relative;
+    padding-top: 0;
+    overflow: hidden;
+    text-align: center;
+    background-color: #fff;
+    background-color: rgba(255, 255, 255, 1);
+}
+
+.card.hovercard .card-background {
+    height: 130px;
+}
+
+.card-background img {
+    -webkit-filter: blur(25px);
+    -moz-filter: blur(25px);
+    -o-filter: blur(25px);
+    -ms-filter: blur(25px);
+    filter: blur(25px);
+    margin-left: -100px;
+    margin-top: -200px;
+    min-width: 130%;
+}
+
+.card.hovercard .useravatar {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+}
+
+.card.hovercard .useravatar img {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 3px solid #99e18e;
+}
+
+.card.hovercard .card-info {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+}
+
+.card.hovercard .card-info .card-title {
+    padding: 0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #99e18e;
+    background-color: rgba(4, 51, 9, 0);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.card.hovercard .card-info {
+    overflow: hidden;
+    font-size: 12px;
+    line-height: 20px;
+    color: #737373;
+    text-overflow: ellipsis;
+}
+
+.card.hovercard .bottom {
+    padding: 0 20px;
+    margin-bottom: 17px;
+}
+
+.btn-pref .btn {
+    -webkit-border-radius: 0 !important;
+}
+#escrituraPerfil {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #D0F3CA;
+    border: 1px solid #2E7A22;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+#escrituraSponsor {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 10px;
+    background-color: rgb(196, 63, 14);
+    border: 1px solid #d97d00;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+.hidden-xs {
+    font-weight: 600;
+}
+
+#btnAgregar {
+    background-color: #0000e6;
+    color: aliceblue;
+}
+
+#btnAgregar:hover,
+#btnAgregar:focus,
+#btnAgregar:active {
+    background-color: rgb(23, 23, 255);
+    color:#ffffff;
+    border-color: #001653;
+}
+#btninfoPerfil, #btnamigosPerfil,#btnplanesPerfil, #btnubicacionPerfil{
+    color: #2E7A22;
+    background-color: rgba(153, 225, 0142, 1);
+    border-color: #2E7A22;
+}
+#btninfoPerfil:hover,
+#btninfoPerfil:focus,
+#btninfoPerfil:active,
+#btnamigosPerfil:hover,
+#btnamigosPerfil:focus,
+#btnamigosPerfil:active,
+#btnplanesPerfil:hover,
+#btnplanesPerfil:focus,
+#btnplanesPerfil:active, 
+#btnubicacionPerfil:hover,
+#btnubicacionPerfil:focus,
+#btnubicacionPerfil:active {
+    background-color: rgba(46, 122, 34, 1);
+    color: rgba(153, 225, 0142, 1);
+    border-color: #2E7A22;
+}
+#btninfoSponsor, #btnamigosSponsor,#btnplanesSponsor{
+    color: #d97d00;
+    background-color: rgb(0, 0, 0);
+    border-color: #d97d00;
+}
+#btninfoSponsor:hover,
+#btninfoSponsor:focus,
+#btninfoSponsor:active,
+#btnamigosSponsor:hover,
+#btnamigosSponsor:focus,
+#btnamigosSponsor:active,
+#btnplanesSponsor:hover,
+#btnplanesSponsor:focus,
+#btnplanesSponsor:active {
+    background-color: rgba(241, 124, 4, 0.78);
+    color: rgb(0, 0, 0);
+    border-color: #000000;
+}
+.tab-content h3{
+    color:black;
+}
+.card.hovercard .useravatar #imagenSponsor {
+    width: 100px;
+    height: 100px;
+    max-width: 100px;
+    max-height: 100px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    border: 3px solid #000506;
+}
+.card.hovercard .card-info #tituloPerfil {
+    padding: 0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #99e18e;
+    background-color: rgba(4, 51, 9, 0);
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+.card.hovercard .card-info #tituloSponsor {
+    padding: 0 5px;
+    font-size: 20px;
+    line-height: 1;
+    color: #000000;
+    /* background-color: rgba(166, 241, 255, 0.62); */
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+/* ----------- /Profile &S ponsor -------- */
+/* ----------- /Footer -------- */
+
+#redesSociales a{
+    color:black;
+}
+#redesSociales  a:hover{
+    color:darkgray;
+    text-decoration: none;
+} 
+#redesSociales  a:active{
+    text-decoration: none;
+}
+#redesSociales  a:focus{
+    text-decoration: none;
+    color:black;
+}
+#redesSociales  a:link{
+    color:darkgray;
+    text-decoration: none;
+}
+#links a{
+    color:black;
+}
+#links  a:hover{
+    color:darkgray;
+    text-decoration: none;
+} 
+#links  a:active{
+    text-decoration: none;
+}
+#links  a:focus{
+    text-decoration: none;
+    color:black;
+}
+#links  a:link{
+    color:darkgray;
+    text-decoration: none;
+}
+#links{
+    font-size:1.3em;
+    font-weight: 600;
+}
+#copyright{
+    margin-left:5px;
+}
+#lineaCopyright{
+    color:black;
+    border-top: 2px solid black;
+    width:20%;
+}
+/* ----------- /Footer -------- */

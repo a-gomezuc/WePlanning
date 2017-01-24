@@ -1,25 +1,37 @@
-#logo, #redesSociales{
 
-}
-.row{
-    background-image: url("../IMG/background.png");
-    padding:10px;
-}
-a{
+#redesSociales a{
     color:black;
 }
-a:hover{
+#redesSociales  a:hover{
     color:darkgray;
     text-decoration: none;
 } 
-a:active{
+#redesSociales  a:active{
     text-decoration: none;
 }
-a:focus{
+#redesSociales  a:focus{
     text-decoration: none;
     color:black;
 }
-a:link{
+#redesSociales  a:link{
+    color:darkgray;
+    text-decoration: none;
+}
+#links a{
+    color:black;
+}
+#links  a:hover{
+    color:darkgray;
+    text-decoration: none;
+} 
+#links  a:active{
+    text-decoration: none;
+}
+#links  a:focus{
+    text-decoration: none;
+    color:black;
+}
+#links  a:link{
     color:darkgray;
     text-decoration: none;
 }
@@ -30,7 +42,8 @@ a:link{
 #copyright{
     margin-left:5px;
 }
-hr{
+#lineaCopyright{
     color:black;
     border-top: 2px solid black;
+    width:20%;
 }

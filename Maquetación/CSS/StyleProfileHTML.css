@@ -1,5 +1,5 @@
 body {
-    background-image: url(../IMG/husk.png);
+    background-image: url("../IMG/background.png");
 }
 
 .card {
@@ -48,7 +48,7 @@ body {
     right: 0;
 }
 
-.card.hovercard .useravatar img {
+.card.hovercard .useravatar #imagenPerfil {
     width: 100px;
     height: 100px;
     max-width: 100px;
@@ -66,7 +66,7 @@ body {
     right: 0;
 }
 
-.card.hovercard .card-info .card-title {
+.card.hovercard .card-info #tituloPerfil {
     padding: 0 5px;
     font-size: 20px;
     line-height: 1;
@@ -94,39 +94,8 @@ body {
     -webkit-border-radius: 0 !important;
 }
 
-.btn-primary {
-    color: #2E7A22;
-    background-color: rgba(153, 225, 0142, 1);
-    border-color: #2E7A22;
-}
 
-.btn-default {
-    color: #2E7A22;
-    background-color: rgba(153, 225, 0142, 1);
-    border-color: #2E7A22;
-}
-
-.btn-primary:hover,
-.btn-primary:focus,
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary {
-    background-color: rgba(46, 122, 34, 1);
-    color: rgba(153, 225, 0142, 1);
-    border-color: #2E7A22;
-}
-
-.btn-default:hover,
-.btn-default:focus,
-.btn-default:active,
-.btn-default.active,
-.open > .dropdown-toggle.btn-default {
-    background-color: rgba(46, 122, 34, 1);
-    color: rgba(153, 225, 0142, 1);
-    border-color: #2E7A22;
-}
-
-.well {
+#escrituraPerfil {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 20px;
@@ -152,4 +121,25 @@ body {
     background-color: rgb(23, 23, 255);
     color:#ffffff;
     border-color: #001653;
+}
+#btninfoPerfil, #btnamigosPerfil,#btnplanesPerfil, #btnubicacionPerfil{
+    color: #2E7A22;
+    background-color: rgba(153, 225, 0142, 1);
+    border-color: #2E7A22;
+}
+#btninfoPerfil:hover,
+#btninfoPerfil:focus,
+#btninfoPerfil:active,
+#btnamigosPerfil:hover,
+#btnamigosPerfil:focus,
+#btnamigosPerfil:active,
+#btnplanesPerfil:hover,
+#btnplanesPerfil:focus,
+#btnplanesPerfil:active, 
+#btnubicacionPerfil:hover,
+#btnubicacionPerfil:focus,
+#btnubicacionPerfil:active {
+    background-color: rgba(46, 122, 34, 1);
+    color: rgba(153, 225, 0142, 1);
+    border-color: #2E7A22;
 }
