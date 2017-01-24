@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>WePlanning - Encuentra el mejor Plan cerca de tí!</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylesNewplan.css" rel="stylesheet">
+    <link href="CSS/round-about.css" rel="stylesheet">
+    <link href="CSS/styles.css" rel="stylesheet">
+    
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<script src="js/jquery.flexslider.js"></script>
+    <script src="JS/jquery.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
+   
+	<script type="text/javascript" charset="utf-8">
+  $(window).load(function() {
+    $('.flexslider').flexslider({
+    	touch: true,
+    	pauseOnAction: false,
+    	pauseOnHover: false,
+    });
+  });
+</script>
+
+</head>
+    <body>
+    
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">WePlanning</a> </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse " id="navbar-collapse1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li> <a href="aboutus.html">¿Qué es WePlanning?</a> </li>
+                    <li> <a href="contact.html">Contacta</a> </li>
+                    <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
+                        <ul class="dropdown-menu dropdown-tc">
+                            <form class="form-horizontal form_ini" role="form">
+                                <li>
+                                    <div class="form-group">
+                                        <label for="ejemplo_email_3" class="col-lg-2 control-label">Email</label>
+                                        <div class="col-lg-10">
+                                            <input type="email" class="form-control" id="ejemplo_email_3" placeholder="Email"> </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="form-group">
+                                        <label for="ejemplo_password_3" class="col-lg-2 control-label">Contraseña</label>
+                                        <div class="col-lg-10">
+                                            <input type="password" class="form-control" id="ejemplo_password_3" placeholder="Contraseña"> </div>
+                                    </div>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <div class="form-group">
+                                        <div class="col-lg-offset-2 col-lg-10">
+                                            <button type="submit" class="btn btn-default">Entrar</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li><a href="register.html">No tengo usuario. Registrarme</a></li>
+                            </form>
+                        </ul>
+                    </li>
+                    <li> <a href="register.html">Registrate</a> </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+    
+    
+    <div class="imagen">
+    <ul class="col">
+                <img class="img-circle img-responsive img-center" src="http://placehold.it/2240x2240" alt="" border: 5px solid #7ff00d;>
+                <h3>Plan1
+                    <small>Madrid</small>
+                </h3>
+                <p>Menudo plan papito</p>
+            </ul>
+        </div>
+    
+<!-- /.Rellenar -->  
+     	<div class="container">
+			<div class="row main"> 
+				<div class="panel-heading">
+	               <div class="panel-title text-center">
+	               		<h1 class="title">Crea un nuevo plan </h1>
+	               		<hr />
+	               	</div>
+	            </div> 
+				<div class="main-login main-center">
+					<form class="form-horizontal" method="post" action="#">
+						
+						<div class="form-group">
+							<label for="name" class="cols-sm-2 control-label">Your Name</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="name" id="name"  placeholder="Enter your Name"/>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="email" class="cols-sm-2 control-label">Your Email</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+									<input type="text" class="form-control" name="email" id="email"  placeholder="Enter your Email"/>
+								</div>
+							</div>
+						</div>
+
+				
+
+						<div class="form-group">
+							<label for="Ciusdad" class="cols-sm-2 control-label">Ciudad</label>
+							<div class="cols-sm-10">
+								<div class="input-group">
+									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+									<input type="Ciudad" class="form-control" name="ciudad" id="ciudad"  placeholder="Enter your city"/>
+								</div>
+							</div>
+						</div>
+                        
+                        <div class="form-group1">
+                        <label for="ejemplo_archivo_1">Adjuntar un archivo</label>
+                        <input type="file" id="ejemplo_archivo_1" >
+                        <p class="help-block">Adjunte una foto de su plan</p>
+                      </div>
+                      <div class="Text">
+                        <label>
+                          <textarea clas="text" rowa="3"></textarea> Descripcion
+                        </label>
+                      </div>
+                    
+                        
+                        
+                    
+
+						<div class="form-group ">
+							<button type="button" class="btn btn-primary btn-lg btn-block login-button">Enviar</button>
+						</div>
+						<div class="login-register">
+				            <a href="index.php">Login</a>
+				         </div>
+                        
+                        
+                        
+                        
+                        
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="assets/js/bootstrap.js"></script>
+        
+         
+        
+        
+    </body>
