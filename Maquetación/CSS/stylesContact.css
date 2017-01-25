@@ -1,32 +1,51 @@
 body{
-    background-image: url("../IMG/husk.png");
-    padding-top: 70px;  
+    background:url("../IMG/background.png");
+    padding-top: 20px;  
 }
-@import url("http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
-@import url("http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600|Roboto Mono");
-@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css");
-@font-face {
-  font-family: 'Dosis';
-  font-style: normal;
-  font-weight: 300;
-  src: local('Dosis Light'), local('Dosis-Light'), url(http://fonts.gstatic.com/l/font?kit=RoNoOKoxvxVq4Mi9I4xIReCW9eLPAnScftSvRB4WBxg&skey=a88ea9d907460694) format('woff2');
+h1.title { 
+	font-size: 50px;
+	font-weight: 400; 
+    font-style:italic;
 }
-@font-face {
-  font-family: 'Dosis';
-  font-style: normal;
-  font-weight: 500;
-  src: local('Dosis Medium'), local('Dosis-Medium'), url(http://fonts.gstatic.com/l/font?kit=Z1ETVwepOmEGkbaFPefd_-CW9eLPAnScftSvRB4WBxg&skey=21884fc543bb1165) format('woff2');
+
+hr{
+	width: 10%;
+	color: #fff;
 }
-.panel {
-    font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif,  Open Sans;
-    font-size: 14px;
-    line-height: 1.42857;
-    height: 440px;
-    width: 80%;
-    padding: 10;
-    margin: 0;
-    margin-top: 10%;
-    margin-left: 10%;
+
+.formgc{
+	margin-bottom: 40px;
+}
+.formgs{
+	margin-left: 0px;
+}
+
+label{
+	margin-bottom: 15px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 15px;
+    padding-top: 3px;
+}
+.maincon{
+    margin-top: 78px;
+    margin-bottom: 16%;
     
-    
 }
+.mainl{
+ 	background-color: rgba(163, 163, 163, 0.35);
+    /* shadows and rounded borders */
+    border-radius: 25px;
+    box-shadow: 10px 6px 6px rgba(0, 0, 0, 0.3);
+}
+
+.mainc{
+ 	margin-top: 30px;
+ 	margin: 0 auto;
+ 	max-width: 690px;
+    padding: 20px 20px;
+
+}
+
