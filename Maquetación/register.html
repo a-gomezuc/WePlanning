@@ -9,10 +9,10 @@
     <meta name="author" content="">
     <title>WePlanning - Registrate y empieza a planear!</title>
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="CSS/font-awesome.min.css">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="CSS/styles.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,30 +23,33 @@
 
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html">WePlanning</a> </div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="index.html"> <img src="IMG/Logo.png" id="logoBarra" /></a>
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1 ">
-                <ul class="nav navbar-nav pull-right">
+            <div class="collapse navbar-collapse " id="navbar-collapse1">
+                <ul class="nav navbar-nav navbar-right">
                     <li> <a href="aboutus.html">¿Qué es WePlanning?</a> </li>
+                    <li> <a href="contact.html">Contacta</a> </li>
                     <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
                         <ul class="dropdown-menu dropdown-tc">
                             <form class="form-horizontal form_ini" role="form">
                                 <li>
                                     <div class="form-group">
-                                        <label for="ejemplo_email_3" class="col-lg-2 control-label">Email</label>
+                                        <label for="email" class="col-lg-2 control-label">Email</label>
                                         <div class="col-lg-10">
-                                            <input type="email" class="form-control" id="ejemplo_email_3" placeholder="Email"> </div>
+                                            <input type="email" class="form-control" id="email" placeholder="Email"> </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="form-group">
-                                        <label for="ejemplo_password_3" class="col-lg-2 control-label">Contraseña</label>
+                                        <label for="password" class="col-lg-2 control-label">Contraseña</label>
                                         <div class="col-lg-10">
-                                            <input type="password" class="form-control" id="ejemplo_password_3" placeholder="Contraseña"> </div>
+                                            <input type="password" class="form-control" id="password" placeholder="Contraseña"> </div>
                                     </div>
                                 </li>
                                 <li class="divider"></li>
@@ -61,7 +64,7 @@
                             </form>
                         </ul>
                     </li>
-                    <li> <a href="contact.html">Contacta</a> </li>
+                    <li> <a href="register.html">Registrate</a> </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -89,14 +92,14 @@
                     <div class="form-group">
                         <label for="name" class="cols-sm-2 control-label">Nombre y Apellidos</label>
                         <div class="cols-sm-10">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Introduzca su nombre completo" /> </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="provincia" class="cols-sm-2 control-label">Provincia</label>
                         <div class="cols-sm-10">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-map-marker fa" aria-hidden="true"></i></span>
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span>
                                 <select id="busquedaprovincia">
                                     <option value='alava'>Álava</option>
                                     <option value='albacete'>Albacete</option>
@@ -157,28 +160,28 @@
                     <div class="form-group">
                         <label for="email" class="cols-sm-2 control-label">Email</label>
                         <div class="cols-sm-10">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="email" id="email" placeholder="Introduzca su email" /> </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="username" class="cols-sm-2 control-label">Nombre de usuario</label>
                         <div class="cols-sm-10">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-users fa-fw" aria-hidden="true"></i></span>
                                 <input type="text" class="form-control" name="username" id="username" placeholder="Introduzca su nombre de usuario" /> </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="cols-sm-2 control-label">Contraseña</label>
                         <div class="cols-sm-10">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
                                 <input type="password" class="form-control" name="password" id="password" placeholder="Contraseña" /> </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="confirm" class="cols-sm-2 control-label">Confirma la contraseña</label>
                         <div class="cols-sm-10">
-                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                            <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
                                 <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Repita su contraseña" /> </div>
                         </div>
                     </div>
@@ -191,41 +194,41 @@
     </div>
     <!--/register row -->
     <!--Footer-->
-<div class="footer">
-    <nav class="navbar navbar-bottom">
-        <div class="container">
-            <div class="row" >
-                <center>
-                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="IMG/Logo.png"/> </div>
-                </center>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+    <div class="footer">
+        <nav class="navbar navbar-bottom">
+            <div class="container">
+                <div class="row">
                     <center>
-                        <a href="#" class="fa fa-facebook-square fa-5x" aria-hidden="true"></a>
-                        <a href="#" class="fa fa-twitter-square fa-5x" aria-hidden="true"></a>
-                        <a href="#" class="fa fa-instagram fa-5x" aria-hidden="true"></a>
+                        <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="IMG/Logo.png" /> </div>
                     </center>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+                        <center>
+                            <a href="#" class="fa fa-facebook-square fa-5x" aria-hidden="true"></a>
+                            <a href="#" class="fa fa-twitter-square fa-5x" aria-hidden="true"></a>
+                            <a href="#" class="fa fa-instagram fa-5x" aria-hidden="true"></a>
+                        </center>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                        <center> <a href="#" id="aboutUs">Conócenos<br></a> <a href="#" id="contacto">Contacto<br></a> <a href="#" id="#">Más<br></a> </center>
+                    </div>
                 </div>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="#" id="aboutUs">Conócenos<br></a> <a href="#" id="contacto">Contacto<br></a> <a href="#" id="#">Más<br></a> </center>
+                <div class="row">
+                    <div id="copyright">
+                        <center>
+                            <hr id="lineaCopyright">
+                            <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
+                        </center>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div id="copyright">
-                    <center>
-                        <hr id="lineaCopyright">
-                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </nav>
-</div>
-<!--FooterEnd-->
+        </nav>
+    </div>
+    <!--FooterEnd-->
     <!-- /.container -->
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="JS/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="JS/bootstrap.min.js"></script>
 </body>
 
 </html>

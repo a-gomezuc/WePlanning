@@ -9,6 +9,12 @@ body {
 .navtop a{
 	font-family: 'Titillium Web', sans-serif;
 }
+#logoBarra{
+    width:190px;
+    position:absolute;
+    top:-23px;
+    left:-2px;
+}
 .dropdown-tc{
     background:#222;
     padding:5%;
@@ -382,3 +388,7 @@ input::-webkit-input-placeholder {
     margin-top:20px;
 }
 /* ----------- /Footer -------- */
+/* ----------- /NewPlan -------- */
+#imagen{
+    margin-top:20px;
+}
