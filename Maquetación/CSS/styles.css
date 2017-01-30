@@ -58,6 +58,7 @@ body {
 }
 
 .jumbo-slogan {
+	font-size:15px;
     text-transform: uppercase;
     font-family: 'Titillium Web', sans-serif;
     text-align: right;
@@ -65,9 +66,26 @@ body {
 }
 
 .jumbo-slogan p {
-    margin-top: 2%;
+    margin-top: 4%;
 }
-
+@media (max-width:1100px){
+	.jumbo-slogan p{
+		font-size:1.2em !important;
+	}
+	.jumbo-slogan h1 {
+    	font-size:1.8em !important;
+	text-align:center;
+}
+}
+@media (max-width:468px){
+	.jumbo-slogan p{
+		display:none;
+	}
+	.jumbo-slogan h1 {
+    	font-size:1.8em !important;
+		text-align:center;
+}
+	}
 
 /* ---------------- /jumbotron ---------*/
 
