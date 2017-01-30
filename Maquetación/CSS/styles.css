@@ -477,7 +477,7 @@ input::-webkit-input-placeholder {
 }
 
 #redesSociales a:hover {
-    color: darkgray;
+    color: #4b4848;
     text-decoration: none;
 }
 
@@ -495,7 +495,7 @@ input::-webkit-input-placeholder {
 }
 
 #links a:hover {
-    color: darkgray;
+    color: #4b4848;
     text-decoration: none;
 }
 
@@ -525,6 +525,9 @@ input::-webkit-input-placeholder {
 
 .footer {
     margin-top: 20px;
+    background-color:rgba(136, 130, 130, 0.48);
+    padding-bottom: 1px;
+    padding-top:30px;
 }
 
 
@@ -535,4 +538,13 @@ input::-webkit-input-placeholder {
 
 #imagen {
     margin-top: 20px;
+}
+/* ----------- /NewPlan -------- */
+/* ----------- Contact -------- */
+#contact{
+    font-family: 'Fjalla One', sans-serif;
+}
+.lineaNegra{
+    width: 50%;
+    border-top: 2px solid black;
 }
