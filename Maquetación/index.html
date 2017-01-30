@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -13,6 +13,7 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="CSS/font-awesome.min.css">
     <link href="CSS/styles.css" rel="stylesheet"> </head>
+	<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
 
 <body>
     <!-- Navigation -->
@@ -70,21 +71,108 @@
             <div class="jumbo-slogan">
                 <h1>Encuentra el mejor plan cerca de ti!</h1>
                 <p>Planea, Disfruta, Comenta, Comparte</p>
-                <p>Unete a WePlanning</p>
+                <p>Únete a WePlanning</p>
             </div>
         </div>
     </div>
     <!-- /Jumbotron -->
     <!-- row-ads -->
     <div class="row center-block" id="row-ads">
-        <div class="col-md-6">
-            <div class="ads" id="ad1">Anuncio 1</div>
-        </div>
-        <div class="col-md-6">
-            <div class="ads" id="ad2">Anuncio 2</div>
-        </div>
-    </div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div class="ads"><img class="image-responsive ads-img" src="IMG/ad1.jpg"></div>
+		</div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div class="ads"><img class="image-responsive ads-img" src="IMG/ad2.jpg"></div>
+		</div>
+	</div>
     <!-- /row-ads -->
+	<!--- search navbar --->
+	<div class="row"> </div>
+	<div class="row search-row">
+		<div class="col-lg-12">
+			<h2 class="page-header">Encuentra tu plan</h2> </div>
+		<div class="col-md-8 catg">
+			<ul class="list-inline">
+				<li><a>Música</a></li>
+				<li><a>Cine</a></li>
+				<li><a>Deportes</a></li>
+			</ul>
+			<ul class="list-inline">
+				<li><a>Fiestas</a></li>
+				<li><a>Naturaleza</a></li>
+				<li><a>Cultura</a></li>
+			</ul>
+		</div>
+		<div class="col-md-4 search">
+			<div class="input-append">
+				<input type="text" class="sr-input" placeholder="Busca un plan">
+				<button class="btn sr-btn" type="button"><i class="fa fa-search"></i></button>
+			</div>
+			<div class="">
+				<div class="form-group">
+					<div class="cols-sm-10">
+						<div class="input-group">
+							<select id="busquedaprovincia">
+								<option value='alava'>Álava</option>
+								<option value='albacete'>Albacete</option>
+								<option value='alicante'>Alicante/Alacant</option>
+								<option value='almeria'>Almería</option>
+								<option value='asturias'>Asturias</option>
+								<option value='avila'>Ávila</option>
+								<option value='badajoz'>Badajoz</option>
+								<option value='barcelona'>Barcelona</option>
+								<option value='burgos'>Burgos</option>
+								<option value='caceres'>Cáceres</option>
+								<option value='cadiz'>Cádiz</option>
+								<option value='cantabria'>Cantabria</option>
+								<option value='castellon'>Castellón/Castelló</option>
+								<option value='ceuta'>Ceuta</option>
+								<option value='ciudadreal'>Ciudad Real</option>
+								<option value='cordoba'>Córdoba</option>
+								<option value='cuenca'>Cuenca</option>
+								<option value='girona'>Girona</option>
+								<option value='laspalmas'>Las Palmas</option>
+								<option value='granada'>Granada</option>
+								<option value='guadalajara'>Guadalajara</option>
+								<option value='guipuzcoa'>Guipúzcoa</option>
+								<option value='huelva'>Huelva</option>
+								<option value='huesca'>Huesca</option>
+								<option value='illesbalears'>Illes Balears</option>
+								<option value='jaen'>Jaén</option>
+								<option value='acoruña'>A Coruña</option>
+								<option value='larioja'>La Rioja</option>
+								<option value='leon'>León</option>
+								<option value='lleida'>Lleida</option>
+								<option value='lugo'>Lugo</option>
+								<option value='madrid'>Madrid</option>
+								<option value='malaga'>Málaga</option>
+								<option value='melilla'>Melilla</option>
+								<option value='murcia'>Murcia</option>
+								<option value='navarra'>Navarra</option>
+								<option value='ourense'>Ourense</option>
+								<option value='palencia'>Palencia</option>
+								<option value='pontevedra'>Pontevedra</option>
+								<option value='salamanca'>Salamanca</option>
+								<option value='segovia'>Segovia</option>
+								<option value='sevilla'>Sevilla</option>
+								<option value='soria'>Soria</option>
+								<option value='tarragona'>Tarragona</option>
+								<option value='santacruztenerife'>Santa Cruz de Tenerife</option>
+								<option value='teruel'>Teruel</option>
+								<option value='toledo'>Toledo</option>
+								<option value='valencia'>Valencia/Valéncia</option>
+								<option value='valladolid'>Valladolid</option>
+								<option value='vizcaya'>Vizcaya</option>
+								<option value='zamora'>Zamora</option>
+								<option value='zaragoza'>Zaragoza</option>
+							</select>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--- /search navbar --->
     <!--main-page-register-->
     <!--section class="main-page-register" id="register">
         <div class="container">
@@ -104,7 +192,7 @@
             <div class="col-lg-12">
                 <h2 class="page-header">TOP PLANNING</h2> </div>
             <div class="col-lg-4 col-sm-6 photography">
-                <a href="#" class="planning-box"> <img class=" img-responsive img-center" src="http://lorempixel.com/650/350/people/" alt="">
+                <a href="plan.html" class="planning-box"> <img class=" img-responsive img-center" src="http://lorempixel.com/650/350/people/" alt="">
                     <div class="planning-box-caption">
                         <div class="planning-box-caption-content">
                             <div class="user-name text-faded"> Descripción </div>
