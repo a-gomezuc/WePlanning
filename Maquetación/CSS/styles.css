@@ -547,9 +547,35 @@ input::-webkit-input-placeholder {
 
 
 /* ----------- /NewPlan -------- */
+#frase{ 
+   font-family: 'Fjalla One', sans-serif;
+}
+
+hr{
+	width: 10%;
+	color: #fff;
+}
+.login-button{
+	margin-top: 5px;
+}
+
+.login-register{
+	font-size: 11px;
+	text-align: center;
+}
+
+
+#txt{
+    width: 100%;
+}
 
 #imagen {
     margin-top: 20px;
+   
+}
+
+.img-circle{
+    width: 55%;
 }
 /* ----------- /NewPlan -------- */
 /* ----------- Contact -------- */
