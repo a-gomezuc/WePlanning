@@ -1,6 +1,4 @@
-*{
-    font-family: Merriweather,'Helvetica Neue',Arial,sans-serif;
-}
+
 body {
     padding-top: 50px;
     background: url("../IMG/background.png");
@@ -126,14 +124,14 @@ body {
     padding-right: 0;
 }
 
-.portfolio-box {
+.planning-box {
     position: relative;
     display: block;
     max-width: 650px;
     margin: 0 auto
 }
 
-.portfolio-box .portfolio-box-caption {
+.planning-box .planning-box-caption {
     color: #fff;
     opacity: 0;
     display: block;
@@ -146,7 +144,7 @@ body {
     transition: all .35s;
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content {
+.planning-box .planning-box-caption .planning-box-caption-content {
     width: 100%;
     text-align: center;
     position: absolute;
@@ -154,27 +152,27 @@ body {
     transform: translateY(-50%);
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .user-name {
+.planning-box .planning-box-caption .planning-box-caption-content .user-name {
     font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
     padding: 0 15px
 }
 
-.portfolio-box .portfolio-box-caption .portfolio-box-caption-content .user-name {
+.planning-box .planning-box-caption .planning-box-caption-content .user-name {
     text-transform: uppercase;
     font-weight: 600;
     font-size: 14px
 }
 
-.portfolio-box:hover .portfolio-box-caption {
+.planning-box:hover .planning-box-caption {
     opacity: 0.75
 }
 
-.portfolio-box:focus {
+.planning-box:focus {
     outline: 0
 }
 
 @media (min-width:768px) {
-    .portfolio-box .portfolio-box-caption .portfolio-box-caption-content .user-name {
+    .planning-box .planning-box-caption .planning-box-caption-content .user-name {
         font-size: 16px
     }
 }
@@ -495,7 +493,7 @@ input::-webkit-input-placeholder {
 }
 
 #redesSociales a:hover {
-    color: darkgray;
+    color: #4b4848;
     text-decoration: none;
 }
 
@@ -513,7 +511,7 @@ input::-webkit-input-placeholder {
 }
 
 #links a:hover {
-    color: darkgray;
+    color: #4b4848;
     text-decoration: none;
 }
 
@@ -543,6 +541,9 @@ input::-webkit-input-placeholder {
 
 .footer {
     margin-top: 20px;
+    background-color:rgba(136, 130, 130, 0.48);
+    padding-bottom: 1px;
+    padding-top:30px;
 }
 
 
@@ -553,4 +554,13 @@ input::-webkit-input-placeholder {
 
 #imagen {
     margin-top: 20px;
+}
+/* ----------- /NewPlan -------- */
+/* ----------- Contact -------- */
+#contact{
+    font-family: 'Fjalla One', sans-serif;
+}
+.lineaNegra{
+    width: 50%;
+    border-top: 2px solid black;
 }
