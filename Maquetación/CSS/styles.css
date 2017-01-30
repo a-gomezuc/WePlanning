@@ -118,17 +118,17 @@ body {
 
 
 /*------------Planning photographies-------*/
-
+.datosPlan{
+    margin:3px;
+}
 .photography {
-    padding-left: 0;
-    padding-right: 0;
+padding:30px;
 }
 
 .planning-box {
     position: relative;
     display: block;
     max-width: 650px;
-    margin: 0 auto
 }
 
 .planning-box .planning-box-caption {
@@ -537,9 +537,12 @@ input::-webkit-input-placeholder {
 
 .footer {
     margin-top: 20px;
+    margin-left: -15px;
+    margin-right: -15px;
     background-color:rgba(136, 130, 130, 0.48);
-    padding-bottom: 1px;
-    padding-top:30px;
+    padding-bottom: 40px;
+    /* padding-left: 200px; */
+    padding-top: 20px;
 }
 
 
