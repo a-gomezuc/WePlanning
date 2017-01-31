@@ -129,7 +129,9 @@ body {
 	height: auto;
 	margin: 2%;
 }
-
+.search{
+    margin-top:2%;
+}
 .catg ul {
 	padding: 1%;
 	list-style: none;
@@ -147,7 +149,7 @@ body {
 	font-size: 18px;
 	background: rgb(198, 88, 7);
 	border-radius: 10px;
-	margin-bottom:2%;
+    margin-bottom:2%;
 	cursor: pointer;
 }
 @media (max-width:468px){
@@ -174,14 +176,6 @@ body {
 .catg ul li:hover {
 	text-decoration: none;
 	background: #333;
-}
-
-.search-input {
-	padding: 11px 16px;
-	border-radius: 2px 0 0 2px;
-	border: 0 none;
-	outline: 0 none;
-	font-size: 15px;
 }
 
 
@@ -316,9 +310,6 @@ h1.title {
     margin-bottom: 5px;
 	margin-top:5px;
 	margin-left:-20px;
-}
-.search{
-	margin-top:2%;
 }
 
 label {
