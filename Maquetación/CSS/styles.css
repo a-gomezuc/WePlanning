@@ -128,6 +128,7 @@ body {
 .search-row {
 	height: auto;
 	margin: 2%;
+	
 }
 
 .catg ul {
@@ -142,7 +143,7 @@ body {
 }
 .catg ul li {
 	font-family: 'Fjalla One', sans-serif;
-	width: 200px;
+	width: 250px;
 	text-align: center;
 	font-size: 18px;
 	background: rgb(198, 88, 7);
@@ -154,9 +155,7 @@ body {
 	.catg ul li{
 	width: 150px;
 		}
-	.search{
-		width:280px;
-	}
+	
 }
 @media (max-width:365px){
 	.catg ul li{
