@@ -39,6 +39,12 @@ body {
 .dropdown-tc a {
     text-decoration: none;
 }
+.user-dropdown a{
+	text-decoration: none;
+	color:white;
+	font-weight:700;
+	
+}
 
 
 /* ---------------- /navbar ---------*/
@@ -79,7 +85,7 @@ body {
 		font-size:1.2em !important;
 	}
 	.jumbo-slogan h1 {
-    	font-size:1.8em !important;
+    	font-size:2.2em !important;
 	text-align:center;
 }
 }
@@ -124,21 +130,39 @@ body {
 	margin: 2%;
 }
 
-.catg {
+.catg ul {
 	padding: 1%;
+	list-style: none;
 }
-
+.catg .firstcol li{
+	margin-bottom:2%;
+}
+.catg .secondcol li{
+	margin-bottom:2%;
+}
 .catg ul li {
 	font-family: 'Fjalla One', sans-serif;
-	width: 150px;
+	width: 200px;
 	text-align: center;
 	font-size: 18px;
 	background: rgb(198, 88, 7);
 	border-radius: 10px;
-	margin-left: 5%;
+	margin-bottom:2%;
 	cursor: pointer;
 }
-
+@media (max-width:468px){
+	.catg ul li{
+	width: 150px;
+		}
+	.search{
+		width:280px;
+	}
+}
+@media (max-width:365px){
+	.catg ul li{
+	width: 100px;
+		}
+}
 .catg ul li a {
 	color: white;
 }
@@ -289,7 +313,12 @@ h1.title {
 
 
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+	margin-top:5px;
+	margin-left:-20px;
+}
+.search{
+	margin-top:2%;
 }
 
 label {
@@ -389,7 +418,7 @@ input::-webkit-input-placeholder {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
     border-radius: 50%;
-    border: 3px solid #99e18e;
+    border: 3px solid #333;
 }
 
 .card.hovercard .card-info {
@@ -403,7 +432,7 @@ input::-webkit-input-placeholder {
     padding: 0 5px;
     font-size: 20px;
     line-height: 1;
-    color: #99e18e;
+    color: #333;
     background-color: rgba(4, 51, 9, 0);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -431,8 +460,8 @@ input::-webkit-input-placeholder {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 20px;
-    background-color: #D0F3CA;
-    border: 1px solid #2E7A22;
+    background-color: #b2abab;
+    border: 1px solid #333;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
