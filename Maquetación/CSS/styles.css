@@ -130,7 +130,9 @@ body {
 	margin: 2%;
 	
 }
-
+.search{
+    margin-top:2%;
+}
 .catg ul {
 	padding: 1%;
 	list-style: none;
@@ -148,7 +150,7 @@ body {
 	font-size: 18px;
 	background: rgb(198, 88, 7);
 	border-radius: 10px;
-	margin-bottom:2%;
+    margin-bottom:2%;
 	cursor: pointer;
 }
 @media (max-width:468px){
@@ -173,14 +175,6 @@ body {
 .catg ul li:hover {
 	text-decoration: none;
 	background: #333;
-}
-
-.search-input {
-	padding: 11px 16px;
-	border-radius: 2px 0 0 2px;
-	border: 0 none;
-	outline: 0 none;
-	font-size: 15px;
 }
 
 
@@ -315,9 +309,6 @@ h1.title {
     margin-bottom: 5px;
 	margin-top:5px;
 	margin-left:-20px;
-}
-.search{
-	margin-top:2%;
 }
 
 label {
@@ -579,7 +570,11 @@ input::-webkit-input-placeholder {
     border-radius: 4px;
 }
 
-
+/*-------------Profile-edit----------------*/
+.btn-edit{
+   
+}
+/*-------------Profile-edit----------------*/
 /* ----------- /Profile &S ponsor -------- */
 /* ----------- /Plan -------- */
 
@@ -698,14 +693,77 @@ hr{
     width: 100%;
 }
 
-#imagen {
-    margin-top: 20px;
-   
+
+.img-rectangle{
+    width: 55%;
+    border-radius: 25%;
 }
 
-.img-circle{
-    width: 55%;
+#img-big{
+    border-radius: 0px;
+      box-shadow: 2px 3px 3px #333;
+    
 }
+
+@-webkit-keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+@keyframes opacity {
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(3);
+            transform: scale(3); }
+  100% {
+    opacity: 1;
+    -webkit-transform: scale(1);
+            transform: scale(1); } }
+
+
+.tab-content {
+  overflow: hidden; }
+  .tab-content img {
+    width: 100%;
+    -webkit-animation-name: opacity;
+            animation-name: opacity;
+    -webkit-animation-duration: .3s;
+            animation-duration: .3s; }
+
+
+  @media screen and (max-width: 996px) {
+    .preview {
+      margin-bottom: 20px; } }
+
+.preview-pic {
+  -webkit-flex-grow: 1; 
+    margin-top: 29px;
+    border-radius: 15px;
+      box-shadow: 2px 3px 3px #333;
+     
+}
+
+.preview-thumbnail.nav-tabs {
+  border: none;
+  margin-top: 15px; }
+  .preview-thumbnail.nav-tabs li {
+    width: 18%;
+    margin-right: 2.5%; }
+    .preview-thumbnail.nav-tabs li img {
+      max-width: 100%;
+      border-radius: 0px;
+      box-shadow: 2px 3px 3px #333;
+      display: block; }
+    .preview-thumbnail.nav-tabs li a {
+      padding: 0;
+      margin: 0; }
+    .preview-thumbnail.nav-tabs li:last-of-type {
+      margin-right: 0; }
 /* ----------- /NewPlan -------- */
 /* ----------- Contact -------- */
 #contact{
