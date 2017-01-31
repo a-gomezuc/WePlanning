@@ -100,7 +100,12 @@ body {
 
 #row-ads {
 	width: 95%;
-	margin-top: 1%;
+    margin-top:0.8%;
+}
+#ad1, #ad2{
+    height:300px;
+    border-color:black;
+    border: 2px solid black;
 }
 
 .ads-img {
@@ -203,7 +208,7 @@ padding:30px;
     color: #fff;
     opacity: 0;
     display: block;
-    background: rgba(46, 122, 34, .9);
+    background: rgba(198, 88, 7, 0.94);
     position: absolute;
     bottom: 0;
     text-align: center;
