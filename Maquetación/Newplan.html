@@ -14,7 +14,12 @@
     <link rel="stylesheet" href="CSS/font-awesome.min.css">
     <link href="CSS/styles.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-    
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
 
 <body>
@@ -24,7 +29,7 @@
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                <a class="navbar-brand" href="index.html"> <img src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+                <a class="navbar-brand" href="index.html"> <img src="IMG/Logo.png" id="logoBarra" /></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse " id="navbar-collapse1">
@@ -39,13 +44,6 @@
                                         <label for="email" class="col-lg-2 control-label">Email</label>
                                         <div class="col-lg-10">
                                             <input type="email" class="form-control" id="email" placeholder="Email"> </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="form-group">
-                                        <label for="password" class="col-lg-2 control-label">Contraseña</label>
-                                        <div class="col-lg-10">
-                                            <input type="password" class="form-control" id="password" placeholder="Contraseña"> </div>
                                     </div>
                                 </li>
                                 <li class="divider"></li>
@@ -74,7 +72,7 @@
         <div class="row main">
             <div class="panel-heading" id="panelnw">
                 <div class="panel-title text-center">
-                    <h1 class="page-header">Sube un nuevo plan</h1>
+                    <h1 class="titlenw" id="frase">CREA UN NUEVO PLAN </h1>
                     <hr class="lineaNegra"/> </div>
             </div>
             <div class="mainnw mainnw">
@@ -83,24 +81,24 @@
                         <div class="col-sm-6" id="panel-nw">
                             <form class="form-horizontal" method="post" action="#">
                                 <div class="form-groupnw">
-                                    <label for="name" class="cols-sm-2 control-label">Your Name</label>
+                                    <label for="name" class="cols-sm-2 control-label">Nombre</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Enter your Name" /> </div>
+                                            <input type="text" class="form-control" name="name" id="name" placeholder="Nombre" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-groupnnw">
-                                    <label for="email1" class="cols-sm-2 control-label">Your Email</label>
+                                    <label for="email" class="cols-sm-2 control-label">Email</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="email" id="email1" placeholder="Enter your Email" /> </div>
+                                            <input type="text" class="form-control" name="email" id="email" placeholder="Email" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-groupnw">
                                     <label for="Ciusdad" class="cols-sm-2 control-label">Ciudad</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
-                                            <input type="Ciudad" class="form-control" name="ciudad" id="ciudad" placeholder="Enter your city" /> </div>
+                                            <input type="Ciudad" class="form-control" name="ciudad" id="ciudad" placeholder="Ciudad" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-groupnw">
@@ -115,14 +113,28 @@
                                 <div class="form-groupnw ">
                                     <button type="button" class="btn btn-primary btn-lg btn-block login-button">Enviar</button>
                                 </div>
-                                <div class="login-register"> <a href="index.php">Login</a> </div>
+                                <div class="btn/info  login-register"> <a href="index.php">registrate</a> </div>
                             </form>
                         </div>
                         <center>
-                            <div class="col-sm-6" id="imagen"> <img class="img-circle img-center" src="http://placehold.it/200x200" alt="">
-                                <h3>John Smith
-                                <small>Salida al Campo</small>
-                            </h3> </div>
+                            <div class="preview col-md-6">
+						
+                                <div class="preview-pic tab-content img-center">
+                                  <div class="tab-pane active" id="pic-1"><img id="img-big" src="IMG/imgplan6.jpg" /></div>
+                                  <div class="tab-pane" id="pic-2"><img src="img/imgplan3.jpg" /></div>
+                                  <div class="tab-pane" id="pic-3"><img src="img//imgplan1.jpg" /></div>
+                                  <div class="tab-pane" id="pic-4"><img src="IMG/imgplan4.jpg" /></div>
+                                  <div class="tab-pane" id="pic-5"><img src="IMG/imgplan8.jpg" /></div>
+                                </div>
+                                <ul class="preview-thumbnail nav nav-tabs img-center">
+                                  <li class="active"><a data-target="#pic-1" data-toggle="tab"><img src="IMG/imgplan6.jpg" /></a></li>
+                                  <li><a data-target="#pic-2" data-toggle="tab"><img src="img/imgplan3.jpg" /></a></li>
+                                  <li><a data-target="#pic-3" data-toggle="tab"><img src="img//imgplan1.jpg" /></a></li>
+                                  <li><a data-target="#pic-4" data-toggle="tab"><img src="IMG/imgplan4.jpg" /></a></li>
+                                  <li><a data-target="#pic-5" data-toggle="tab"><img src="IMG/imgplan8.jpg" /></a></li>
+                                </ul>
+						
+					        </div>
                         </center>
                         <input type="hidden" value=""> </div>
                 </div>
@@ -166,4 +178,3 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="JS/bootstrap.min.js"></script>
 </body>
-</html>
