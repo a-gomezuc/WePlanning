@@ -516,8 +516,8 @@ input::-webkit-input-placeholder {
 #btnubicacionPerfil:hover,
 #btnubicacionPerfil:focus,
 #btnubicacionPerfil:active {
-    background-color: rgba(46, 122, 34, 1);
-    color: rgba(153, 225, 0142, 1);
+    background-color: #333;
+    color: white;
     border-color: #2E7A22;
 }
 
