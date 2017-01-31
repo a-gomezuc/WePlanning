@@ -5,7 +5,15 @@ body {
     margin: 0px;
 }
 
-
+.btn-info{
+	color: #fff;
+    background: rgb(198, 88, 7);
+	color:white;
+    border-color: rgb(198, 88, 7);
+}
+.btn-info:hover{
+	background:#333;
+}
 /* ---------------- navbar ---------*/
 
 .navtop a {
@@ -547,10 +555,7 @@ input::-webkit-input-placeholder {
 .plan-desc{
 	padding:2%;
 }
-.btn-asiste{
-	background: rgb(198, 88, 7);
-	color:white;
-}
+
 
 
 /* ----------- /Plan -------- */
