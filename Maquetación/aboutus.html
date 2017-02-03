@@ -1,10 +1,20 @@
 <!DOCTYPE html>
+<html lang="es">
 
 <head>
-    <title>Perfil</title>
-    <link rel="stylesheet" href="CSS/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="CSS/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="CSS/styles.css"> </head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>WePlanning - ¡Encuentra el mejor plan cerca de ti!</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="CSS/font-awesome.min.css">
+    <link href="CSS/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans" rel="stylesheet"> </head>
 
 <body>
     <!-- Navigation -->
@@ -12,7 +22,9 @@
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html"> <img src="IMG/LogoBlanco.png" id="logoBarra"/></a></div>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                <a class="navbar-brand" href="index.html"> <img src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+            </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse " id="navbar-collapse1">
                 <ul class="nav navbar-nav navbar-right">
@@ -54,54 +66,29 @@
         </div>
         <!-- /.container -->
     </nav>
-    
-    <div class="row">
-        <div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
-            <div class="card hovercard ">
-                <div class="card-background"> <img class="card-bkimg" alt="" src="IMG/imgplan8.jpg">
-                    <!-- http://lorempixel.com/850/280/people/9/ -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container-fluid">
+                <div class="col-lg-6 col-md-6">
+                            <center><h1 class="page-header center-block" id="quees">¿Qué es WePlanning?</h1>
+                    </center>
+                    <p class="textAU">WePlanning es una plataforma web en la que los usuarios pueden proponer planes a otros usuarios para disfrutarlos juntos o simplemente publicar planes que han realizado en algún momento de su vida para que otros usuarios tomen ideas.
+                        <br> Esta plataforma web se diseñó por cuatro alumnos de la Universidad Rey Juan Carlos como práctica de la asignatura "Desarrollo de Aplicaciones Web" del grado de Ingeniería del Software.
+                        <br> </p>
+                    <hr id="lineaAboutUs" />
+                    <p class="textAU">Los alumnos encargados de la plataforma web son:
+                        <br> </p>
+                    <ul>
+                        <li>Rubén Golderos Serrano </li>
+                        <li>Guillermo Navas García </li>
+                        <li>Jorge Sánchez Márquez</li>
+                        <li>Alex Gómez Uceda</li>
+                    </ul>
+                    <hr id="lineaAboutUs" />
+                    <p class="textAU">Si desea contactar con nosotros puede hacerlo pulsando <a id="pulsaAqui" href="contact.html"> AQUÍ.</a></p>
                 </div>
-                <div class="useravatar"> <img id="imagenPerfil"  src="http://lorempixel.com/100/100/people/9/"> </div>
-                <div class="card-info"> <span id="tituloPerfil" class="card-title">Usuario</span> </div>
-            </div>
-            <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <button type="button" id="btninfoPerfil" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <div class="hidden-xs">Información</div>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="btnplanesPerfil" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-                        <div class="hidden-xs">Planes</div>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="btnamigosPerfil" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                        <div class="hidden-xs">Lista de amigos</div>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="btnubicacionPerfil" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                        <div class="hidden-xs">Ubicación</div>
-                    </button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="btnAgregar" class="btn btn-default" href="#" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
-                </span>
-                        <div class="hidden-xs">Agregar amigo</div>
-                    </button>
-                </div>
-            </div>
-            <div class="well" id="escrituraPerfil">
-                <div class="tab-content">
-                    <div class="tab-pane fade in active" id="tab1">
-                        <h3>Información AQUÍ</h3> </div>
-                    <div class="tab-pane fade in" id="tab2">
-                        <h3>Planes AQUÍ</h3> </div>
-                    <div class="tab-pane fade in" id="tab3">
-                        <h3>Amigos AQUÍ</h3> </div>
-                    <div class="tab-pane fade in" id="tab4">
-                        <h3>Mapa AQUÍ</h3> </div>
+                <div class="col-lg-6 col-md-6">
+                    <center><img class="img-responsive logoUrjc" src="https://www.urjc.es/images/rcc_harvard_urjc/logo.png"></center>
                 </div>
             </div>
         </div>
@@ -137,6 +124,11 @@
             </nav>
         </div>
         <!--FooterEnd-->
+    <!-- /.container -->
+    <!-- jQuery -->
     <script src="JS/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
     <script src="JS/bootstrap.min.js"></script>
 </body>
+
+</html>

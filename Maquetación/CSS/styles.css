@@ -186,6 +186,7 @@ body {
     text-transform: uppercase;
     font-family: 'Fjalla One', sans-serif;
 	text-align:center;
+    border:0px;
 }
 
 
@@ -675,10 +676,6 @@ input::-webkit-input-placeholder {
    font-family: 'Fjalla One', sans-serif;
 }
 
-hr{
-	width: 10%;
-	color: #fff;
-}
 .login-button{
 	margin-top: 5px;
 }
@@ -772,4 +769,23 @@ hr{
 .lineaNegra{
     width: 50%;
     border-top: 2px solid black;
+}
+/* ----------- Contact -------- */
+/* ----------- AboutUs -------- */
+.textAU{
+    text-align:justify;
+}
+#pulsaAqui{
+    text-decoration:none;
+    color:black;
+    font-size: 20px;
+}
+#pulsaAqui:hover{
+    color:orange;
+}
+.logoUrjc{
+    width:auto;
+}
+#lineaAboutUs{
+    border-color:black;
 }
