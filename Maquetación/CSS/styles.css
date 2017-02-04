@@ -207,6 +207,10 @@ body {
     color:black;
     font-weight:bold;
 }
+.plan-desc>div>p .creador-plan{
+	font-size:14px !important;
+	color:#333 !important;
+}
 .datosPlan{
     margin:3px;
     font-size:17px;
@@ -770,7 +774,7 @@ input::-webkit-input-placeholder {
     width: 50%;
     border-top: 2px solid black;
 }
-/* ----------- Contact -------- */
+/* ----------- /Contact -------- */
 /* ----------- AboutUs -------- */
 .textAU{
     text-align:justify;
@@ -788,4 +792,43 @@ input::-webkit-input-placeholder {
 }
 #lineaAboutUs{
     border-color:black;
+}
+/* -----------/ AboutUs -------- */
+/* ----------- comments -------- */
+.comments{
+	width:80%;
+	background:rgba(0, 0, 0, .05);
+}
+.comment {
+    overflow: hidden;
+ 
+    padding:5px;
+	margin:2px:
+}
+
+.comment .text {
+    padding: 10px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.comment .text p:last-child {
+    margin: 0;
+}
+
+.comment .attribution {
+    margin: 0.5em 0 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.add-comment{
+	width:80%;
+	padding:5px;
+}
+.add-comment label{
+	font-size:14px;
+	color:#333;
+	
 }
