@@ -34,7 +34,7 @@ Si nos encontramos logueados en la web lo único que sufrirá cambios será la b
 ![navbar-logged][img3]</br>
 
 
-[img1]:\Maquetación\IMG\index1.png
+[img1]:/Maquetación/IMG/index1.png
 [img2]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\index2.png
 [img3]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\navbar-logged.png
 
