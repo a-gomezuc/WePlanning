@@ -24,19 +24,19 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 Página principal de la web.Se visualizarán los planes más votados por la comunidad y se podrán filtrar por categorias y regiones.</br>
 
-Si nos encontramos logueados en la web lo único que sufrirá cambios será la barra de navegación(Estos cambios en la barra de navegación se aplicarán en todos los HTML correspondientes a usuarios logueados):</br>
-
-![navbar-logged][img4]</br>
-
-
 ![index1][img1]</br>
-![index2][img2]</br>
-![index3][img3]</br>
 
-[img1]:/IMG/index1.png
-[img2]:/IMG/index2.png
-[img3]:/IMG/index3.png
-[img4]:/IMG/navbar-logged.png
+![index2][img2]</br>
+
+Si nos encontramos logueados en la web lo único que sufrirá cambios será la barra de navegación(Estos cambios en la barra de navegación se aplicarán en todos los HTML correspondientes a usuarios logueados)</br>
+
+
+![navbar-logged][img3]</br>
+
+
+[img1]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\index1.png
+[img2]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\index2.png
+[img3]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\navbar-logged.png
 
 ### ProfileHTML y ProfileHTML-logged</br>
 
@@ -49,21 +49,29 @@ Si el usuario se encuentra logueado en el sistema podrá accedetr a su perfil, d
 La barra de navegación en el caso de estar logueados se mostrará como hemos mostrado antes
 
 ![profile-buttom][img5] "Botones de modificación"</br>
+
 ![button-agregar][img6] "Botón de añadir amigo"</br>
 
-[img4]:/IMG/profile.png
-[img5]:/IMG/profile-button.png
-[img6]:/IMG/button-agregar.png
+![profile-logged][img15]</br>
+
+[img4]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\profile.png
+[img5]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\profile-button.png
+[img6]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\button-agregar.png
+[img15]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\profile-logged.png
 
 ### SponsorHTML y SponsorHTML-logged</br>
 
 Html en el que se mostrar los datos el perfil de usuario el cual es una empresa.</br>
 
-[img7][sponsor]</br>
+![sponsor][img7]</br>
 
 Si la empresa se encuentra logueada y visita su perfil desaparecera el botón "Seguir sponsor" y podrá modificar los datos de su perfil.</br>
 
-[img7]:/IMG/sponsor.png
+![sponsor-logged][img14]
+
+
+[img7]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\sponsor.png
+[img14]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\sponsor-logged.png
 
 ### Plan y Plan-logged </br>
 
@@ -75,8 +83,8 @@ En el caso de que nos encontremos logueados, se nos dará la posibilidad de aña
 
 ![plan-logged][img9]</br>
 
-[img8]:/IMG/plan.png
-[img9]:/IMG/plan-logged.png
+[img8]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\plan.png
+[img9]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\plan-logged.png
 
 ### Newplan</br>
 
@@ -84,7 +92,7 @@ Formulario en que crearemos un nuevo plan que aparecerá a los usuarios de la p�
 
 ![newPlan][img10]</br>
 
-[img10]:/IMG/newPlan.png
+[img10]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\newPlan.png
 
 ### Aboutus y aboutus-logged</br>
 
@@ -94,7 +102,7 @@ Se mostrará una pequeña descripción sobre el contenido de la página y su tem
 
 En el caso de estar logueados lo único que cambiará sera la barra de navegación.
 
-[img11]:/IMG/aboutus.png
+[img11]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\aboutus.png
 
 ### Contact </br>
 
@@ -102,7 +110,7 @@ Formulario con el cual se podra enviar un e-mail con sugerencias, quejas, incide
 
 ![contact][img12]</br>
 
-[img12]:/IMG/contact.png
+[img12]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\contact.png
 
 ### Register</br>
 
@@ -110,5 +118,5 @@ Formulario con los datos que debemos rellenar para poder crearnos una cuenta en 
 
 ![register][img13]</br>
 
-[img13]:/IMG/register.png
+[img13]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\register.png
 
