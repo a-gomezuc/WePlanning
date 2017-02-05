@@ -219,7 +219,10 @@ body {
 .photography {
 padding:30px;
 }
-
+.photography a img{
+	height:200px;
+	width:400px;
+}
 .planning-box {
     position: relative;
     display: block;
