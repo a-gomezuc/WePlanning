@@ -18,7 +18,7 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 ## Trello  https://trello.com/b/eZYgeXfU/weplanning
 
 
-## Capturas de pantalla </br>
+## Páginas diseñadas </br>
 
 ### Index (Página principal) 3 Index-logged </br>
 
@@ -95,4 +95,13 @@ Formulario con el cual se podra enviar un e-mail con sugerencias, quejas, incide
 Formulario con los datos que debemos rellenar para poder crearnos una cuenta en la web.</br>
 
 ![register](/Maquetación/IMG/register.png)
+</br>
+</br>
+
+## Templates </br>
+Para la realización de nuestra página web solo se ha usado un template para los htmls ProfileHTML.html, Sponsor.html, ProfileHTML-logged.html y Sponsor-logged.html. </br>
+En ellos se han modificado todos los aspectos de diseño principales y se ha mantenido el "tab" y su funcionamiento.</br>
+* Template utilizado: http://bootsnipp.com/snippets/featured/people-card-with-tabs </br>
+
+## Diagrama de navegación </br>
 
