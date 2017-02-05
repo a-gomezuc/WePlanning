@@ -115,8 +115,8 @@ En ellos se han modificado todos los aspectos de diseño principales y se ha man
 
 ### Diagrama de navegación de usurios no logueados.
 
-![diagram-no-logged](/Maquetación/IMG/diagram-no-logged)
+![diagram-no-logged](/Maquetación/IMG/diagram-no-logged.png)
 
 ### Diagrama de navegación para usuarios logueados.
 
-![diagram-logged](/Maquetación/IMG/diagram-logged)
+![diagram-logged](/Maquetación/IMG/diagram-logged.png)
