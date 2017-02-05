@@ -24,19 +24,14 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 Página principal de la web.Se visualizarán los planes más votados por la comunidad y se podrán filtrar por categorias y regiones.</br>
 
-![index1][img1]</br>
+[index1]:Maquetación/IMG/index1.png
 
-![index2][img2]</br>
+[index2]:Maquetación/IMG/index2.png
 
 Si nos encontramos logueados en la web lo único que sufrirá cambios será la barra de navegación(Estos cambios en la barra de navegación se aplicarán en todos los HTML correspondientes a usuarios logueados)</br>
 
 
-![navbar-logged][img3]</br>
-
-
-[img1]:/Maquetación/IMG/index1.png
-[img2]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\index2.png
-[img3]:C:\Users\Jorge\Documents\GitHub\WePlanning\Maquetación\IMG\navbar-logged.png
+[navbar-logged]:/Maquetación/IMG/navbar-logged.png]</br>
 
 ### ProfileHTML y ProfileHTML-logged</br>
 
