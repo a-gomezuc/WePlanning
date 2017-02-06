@@ -17,15 +17,6 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 ## Trello  https://trello.com/b/eZYgeXfU/weplanning
 
-## Diagramas de navegación</br>
-### Diagrama de navegación de usurios no logueados.
-
-![diagram-no-logged](/Maquetación/IMG/diagram-no-logged)
-
-### Diagrama de navegación para usuarios logueados.
-
-![diagram-logged](/Maquetación/IMG/diagram-logged)
-
 ## Páginas diseñadas </br>
 
 ### Index (Página principal) 3 Index-logged </br>
