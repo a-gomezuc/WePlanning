@@ -698,10 +698,7 @@ input::-webkit-input-placeholder {
 }
 
 
-.img-rectangle{
-    width: 55%;
-    border-radius: 25%;
-}
+
 
 #img-big{
     border-radius: 0px;
@@ -793,7 +790,7 @@ input::-webkit-input-placeholder {
 .logoUrjc{
     width:auto;
 }
-#lineaAboutUs{
+.lineaAboutUs{
     border-color:black;
 }
 /* -----------/ AboutUs -------- */
