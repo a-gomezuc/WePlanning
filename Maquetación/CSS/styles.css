@@ -14,6 +14,14 @@ body {
 .btn-info:hover{
 	background:#333;
 }
+.btn-info:focus{
+    background: rgb(198, 88, 7);
+	color:white;
+}
+.btn-info:active{
+    background: rgb(198, 88, 7);
+	color:white;
+}
 /* ---------------- navbar ---------*/
 
 .navtop a {
@@ -349,12 +357,18 @@ input::-webkit-input-placeholder {
 
 .login-button {
     margin-top: 5px;
+    background-color:rgb(198, 88, 7);
+    color:white;
+}
+.login-button:hover {
+    background-color:#333;
 }
 
 .login-register {
     font-size: 11px;
     text-align: center;
 }
+
 
 
 /* ----------- /Register -------- */
@@ -842,3 +856,24 @@ input::-webkit-input-placeholder {
 	color:#333;
 	
 }
+
+#btnComment{
+    margin-top:10px;
+    
+}
+/* ----------- comments -------- */
+/* ----------- pager -------- */
+.pager li>a{
+    background-color:rgb(198, 88, 7);
+    color:white;
+}
+.pager li>a:hover{
+    background-color:#333;
+    color:white;
+}
+
+.pager li>a:focus{
+    background-color:rgb(198, 88, 7);
+    color:white;
+}
+
