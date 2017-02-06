@@ -131,6 +131,14 @@ body {
 
 
 /*--------------/row-ads------------*/
+/*-----------Friends-plan--------*/
+.friend-profile-image{
+    margin-bottom:50px;
+}
+.friend-name{
+    vertical-align: middle;
+}
+/*----------/Friends-plan--------*/
 /*-------------- search-row --------*/
 
 .search-row {
@@ -226,8 +234,9 @@ body {
 }
 .photography {
 padding:30px;
+
 }
-.photography a img{
+.photography > a > img{
 	height:200px;
 	width:400px;
 }
