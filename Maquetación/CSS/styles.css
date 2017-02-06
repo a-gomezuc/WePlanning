@@ -673,6 +673,17 @@ input::-webkit-input-placeholder {
     /* padding-left: 200px; */
     padding-top: 20px;
 }
+.footer-mong{
+    margin-top: 20px;
+    margin-right: -15px;
+    background-color:rgba(136, 130, 130, 0.48);
+    padding-bottom: 40px;
+    /* padding-left: 200px; */
+    padding-top: 20px;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+}
 
 
 /* ----------- /Footer -------- */
