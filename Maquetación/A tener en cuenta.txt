@@ -1,11 +1,6 @@
-- COMENTARIOS
-- DIAGRAMA DE NAVEGACIÓN
-- NAVBARS ADECUADOS //completado//
-- ¿QUÉ ES WEPLANNING? //completado//
-- CAMBIAR "MÁS" //completado//
-- CAMBIAR IMAGEN NEWPLAN //completado//
-- LIMPIAR CÓDIGO
-- CAMBIAR SLIDER DE VER PLAN 
-- CAMBIAR ESTILO "AUTOR"
-- CLONAR INDEX EN INDEX-LOGGED //completado//
-
+OBSERVACIONES FASE-2
+Mirar diseño, usar solo dos fuentes, equiparar diseño de botones
+Añadir los planes de los amigos
+darle estilo a la info de perfil y sponsor
+Footer más pequeño
+En plan.html ver lista de los usuarios que asisten
