@@ -689,13 +689,14 @@ input::-webkit-input-placeholder {
 }
 .footer-mong{
     margin-top: 20px;
+    margin-left: 0;
     background-color:rgba(136, 130, 130, 0.48);
     padding-bottom: 40px;
     /* padding-left: 200px; */
     padding-top: 20px;
     width: 100%;
     bottom: 0;
-    position: absolute;
+    
 }
 
 
@@ -773,22 +774,7 @@ input::-webkit-input-placeholder {
      
 }
 
-.preview-thumbnail.nav-tabs {
-  border: none;
-  margin-top: 15px; }
-  .preview-thumbnail.nav-tabs li {
-    width: 18%;
-    margin-right: 2.5%; }
-    .preview-thumbnail.nav-tabs li img {
-      max-width: 100%;
-      border-radius: 0px;
-      box-shadow: 2px 3px 3px #333;
-      display: block; }
-    .preview-thumbnail.nav-tabs li a {
-      padding: 0;
-      margin: 0; }
-    .preview-thumbnail.nav-tabs li:last-of-type {
-      margin-right: 0; }
+
 /* ----------- /NewPlan -------- */
 /* ----------- Contact -------- */
 #contact{
