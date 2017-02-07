@@ -500,8 +500,8 @@ input::-webkit-input-placeholder {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 10px;
-    background-color: rgb(196, 63, 14);
-    border: 1px solid #d97d00;
+    background-color: #b2abab;
+    border: 1px solid #333;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
@@ -513,25 +513,26 @@ input::-webkit-input-placeholder {
 }
 
 #btnAgregar {
-    background-color: #0000e6;
+    background-color: #333;
     color: aliceblue;
 }
 
 #btnAgregar:hover,
 #btnAgregar:focus,
 #btnAgregar:active {
-    background-color: rgb(23, 23, 255);
-    color: #ffffff;
-    border-color: #001653;
+    background-color: rgb(69, 152, 49);;
+    color: #fff;
+    border-color: #333;
+	
 }
 
 #btninfoPerfil,
 #btnamigosPerfil,
 #btnplanesPerfil,
 #btnubicacionPerfil {
-    color: #2E7A22;
-    background-color: rgba(153, 225, 0142, 1);
-    border-color: #2E7A22;
+    color: #fff;
+    background-color: rgb(198, 88, 7);
+    border-color: #333;
 }
 
 #btninfoPerfil:hover,
@@ -546,17 +547,17 @@ input::-webkit-input-placeholder {
 #btnubicacionPerfil:hover,
 #btnubicacionPerfil:focus,
 #btnubicacionPerfil:active {
-    background-color: #333;
-    color: white;
-    border-color: #2E7A22;
+    background-color: rgba(157, 88, 37);
+    color: #333;
+    
 }
 
 #btninfoSponsor,
 #btnamigosSponsor,
 #btnplanesSponsor {
-    color: #d97d00;
+    color: #fff;
     background-color: rgb(0, 0, 0);
-    border-color: #d97d00;
+    
 }
 
 #btninfoSponsor:hover,
@@ -568,8 +569,8 @@ input::-webkit-input-placeholder {
 #btnplanesSponsor:hover,
 #btnplanesSponsor:focus,
 #btnplanesSponsor:active {
-    background-color: rgba(241, 124, 4, 0.78);
-    color: rgb(0, 0, 0);
+    background-color: #000;
+    color: rgb(198, 88, 7);
     border-color: #000000;
 }
 
@@ -592,7 +593,7 @@ input::-webkit-input-placeholder {
     padding: 0 5px;
     font-size: 20px;
     line-height: 1;
-    color: #99e18e;
+    color: #fff;
     background-color: rgba(4, 51, 9, 0);
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -611,10 +612,17 @@ input::-webkit-input-placeholder {
     border-radius: 4px;
     font-family: 'Fjalla One', sans-serif !important;
 }
-
-/*-------------Profile-edit----------------*/
-.btn-edit{
-   
+.friends-row{
+	margin-left:15px;
+	margin-right:15px;
+}
+.friends-preview{
+	padding:2%;
+}
+.friends-preview:hover{
+	background:rgba(255, 255, 255, 0.35);
+	border-radius:10px;
+	cursor: pointer;
 }
 /*-------------Profile-edit----------------*/
 /* ----------- /Profile &S ponsor -------- */
