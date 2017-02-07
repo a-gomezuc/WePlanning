@@ -349,8 +349,9 @@ input::-webkit-input-placeholder {
 }
 
 .main-center {
-    margin-top: 30px;
-    margin: 0 auto;
+    margin-top: 2%;
+    margin-left:5%;
+    margin-right:5%;
     max-width: 330px;
     padding: 40px 40px;
 }
@@ -679,14 +680,14 @@ input::-webkit-input-placeholder {
 }
 
 .footer{
-    margin-top:300px;
     background-color:rgba(136, 130, 130, 0.48);
     padding-bottom: 20px;
     /* padding-left: 200px; */
     padding-top: 20px;
     width: 100%;
     height:100%;
-    bottom:0;
+    margin-top:300px;
+    margin-bottom:0px;
 }
 
 
@@ -789,6 +790,9 @@ input::-webkit-input-placeholder {
     width: 50%;
     border-top: 2px solid black;
 }
+.maincon{
+    margin:2%;
+}
 /* ----------- /Contact -------- */
 /* ----------- AboutUs -------- */
 .textAU{
@@ -866,5 +870,8 @@ input::-webkit-input-placeholder {
 .pager li>a:focus{
     background-color:rgb(198, 88, 7);
     color:white;
+}
+.pager{
+    margin-bottom:-250px;
 }
 
