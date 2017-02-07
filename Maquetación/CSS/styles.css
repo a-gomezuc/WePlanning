@@ -289,8 +289,8 @@ body {
 .friend-profile-image{
     margin-bottom:50px;
 }
-.friend-name{
-    vertical-align: middle;
+.friend-profile-image:hover{
+    opacity: 0,5;
 }
 /*--------------Friend-plan----------------*/
 /*------------Main page register-----------*/
