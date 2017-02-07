@@ -225,9 +225,9 @@ body {
     font-family: 'Josefin Sans', sans-serif;
 }
 .photography {
-padding:30px;
+    padding:30px;
 }
-.photography a img{
+.photography > a > img{
 	height:200px;
 	width:400px;
 }
@@ -285,8 +285,14 @@ padding:30px;
 
 
 /*------------Planning photographies-------*/
-
-
+/*--------------Friend-plan----------------*/
+.friend-profile-image{
+    margin-bottom:50px;
+}
+.friend-name{
+    vertical-align: middle;
+}
+/*--------------Friend-plan----------------*/
 /*------------Main page register-----------*/
 
 .page-scroll{
