@@ -945,7 +945,7 @@ input::-webkit-input-placeholder {
 .pager{
     margin-bottom:-250px;
 }
-
+/* NEW FOOTER*/
 #wrap {
   min-height: 100%;
 }
@@ -953,6 +953,9 @@ input::-webkit-input-placeholder {
 #main {
   overflow:auto;
   padding-bottom:300px; /* this needs to be bigger than footer height*/
+	   width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 .footer {
@@ -961,6 +964,6 @@ input::-webkit-input-placeholder {
   height: auto;
   clear:both;
   padding-top:20px;
-	 background-color:rgba(136, 130, 130, 0.48);
+background-color:rgba(136, 130, 130, 0.48);
  padding-bottom: 20px;
 } 
