@@ -339,6 +339,7 @@ h1.title {
 
 label {
     margin-bottom: 15px;
+    font-family: 'Fjalla One', sans-serif !important;
 }
 
 input,
@@ -742,6 +743,9 @@ input::-webkit-input-placeholder {
 
 #txt{
     width: 100%;
+}
+#precio{
+    width:70px;
 }
 
 
