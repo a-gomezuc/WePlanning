@@ -489,7 +489,7 @@ input::-webkit-input-placeholder {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 20px;
-    background-color: #b2abab;
+    background:url("../IMG/stardust.png");
     border: 1px solid #333;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
@@ -501,7 +501,7 @@ input::-webkit-input-placeholder {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 10px;
-    background-color: #b2abab;
+    background:url("../IMG/stardust.png");
     border: 1px solid #333;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
@@ -514,7 +514,7 @@ input::-webkit-input-placeholder {
 }
 
 #btnAgregar {
-    background-color: #333;
+    background-color: rgba(63, 21, 239, 0.85);
     color: aliceblue;
 }
 
@@ -606,7 +606,7 @@ input::-webkit-input-placeholder {
     padding: 0 5px;
     font-size: 20px;
     line-height: 1;
-    color: #000000;
+    color: #fff;
     /* background-color: rgba(166, 241, 255, 0.62); */
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -616,14 +616,38 @@ input::-webkit-input-placeholder {
 .friends-row{
 	margin-left:15px;
 	margin-right:15px;
+	background:rgba(255, 255, 255, 0.5);
+	
+}
+.myplan-row{
+	margin-left:15px;
+	margin-right:15px;
+	background:rgba(255, 255, 255, 0.5);
+	padding:3%;
+	height:300px;
+}
+.myplan-row .img-myplan img{
+	height:250px !important;
+	width:350px;
+	margin-left:5%;
 }
 .friends-preview{
 	padding:2%;
+	font-weight:900 !important;
+	
 }
 .friends-preview:hover{
 	background:rgba(255, 255, 255, 0.35);
 	border-radius:10px;
 	cursor: pointer;
+}
+.profile-info {
+	width:80%;
+	background:rgba(255, 255, 255, 0.5);
+	padding:2%;
+}
+.profile-info p{
+	font-size:1.5em;
 }
 /*-------------Profile-edit----------------*/
 /* ----------- /Profile &S ponsor -------- */
@@ -711,16 +735,17 @@ input::-webkit-input-placeholder {
     width: 20%;
 }
 
-.footer{
+/*.footer{
     background-color:rgba(136, 130, 130, 0.48);
     padding-bottom: 20px;
-    /* padding-left: 200px; */
+    /* padding-left: 200px; 
     padding-top: 20px;
     width: 100%;
     height:100%;
     margin-top:300px;
     margin-bottom:0px;
-}
+	
+}*/
 
 
 /* ----------- /Footer -------- */
@@ -921,3 +946,21 @@ input::-webkit-input-placeholder {
     margin-bottom:-250px;
 }
 
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:300px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -200px; /* negative value of footer height */
+  height: auto;
+  clear:both;
+  padding-top:20px;
+	 background-color:rgba(136, 130, 130, 0.48);
+ padding-bottom: 20px;
+} 

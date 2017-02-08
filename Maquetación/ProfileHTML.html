@@ -83,11 +83,7 @@
                         <div class="hidden-xs">Lista de amigos</div>
                     </button>
                 </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="btnubicacionPerfil" class="btn btn-default" href="#tab4" data-toggle="tab"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
-                        <div class="hidden-xs">Ubicación</div>
-                    </button>
-                </div>
+                
                 <div class="btn-group" role="group">
                     <button type="button" id="btnAgregar" class="btn btn-default" href="#" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
                 </span>
@@ -98,10 +94,45 @@
             <div class="well" id="escrituraPerfil">
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="tab1">
-                        
+                         <center>
+							<div class="profile-info">
+								<h2>Información Personal</h2>
+									<hr/>
+								<p><strong>Alias:</strong>&nbsp;Usuario</p>
+								<p><strong>Provincia:</strong>&nbsp;Provincia</p>
+								<p><strong>Edad:</strong>&nbsp;25</p>
+								<p><strong>Gustos:</strong>&nbsp;Música&nbsp;Cine&nbsp;Deporte </p>
+								<p><strong>Descripción:</strong>&nbsp;Soy un usuario de WePlanning, aquí puedo poner la descripción que desee.</p>
+							</div>
+						</center>
 					</div>
                     <div class="tab-pane fade in" id="tab2">
-                        <h3>Planes AQUÍ</h3>
+						<div class="container">
+                        <div class="row myplan-row">
+							<div class="col-md-6 img-myplan">
+								<img class="image-responsive" src="IMG/quads02.jpg">
+							</div>
+							<div class="col-md-6">
+								<h3><strong>RUTA EN QUAD</strong></h3>
+								<hr/>
+								<p>En PROVINCIA<p>
+								<p>Subido por: AUTOR</p>
+								<button onclick="location.href = 'plan.html'" type="button" class="btn-info" onclick="">Ver Plan</button>
+							</div>
+						</div>
+							 <div class="row myplan-row">
+							<div class="col-md-6 img-myplan">
+								<img class="image-responsive" src="IMG/quads02.jpg">
+							</div>
+							<div class="col-md-6">
+								<h3><strong>RUTA EN QUAD</strong></h3>
+								<hr/>
+								<p>En PROVINCIA<p>
+								<p>Subido por: AUTOR</p>
+								<button onclick="location.href = 'plan.html'" type="button" class="btn-info" onclick="">Ver Plan</button>
+							</div>
+						</div>
+							</div>
 					</div>
                     <div class="tab-pane fade in" id="tab3">
                         <div class="row friends-row">
@@ -166,8 +197,7 @@
 							</div>
 						</div> 
 					</div>
-                    <div class="tab-pane fade in" id="tab4">
-                        <h3>Mapa AQUÍ</h3> </div>
+                  
                 </div>
             </div>
         </div>
