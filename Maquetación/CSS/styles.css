@@ -267,7 +267,7 @@ body {
 }
 
 .planning-box .planning-box-caption .planning-box-caption-content .user-name {
-    font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     padding: 0 15px
 }
 
@@ -656,8 +656,26 @@ input::-webkit-input-placeholder {
 /*-------------Profile-edit----------------*/
 /* ----------- /Profile &S ponsor -------- */
 /* ----------- /Plan -------- */
-
-
+.asistentes-plan{
+    margin: 0 0 10px;
+}
+.asisten{
+    max-height:200px; 
+    max-width: 190px;
+    overflow-y: scroll;
+    overflow-x:hidden;  
+    border: 5px solid rgba(132, 127, 127, 0.31);
+    border-radius: 5px;
+    background: rgba(255, 244, 244, 0.37);
+    
+}
+.list-info a{
+    font-family: 'Fjalla One', sans-serif !important;
+    color: black;
+    text-decoration:none;
+    font-weight: 600
+    
+}
 .plan {
 	margin: 3%;
 	font-family: 'Fjalla One', sans-serif;
@@ -884,6 +902,7 @@ input::-webkit-input-placeholder {
 .comments{
 	width:80%;
 	background:rgba(0, 0, 0, .05);
+    
 }
 .comment {
     overflow: hidden;
