@@ -632,6 +632,19 @@ input::-webkit-input-placeholder {
 	width:300px;
 	
 }
+@media(min-width:1500px){
+	.myplan-row .img-myplan img{
+	height:250px !important;
+	width:400px;
+	
+}
+	@media(min-width:2000px){
+	.myplan-row .img-myplan img{
+	height:300px !important;
+	width:600px;
+	
+}
+}
 .friends-preview{
 	padding:2%;
 	font-weight:900 !important;
