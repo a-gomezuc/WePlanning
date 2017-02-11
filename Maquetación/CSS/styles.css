@@ -650,29 +650,46 @@ input::-webkit-input-placeholder {
     font-family: 'Fjalla One', sans-serif !important;
 }
 
-.friends-row {
-    margin-left: 15px;
-    margin-right: 15px;
-    background: rgba(255, 255, 255, 0.5);
+.friends-row{
+	margin-left:15px;
+	margin-right:15px;
+	background:rgba(255, 255, 255, 0.5);
+	
 }
 
-.myplan-row {
-    background: rgba(255, 255, 255, 0.5);
-    padding: 3%;
-    height: auto;
-    ;
-    width: inherit;
+.myplan-row{
+	
+	background:rgba(255, 255, 255, 0.5);
+	padding:3%;
+	height:auto;
+	;
+	width:inherit;
+	
+}
+.myplan-row .img-myplan img{
+	height:200px !important;
+	width:300px;
+	
+}
+@media(min-width:1500px){
+	.myplan-row .img-myplan img{
+	height:250px !important;
+	width:400px;
+	
+	}}
+	@media(min-width:2000px){
+	.myplan-row .img-myplan img{
+	height:300px !important;
+	width:600px;
+	
+}
+}
+.friends-preview{
+	padding:2%;
+	font-weight:900 !important;
+	
 }
 
-.myplan-row .img-myplan img {
-    height: 200px !important;
-    width: 300px;
-}
-
-.friends-preview {
-    padding: 2%;
-    font-weight: 900 !important;
-}
 
 .friends-preview:hover {
     background: rgba(255, 255, 255, 0.35);
