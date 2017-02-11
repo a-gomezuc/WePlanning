@@ -518,7 +518,7 @@ input::-webkit-input-placeholder {
 }
 
 #btnAgregar {
-    background-color: rgba(63, 21, 239, 0.85);
+    background-color: rgba(8, 25, 229, 0.85);
     color: aliceblue;
 }
 
@@ -531,15 +531,31 @@ input::-webkit-input-placeholder {
 	
 }
 
+
+
+
+
+#btninfoSponsor,
+#btnamigosSponsor,
+#btnplanesSponsor,
 #btninfoPerfil,
 #btnamigosPerfil,
 #btnplanesPerfil,
-#btnubicacionPerfil {
+#btnubicacionPerfil{
     color: #fff;
-    background-color: rgb(198, 88, 7);
-    border-color: #333;
+    background-color: rgb(0, 0, 0);
+     border-color: #fff;
 }
 
+#btninfoSponsor:hover,
+#btninfoSponsor:focus,
+#btninfoSponsor:active,
+#btnamigosSponsor:hover,
+#btnamigosSponsor:focus,
+#btnamigosSponsor:active,
+#btnplanesSponsor:hover,
+#btnplanesSponsor:focus,
+#btnplanesSponsor:active,
 #btninfoPerfil:hover,
 #btninfoPerfil:focus,
 #btninfoPerfil:active,
@@ -552,30 +568,8 @@ input::-webkit-input-placeholder {
 #btnubicacionPerfil:hover,
 #btnubicacionPerfil:focus,
 #btnubicacionPerfil:active {
-    background-color: rgba(157, 88, 37);
-    color: #333;
-    
-}
-
-#btninfoSponsor,
-#btnamigosSponsor,
-#btnplanesSponsor {
-    color: #fff;
-    background-color: rgb(0, 0, 0);
-    
-}
-
-#btninfoSponsor:hover,
-#btninfoSponsor:focus,
-#btninfoSponsor:active,
-#btnamigosSponsor:hover,
-#btnamigosSponsor:focus,
-#btnamigosSponsor:active,
-#btnplanesSponsor:hover,
-#btnplanesSponsor:focus,
-#btnplanesSponsor:active {
     background-color: #000;
-    color: rgb(198, 88, 7);
+    color: #c65807;
     border-color: #000000;
 }
 
@@ -623,17 +617,20 @@ input::-webkit-input-placeholder {
 	background:rgba(255, 255, 255, 0.5);
 	
 }
+
 .myplan-row{
-	margin-left:15px;
-	margin-right:15px;
+	
 	background:rgba(255, 255, 255, 0.5);
 	padding:3%;
-	height:300px;
+	height:auto;
+	;
+	width:inherit;
+	
 }
 .myplan-row .img-myplan img{
-	height:250px !important;
-	width:350px;
-	margin-left:5%;
+	height:200px !important;
+	width:300px;
+	
 }
 .friends-preview{
 	padding:2%;
@@ -834,6 +831,10 @@ input::-webkit-input-placeholder {
     -webkit-animation-duration: .3s;
             animation-duration: .3s; }
 
+.tab-pane .container, myplan-row{
+ overflow: hidden;
+	
+}
 
   @media screen and (max-width: 996px) {
     .preview {
