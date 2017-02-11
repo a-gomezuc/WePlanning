@@ -1,7 +1,6 @@
 html {
     height: 100%;
 }
-
 body {
     position: relative;
     min-height: 100%;
@@ -259,7 +258,7 @@ body {
 }
 
 .photography {
-    padding: 30px;
+    padding: 10px;
 }
 
 .photography > a > img {
@@ -325,16 +324,18 @@ body {
 
 /*--------------Friend-plan----------------*/
 
-.friend-profile-image {
-    margin-bottom: 50px;
+@media(max-width:1920px){
+    .friends-plan-description-img{
+        min-width: 75px;
+        min-height: 75px;
+        margin
+    }
+}
+.friends-plan-description:hover{
+    background: rgba(255, 255, 255, 0.35);
 }
 
-.friend-profile-image:hover {
-    opacity: 0, 5;
-}
-
-
-/*--------------Friend-plan----------------*/
+/*-------------/Friend-plan----------------*/
 
 
 /*------------Main page register-----------*/
@@ -709,7 +710,26 @@ input::-webkit-input-placeholder {
 
 
 /*-------------Profile-edit----------------*/
+.btn-edit{
+    margin:5px;
+    border-color:white;
+    background-color: rgba(94, 94, 94, 1);
+    min-width: 2%;
+}
+.btn-edit:hover, 
+.btn-edit:focus, 
+.btn-edit:active{
+    background-color:black;
+    color: #c65807;
+}
+@media(max-width:350px){
+    .btn-edit{
+        min-width: 25%;
+        min-height: 30px;
+    }
+}
 
+/*------------/Profile-edit----------------*/
 
 /* ----------- /Profile &S ponsor -------- */
 
