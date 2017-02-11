@@ -637,7 +637,7 @@ input::-webkit-input-placeholder {
 	height:250px !important;
 	width:400px;
 	
-}
+	}}
 	@media(min-width:2000px){
 	.myplan-row .img-myplan img{
 	height:300px !important;
