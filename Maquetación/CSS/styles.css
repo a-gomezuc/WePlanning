@@ -11,27 +11,27 @@ body {
 
 .btn-info {
     color: #fff;
-    background: rgb(198, 88, 7);
+    background: rgb(198, 88, 7) !important;
     color: white;
-    border-color: rgb(198, 88, 7);
+    border-color: rgb(198, 88, 7) !important;
     font-family: 'Fjalla One', sans-serif !important;
 }
 
 .btn-info:hover {
-    background: #333;
-	 border-color: #333;
+    background: #333 !important;
+	 border-color: #333 !important;
 }
 
 .btn-info:focus {
-    background: rgb(198, 88, 7);
+    background: rgb(198, 88, 7) !important;
     color: white;
-	border-color: #333;
+	border-color: #333 !important;
 }
 
 .btn-info:active {
-    background: rgb(198, 88, 7);
+    background: rgb(198, 88, 7) !important;
     color: white;
-	border-color: #333;
+	border-color: #333 !important;
 }
 
 
