@@ -299,7 +299,7 @@ body {
 
 .planning-box .planning-box-caption .planning-box-caption-content .user-name {
     font-family: 'Josefin Sans', sans-serif;
-    padding: 0 15px
+    padding: 0 15px;
 }
 
 .planning-box .planning-box-caption .planning-box-caption-content .user-name {
@@ -309,16 +309,16 @@ body {
 }
 
 .planning-box:hover .planning-box-caption {
-    opacity: 0.75
+    opacity: 0.75;
 }
 
 .planning-box:focus {
-    outline: 0
+    outline: 0;
 }
 
 @media (min-width:768px) {
     .planning-box .planning-box-caption .planning-box-caption-content .user-name {
-        font-size: 16px
+        font-size: 16px;
     }
 }
 
@@ -332,11 +332,21 @@ body {
     .friends-plan-description-img{
         min-width: 75px;
         min-height: 75px;
-        margin
+        
     }
 }
 .friends-plan-description:hover{
-    background: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.1);
+	color:white;
+}
+.photography{
+	background:rgba(0, 0, 0, 0.75);
+	padding:2%;
+	border:1px solid rgba(198, 88, 7, 0.94);
+	color:white;
+}
+.photography a{
+	margin-bottom:2%;
 }
 
 /*-------------/Friend-plan----------------*/
