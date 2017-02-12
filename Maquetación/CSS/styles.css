@@ -327,7 +327,6 @@ body {
 
 
 /*--------------Friend-plan----------------*/
-
 @media(max-width:1920px){
     .friends-plan-description-img{
         min-width: 75px;
@@ -910,8 +909,7 @@ input::-webkit-input-placeholder {
 }
 
 #main {
-    overflow: auto;
-    padding-bottom: 500px;
+    padding-bottom: 320px;
     /* this needs to be bigger than footer height*/
     width: 100%;
     padding-left: 0px;
@@ -930,6 +928,7 @@ input::-webkit-input-placeholder {
     padding-bottom: 10px;
     box-shadow: inset 0px 0px 10px 3px rgba(0, 0, 0, 0.16);
     border: 1px solid rgba(0, 0, 0, 0.33);
+    overflow: hidden;
 }
 
 
@@ -937,6 +936,9 @@ input::-webkit-input-placeholder {
 
 
 /* ----------- /NewPlan -------- */
+.clear-top{
+    overflow-x: hidden;
+}
 
 #frase {
     font-family: 'Fjalla One', sans-serif;
