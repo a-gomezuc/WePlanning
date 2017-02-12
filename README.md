@@ -29,7 +29,7 @@ Página principal de la web.Se visualizarán los planes más votados por la comu
 
 Si nos encontramos logueados en la web  sufrirá cambios en la barra de navegación(Estos cambios en la barra de navegación se aplicarán en todos los HTML correspondientes a usuarios logueados) y se mostrarán los planes de tus amigos.</br>
 
-![friends-plan](/Maquetación/IMG/Screenshots/friends-plan.jpg)
+![friends-plan](/Maquetación/IMG/Screenshots/friends-plan.png)
 
 ![navbar-logged](/Maquetación/IMG/Screenshots/navbar-logged.png)
 
