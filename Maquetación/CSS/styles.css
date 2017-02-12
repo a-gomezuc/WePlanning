@@ -20,16 +20,19 @@ body {
 
 .btn-info:hover {
     background: #333;
+	 border-color: #333;
 }
 
 .btn-info:focus {
     background: rgb(198, 88, 7);
     color: white;
+	border-color: #333;
 }
 
 .btn-info:active {
     background: rgb(198, 88, 7);
     color: white;
+	border-color: #333;
 }
 
 
@@ -656,13 +659,48 @@ input::-webkit-input-placeholder {
 	background:rgba(255, 255, 255, 0.5);
 	
 }
+.friendsl {
+	max-height:150px !important;
+	overflow:auto;
+}
+.friends-row img{
+	height:100px;
+	width:100px !important;
+}
+.friends-info{
+	padding-top:5%;
+	padding-left:25%;
+}
+@media(min-width:540px, max-width:995px){
+	.friends-row img{
+		height:90px;
+		width:80px !important;
+	}
+	
+	
+}
+@media(min-width:400px, max-width:539px){
+	.friends-row img{
+		height:70px;
+		width:70px !important;
+	}
+	.friends-info{
+		padding-left:50% !important;
+	}
+}
+@media(max-width:399px){
+	.friends-row img{
+		object-position: center;
+		height:50px;
+		width:50px !important;
+	}
+}
 
 .myplan-row{
-	
 	background:rgba(255, 255, 255, 0.5);
 	padding:3%;
 	height:auto;
-	;
+	
 	width:inherit;
 	
 }
@@ -721,13 +759,19 @@ input::-webkit-input-placeholder {
 }
 
 .asisten {
+	margin-top:5%;
     max-height: 200px;
     max-width: 190px;
     overflow-y: scroll;
     overflow-x: hidden;
-    border: 5px solid rgba(132, 127, 127, 0.31);
+    border: 2px solid #333;
     border-radius: 5px;
     background: rgba(255, 244, 244, 0.37);
+	padding:2px;
+}
+.asisten .lista-asisten .list-info:hover{
+	 background: rgba(255, 255, 255, 0.35);
+	cursor: pointer;
 }
 
 .list-info a {
@@ -752,7 +796,7 @@ input::-webkit-input-placeholder {
 }
 
 .plan-desc {
-    padding: 2%;
+    padding-left: 5%;
 }
 
 
