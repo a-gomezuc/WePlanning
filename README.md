@@ -23,40 +23,41 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 Página principal de la web.Se visualizarán los planes más votados por la comunidad y se podrán filtrar por categorias y regiones.</br>
 
-![index1](/Maquetación/IMG/index1.png)
+![index1](/Maquetación/IMG/Screenshots/index1.png)
 
-![index2](/Maquetación/IMG/index2.png)
+![index2](/Maquetación/IMG/Screenshots/index2.png)
 
-Si nos encontramos logueados en la web lo único que sufrirá cambios será la barra de navegación(Estos cambios en la barra de navegación se aplicarán en todos los HTML correspondientes a usuarios logueados)</br>
+Si nos encontramos logueados en la web  sufrirá cambios en la barra de navegación(Estos cambios en la barra de navegación se aplicarán en todos los HTML correspondientes a usuarios logueados) y se mostrarán los planes de tus amigos.</br>
 
+![friends-plan](/Maquetación/IMG/Screenshots/friends-plan.jpg)
 
-![navbar-logged](/Maquetación/IMG/navbar-logged.png)
+![navbar-logged](/Maquetación/IMG/Screenshots/navbar-logged.png)
 
 ### ProfileHTML y ProfileHTML-logged</br>
 
 Html en el cual de mostrar los datos del perfil de un usuario , su ubicación(si la ha añadido), el avatar y la lista de sus amigos.</br>
 
-![profile](/Maquetación/IMG/profile.png)
+![profile](/Maquetación/IMG/Screenshots/profile.png)
 
-Si el usuario se encuentra logueado en el sistema podrá accedetr a su perfil, donde se aparecerá un botón de color azul para poder agregar amigos a su lista, como una serie de botones para podificar su perfil, su ubicación y  agregar o eliminar amigos.</br>
+Si el usuario se encuentra logueado en el sistema podrá accedetr a su perfil, donde el botón azul "Agregar amigo" será sustituido por el botón "Encuentra amigos", como una serie de botones para podificar su perfil, su ubicación y  agregar o eliminar amigos.</br>
 
 La barra de navegación en el caso de estar logueados se mostrará como hemos mostrado antes
 
-![profile-button](/Maquetación/IMG/profile-button.png)
+![profile-button](/Maquetación/IMG/Screenshots/profile-button.png)
 
-![button-agregar](/Maquetación/IMG/button-agregar.png)
+![button-agregar](/Maquetación/IMG/Screenshots/button-agregar.png)
 
-![profile-logged](/Maquetación/IMG/profile-logged.png)
+![profile-logged](/Maquetación/IMG/Screenshots/profile-logged.png)
 
 ### SponsorHTML y SponsorHTML-logged</br>
 
 Html en el que se mostrar los datos el perfil de usuario el cual es una empresa.</br>
 
-![sponsor](/Maquetación/IMG/sponsor.png)
+![sponsor](/Maquetación/IMG/Screenshots/sponsor.png)
 
 Si la empresa se encuentra logueada y visita su perfil desaparecera el botón "Seguir sponsor" y podrá modificar los datos de su perfil.</br>
 
-![sponsor-logged](/Maquetación/IMG/sponsor-logged.png)
+![sponsor-logged](/Maquetación/IMG/Screenshots/sponsor-logged.png)
 
 ### Plan y Plan-logged </br>
 
@@ -66,20 +67,20 @@ Se mostrará una imagen del plan, su valoración y los comentarios de los usuari
 
 En el caso de que nos encontremos logueados, se nos dará la posibilidad de añadir comentarios. Aparecerá un botón con el que podremos confirmar nuestra asistencia al evento.</br>
 
-![plan-logged](/Maquetación/IMG/plan-logged.png)
+![plan-logged](/Maquetación/IMG/Screenshots/plan-logged.png)
 
 ### Newplan</br>
 
 Formulario en que crearemos un nuevo plan que aparecerá a los usuarios de la página </br>
 
-![newPlan](/Maquetación/IMG/newPlan.png)
+![newPlan](/Maquetación/IMG/Screenshots/newPlan.png)
 
 
 ### Aboutus y aboutus-logged</br>
 
 Se mostrará una pequeña descripción sobre el contenido de la página y su temática.
 
-![aboutus](/Maquetación/IMG/aboutus.png)
+![aboutus](/Maquetación/IMG/Screenshots/aboutus.png)
 
 En el caso de estar logueados lo único que cambiará sera la barra de navegación.
 
@@ -87,13 +88,13 @@ En el caso de estar logueados lo único que cambiará sera la barra de navegaci�
 
 Formulario con el cual se podra enviar un e-mail con sugerencias, quejas, incidencias etc- a los desarrollladores de la web.</br>
 
-![contact](/Maquetación/IMG/contact.png)
+![contact](/Maquetación/IMG/Screenshots/contact.png)
 
 ### Register</br>
 
 Formulario con los datos que debemos rellenar para poder crearnos una cuenta en la web.</br>
 
-![register](/Maquetación/IMG/register.png)
+![register](/Maquetación/IMG/Screenshots/register.png)
 </br>
 </br>
 
@@ -106,8 +107,8 @@ En ellos se han modificado todos los aspectos de diseño principales y se ha man
 
 ### Diagrama de navegación de usurios no logueados.
 
-![diagram-no-logged](/Maquetación/IMG/diagram-no-logged.png)
+![diagram-no-logged](/Maquetación/IMG/Screenshots/diagram-no-logged.png)
 
 ### Diagrama de navegación para usuarios logueados.
 
-![diagram-logged](/Maquetación/IMG/diagram-logged.png)
+![diagram-logged](/Maquetación/IMG/Screenshots/diagram-logged.png)
