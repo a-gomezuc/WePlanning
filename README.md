@@ -63,7 +63,7 @@ Si la empresa se encuentra logueada y visita su perfil desaparecera el botón "S
 
 Se mostrará una imagen del plan, su valoración y los comentarios de los usuarios.</br>
 
-![plan](/Maquetación/IMG/plan.png)
+![plan](/Maquetación/IMG/Screenshots/plan.png)
 
 En el caso de que nos encontremos logueados, se nos dará la posibilidad de añadir comentarios. Aparecerá un botón con el que podremos confirmar nuestra asistencia al evento.</br>
 
