@@ -909,7 +909,7 @@ input::-webkit-input-placeholder {
 }
 
 #main {
-    padding-bottom: 320px;
+    padding-bottom: 420px;
     /* this needs to be bigger than footer height*/
     width: 100%;
     padding-left: 0px;
