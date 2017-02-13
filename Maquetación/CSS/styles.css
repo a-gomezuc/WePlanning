@@ -1172,3 +1172,17 @@ myplan-row {
 .asistente{
     padding-top:20px;
 }
+
+.pager {
+    margin-bottom: -250px;
+}
+.badge.custom-badge {
+	margin: -20px 0 0 -25px;
+	font-size: 12px;
+	text-transform: none;
+}
+
+
+.badge.custom-badge.red {
+	background-color: #e9372e;
+}
