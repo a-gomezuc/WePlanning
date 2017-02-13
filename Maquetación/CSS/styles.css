@@ -339,7 +339,7 @@ body {
 	color:white;
 }
 .photography{
-	background:rgba(0, 0, 0, 0.75);
+	background: rgba(136, 130, 130, 0.48);
 	padding:2%;
 	border:1px solid rgba(198, 88, 7, 0.94);
 	color:white;
@@ -803,7 +803,6 @@ input::-webkit-input-placeholder {
 .asisten {
 	margin-top:5%;
     max-height: 200px;
-    max-width: 190px;
     overflow-y: scroll;
     overflow-x: hidden;
     border: 2px solid #333;
@@ -811,7 +810,7 @@ input::-webkit-input-placeholder {
     background: rgba(255, 244, 244, 0.37);
 	padding:2px;
 }
-.asisten .lista-asisten .list-info:hover{
+.asisten .lista-asisten:hover{
 	 background: rgba(255, 255, 255, 0.35);
 	cursor: pointer;
 }
@@ -1098,7 +1097,7 @@ myplan-row {
     border-color: black;
 }
 
-#nombresAlumnos{
+.nombresAlumnos{
     font-family: 'Josefin Sans', sans-serif;
     font-size: 20px;
 }
@@ -1158,29 +1157,18 @@ myplan-row {
 
 
 /* ----------- comments -------- */
-
-
-/* ----------- pager -------- */
-
-.pager {
-    font-family: 'Fjalla One', sans-serif !important;
+/* ----------- mostrarMás -------- */
+.btn-mas{
+    margin-top:20px;
 }
+/* ----------- mostrarMás -------- */
 
-.pager li>a {
-    background-color: rgb(198, 88, 7);
-    color: white;
+.imgMinima{
+    min-width:50px;
 }
-
-.pager li>a:hover {
-    background-color: #333;
-    color: white;
+.asistenteImg{
+    padding:15px;
 }
-
-.pager li>a:focus {
-    background-color: rgb(198, 88, 7);
-    color: white;
-}
-
-.pager {
-    margin-bottom: -250px;
+.asistente{
+    padding-top:20px;
 }
