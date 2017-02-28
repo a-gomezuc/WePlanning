@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,22 +14,24 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class PrincipalController {
+public class PlanController {
 
 	@Autowired
-	private UsuarioCredenciales usuario;
-	//private long idPlan;
+	private PlanRepository planRepository;
 	private List<Plan> planes = new ArrayList<>();
 
 	@SuppressWarnings("deprecation")
-	public PrincipalController() {
-		Plan plan1 = new Plan(1, "Torneo LOL", "Ocio", "Jorge", "Madrid", "URJC Móstoles", 12, new Date(2017, 2, 22),
-				"Torneo del videojuego más famoso de la carrera de Ingeniería del Software");
-		Plan plan2 = new Plan(2, "Salida Mountain-Bike", "Deporte", "Alex", "Toledo", "Montes de Toledo", 12,
-				new Date(2017, 2, 22), "Ruta ciclista por los montes de Toledo.");
-		planes.add(plan1);
-		planes.add(plan2);
-
+	@PostConstruct
+	public void init(){
+		User joselito=new User();
+		ArrayList<User> asistents=new ArrayList<User>();
+		for(int i=0;i<20;i++){
+		planRepository.save(new Plan("Torneo LOL", "Ocio", joselito, "Madrid", "URJC Móstoles", i, new Date(2017, 2, 22),
+				"Torneo del videojuego más famoso de la carrera de Ingeniería del Software",asistents));
+		
+		}
+	}
+	public PlanController() {
 	}
 
 	@RequestMapping("/")
@@ -38,12 +41,12 @@ public class PrincipalController {
 		 * plan2=new Plan("Patxi","Vizcaya",new Date(2017,2,22));
 		 * planes.add(plan1); planes.add(plan2);
 		 */
-		model.addAttribute("planes", planes);
+		model.addAttribute("planes", planRepository.findAll());
 		return "index";
 
 	}
 
-	@RequestMapping("/inicioSesion")
+	/*@RequestMapping("/inicioSesion")
 	public String iniciaSesion(Model model, UsuarioCredenciales user, HttpSession sesion) {
 		// model.addAttribute("bienvenida", sesion.isNew());
 		usuario.setId(user.getId());
@@ -51,11 +54,11 @@ public class PrincipalController {
 
 		return "index-logged";
 
-	}
+	}*/
 
 	@RequestMapping("/plan/{id}")
 	public String devuelvePlan(Model model, @PathVariable long id, Plan plan) {
-		model.addAttribute("plan", planes.get((int) (plan.getId() - 1)));
+		model.addAttribute("plan", planRepository.findOne(id));
 		return "plan";
 	}
 

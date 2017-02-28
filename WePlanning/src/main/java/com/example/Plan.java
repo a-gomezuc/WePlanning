@@ -1,33 +1,49 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Plan {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private String titulo;
-	private String categoria;
-	private String autor;
-	private String lugar;
-	private String direccion;
-	private long precio;
-	private Date fecha;
-	private String descripcion;
-	// private List<Usuario> asistentes= new ArrayList<>();
+	
+	private String title;
+	private String category;
+	private User author;
+	private String place;
+	private String address;
+	private long prize;
+	private Date date;
+	private String description;
+	
+	@ManyToOne
+	private List<User> asistents= new ArrayList<>();
+	
 	public Plan() {
 
 	}
 
-	public Plan(long id, String titulo, String categoria, String autor, String lugar, String direccion, long precio,
-			Date fecha, String descripcion) {
-		this.id = id;
-		this.titulo = titulo;
-		this.categoria = categoria;
-		this.autor = autor;
-		this.lugar = lugar;
-		this.direccion = direccion;
-		this.precio = precio;
-		this.fecha = fecha;
-		this.descripcion = descripcion;
+	public Plan(String title, String category, User author, String place, String address, long prize,
+			Date date, String description, ArrayList<User> asistents) {
+		this.title = title;
+		this.category = category;
+		this.author = author;
+		this.place = place;
+		this.address = address;
+		this.prize = prize;
+		this.date = date;
+		this.description = description;
+		this.asistents=asistents;	
 	}
 
 	public long getId() {
@@ -38,66 +54,77 @@ public class Plan {
 		this.id = id;
 	}
 
-	public String getTitulo() {
-		return titulo;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setTitulo(String titulo) {
-		this.titulo = titulo;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public String getCategoria() {
-		return categoria;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategoria(String categoria) {
-		this.categoria = categoria;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
-	public String getAutor() {
-		return autor;
+	public User getAuthor() {
+		return author;
 	}
 
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
-	public String getLugar() {
-		return lugar;
+	public String getPlace() {
+		return place;
 	}
 
-	public void setLugar(String lugar) {
-		this.lugar = lugar;
+	public void setPlace(String place) {
+		this.place = place;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public long getPrecio() {
-		return precio;
+	public long getPrize() {
+		return prize;
 	}
 
-	public void setPrecio(long precio) {
-		this.precio = precio;
+	public void setPrize(long prize) {
+		this.prize = prize;
 	}
 
-	public Date getFecha() {
-		return fecha;
+	public Date getDate() {
+		return date;
 	}
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-	public String getDescripcion() {
-		return descripcion;
+	public void setDate(Date date) {
+		this.date = date;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public String getDescription() {
+		return description;
 	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public List<User> getAsistents() {
+		return asistents;
+	}
+
+	public void setAsistents(List<User> asistents) {
+		this.asistents = asistents;
+	}
+
+	
 }
