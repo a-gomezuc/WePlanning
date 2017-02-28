@@ -1,6 +1,5 @@
 package com.example;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -9,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Plan {
@@ -19,31 +20,32 @@ public class Plan {
 	
 	private String title;
 	private String category;
+	
+	@ManyToOne
 	private User author;
+	
 	private String place;
 	private String address;
 	private long prize;
 	private Date date;
 	private String description;
 	
-	@ManyToOne
-	private List<User> asistents= new ArrayList<>();
+	@OneToMany
+	private List<User> asistents;
 	
 	public Plan() {
 
 	}
 
-	public Plan(String title, String category, User author, String place, String address, long prize,
-			Date date, String description, ArrayList<User> asistents) {
+	public Plan(String title, String category,String place, String address, long prize,
+			Date date, String description) {
 		this.title = title;
 		this.category = category;
-		this.author = author;
 		this.place = place;
 		this.address = address;
 		this.prize = prize;
 		this.date = date;
 		this.description = description;
-		this.asistents=asistents;	
 	}
 
 	public long getId() {
@@ -125,6 +127,5 @@ public class Plan {
 	public void setAsistents(List<User> asistents) {
 		this.asistents = asistents;
 	}
-
 	
 }

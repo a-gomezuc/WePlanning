@@ -1,11 +1,8 @@
 package com.example;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,29 +15,33 @@ public class PlanController {
 
 	@Autowired
 	private PlanRepository planRepository;
-	private List<Plan> planes = new ArrayList<>();
-
+	@Autowired
+	private UserRepository userRepository;
+	
 	@SuppressWarnings("deprecation")
 	@PostConstruct
 	public void init(){
-		User joselito=new User();
-		ArrayList<User> asistents=new ArrayList<User>();
+		User joselito=new User("joselito_95","José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña");
+		User guillermito= new User("westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com","mmm");
+		userRepository.save(guillermito);
+		joselito.getFriends().add(guillermito);
+		userRepository.save(joselito);
 		for(int i=0;i<20;i++){
-		planRepository.save(new Plan("Torneo LOL", "Ocio", joselito, "Madrid", "URJC Móstoles", i, new Date(2017, 2, 22),
-				"Torneo del videojuego más famoso de la carrera de Ingeniería del Software",asistents));
-		
+		Plan planprueba=(new Plan("Torneo LOL", "Ocio","Madrid", "URJC Móstoles", i, new Date(2017, 2, 22),
+				"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
+		planprueba.setAuthor(joselito);
+		planRepository.save(planprueba);
 		}
+		Plan planpruebaG=new Plan("Carrera", "Deporte","Madrid", "URJC Vicálvaro", 12, new Date(2017, 2, 21),
+				"Running en la universidad.");
+		planpruebaG.setAuthor(guillermito);
+		planRepository.save(planpruebaG);
 	}
 	public PlanController() {
 	}
 
 	@RequestMapping("/")
 	public String presentarInicio(Model model) {
-		/*
-		 * Plan plan1=new Plan("Pep","Tarragona",new Date(2017,2,22)); Plan
-		 * plan2=new Plan("Patxi","Vizcaya",new Date(2017,2,22));
-		 * planes.add(plan1); planes.add(plan2);
-		 */
 		model.addAttribute("planes", planRepository.findAll());
 		return "index";
 
@@ -57,9 +58,15 @@ public class PlanController {
 	}*/
 
 	@RequestMapping("/plan/{id}")
-	public String devuelvePlan(Model model, @PathVariable long id, Plan plan) {
+	public String devuelvePlan(Model model, @PathVariable long id) {
 		model.addAttribute("plan", planRepository.findOne(id));
 		return "plan";
+	}
+	@RequestMapping("/user/{id}")
+	public String devuelveUser(Model model, @PathVariable String id){
+		model.addAttribute("user",userRepository.findById(id));
+		return "profileHTML";
+		
 	}
 
 }

@@ -1,30 +1,36 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
-import org.hibernate.validator.constraints.Email;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.WebApplicationContext;
 
-@Component
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+@Entity
 public class User {
 	@Id
 	private String id;
+	
 	private String uname;
 	private String surname;
 	private String province;
 	private int age;
-	private Email uemail;
+	private String uemail;
 	private String upass;
 	
+	@OneToMany(mappedBy="author")
+	private List<Plan> plans;
+	
 	@ManyToMany
-	List<User> friends;
+	private List<User> friends;
+
+
 	
 	
 	public User(){
@@ -32,17 +38,16 @@ public class User {
 	}
 
 
-	public User(String id, String uname, String surname, String province, int age, Email uemail, String upass,
-			List<User> friends) {
+	public User(String id, String uname, String surname, String province, int age, String uemail, String upass) {
 		super();
-		this.id = id;
+		this.id=id;
 		this.uname = uname;
 		this.surname = surname;
 		this.province = province;
 		this.age = age;
 		this.uemail = uemail;
 		this.upass = upass;
-		this.friends = friends;
+		this.friends=new ArrayList<>();
 	}
 
 
@@ -96,12 +101,12 @@ public class User {
 	}
 
 
-	public Email getUemail() {
+	public String getUemail() {
 		return uemail;
 	}
 
 
-	public void setUemail(Email uemail) {
+	public void setUemail(String uemail) {
 		this.uemail = uemail;
 	}
 
@@ -121,8 +126,18 @@ public class User {
 	}
 
 
-	public void setFriends(List<User> friends) {
-		this.friends = friends;
+	public void setFriendsWhoAddedMe(List<User> friendsWhoAddedMe) {
+		this.friends = friendsWhoAddedMe;
+	}
+
+
+	public List<Plan> getPlans() {
+		return plans;
+	}
+
+
+	public void setPlans(List<Plan> plans) {
+		this.plans = plans;
 	}
 
 
