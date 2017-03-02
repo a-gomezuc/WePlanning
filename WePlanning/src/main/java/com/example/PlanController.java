@@ -19,18 +19,24 @@ public class PlanController {
 	private PlanRepository planRepository;
 	@Autowired
 	private UserRepository userRepository;
+	@Autowired
+	private CommentRepository commentRepository;
 
 	@SuppressWarnings("deprecation")
 	@PostConstruct
 	public void init() {
+		User miguelito= new User("miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM");
 		User joselito = new User("joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña");
 		User guillermito = new User("westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com",
 				"mmm");
+		userRepository.save(miguelito);
 		userRepository.save(guillermito);
 		joselito.getFriends().add(guillermito);
 		userRepository.save(joselito);
-		for (int i = 0; i < 100; i++) {
-			Plan planprueba = (new Plan("Torneo LOL", "Ocio", "Madrid", "URJC Móstoles", i, new Date(2017, 2, 22),
+		guillermito.getFriends().add(joselito);
+		userRepository.save(guillermito);
+		for (int i = 0; i <8; i++) {
+			Plan planprueba = (new Plan("Torneo LOL", "Ocio", "Madrid", "URJC Móstoles", i, new Date(),
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
 			planRepository.save(planprueba);
@@ -38,6 +44,14 @@ public class PlanController {
 		Plan planpruebaG = new Plan("Carrera", "Deporte", "Madrid", "URJC Vicálvaro", 12, new Date(2017, 2, 21),
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
+		Comment comentario1=new Comment (new Date(), "Me ha gustado mucho");
+		comentario1.setAuthor(joselito);
+		Comment comentario2=new Comment (new Date(), "Menuda castaña de plan");
+		comentario2.setAuthor(miguelito);
+		commentRepository.save(comentario1);
+		commentRepository.save(comentario2);
+		planpruebaG.getComments().add(comentario1);
+		planpruebaG.getComments().add(comentario2);
 		planRepository.save(planpruebaG);
 	}
 
@@ -67,7 +81,10 @@ public class PlanController {
 
 	@RequestMapping("/plan/{id}")
 	public String devuelvePlan(Model model, @PathVariable long id) {
-		model.addAttribute("plan", planRepository.findOne(id));
+		Plan planActual=planRepository.findOne(id);
+		boolean noExistComment= planActual.getComments().isEmpty();
+		model.addAttribute("noExistComment", noExistComment);
+		model.addAttribute("plan",planActual);
 		return "plan";
 	}
 
@@ -75,6 +92,21 @@ public class PlanController {
 	public String devuelveUser(Model model, @PathVariable String id) {
 		model.addAttribute("user", userRepository.findById(id));
 		return "profileHTML";
+
+	}
+	@RequestMapping("/aboutus")
+	public String aboutUs() {
+		return "aboutus";
+
+	}
+	@RequestMapping("/contact")
+	public String contact() {
+		return "contact";
+
+	}
+	@RequestMapping("/register")
+	public String register() {
+		return "register";
 
 	}
 

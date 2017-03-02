@@ -76,11 +76,11 @@
 												</div>
 											</div>
 										</li>
-										<li><a href="register.html">No tengo usuario.
+										<li><a href="/register">No tengo usuario.
 												Registrarme</a></li>
 									</form>
 								</ul></li>
-							<li><a href="register.html">Registrate</a></li>
+							<li><a href="/register">Registrate</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -209,40 +209,34 @@
 					</div>
 				</div>
 			</div>
-			{{/plan}}
 			<!--- /plan --->
 			<!--- comments -->
 			<div class="row">
 				<center>
 					<h3 id="tit-com">Comentarios</h3>
+					{{#noExistComment}}
+					<p> Este plan no tiene comentarios </p>
+					{{/noExistComment}}
 					<section class="comments">
+								{{#comments}}
 						<article class="comment">
 							<div class="comment-body">
 								<div class="text">
-									<p>Muy divertido, repetiremos sin duda</p>
+									<p>{{content}}</p>
 								</div>
 								<p class="attribution">
-									Comentado por <a class="creador-plan" href="ProfileHTML.html">Perfil</a>
-									2 Ene 2017
+									Comentado por <a class="creador-plan" href="/user/{{author.id}}">{{author.id}}</a>
+									{{date}}
 								</p>
 							</div>
 						</article>
-						<article class="comment">
-							<div class="comment-body">
-								<div class="text">
-									<p>No nos gustó nada</p>
-								</div>
-								<p class="attribution">
-									Comentado por <a class="creador-plan" href="ProfileHTML.html">Perfil</a>
-									8 Nov 2016
-								</p>
-							</div>
-						</article>
+						{{/comments}}
 					</section>
 				</center>
 			</div>
 		</div>
 	</div>
+				{{/plan}}
 	<!--- /comments --->
 	<!--Footer-->
 	<footer class="footer">
