@@ -1,5 +1,6 @@
 package com.example;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.annotation.PostConstruct;
@@ -36,12 +37,12 @@ public class PlanController {
 		guillermito.getFriends().add(joselito);
 		userRepository.save(guillermito);
 		for (int i = 0; i <8; i++) {
-			Plan planprueba = (new Plan("Torneo LOL", "Ocio", "Madrid", "URJC Móstoles", i, new Date(),
+			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, new Date(),
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
 			planRepository.save(planprueba);
 		}
-		Plan planpruebaG = new Plan("Carrera", "Deporte", "Madrid", "URJC Vicálvaro", 12, new Date(2017, 2, 21),
+		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, new Date(2017, 2, 21),
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
 		Comment comentario1=new Comment (new Date(), "Me ha gustado mucho");
@@ -109,5 +110,21 @@ public class PlanController {
 		return "register";
 
 	}
-
+	@RequestMapping("/searchByTitle")
+	public String searchbyTitle(Model model, String title){
+		ArrayList<Plan> planes=(ArrayList<Plan>) planRepository.findByTitle(title);
+		model.addAttribute("planes",planes);
+		boolean noPlanes= planes.isEmpty();
+		model.addAttribute("noPlanes",noPlanes);
+		return "index";
+		
+	}
+	@RequestMapping("/searchBy{category}")
+		public String searchByCategory(Model model, @PathVariable String category){
+		ArrayList<Plan> planes=(ArrayList<Plan>) planRepository.findByCategory(category);
+		model.addAttribute("planes",planes);
+		boolean noPlanes= planes.isEmpty();
+		model.addAttribute("noPlanes",noPlanes);
+		return "index";
+	}
 }
