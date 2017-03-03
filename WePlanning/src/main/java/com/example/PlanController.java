@@ -36,7 +36,7 @@ public class PlanController {
 		userRepository.save(joselito);
 		guillermito.getFriends().add(joselito);
 		userRepository.save(guillermito);
-		for (int i = 0; i <8; i++) {
+		for (int i = 0; i <1; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, new Date(),
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
@@ -45,6 +45,10 @@ public class PlanController {
 		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, new Date(2017, 2, 21),
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
+		Plan planpruebaJ=new Plan("Curso universidad", "Cultura", "Albacete", "Universidad de Albacete", 250, new Date (2017, 4, 15),
+				"Curso de programación web");
+		planpruebaJ.setAuthor(miguelito);
+		planRepository.save(planpruebaJ);
 		Comment comentario1=new Comment (new Date(), "Me ha gustado mucho");
 		comentario1.setAuthor(joselito);
 		Comment comentario2=new Comment (new Date(), "Menuda castaña de plan");
@@ -110,21 +114,67 @@ public class PlanController {
 		return "register";
 
 	}
-	@RequestMapping("/searchByTitle")
-	public String searchbyTitle(Model model, String title){
-		ArrayList<Plan> planes=(ArrayList<Plan>) planRepository.findByTitle(title);
-		model.addAttribute("planes",planes);
-		boolean noPlanes= planes.isEmpty();
-		model.addAttribute("noPlanes",noPlanes);
-		return "index";
+	@RequestMapping("/searchPlans")
+	public String searchbyTitle(Model model, String title,String category, String place){
+			ArrayList<Plan> planes;
+			boolean noPlanes;
+			
+			if((!title.equals(""))&&(!category.equals(""))&&(!place.equals(""))){//title, category and place
+				planes=(ArrayList<Plan>)planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title, category, place);
+				model.addAttribute("planes",planes);
+				noPlanes=planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else if((!title.equals(""))&&(!category.equals(""))&&(place.equals(""))){//title and category
+				planes=(ArrayList<Plan>)planRepository.findByTitleAndCategoryIgnoreCase(title, category);
+				model.addAttribute("planes",planes);
+				noPlanes=planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else if ((title.equals(""))&&(!category.equals(""))&&(!place.equals(""))){//category and place
+				planes=(ArrayList<Plan>)planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
+				model.addAttribute("planes",planes);noPlanes= planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else if((!title.equals(""))&&(category.equals(""))&&(!place.equals(""))){//title and place
+				planes=(ArrayList<Plan>)planRepository.findByTitleAndPlaceIgnoreCase(title, place);
+				model.addAttribute("planes",planes);
+				noPlanes= planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else if((!title.equals(""))&&(category.equals(""))&&(place.equals(""))){//title
+				planes=(ArrayList<Plan>)planRepository.findByTitleIgnoreCase(title);
+				model.addAttribute("planes",planes);
+				noPlanes= planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else if((title.equals(""))&&(!category.equals(""))&&(place.equals(""))){//category
+				planes=(ArrayList<Plan>)planRepository.findByCategoryIgnoreCase(category);
+				model.addAttribute("planes",planes);
+				noPlanes= planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else if((title.equals(""))&&(category.equals(""))&&(!place.equals(""))){//place
+				planes=(ArrayList<Plan>)planRepository.findByPlaceIgnoreCase(place);
+				model.addAttribute("planes",planes);
+				noPlanes= planes.isEmpty();
+				model.addAttribute("noPlanes",noPlanes);
+				return "index";
+			}else{//nothing
+				planes=(ArrayList<Plan>)planRepository.findAll();
+				model.addAttribute("planes",planes);
+				noPlanes=planes.isEmpty();
+				model.addAttribute(noPlanes);
+				return "index";
+			}
 		
 	}
-	@RequestMapping("/searchBy{category}")
+	/*@RequestMapping("/searchBy{category}")
 		public String searchByCategory(Model model, @PathVariable String category){
 		ArrayList<Plan> planes=(ArrayList<Plan>) planRepository.findByCategory(category);
 		model.addAttribute("planes",planes);
 		boolean noPlanes= planes.isEmpty();
 		model.addAttribute("noPlanes",noPlanes);
 		return "index";
-	}
+	}*/
 }
