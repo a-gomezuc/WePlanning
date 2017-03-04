@@ -1,7 +1,6 @@
 package com.example;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,7 +26,7 @@ public class Plan {
 	private String place;
 	private String address;
 	private long prize;
-	private Date date;
+	private String date;
 	private String description;
 	
 	@OneToMany
@@ -42,7 +41,7 @@ public class Plan {
 	}
 
 	public Plan(String title, String category,String place, String address, long prize,
-			Date date, String description) {
+			String date, String description) {
 		this.title = title;
 		this.category = category;
 		this.place = place;
@@ -120,11 +119,11 @@ public class Plan {
 		this.prize = prize;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

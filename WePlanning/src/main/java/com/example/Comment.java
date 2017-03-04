@@ -1,6 +1,6 @@
 package com.example;
 
-import java.util.Date;
+
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,13 +17,13 @@ public class Comment {
 	@OneToOne
 	private User author;
 	
-	private Date date;
+	private String date;
 	private String content;
 	
 	public Comment(){
 	}
 	
-	public Comment(Date date, String content) {
+	public Comment(String date, String content) {
 		super();
 		this.date = date;
 		this.content = content;
@@ -42,11 +42,11 @@ public class Comment {
 		this.author = author;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
