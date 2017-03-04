@@ -128,10 +128,12 @@ public class PlanController {
 		userRepository.save(miguelito2);
 		plan.setAuthor(miguelito2);
 		planRepository.save(plan);
-		
 		model.addAttribute("planes",plan);
+		model.addAttribute("id",plan.getAuthor().getId());
+		model.addAttribute("idPlan",plan.getId());
+		model.addAttribute("title",plan.getTitle());
 		
-		return"index";
+		return"SuccesfulPlan";
 	}
 	@RequestMapping("/searchPlans")
 	public String searchbyTitle(Model model, String title,String category, String place){
