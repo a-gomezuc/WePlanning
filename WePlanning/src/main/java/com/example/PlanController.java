@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class PlanController {
@@ -117,11 +118,15 @@ public class PlanController {
 		return "register";
 
 	}
-	@RequestMapping("/registerUser")
-	public String registerUser (boolean sponsorCheckbox,String name,int age,String province,String username,String email, String pass,String passwordConfirm){
+	@RequestMapping(value="/registerUser",  method = RequestMethod.POST)
+	public String registerUser (boolean sponsorCheckbox, String name, int age,
+			String province, String username, String email, String pass){
+		
 		if(!sponsorCheckbox){//user
-			User ulpiano =new User(name, name ,username, province, age, email, pass);
-			userRepository.save(ulpiano);
+			
+			User user =new User(name, name ,username, province, age, email, pass);
+			userRepository.save(user);
+			
 			return "index";
 		}else{//sponsor
 			return "index";
