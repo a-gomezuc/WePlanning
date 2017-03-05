@@ -45,6 +45,7 @@ public class User {
 		this.uemail = uemail;
 		this.upass = upass;
 		this.friends=new ArrayList<>();
+		this.plans=new ArrayList<>();
 	}
 
 

@@ -80,12 +80,12 @@
                     </div>
                     <center>
                         <div class="main-login main-center">
-                            <form class="form-horizontal" method="post" action="#">
+                            <form class="form-horizontal" method="post" action="/registerUser">
                                 <div class="form-group">
                                     <div class="cols-sm-10">
                                         <div class="input-group">
                                             <label for="empresa" class="cols-sm-2 control-label">
-                                                <input type="checkbox" id="empresa" value=""> ¿Eres una empresa?</label>
+                                                <input name="sponsorCheckbox"type="checkbox" id="empresa" value="true"> ¿Eres una empresa?</label>
                                         </div>
                                     </div>
                                 </div>
@@ -93,14 +93,21 @@
                                     <label for="name" class="cols-sm-2 control-label">Nombre y Apellidos</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="name" id="name" placeholder="Introduzca su nombre completo" /> </div>
+                                            <input name="name" type="text" class="form-control" id="name" placeholder="Introduzca su nombre completo" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="provincia" class="cols-sm-2 control-label">Provincia</label>
+                                    <label for="name" class="cols-sm-2 control-label">Edad</label>
+                                    <div class="cols-sm-10">
+                                        <div class="input-group"> <span class="input-group-addon"><i class="fa fa-user fa-fw" aria-hidden="true"></i></span>
+                                            <input name="age" type="number" class="form-control" id="age" value=0 /> </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label name="province" for="provincia" class="cols-sm-2 control-label">Provincia</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span>
-                                            <select id="busquedaprovincia">
+                                            <select id="busquedaprovincia" name="province">
                                                 <option value='alava'>Álava</option>
                                                 <option value='albacete'>Albacete</option>
                                                 <option value='alicante'>Alicante/Alacant</option>
@@ -161,32 +168,32 @@
                                     <label for="email1" class="cols-sm-2 control-label">Email</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-envelope fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="email" id="email1" placeholder="Introduzca su email" /> </div>
+                                            <input name="email" type="text" class="form-control" name="email" id="email1" placeholder="Introduzca su email" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="username" class="cols-sm-2 control-label">Nombre de usuario</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-users fa-fw" aria-hidden="true"></i></span>
-                                            <input type="text" class="form-control" name="username" id="username" placeholder="Introduzca su nombre de usuario" /> </div>
+                                            <input name="username" type="text" class="form-control" name="username" id="username" placeholder="Introduzca su nombre de usuario" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password1" class="cols-sm-2 control-label">Contraseña</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control" name="password" id="password1" placeholder="Contraseña" /> </div>
+                                            <input name="pass" type="password" class="form-control" name="password" id="password1" placeholder="Contraseña" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="confirm" class="cols-sm-2 control-label">Confirma la contraseña</label>
                                     <div class="cols-sm-10">
                                         <div class="input-group"> <span class="input-group-addon"><i class="fa fa-lock fa-fw" aria-hidden="true"></i></span>
-                                            <input type="password" class="form-control" name="confirm" id="confirm" placeholder="Repita su contraseña" /> </div>
+                                            <input name="passwordConfirm"type="password" class="form-control" name="confirm" id="confirm" placeholder="Repita su contraseña" /> </div>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <button type="button" class="btn btn-lg btn-block btn-info">Registrar</button>
+                                    <button type="submit" class="btn btn-lg btn-block btn-info">Registrar</button>
                                 </div>
                             </form>
                         </div>

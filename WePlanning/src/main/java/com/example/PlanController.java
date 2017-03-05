@@ -117,6 +117,17 @@ public class PlanController {
 		return "register";
 
 	}
+	@RequestMapping("/registerUser")
+	public String registerUser (boolean sponsorCheckbox,String name,int age,String province,String username,String email, String pass,String passwordConfirm){
+		if(!sponsorCheckbox){//user
+			User ulpiano =new User(name, name ,username, province, age, email, pass);
+			userRepository.save(ulpiano);
+			return "index";
+		}else{//sponsor
+			return "index";
+		}
+		
+	}
 	@RequestMapping("/newPlan")
 	public String newPlan() {
 		return "NewPlan";
