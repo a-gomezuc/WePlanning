@@ -44,6 +44,7 @@
                 </div>
                 <!-- /.container -->
             </nav>
+            {{#user}}
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
@@ -52,7 +53,7 @@
                                 <!-- http://lorempixel.com/850/280/people/9/ -->
                             </div>
                             <div class="useravatar"> <img id="imagenPerfil" src="http://lorempixel.com/100/100/people/9/"> </div>
-                            <div class="card-info"> <span id="tituloPerfil" class="card-title">Usuario</span> </div>
+                            <div class="card-info"> <span id="tituloPerfil" class="card-title">{{uname}}</span> </div>
                         </div>
                         <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                             <div class="btn-group" role="group">
@@ -84,41 +85,35 @@
                                             <button class="btn btn-primary pull-left btn-xs btn-edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
                                             <h2>Información Personal</h2>
                                             <hr/>
-                                            <p><strong>Alias:</strong>&nbsp; Usuario</p>
-                                            <p><strong>Provincia:</strong>&nbsp; Provincia</p>
-                                            <p><strong>Edad:</strong>&nbsp; 25</p>
-                                            <p><strong>Gustos:</strong>&nbsp; Música&nbsp; Cine&nbsp;  Deporte </p>
+                                            <p><strong>Alias:</strong>&nbsp; {{id}}</p>
+                                            <p><strong>Provincia:</strong>&nbsp; {{Province}}</p>
+                                            <p><strong>Edad:</strong>&nbsp; {{age}}</p>
+                                        
                                             <p><strong>Descripción:</strong>&nbsp; Soy un usuario de WePlanning, aquí puedo poner la descripción que desee.</p>
                                         </div>
                                     </center>
                                 </div>
                                 <div class="tab-pane fade in" id="tab2">
-                                    <div class="container-fluid ">
-                                        <div class="container-fluid">
-                                            <div class="row myplan-row">
-                                                <div class="col-md-6 img-myplan  "> <img class="img-responsive" src="IMG/quads02.jpg"> </div>
-                                                <div class="col-md-6">
-                                                    <h3><strong>RUTA EN QUAD</strong></h3>
-                                                    <hr/>
-                                                    <p>En PROVINCIA</p>
-                                                    <p>Subido por: AUTOR</p>
-                                                    <button onclick="location.href = 'plan-logged.html'" type="button" class="btn-info">Ver Plan</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="container-fluid">
-                                            <div class="row myplan-row">
-                                                <div class="col-md-6 col-sm-12 img-myplan "> <img class="img-responsive" src="IMG/quads02.jpg"> </div>
-                                                <div class="col-md-6 col-sm-12">
-                                                    <h3><strong>RUTA EN QUAD</strong></h3>
-                                                    <hr/>
-                                                    <p>En PROVINCIA</p>
-                                                    <p>Subido por: AUTOR</p>
-                                                    <button onclick="location.href = 'plan-logged.html'" type="button" class="btn-info">Ver Plan</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {{#plans}}
+									<div class="container-fluid ">
+										<div class="container-fluid">
+											<div class="row myplan-row">
+												<div class="col-md-6 img-myplan  ">
+													<img class="img-responsive" src="/IMG/quads02.jpg">
+												</div>
+												<div class="col-md-6">
+													<h3>
+														<strong>{{title}}</strong>
+													</h3>
+													<hr />
+													<p>En {{place}}</p>
+													<button onclick="location.href = '/plan/{{id}}'"
+														type="button" class="btn-info">Ver Plan</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									{{/plans}}
                                 </div>
 
 
@@ -128,51 +123,23 @@
                                         <button class="btn btn-primary btn-xs btn-edit"><i class="fa fa-user-times" aria-hidden="true"></i></button>
                                     </div>
 
-                                    <div class="row friends-row">
-                                        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div>
-										<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4  "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-12 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div><div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                    <div class="row friends-row">
-                                     <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div><div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div><div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div>
-                                    </div><!--row-->
-									</div>
+                                  {{#friends}}
+										<div class="row friends-row">
+											<div
+												class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+												<div class="col-md-6 col-sm-4 col-xs-4 ">
+													<img class=" img-circle"
+														src="http://lorempixel.com/100/100/people/">
+												</div>
+												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
+													<center>
+														<a href="/user/{{id}}" class="creador-plan">{{id}}</a>
+														<p class="text-muted">{{province}}</p>
+													</center>
+												</div>
+											</div>
+										</div>
+										{{/friends}}
                                 </div>
                             </div>
                                 <div class="tab-pane fade in" id="tab4">
@@ -210,30 +177,7 @@
                                                         </div>
                                                     
                                                     </div>
-                                                    <div class="row friends-search-row">
-                                                        <div class="col-md-6 col-sm-6 col-xs-6 friends-preview">
-                                                            <div class="col-md-4"> <img class="img-responsive img-circle" src="http://lorempixel.com/100/100/people/3"> </div>
-                                                            <div class="col-md-8  friends-search-info">
-                                                                <h4>Guille</h4>
-                                                                <p class="text-muted">Madrid</p>
-                                                             <p><strong>Descripción:</strong>&nbsp;Soy un usuario de WePlanning, aquí puedo poner la descripción que desee.</p>
-                                                            </div>
-                                                            <center>
-                                                            <button class="btn sr-btn btn-info" type="button">Solicitud de amistad</button>
-                                                            </center>
-                                                        </div>
-                                                        <div class="col-md-6 col-sm-6 col-xs-6 friends-preview">
-                                                            <div class="col-md-4"> <img class="img-responsive img-circle" src="http://lorempixel.com/100/100/people/4"> </div>
-                                                           <div class="col-md-8 friends-search-info">
-                                                                <h4>Guille</h4>
-                                                                <p class="text-muted">Madrid</p>
-                                                             <p><strong>Descripción:</strong>&nbsp;Soy un usuario de WePlanning, aquí puedo poner la descripción que desee.</p>
-                                                            </div>
-                                                            <center>
-                                                            <button class="btn sr-btn btn-info" type="button">Solicitud de amistad</button>
-                                                            </center>
-                                                        </div>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>                      
                                     </div>
@@ -244,6 +188,7 @@
                 </div>
             </div>
         </div>
+        {{/user}}
     </div>
     <!--Footer-->
     <footer class="footer">
