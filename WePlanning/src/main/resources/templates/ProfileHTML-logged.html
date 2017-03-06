@@ -157,6 +157,7 @@
 								<div class="tab-pane fade in" id="tab4">
 									<div class="row-search">
 										<div class="profile-searchFriends">
+										<form action="/searchUsers" method="get"> 
 											<center>
 												<input data-brackets-id="2191" type="text" class="sr-input"
 													placeholder="Busca amigos" />
@@ -164,7 +165,11 @@
 													Buscar <i class="fa fa-search"></i>
 												</button>
 											</center>
+											</form>
 											<hr>
+											{{#noUsers}}
+											<div><p>No se han encontrado usuarios en la búsqueda</p></div>
+											{{/noUsers}}
 											{{#AllUsers}}
 											<div class="profile-search">
 											<div class="row friends-search-row">												
@@ -181,10 +186,11 @@
 															WePlanning, aquí puedo poner la descripción que desee.
 														</p>
 													</div>
+													{{#noFriends}}
 													<center>
-														<button class="btn sr-btn btn-info" type="button">Solicitud
-															de amistad</button>
+														<button class="btn sr-btn btn-info" type="button">Agregar Amigo</button>
 													</center>
+													{{/noFriends}}
 												</div>
 											</div>
 										</div>

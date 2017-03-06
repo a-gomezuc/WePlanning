@@ -169,6 +169,22 @@ public class PlanController {
 		
 		return"SuccesfulPlan";
 	}
+	@RequestMapping("/searchUsers")
+	public String searchByName(Model model, String uname, String surname){
+		ArrayList<User> users;
+		boolean noUsers;
+		
+	
+		if((!uname.equals(""))){//name
+			users=(ArrayList<User>)userRepository.findByUnameIgnoreCase(uname);
+			model.addAttribute("AllUsers",users);
+			noUsers=users.isEmpty();
+			model.addAttribute("noUser",noUsers);
+			return "index";
+		}
+		return "ProfileHTML-Logged";
+		}
+	
 	@RequestMapping("/searchPlans")
 	public String searchbyTitle(Model model, String title,String category, String place){
 			ArrayList<Plan> planes;
