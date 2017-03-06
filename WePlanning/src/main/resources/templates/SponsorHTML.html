@@ -61,13 +61,14 @@
                 </div>
                 <!-- /.container -->
             </nav>
+            {{#user}}
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
                         <div class="card hovercard ">
                             <div class="card-background"> <img class="card-bkimg" alt="" src="IMG/imgplan4.jpg"> </div>
                             <div class="useravatar"> <img id="imagenSponsor" src="IMG/Sponsor.jpg"> </div>
-                            <div class="card-info"> <span id="tituloSponsor" class="card-title">Sponsor</span> </div>
+                            <div class="card-info"> <span id="tituloSponsor" class="card-title">{{Sponsor}}</span> </div>
                         </div>
                         <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                             <div class="btn-group" role="group">
@@ -100,86 +101,56 @@
 										<div class="profile-info container-fluid">
 											<h2>Información Del Anunciante</h2>
 											<hr/>
-											<p><strong>Empresa:</strong>&nbsp; Empresa Anunciante</p>
-											<p><strong>Patrocina Eventos de:</strong>&nbsp; Deportes</p>
-											<p><strong>Descripción:</strong>&nbsp; Soy un anunciante de WePlanning, anuncio mis eventos a los que los usuarios pueden indicar que van a asistir y además pueden seguirme</p>
+											<p><strong>Empresa:</strong>&nbsp;{{id}}</p>
+											<p><strong>Provincia</strong>&nbsp;{{province}}
+											
+											<p><strong>Descripción:</strong>&nbsp;</p>
 										</div>
 									</center>
 								</div>
-								<div class="tab-pane fade in" id="tab2">
-									<div class="container-fluid c-plan">
+								 <div class="tab-pane fade in" id="tab2">
+                                    <div class="container-fluid c-plan">
+                                        {{#plans}}
+									<div class="container-fluid ">
 										<div class="container-fluid">
-										<div class="row myplan-row">
-											<div class="col-md-6 img-myplan  center-block"> <img class="img-responsive" src="IMG/quads02.jpg"> </div>
-											<div class="col-md-6">
-												<h3><strong>RUTA EN QUAD</strong></h3>
-												<hr/>
-												<p>En PROVINCIA</p>
-												<p>Subido por: AUTOR</p>
-												<button onclick="location.href = 'plan.html'" type="button" class="btn-info">Ver Plan</button>
+											<div class="row myplan-row">
+												<div class="col-md-6 img-myplan  ">
+													<img class="img-responsive" src="/IMG/quads02.jpg">
+												</div>
+												<div class="col-md-6">
+													<h3>
+														<strong>{{title}}</strong>
+													</h3>
+													<hr />
+													<p>En {{place}}</p>
+													<button onclick="location.href = '/plan/{{id}}'"
+														type="button" class="btn-info">Ver Plan</button>
+												</div>
 											</div>
-										</div></div>
-										<div class="container-fluid">
-										<div class="row myplan-row">
-											<div class="col-md-6 col-sm-12 img-myplan "> <img class="img-responsive" src="IMG/quads02.jpg"> </div>
-											<div class="col-md-6 col-sm-12">
-												<h3><strong>RUTA EN QUAD</strong></h3>
-												<hr/>
-												<p>En PROVINCIA</p>
-												<p>Subido por: AUTOR</p>
-												<button onclick="location.href = 'plan.html'" type="button" class="btn-info">Ver Plan</button>
-											</div>
-											</div></div>
+										</div>
 									</div>
-								</div>
+									{{/plans}}
+                                    </div>
+                                </div>
 								  <div class="tab-pane fade in" id="tab3">
 									<div class="friendsl">
-                                    <div class="row friends-row">
-                                        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div>
-										<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4  "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-12 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div><div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div>
-                                        
-                                        
-                                    <div class="row friends-row">
-                                     <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div><div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div><div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-                                            <div class="col-md-6 col-sm-4 col-xs-4 "> <img class=" img-circle" src="http://lorempixel.com/100/100/people/"> </div>
-                                            <div class="col-md-6 col-sm-8 col-xs-8 friends-info"><center>
-                                                <h4>Guille</h4>
-                                                <p class="text-muted">Madrid</p></center>
-                                            </div>
-                                        </div>
-                                    </div><!--row-->
-									</div>
-                                </div>
+                                    {{#friends}}
+										<div class="row friends-row">
+											<div
+												class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+												<div class="col-md-6 col-sm-4 col-xs-4 ">
+													<img class=" img-circle"
+														src="http://lorempixel.com/100/100/people/">
+												</div>
+												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
+													<center>
+														<a href="/user/{{id}}" class="creador-plan">{{id}}</a>
+														<p class="text-muted">{{province}}</p>
+													</center>
+												</div>
+											</div>
+										</div>
+										{{/friends}}
                             </div>
 							</div>
 						</div>
@@ -187,6 +158,7 @@
 				</div>
 			</div>
 		</div>
+		{{/user}}
 	</div>
     <!--Footer-->
     <footer class="footer">
