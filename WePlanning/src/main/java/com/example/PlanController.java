@@ -110,9 +110,17 @@ public class PlanController {
 	@RequestMapping("/user/{id}")
 	public String devuelveUser(Model model, @PathVariable String id) {
 		User usuario=userRepository.findById(id);
-		model.addAttribute("user", usuario);
-		
+		model.addAttribute("user", usuario);	
 		return "ProfileHTML";
+
+	}
+	@RequestMapping("logged/user/{id}")
+	public String devuelveUserLogged(Model model, @PathVariable String id) {
+		User usuario=userRepository.findById(id);
+		model.addAttribute("user", usuario);
+		model.addAttribute("AllUsers",userRepository.findAll());
+		
+		return "ProfileHTML-logged";
 
 	}
 	@RequestMapping("/aboutus")

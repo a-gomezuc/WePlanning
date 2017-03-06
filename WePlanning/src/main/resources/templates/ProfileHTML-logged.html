@@ -20,7 +20,7 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a class="navbar-brand" href="index-logged.html"> <img src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+                        <a class="navbar-brand" href="index-logged.html"> <img src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse " id="navbar-collapse1">
@@ -60,7 +60,7 @@
                 <div class="row">
                     <div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
                         <div class="card hovercard ">
-                            <div class="card-background"> <img class="card-bkimg" alt="" src="IMG/imgplan8.jpg">
+                            <div class="card-background"> <img class="card-bkimg" alt="" src="/IMG/imgplan8.jpg">
                                 <!-- http://lorempixel.com/850/280/people/9/ -->
                             </div>
                             <div class="useravatar"> <img id="imagenPerfil" src="http://lorempixel.com/100/100/people/9/"> </div>
@@ -154,7 +154,6 @@
 											<!--row-->
 										</div>
 									</div>
-								</div>
 								<div class="tab-pane fade in" id="tab4">
 									<div class="row-search">
 										<div class="profile-searchFriends">
@@ -166,20 +165,20 @@
 												</button>
 											</center>
 											<hr>
+											{{#AllUsers}}
 											<div class="profile-search">
-											<div class="row friends-search-row">
-												{{#AllUsers}}
-												<div class="col-md-6 col-sm-6 col-xs-6 friends-preview">
+											<div class="row friends-search-row">												
+												<div class="col-md-8 col-sm-8 col-xs-8 friends-preview">
 													<div class="col-md-4">
 														<img class="img-responsive img-circle img-f"
 															src="http://lorempixel.com/100/100/people/">
 													</div>
 													<div class="col-md-8  friends-search-info">
-														<h4>Guille</h4>
-														<p class="text-muted">Madrid</p>
+														<h4>{{id}}</h4>
+														<p class="text-muted">{{province}}</p>
 														<p>
-															<strong>DescripciÃ³n:</strong>&nbsp;Soy un usuario de
-															WePlanning, aquÃ­ puedo poner la descripciÃ³n que desee.
+															<strong>Descripción:</strong>&nbsp;Soy un usuario de
+															WePlanning, aquí puedo poner la descripción que desee.
 														</p>
 													</div>
 													<center>
@@ -187,9 +186,9 @@
 															de amistad</button>
 													</center>
 												</div>
-												{{/Allusers}}
 											</div>
 										</div>
+										{{/AllUsers}}
                             </div>
                         </div>
                     </div>
@@ -203,7 +202,7 @@
         <div class="container">
             <div class="row">
                 <center>
-                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="IMG/Logo.png" /> </div>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="/IMG/Logo.png" /> </div>
                 </center>
                 <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
                     <center>
@@ -227,7 +226,7 @@
         </div>
     </footer>
     <!--FooterEnd-->
-    <script src="JS/jquery.js"></script>
-    <script src="JS/bootstrap.min.js"></script>
+    <script src="/JS/jquery.js"></script>
+    <script src="/JS/bootstrap.min.js"></script>
 </body>
 </html>
