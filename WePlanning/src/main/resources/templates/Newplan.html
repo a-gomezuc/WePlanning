@@ -11,9 +11,7 @@
 <!-- Bootstrap Core CSS -->
 <link href="/CSS/bootstrap.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-<link
-	href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-	rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 <link href="/CSS/styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One"
 	rel="stylesheet">
@@ -102,7 +100,7 @@
 												<span class="input-group-addon"><i
 													class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
 													type="text" class="form-control" name="title" id="title"
-													placeholder="Título" />
+													placeholder="Título" required/>
 											</div>
 										</div>
 									</div>
@@ -112,7 +110,7 @@
 										<div class="cols-sm-10">
 											<div class="input-group">
 												<span class="input-group-addon"><i
-													class="fa fa-tags fa-fw" aria-hidden="true"></i></span> <select id="busquedaprovincia" name="category">
+													class="fa fa-tags fa-fw" aria-hidden="true"></i></span> <select id="busquedaprovincia" name="category" required>
 														<option value="">Seleccione categoría</option>
 														<option value='Musica'>Música</option>
 														<option value='Cine'>Cine</option>
@@ -130,7 +128,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="fa fa-calendar fa-fw" aria-hidden="true"></i></span> <input
-													type="date" name="date" id="fecha">
+													type="date" name="date" id="fecha" required/>
 											</div>
 										</div>
 									</div>
@@ -140,7 +138,7 @@
 											<div class="input-group">
 												<span class="input-group-addon"><i
 													class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span> <select name="place"
-													id="busquedaprovincia">
+													id="busquedaprovincia" required>
 													<option value='Álava'>Álava</option>
 													<option value='Albacete'>Albacete</option>
 													<option value='Alicante'>Alicante/Alacant</option>
@@ -206,7 +204,7 @@
 													class="fa fa-envelope fa-location-arrow fa-fw"
 													aria-hidden="true"></i></span> <input type="text"
 													class="form-control" name="address" id="dirección"
-													placeholder="Dirección" />
+													placeholder="Dirección" required/>
 											</div>
 										</div>
 									</div>
@@ -218,14 +216,14 @@
 												<span class="input-group-addon"><i
 													class="fa fa-money fa-fw" aria-hidden="true"></i></span> <input
 													type="number" min="0" step="1" class="form-control" name="prize" id="precio"
-													placeholder="Precio" />
+													placeholder="Precio" required/>
 											</div>
 										</div>
 									</div>
 									<div class="form-groupnw">
 										<div class="Text">
 											<label> Descripción <textarea type="text" rows="5" name="description"
-													id="txt"></textarea>
+													id="txt" required></textarea>
 											</label>
 										</div>
 									</div>

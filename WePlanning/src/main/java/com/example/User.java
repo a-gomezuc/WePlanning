@@ -1,12 +1,17 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Entity
 public class User {
@@ -18,19 +23,22 @@ public class User {
 	private String province;
 	private int age;
 	private String uemail;
-	private String upass;
+	private String passwordHash;
 
 	@OneToMany(mappedBy = "author")
 	private List<Plan> plans;
 
 	@ManyToMany
 	private List<User> friends;
+	
+	@ElementCollection(fetch = FetchType.EAGER)
+	private List<String> roles;
 
 	public User() {
 
 	}
 
-	public User(String id, String uname, String surname, String province, int age, String uemail, String upass) {
+	public User(String id, String uname, String surname, String province, int age, String uemail, String upass, String... roles) {
 		super();
 		this.id = id;
 		this.uname = uname;
@@ -38,7 +46,8 @@ public class User {
 		this.province = province;
 		this.age = age;
 		this.uemail = uemail;
-		this.upass = upass;
+		this.passwordHash = new BCryptPasswordEncoder().encode(upass);
+		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.friends = new ArrayList<>();
 		this.plans = new ArrayList<>();
 	}
@@ -91,22 +100,29 @@ public class User {
 		this.uemail = uemail;
 	}
 
-	public String getUpass() {
-		return upass;
+	public String getPasswordHash() {
+		return passwordHash;
 	}
 
-	public void setUpass(String upass) {
-		this.upass = upass;
+	public void setPasswordHash(String passwordHash) {
+		this.passwordHash = passwordHash;
+	}
+
+	public List<String> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<String> roles) {
+		this.roles = roles;
+	}
+
+	public void setFriends(List<User> friends) {
+		this.friends = friends;
 	}
 
 	public List<User> getFriends() {
 		return friends;
 	}
-
-	public void setFriendsWhoAddedMe(List<User> friendsWhoAddedMe) {
-		this.friends = friendsWhoAddedMe;
-	}
-
 	public List<Plan> getPlans() {
 		return plans;
 	}
@@ -118,7 +134,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", uname=" + uname + ", surname=" + surname + ", province=" + province + ", age="
-				+ age + ", uemail=" + uemail + ", upass=" + upass + ", friends=" + friends + "]";
+				+ age + ", uemail=" + uemail + ", upass=" + passwordHash + ", friends=" + friends + "]";
 	}
 
 }

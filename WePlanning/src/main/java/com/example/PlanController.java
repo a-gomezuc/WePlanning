@@ -22,13 +22,15 @@ public class PlanController {
 	private UserRepository userRepository;
 	@Autowired
 	private CommentRepository commentRepository;
+	@Autowired
+	private UserComponent userComponent;
 
 	@PostConstruct
 	public void init() {
-		User miguelito= new User("miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM");
+		User miguelito= new User("miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM", "ROLE_USER");
 		User joselito = new User("joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña");
 		User guillermito = new User("westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com",
-				"mmm");
+				"mmm", "ROLE_USER","ROLE_ADMIN");
 		userRepository.save(miguelito);
 		userRepository.save(guillermito);
 		joselito.getFriends().add(guillermito);
@@ -70,6 +72,16 @@ public class PlanController {
 		model.addAttribute("size", planes.getSize() + 10);
 		model.addAttribute("showButton", !planes.isLast());
 		return "index";
+
+	}
+	@RequestMapping("/logged")
+	public String presentarInicioLogueado(Model model, Pageable page) {
+//		Page<Plan> planes = planRepository.findAll(page);
+//		model.addAttribute("planes", planes);
+//		model.addAttribute("size", planes.getSize() + 10);
+//		model.addAttribute("showButton", !planes.isLast());
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "index-logged";
 
 	}
 
@@ -140,9 +152,7 @@ public class PlanController {
 	}
 	@RequestMapping("/createPlan")
 	public String createPlan(Model model, Plan plan){
-		User miguelito2= new User("miguel992", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM");
-		userRepository.save(miguelito2);
-		plan.setAuthor(miguelito2);
+		plan.setAuthor(userComponent.getLoggedUser());
 		planRepository.save(plan);
 		model.addAttribute("planes",plan);
 		model.addAttribute("id",plan.getAuthor().getId());
@@ -206,12 +216,12 @@ public class PlanController {
 			}
 		
 	}
-	/*@RequestMapping("/searchBy{category}")
-		public String searchByCategory(Model model, @PathVariable String category){
-		ArrayList<Plan> planes=(ArrayList<Plan>) planRepository.findByCategory(category);
-		model.addAttribute("planes",planes);
-		boolean noPlanes= planes.isEmpty();
-		model.addAttribute("noPlanes",noPlanes);
+	@RequestMapping("/login")
+	public String log(){
 		return "index";
-	}*/
+	}
+	@RequestMapping("/loginerror")
+	public String logError(){
+		return "loginerror";
+	}
 }
