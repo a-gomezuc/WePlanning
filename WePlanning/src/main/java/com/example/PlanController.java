@@ -174,20 +174,38 @@ public class PlanController {
 		
 		return"SuccesfulPlan";
 	}
-	@RequestMapping("/searchUsers")
-	public String searchByName(Model model, String uname, String surname){
+	@RequestMapping("/logged/user/{id}/searchUsers")
+	public String searchAnUser(Model model, @PathVariable String id,String usearch, String filter){
+		model.addAttribute("user",userRepository.findById(id));
 		ArrayList<User> users;
+		User u;
 		boolean noUsers;
-		
-	
-		if((!uname.equals(""))){//name
-			users=(ArrayList<User>)userRepository.findByUnameIgnoreCase(uname);
+		if((!usearch.equals(""))&&(filter.equals("name"))){
+			users=(ArrayList<User>)userRepository.findByUnameIgnoreCase(usearch);
 			model.addAttribute("AllUsers",users);
 			noUsers=users.isEmpty();
-			model.addAttribute("noUser",noUsers);
-			return "index";
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
+		}else if((!usearch.equals(""))&&(filter.equals("ident"))){
+			u=userRepository.findByIdIgnoreCase(usearch);
+			model.addAttribute("AllUsers",u);
+			noUsers=(u.equals(""));
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
 		}
-		return "ProfileHTML-Logged";
+		else if((!usearch.equals(""))&&(filter.equals("province"))){
+			users=(ArrayList<User>)userRepository.findByProvinceIgnoreCase(usearch);
+			model.addAttribute("AllUsers",users);
+			noUsers=users.isEmpty();
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
+		}else{
+			users=(ArrayList<User>)userRepository.findAll();
+			model.addAttribute("AllUsers",users);
+			noUsers=users.isEmpty();
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
+		}
 		}
 	
 	@RequestMapping("/searchPlans")
@@ -200,49 +218,42 @@ public class PlanController {
 				model.addAttribute("planes",planes);
 				noPlanes=planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((!title.equals(""))&&(!category.equals(""))&&(place.equals(""))){//title and category
 				planes=(ArrayList<Plan>)planRepository.findByTitleAndCategoryIgnoreCase(title, category);
 				model.addAttribute("planes",planes);
 				noPlanes=planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if ((title.equals(""))&&(!category.equals(""))&&(!place.equals(""))){//category and place
 				planes=(ArrayList<Plan>)planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
 				model.addAttribute("planes",planes);noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((!title.equals(""))&&(category.equals(""))&&(!place.equals(""))){//title and place
 				planes=(ArrayList<Plan>)planRepository.findByTitleAndPlaceIgnoreCase(title, place);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((!title.equals(""))&&(category.equals(""))&&(place.equals(""))){//title
 				planes=(ArrayList<Plan>)planRepository.findByTitleIgnoreCase(title);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((title.equals(""))&&(!category.equals(""))&&(place.equals(""))){//category
 				planes=(ArrayList<Plan>)planRepository.findByCategoryIgnoreCase(category);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((title.equals(""))&&(category.equals(""))&&(!place.equals(""))){//place
 				planes=(ArrayList<Plan>)planRepository.findByPlaceIgnoreCase(place);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else{//nothing
 				planes=(ArrayList<Plan>)planRepository.findAll();
 				model.addAttribute("planes",planes);
 				noPlanes=planes.isEmpty();
 				model.addAttribute(noPlanes);
-				return "index";
 			}
+			return "index";
 		
 	}
 	@RequestMapping("/login")

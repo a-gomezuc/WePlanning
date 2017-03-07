@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>WePlanning - ¡Encuentra el mejor plan cerca de ti!</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="CSS/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="CSS/font-awesome.min.css">
+    <link href="CSS/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans" rel="stylesheet"> </head>
+
+<body>
+    <div id="wrap">
+        <div id="main" class="container clear-top">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <a class="navbar-brand" href="index.html"> <img src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse " id="navbar-collapse1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li> <a href="aboutus.html">¿Qué es WePlanning?</a> </li>
+                            <li> <a href="contact.html">Contacta</a> </li>
+                            <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-tc">
+                                    <form class="form-horizontal form_ini" role="form">
+                                        <li>
+                                            <div class="form-group">
+                                                <label for="email" class="col-lg-2 control-label">Email</label>
+                                                <div class="col-lg-10">
+                                                    <input type="email" class="form-control" id="email" placeholder="Email"> </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group">
+                                                <label for="password" class="col-lg-2 control-label">Contraseña</label>
+                                                <div class="col-lg-10">
+                                                    <input type="password" class="form-control" id="password" placeholder="Contraseña"> </div>
+                                            </div>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <button type="submit" class="btn btn-default">Entrar</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li><a href="register.html">No tengo usuario. Registrarme</a></li>
+                                    </form>
+                                </ul>
+                            </li>
+                            <li> <a href="register.html">Registrate</a> </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-offset-3 col-lg-6 col-md-offset-3 col-md-6">
+                        <center>
+                            
+                            <spam> <img class="img-responsive error-icon" src="IMG/loginerror.png" />
+                                <h2>Error al introducir los datos de usuario</h2>
+                            </spam>
+                        </center>
+                    </div>
+                </div>
+            </div>
+            <center>
+                 <button  onclick="location.href = '/'" type="button" class="btn btn-lg  btn-info">Volver a inicio</button>
+			</center>
+
+        </div>
+    </div>
+    <!--Footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <center>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="IMG/Logo.png" /> </div>
+                </center>
+                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+                    <center>
+                        <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
+                        <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
+                        <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+                    </center>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                    <center> <a href="aboutus.html" id="aboutUs">Conócenos<br></a> <a href="contact.html" id="contacto">Contacto<br></a> </center>
+                </div>
+            </div>
+            <div class="row">
+                <div id="copyright">
+                    <center>
+                        <hr id="lineaCopyright">
+                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--FooterEnd-->
+    <!-- /.container -->
+    <!-- jQuery -->
+    <script src="JS/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="JS/bootstrap.min.js"></script>
+</body>
+
+</html>
