@@ -81,20 +81,9 @@ public class PlanController {
 //		model.addAttribute("size", planes.getSize() + 10);
 //		model.addAttribute("showButton", !planes.isLast());
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		model.addAttribute("id",userComponent.getLoggedUser().getId());
 		return "index-logged";
 	}
-
-	/*
-	 * @RequestMapping("/inicioSesion") public String iniciaSesion(Model model,
-	 * UsuarioCredenciales user, HttpSession sesion) { //
-	 * model.addAttribute("bienvenida", sesion.isNew());
-	 * usuario.setId(user.getId()); model.addAttribute("id", usuario.getId());
-	 * 
-	 * return "index-logged";
-	 * 
-	 * }
-	 */
-
 	@RequestMapping("/plan/{id}")
 	public String devuelvePlan(Model model, @PathVariable long id) {
 		Plan planActual=planRepository.findOne(id);
@@ -132,13 +121,31 @@ public class PlanController {
 		return "aboutus";
 
 	}
+	@RequestMapping("/logged/aboutus")
+	public String loggedAboutUs(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "aboutus";
+
+	}
 	@RequestMapping("/contact")
 	public String contact() {
 		return "contact";
 
 	}
+	@RequestMapping("/logged/contact")
+	public String loggedContact(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "contact";
+
+	}
 	@RequestMapping("/register")
 	public String register() {
+		return "register";
+
+	}
+	@RequestMapping("/logged/register")
+	public String loggedRegister(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		return "register";
 
 	}
