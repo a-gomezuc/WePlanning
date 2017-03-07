@@ -71,7 +71,13 @@ body {
 
 
 /* ---------------- /navbar ---------*/
-
+/*------------LoginError--------------*/
+.error-icon{
+    max-width: 300px;
+    min-height: 300px;
+    padding: 2%;
+}
+/*------------/LoginError-------------*/
 
 /* ---------------- jumbotron ---------*/
 

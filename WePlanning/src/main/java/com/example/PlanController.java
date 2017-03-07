@@ -119,7 +119,7 @@ public class PlanController {
 		User usuario=userRepository.findById(id);
 		model.addAttribute("user", usuario);
 		model.addAttribute("AllUsers",userRepository.findAll());
-		
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		return "ProfileHTML-logged";
 
 	}
@@ -154,7 +154,8 @@ public class PlanController {
 		
 	}
 	@RequestMapping("/newPlan")
-	public String newPlan() {
+	public String newPlan(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		return "NewPlan";
 
 	}
@@ -213,49 +214,42 @@ public class PlanController {
 				model.addAttribute("planes",planes);
 				noPlanes=planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((!title.equals(""))&&(!category.equals(""))&&(place.equals(""))){//title and category
 				planes=(ArrayList<Plan>)planRepository.findByTitleAndCategoryIgnoreCase(title, category);
 				model.addAttribute("planes",planes);
 				noPlanes=planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if ((title.equals(""))&&(!category.equals(""))&&(!place.equals(""))){//category and place
 				planes=(ArrayList<Plan>)planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
 				model.addAttribute("planes",planes);noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((!title.equals(""))&&(category.equals(""))&&(!place.equals(""))){//title and place
 				planes=(ArrayList<Plan>)planRepository.findByTitleAndPlaceIgnoreCase(title, place);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((!title.equals(""))&&(category.equals(""))&&(place.equals(""))){//title
 				planes=(ArrayList<Plan>)planRepository.findByTitleIgnoreCase(title);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((title.equals(""))&&(!category.equals(""))&&(place.equals(""))){//category
 				planes=(ArrayList<Plan>)planRepository.findByCategoryIgnoreCase(category);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else if((title.equals(""))&&(category.equals(""))&&(!place.equals(""))){//place
 				planes=(ArrayList<Plan>)planRepository.findByPlaceIgnoreCase(place);
 				model.addAttribute("planes",planes);
 				noPlanes= planes.isEmpty();
 				model.addAttribute("noPlanes",noPlanes);
-				return "index";
 			}else{//nothing
 				planes=(ArrayList<Plan>)planRepository.findAll();
 				model.addAttribute("planes",planes);
 				noPlanes=planes.isEmpty();
 				model.addAttribute(noPlanes);
-				return "index";
 			}
+			return "index";
 		
 	}
 	@RequestMapping("/login")
