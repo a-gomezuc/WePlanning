@@ -119,7 +119,7 @@ public class PlanController {
 		User usuario=userRepository.findById(id);
 		model.addAttribute("user", usuario);
 		model.addAttribute("AllUsers",userRepository.findAll());
-		
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		return "ProfileHTML-logged";
 
 	}
@@ -154,7 +154,8 @@ public class PlanController {
 		
 	}
 	@RequestMapping("/newPlan")
-	public String newPlan() {
+	public String newPlan(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		return "NewPlan";
 
 	}
