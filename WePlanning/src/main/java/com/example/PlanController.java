@@ -169,20 +169,38 @@ public class PlanController {
 		
 		return"SuccesfulPlan";
 	}
-	@RequestMapping("/searchUsers")
-	public String searchByName(Model model, String uname, String surname){
+	@RequestMapping("/logged/user/{id}/searchUsers")
+	public String searchAnUser(Model model, @PathVariable String id,String usearch, String filter){
+		model.addAttribute("user",userRepository.findById(id));
 		ArrayList<User> users;
+		User u;
 		boolean noUsers;
-		
-	
-		if((!uname.equals(""))){//name
-			users=(ArrayList<User>)userRepository.findByUnameIgnoreCase(uname);
+		if((!usearch.equals(""))&&(filter.equals("name"))){
+			users=(ArrayList<User>)userRepository.findByUnameIgnoreCase(usearch);
 			model.addAttribute("AllUsers",users);
 			noUsers=users.isEmpty();
-			model.addAttribute("noUser",noUsers);
-			return "index";
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
+		}else if((!usearch.equals(""))&&(filter.equals("ident"))){
+			u=userRepository.findByIdIgnoreCase(usearch);
+			model.addAttribute("AllUsers",u);
+			noUsers=(u.equals(""));
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
 		}
-		return "ProfileHTML-Logged";
+		else if((!usearch.equals(""))&&(filter.equals("province"))){
+			users=(ArrayList<User>)userRepository.findByProvinceIgnoreCase(usearch);
+			model.addAttribute("AllUsers",users);
+			noUsers=users.isEmpty();
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
+		}else{
+			users=(ArrayList<User>)userRepository.findAll();
+			model.addAttribute("AllUsers",users);
+			noUsers=users.isEmpty();
+			model.addAttribute("noUsers",noUsers);
+			return "ProfileHTML-logged";
+		}
 		}
 	
 	@RequestMapping("/searchPlans")
