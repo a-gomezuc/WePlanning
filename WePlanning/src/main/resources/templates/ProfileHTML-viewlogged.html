@@ -30,8 +30,8 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse " id="navbar-collapse1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/aboutus">Â¿QuÃ© es WePlanning?</a></li>
-							<li><a href="/contact">Contacta</a></li>
+							<li><a href="/logged/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="logged/contact">Contacta</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
@@ -62,11 +62,11 @@
 												</div>
 											</div>
 										</li>
-										<li><a href="/register">No tengo usuario.
+										<li><a href="/logged/register">No tengo usuario.
 												Registrarme</a></li>
 									</form>
 								</ul></li>
-							<li><a href="/register">Registrate</a></li>
+							<li><a href="/logged/register">Registrate</a></li>
 						</ul>
 					</div>
 					<!-- /.navbar-collapse -->
@@ -160,7 +160,7 @@
 													</h3>
 													<hr />
 													<p>En {{place}}</p>
-													<button onclick="location.href = '/plan/{{id}}'"
+													<button onclick="location.href = 'logged/plan/{{id}}'"
 														type="button" class="btn-info">Ver Plan</button>
 												</div>
 											</div>
@@ -180,7 +180,7 @@
 												</div>
 												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
 													<center>
-														<a href="/user/{{id}}" class="creador-plan">{{id}}</a>
+														<a href="logged/user/{{id}}" class="creador-plan">{{id}}</a>
 														<p class="text-muted">{{province}}</p>
 													</center>
 												</div>

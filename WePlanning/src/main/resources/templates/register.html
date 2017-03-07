@@ -9,10 +9,10 @@
 <meta name="author" content="">
 <title>WePlanning - Registrate y empieza a planear!</title>
 <!-- Bootstrap Core CSS -->
-<link href="CSS/bootstrap.min.css" rel="stylesheet">
+<link href="/CSS/bootstrap.min.css" rel="stylesheet">
 <!-- Custom CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link href="CSS/styles.css" rel="stylesheet">
+<link href="/CSS/styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One"
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
@@ -22,7 +22,7 @@
 <body>
 	<div id="wrap">
 		<div id="main" class="container clear-top">
-			<!-- Navigation -->
+						<!-- Navigation -->
 			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
 				role="navigation">
 				<div class="container">
@@ -35,7 +35,7 @@
 								class="icon-bar"></span>
 						</button>
 						<a class="navbar-brand" href="/"> <img
-							src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse " id="navbar-collapse1">
@@ -45,13 +45,14 @@
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
-									<form class="form-horizontal form_ini" role="form">
+									<form action="/" class="form-horizontal form_ini"
+										role="form" method="post">
 										<li>
 											<div class="form-group">
-												<label for="email" class="col-lg-2 control-label">Email</label>
+												<label for="email" class="col-lg-2 control-label">Id</label>
 												<div class="col-lg-10">
-													<input type="email" class="form-control" id="email"
-														placeholder="Email">
+													<input type="text" class="form-control" name="id"
+														id="email" placeholder="Email">
 												</div>
 											</div>
 										</li>
@@ -59,8 +60,8 @@
 											<div class="form-group">
 												<label for="password" class="col-lg-2 control-label">Contraseña</label>
 												<div class="col-lg-10">
-													<input type="password" class="form-control" id="password"
-														placeholder="Contraseña">
+													<input type="password" class="form-control" name="pass"
+														id="password" placeholder="Contraseña">
 												</div>
 											</div>
 										</li>
@@ -68,7 +69,7 @@
 										<li>
 											<div class="form-group">
 												<div class="col-lg-offset-2 col-lg-10">
-													<button type="submit" class="btn btn-default">Entrar</button>
+													<input type="submit" class="btn btn-default" value="Entrar">
 												</div>
 											</div>
 										</li>
@@ -260,7 +261,7 @@
 			<div class="row">
 				<center>
 					<div class="col-md-4 col-sm-4 col-xs-12" id="logo">
-						<img class="img-responsive" src="IMG/Logo.png" />
+						<img class="img-responsive" src="/IMG/Logo.png" />
 					</div>
 				</center>
 				<div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">

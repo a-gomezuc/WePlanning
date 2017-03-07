@@ -15,7 +15,7 @@
 <body>
 	<div id="wrap">
 		<div id="main" class="container clear-top">
-			<!-- Navigation -->
+						<!-- Navigation -->
 			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
 				role="navigation">
 				<div class="container">
@@ -28,32 +28,33 @@
 								class="icon-bar"></span>
 						</button>
 						<a class="navbar-brand" href="/"> <img
-							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
+							src="IMG/LogoBlanco.png" id="logoBarra" /></a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse " id="navbar-collapse1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/aboutus">Â¿QuÃ© es WePlanning?</a></li>
+							<li><a href="/aboutus">¿Qué es WePlanning?</a></li>
 							<li><a href="/contact">Contacta</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
-									<form class="form-horizontal form_ini" role="form">
+									<form action="/" class="form-horizontal form_ini"
+										role="form" method="post">
 										<li>
 											<div class="form-group">
-												<label for="email" class="col-lg-2 control-label">Email</label>
+												<label for="email" class="col-lg-2 control-label">Id</label>
 												<div class="col-lg-10">
-													<input type="email" class="form-control" id="email"
-														placeholder="Email">
+													<input type="text" class="form-control" name="id"
+														id="email" placeholder="Email">
 												</div>
 											</div>
 										</li>
 										<li>
 											<div class="form-group">
-												<label for="password" class="col-lg-2 control-label">ContraseÃ±a</label>
+												<label for="password" class="col-lg-2 control-label">Contraseña</label>
 												<div class="col-lg-10">
-													<input type="password" class="form-control" id="password"
-														placeholder="ContraseÃ±a">
+													<input type="password" class="form-control" name="pass"
+														id="password" placeholder="Contraseña">
 												</div>
 											</div>
 										</li>
@@ -61,12 +62,11 @@
 										<li>
 											<div class="form-group">
 												<div class="col-lg-offset-2 col-lg-10">
-													<button type="submit" class="btn btn-default">Entrar</button>
+													<input type="submit" class="btn btn-default" value="Entrar">
 												</div>
 											</div>
 										</li>
-										<li><a href="/register">No tengo usuario.
-												Registrarme</a></li>
+										<li><a href="/register">No tengo usuario. Registrarme</a></li>
 									</form>
 								</ul></li>
 							<li><a href="/register">Registrate</a></li>
