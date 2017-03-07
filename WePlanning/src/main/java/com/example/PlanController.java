@@ -176,6 +176,7 @@ public class PlanController {
 	}
 	@RequestMapping("/logged/user/{id}/searchUsers")
 	public String searchAnUser(Model model, @PathVariable String id,String usearch, String filter){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		model.addAttribute("user",userRepository.findById(id));
 		ArrayList<User> users;
 		User u;
