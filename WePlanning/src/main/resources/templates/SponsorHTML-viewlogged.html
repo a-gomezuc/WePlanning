@@ -18,25 +18,34 @@
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a class="navbar-brand" href="index-logged.html"> <img src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+                        <a class="navbar-brand" href="/logged"> <img src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
                     </div>
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse " id="navbar-collapse1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li> <a href="aboutus-logged.html">Â¿QuÃ© es WePlanning?</a> </li>
-                            <li> <a href="contact-logged.html">Contacta</a> </li>
-                            <li class="dropdown user-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Usuario<b class="caret"></b></a>
+                            <li> <a href="/logged/aboutus">¿Qué es WePlanning?</a> </li>
+                            <li> <a href="/logged/contact">Contacta</a> </li>
+                            <li class="dropdown user-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-tc">
-                                    <form class="form-horizontal form_ini" role="form">
                                         <li>
-                                            <center> <a href="ProfileHTML-logged.html">Accede a tu perfil</a> </center>
+                                            <center> <a href="/logged/user/{{idConectado}}">Accede a tu perfil</a> </center>
                                         </li>
                                         <li> </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <center> <a href="Newplan.html">Sube tu plan</a> </center>
+                                            <center> <a href="/newPlan">Sube tu plan</a> </center>
                                         </li>
-                                    </form>
+                                        <li class="divider"></li>
+                                        <li>
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<form action="/logout">
+														<input type="submit" class="btn btn-default"
+															value="Cerrar Sesión">
+													</form>
+												</div>
+											</div>
+										</li>
                                 </ul>
                             </li>
                         </ul>
@@ -57,7 +66,7 @@
                         <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                             <div class="btn-group" role="group">
                                 <button type="button" id="btninfoSponsor" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    <div class="hidden-xs">InformaciÃ³n</div>
+                                    <div class="hidden-xs">Información</div>
                                 </button>
                             </div>
                             <div class="btn-group" role="group">
@@ -83,7 +92,7 @@
 								<div class="tab-pane fade in active" id="tab1">
 									<center>
 										<div class="profile-info container-fluid">
-											<h2>InformaciÃ³n Del Anunciante</h2>
+											<h2>Información Del Anunciante</h2>
 											<hr/>
 											<p><strong>Empresa:</strong>&nbsp;{{id}}</p>
 											<p><strong>Provincia</strong>&nbsp;{{province}}
@@ -144,7 +153,8 @@
 		</div>
 		{{/user}}
 	</div>
-    <!--Footer-->
+	</div>
+        <!--Footer-->
     <footer class="footer">
         <div class="container">
             <div class="row">
@@ -159,7 +169,7 @@
                     </center>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="aboutus.html" id="aboutUs">ConÃ³cenos<br></a> <a href="contact.html" id="contacto">Contacto<br></a></center>
+                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
                 </div>
             </div>
             <div class="row">

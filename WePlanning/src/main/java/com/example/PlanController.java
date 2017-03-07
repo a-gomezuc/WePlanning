@@ -82,7 +82,6 @@ public class PlanController {
 //		model.addAttribute("showButton", !planes.isLast());
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		return "index-logged";
-
 	}
 
 	/*
@@ -120,7 +119,12 @@ public class PlanController {
 		model.addAttribute("user", usuario);
 		model.addAttribute("AllUsers",userRepository.findAll());
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		return "ProfileHTML-logged";
+		if(id.equals(userComponent.getLoggedUser().getId())){
+			return "ProfileHTML-logged";
+		}
+		else{
+			return "ProfileHTML-viewlogged";
+		}
 
 	}
 	@RequestMapping("/aboutus")
