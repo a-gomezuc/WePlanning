@@ -794,6 +794,12 @@ input::-webkit-input-placeholder {
 .friends-search-row{
     background:rgba(255, 255, 255, 0.5);
 }
+#searchU .page-header{
+	color:#fff;
+}
+#inputSearch{
+	padding-top:15%;
+}
 
 /*------------/Profile-edit----------------*/
 
