@@ -143,8 +143,7 @@
 										</p>
 
 										<p>
-											<strong>Descripción:</strong>&nbsp; Soy un usuario de
-											WePlanning, aquí puedo poner la descripción que desee.
+											<strong>Descripción:</strong>&nbsp; {{description}}
 										</p>
 									</div>
 								</center>
@@ -163,7 +162,7 @@
 												</h3>
 												<hr />
 												<p>En {{place}}</p>
-												<button onclick="location.href = 'logged/plan/{{id}}'"
+												<button onclick="location.href = '/logged/plan/{{id}}'"
 													type="button" class="btn-info">Ver Plan</button>
 											</div>
 										</div>
@@ -253,8 +252,7 @@
 														<h4>{{id}}</h4>
 														<p class="text-muted">{{province}}</p>
 														<p>
-															<strong>Descripción:</strong>&nbsp;Soy un usuario de
-															WePlanning, aquí puedo poner la descripción que desee.
+															<strong>Descripción:</strong>&nbsp;{{description}}
 														</p>
 													</div>
 													{{#noFriends}}

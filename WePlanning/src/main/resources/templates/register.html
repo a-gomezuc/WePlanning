@@ -108,13 +108,26 @@
 								</div>
 								<div class="form-group">
 									<label for="name" class="cols-sm-2 control-label">Nombre
-										y Apellidos</label>
+										</label>
 									<div class="cols-sm-10">
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
 												name="name" type="text" class="form-control" id="name"
-												placeholder="Introduzca su nombre completo" value=""
+												placeholder="Introduzca su nombre completo"
+												required />
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="name" class="cols-sm-2 control-label">
+										Apellidos</label>
+									<div class="cols-sm-10">
+										<div class="input-group">
+											<span class="input-group-addon"><i
+												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
+												name="surname" type="text" class="form-control" id="name"
+												placeholder="Introduzca su nombre completo"
 												required />
 										</div>
 									</div>
@@ -137,7 +150,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span> <select
-												id="busquedaprovincia" name="province">
+												id="busquedaprovincia" name="province" required>
 												<option value='alava'>Álava</option>
 												<option value='albacete'>Albacete</option>
 												<option value='alicante'>Alicante/Alacant</option>
@@ -202,7 +215,7 @@
 											<span class="input-group-addon"><i
 												class="fa fa-envelope fa-fw" aria-hidden="true"></i></span> <input
 												name="email" value="" type="text" class="form-control"
-												name="email" id="email1" placeholder="Introduzca su email"
+												id="email1" placeholder="Introduzca su email"
 												required />
 										</div>
 									</div>
@@ -227,7 +240,7 @@
 											<span class="input-group-addon"><i
 												class="fa fa-lock fa-fw" aria-hidden="true"></i></span> <input
 												name="pass" value="" type="password" class="form-control"
-												name="password" id="password1" placeholder="Contraseña" />
+												name="password" id="password1" placeholder="Contraseña" required/>
 										</div>
 									</div>
 								</div>
@@ -240,7 +253,7 @@
 												class="fa fa-lock fa-fw" aria-hidden="true"></i></span> <input
 												name="passwordConfirm" value="" type="password"
 												class="form-control" name="confirm" id="confirm"
-												placeholder="Repita su contraseña" />
+												placeholder="Repita su contraseña" required/>
 										</div>
 									</div>
 								</div>

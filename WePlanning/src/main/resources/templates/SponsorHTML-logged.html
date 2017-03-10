@@ -3,6 +3,7 @@
 
 <head>
     <title>Sponsor</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="/CSS/bootstrap.min.css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> </head>
@@ -23,7 +24,7 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse " id="navbar-collapse1">
                         <ul class="nav navbar-nav navbar-right">
-                            <li> <a href="/logged/aboutus">¿Qué es WePlanning?</a> </li>
+                            <li> <a href="/logged/aboutus">Â¿QuÃ© es WePlanning?</a> </li>
                             <li> <a href="/logged/contact">Contacta</a> </li>
                             <li class="dropdown user-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
                                 <ul class="dropdown-menu dropdown-tc">
@@ -41,7 +42,7 @@
 												<div class="col-lg-offset-2 col-lg-10">
 													<form action="/logout">
 														<input type="submit" class="btn btn-default"
-															value="Cerrar Sesión">
+															value="Cerrar SesiÃ³n">
 													</form>
 												</div>
 											</div>
@@ -61,7 +62,7 @@
                         <div class="card hovercard ">
                             <div class="card-background"> <img class="card-bkimg" alt="" src="/IMG/imgplan4.jpg"> </div>
                             <div class="useravatar"> <img id="imagenSponsor" src="/IMG/Sponsor.jpg"> </div>
-                            <div class="card-info"> <span id="tituloSponsor" class="card-title">Sponsor</span> </div>
+                            <div class="card-info"> <span id="tituloSponsor" class="card-title">{{uname}}</span> </div>
                         </div>
                         <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
                             <div class="btn-group" role="group">
@@ -90,7 +91,7 @@
                                             <hr/>
                                             <p><strong>Empresa:</strong>&nbsp; {{id}}</p>
                                             <p><strong>Provincia:</strong>&nbsp; {{province}}</p>
-                                            <p><strong>DescripciÃ³n:</strong>&nbsp; Soy un anunciante de WePlanning, anuncio mis eventos a los que los usuarios pueden indicar que van a asistir y ademÃ¡s pueden seguirme</p>
+                                            <p><strong>DescripciÃ³n:</strong>&nbsp; {{description}}</p>
                                         </div>
                                     </center>
                                 </div>
@@ -109,7 +110,7 @@
 													</h3>
 													<hr />
 													<p>En {{place}}</p>
-													<button onclick="location.href = 'logged/plan/{{id}}'"
+													<button onclick="location.href = '/logged/plan/{{id}}'"
 														type="button" class="btn-info">Ver Plan</button>
 												</div>
 											</div>
@@ -151,8 +152,8 @@
                     </div>
                 </div>
             </div>
+           {{/user}}
         </div>
-        {{/user}}
     </div>
     <!--Footer-->
     <footer class="footer">
@@ -169,7 +170,7 @@
                     </center>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
+                    <center> <a href="/logged/aboutus" id="aboutUs">ConÃ³cenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
                 </div>
             </div>
             <div class="row">
@@ -183,8 +184,8 @@
         </div>
     </footer>
     <!--FooterEnd-->
-    <script src="JS/jquery.js"></script>
-    <script src="JS/bootstrap.min.js"></script>
+    <script src="/JS/jquery.js"></script>
+    <script src="/JS/bootstrap.min.js"></script>
 </body>
 
 </html>

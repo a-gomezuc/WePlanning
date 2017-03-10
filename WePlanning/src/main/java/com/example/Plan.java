@@ -29,10 +29,10 @@ public class Plan {
 	private String date;
 	private String description;
 	
-	@ManyToMany
+	@ManyToMany //(fetch = FetchType.EAGER)
 	private List<Comment> comments;
 	
-	@ManyToMany
+	@ManyToMany //fetch = FetchType.EAGER)
 	private List<User> asistents;
 	
 	

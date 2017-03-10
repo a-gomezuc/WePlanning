@@ -26,17 +26,18 @@ public class User {
 	@Column(unique=true)
 	private String id;
 
+	private boolean sponsor;
 	private String uname;
 	private String surname;
 	private String province;
 	private int age;
 	private String uemail;
 	private String passwordHash;
-
+	private String description;
 	@OneToMany(mappedBy = "author")
 	private List<Plan> plans;
 
-	@ManyToMany
+	@ManyToMany //(fetch = FetchType.EAGER)
 	private List<User> friends;
 	
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -46,8 +47,9 @@ public class User {
 
 	}
 
-	public User(String id, String uname, String surname, String province, int age, String uemail, String upass, String... roles) {
+	public User(boolean sponsor,String id, String uname, String surname, String province, int age, String uemail, String upass, String... roles) {
 		super();
+		this.sponsor=sponsor;
 		this.id = id;
 		this.uname = uname;
 		this.surname = surname;
@@ -55,9 +57,27 @@ public class User {
 		this.age = age;
 		this.uemail = uemail;
 		this.passwordHash = new BCryptPasswordEncoder().encode(upass);
+		this.setDescription("Soy un usuario de WePlanning, esta es mi descripción.");
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.friends = new ArrayList<>();
 		this.plans = new ArrayList<>();
+	}
+	
+
+	public long getIdentifier() {
+		return identifier;
+	}
+
+	public void setIdentifier(long identifier) {
+		this.identifier = identifier;
+	}
+
+	public boolean isSponsor() {
+		return sponsor;
+	}
+
+	public void setSponsor(boolean sponsor) {
+		this.sponsor = sponsor;
 	}
 
 	public String getId() {
@@ -137,6 +157,15 @@ public class User {
 
 	public void setPlans(List<Plan> plans) {
 		this.plans = plans;
+	}
+	
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html>
-
 <head>
+<meta charset="UTF-8">
 <title>Perfil</title>
 <link rel="stylesheet" href="/CSS/bootstrap.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="/CSS/styles.css">
 
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One"
@@ -15,7 +18,7 @@
 <body>
 	<div id="wrap">
 		<div id="main" class="container clear-top">
-						<!-- Navigation -->
+			<!-- Navigation -->
 			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
 				role="navigation">
 				<div class="container">
@@ -33,13 +36,13 @@
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse " id="navbar-collapse1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/aboutus">�Qu� es WePlanning?</a></li>
+							<li><a href="/aboutus">¿Qué es WePlanning?</a></li>
 							<li><a href="/contact">Contacta</a></li>
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
-									<form action="/" class="form-horizontal form_ini"
-										role="form" method="post">
+									<form action="/" class="form-horizontal form_ini" role="form"
+										method="post">
 										<li>
 											<div class="form-group">
 												<label for="email" class="col-lg-2 control-label">Id</label>
@@ -51,10 +54,10 @@
 										</li>
 										<li>
 											<div class="form-group">
-												<label for="password" class="col-lg-2 control-label">Contrase�a</label>
+												<label for="password" class="col-lg-2 control-label">Contraseña</label>
 												<div class="col-lg-10">
 													<input type="password" class="form-control" name="pass"
-														id="password" placeholder="Contrase�a">
+														id="password" placeholder="Contraseña">
 												</div>
 											</div>
 										</li>
@@ -143,8 +146,7 @@
 												<strong>Edad:</strong>&nbsp; {{age}}
 											</p>
 											<p>
-												<strong>Descripción:</strong>&nbsp; Soy un usuario de
-												WePlanning, aquí puedo poner la descripción que desee.
+												<strong>Descripción:</strong>&nbsp; {{description}}
 											</p>
 										</div>
 									</center>

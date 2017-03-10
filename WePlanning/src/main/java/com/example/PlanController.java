@@ -27,13 +27,15 @@ public class PlanController {
 
 	@PostConstruct
 	public void init() {
-		User miguelito= new User("miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM", "ROLE_USER");
-		User joselito = new User("joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña");
-		User guillermito = new User("westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com",
-				"mmm", "ROLE_USER","ROLE_ADMIN");
-		;
+		User miguelito= new User(false,"miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM", "ROLE_USER");
+		User joselito = new User(false,"joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña", "ROLE_USER");
+		User guillermito = new User(false,"westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com",
+				"mmm", "ROLE_USER");
+		User desnet = new User(true,"desnet", "DesNet", "Company", "Madrid", 1, "desnet@gmail.com",
+				"perrete", "ROLE_USER");
 		userRepository.save(miguelito);
 		userRepository.save(guillermito);
+		userRepository.save(desnet);
 		joselito.getFriends().add(guillermito);
 		userRepository.save(joselito);
 		guillermito.getFriends().add(joselito);
@@ -141,21 +143,30 @@ public class PlanController {
 	public String retUser(Model model, @PathVariable String id) {
 		User user=userRepository.findById(id);
 		model.addAttribute("user", user);
-		
+		if(!user.isSponsor()){
 		return "ProfileHTML";
-
+		}
+		else{
+			return "SponsorHTML";
+		}
 	}
 	@RequestMapping("logged/user/{id}")
 	public String retUserLogged(Model model, @PathVariable String id) {
 		User usuario=userRepository.findById(id);
 		model.addAttribute("user", usuario);
-		model.addAttribute("AllUsers",userRepository.findAll());
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		if(id.equals(userComponent.getLoggedUser().getId())){
+		model.addAttribute("AllUsers",userRepository.findAll());
+		if(id.equals(userComponent.getLoggedUser().getId())&&(!usuario.isSponsor())){
 			return "ProfileHTML-logged";
 		}
-		else{
+		else if(!id.equals(userComponent.getLoggedUser().getId())&&(!usuario.isSponsor())){
 			return "ProfileHTML-viewlogged";
+		}
+		else if(id.equals(userComponent.getLoggedUser().getId())&&(usuario.isSponsor())){
+			return "SponsorHTML-logged";
+		}
+		else{
+			return "SponsorHTML-viewlogged";
 		}
 
 	}
@@ -167,7 +178,7 @@ public class PlanController {
 	@RequestMapping("/logged/aboutus")
 	public String loggedAboutUs(Model model) {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		return "aboutus";
+		return "aboutus-logged";
 
 	}
 	@RequestMapping("/contact")
@@ -178,7 +189,7 @@ public class PlanController {
 	@RequestMapping("/logged/contact")
 	public String loggedContact(Model model) {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		return "contact";
+		return "contact-logged";
 
 	}
 	@RequestMapping("/register")
@@ -193,19 +204,11 @@ public class PlanController {
 
 	}
 	@RequestMapping(value="/registerUser",  method = RequestMethod.POST)
-	public String registerUser (boolean sponsorCheckbox, String name, int age,
-			String province, String username, String email, String pass){
-		
-		if(!sponsorCheckbox){//user
-			
-			User user =new User(name, name ,username, province, age, email, pass);
+	public String registerUser (boolean sponsorCheckbox, String name, String surname, int age,
+			String province, String username, String email, String pass){	
+			User user =new User(sponsorCheckbox,username ,name, surname ,province, age, email, pass, "ROLE_USER");
 			userRepository.save(user);
-			
 			return "index";
-		}else{//sponsor
-			return "index";
-		}
-		
 	}
 	@RequestMapping("/newPlan")
 	public String newPlan(Model model) {
