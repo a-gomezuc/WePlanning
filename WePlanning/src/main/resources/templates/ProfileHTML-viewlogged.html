@@ -3,6 +3,7 @@
 
 <head>
     <title>Perfil</title>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="/CSS/bootstrap.min.css">
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> </head>
@@ -24,55 +25,49 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/"> <img
+						<a class="navbar-brand" href="/logged"> <img
 							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse " id="navbar-collapse1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/logged/aboutus">�Qu� es WePlanning?</a></li>
-							<li><a href="logged/contact">Contacta</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
+							<li><a href="/logged/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="/logged/contact">Contacta</a></li>
+							<li class="dropdown user-dropdown"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"><i
+									class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
-									<form class="form-horizontal form_ini" role="form">
-										<li>
-											<div class="form-group">
-												<label for="email" class="col-lg-2 control-label">Email</label>
-												<div class="col-lg-10">
-													<input type="email" class="form-control" id="email"
-														placeholder="Email">
-												</div>
+									<li>
+										<center>
+											<a href="/logged/user/{{idConectado}}">Accede a tu perfil</a>
+										</center>
+									</li>
+									<li></li>
+									<li class="divider"></li>
+									<li>
+										<center>
+											<a href="/newPlan">Sube tu plan</a>
+										</center>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<form action="/logout">
+													<input type="submit" class="btn btn-default"
+														value="Cerrar Sesión">
+												</form>
 											</div>
-										</li>
-										<li>
-											<div class="form-group">
-												<label for="password" class="col-lg-2 control-label">Contraseña</label>
-												<div class="col-lg-10">
-													<input type="password" class="form-control" id="password"
-														placeholder="Contraseña">
-												</div>
-											</div>
-										</li>
-										<li class="divider"></li>
-										<li>
-											<div class="form-group">
-												<div class="col-lg-offset-2 col-lg-10">
-													<button type="submit" class="btn btn-default">Entrar</button>
-												</div>
-											</div>
-										</li>
-										<li><a href="/logged/register">No tengo usuario.
-												Registrarme</a></li>
-									</form>
-								</ul></li>
-							<li><a href="/logged/register">Registrate</a></li>
-						</ul>
+										</div>
 					</div>
-					<!-- /.navbar-collapse -->
+					</li>
+					</ul>
+					</li>
+					</ul>
+				<!-- /.navbar-collapse -->
 				</div>
-				<!-- /.container -->
-			</nav>
+		<!-- /.container -->
+		</nav>
 			{{#user}}
 			<div class="container-fluid contProfile">
 				<div class="row">
@@ -141,7 +136,7 @@
 											</p>
 											<p>
 												<strong>Descripción:</strong>&nbsp; Soy un usuario de
-												WePlanning, aquí puedo poner la descripción que desee.
+												WePlanning, aquÃ­ puedo poner la descripción que desee.
 											</p>
 										</div>
 									</center>
@@ -160,7 +155,7 @@
 													</h3>
 													<hr />
 													<p>En {{place}}</p>
-													<button onclick="location.href = 'logged/plan/{{id}}'"
+													<button onclick="location.href = '/logged/plan/{{id}}'"
 														type="button" class="btn-info">Ver Plan</button>
 												</div>
 											</div>
@@ -180,7 +175,7 @@
 												</div>
 												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
 													<center>
-														<a href="logged/user/{{id}}" class="creador-plan">{{id}}</a>
+														<a href="/logged/user/{{id}}" class="creador-plan">{{id}}</a>
 														<p class="text-muted">{{province}}</p>
 													</center>
 												</div>
@@ -211,7 +206,7 @@
                     </center>
                 </div>
                 <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="/logged/aboutus" id="aboutUs">Con�cenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
+                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
                 </div>
             </div>
             <div class="row">
