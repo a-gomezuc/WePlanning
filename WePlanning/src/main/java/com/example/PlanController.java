@@ -208,7 +208,7 @@ public class PlanController {
 			String province, String username, String email, String pass){	
 			User user =new User(sponsorCheckbox,username ,name, surname ,province, age, email, pass, "ROLE_USER");
 			userRepository.save(user);
-			return "index";
+			return "SuccesfulRegister";
 	}
 	@RequestMapping("/newPlan")
 	public String newPlan(Model model) {
