@@ -31,6 +31,7 @@ public class PlanController {
 		User joselito = new User("joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña");
 		User guillermito = new User("westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com",
 				"mmm", "ROLE_USER","ROLE_ADMIN");
+		;
 		userRepository.save(miguelito);
 		userRepository.save(guillermito);
 		joselito.getFriends().add(guillermito);
@@ -46,6 +47,8 @@ public class PlanController {
 		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, "12/03/2017",
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
+		
+		
 		Plan planpruebaJ=new Plan("Curso universidad", "Cultura", "Albacete", "Universidad de Albacete", 250, "15/03/2017",
 				"Curso de programación web");
 		planpruebaJ.setAuthor(miguelito);
@@ -66,7 +69,7 @@ public class PlanController {
 	}
 
 	@RequestMapping("/")
-	public String presentarInicio(Model model, Pageable page) {
+	public String start(Model model, Pageable page) {
 		Page<Plan> planes = planRepository.findAll(page);
 		model.addAttribute("planes", planes);
 		model.addAttribute("size", planes.getSize() + 10);
@@ -75,7 +78,7 @@ public class PlanController {
 
 	}
 	@RequestMapping("/logged")
-	public String presentarInicioLogueado(Model model, Pageable page) {
+	public String startLogged(Model model, Pageable page) {
 //		Page<Plan> planes = planRepository.findAll(page);
 //		model.addAttribute("planes", planes);
 //		model.addAttribute("size", planes.getSize() + 10);
@@ -85,7 +88,7 @@ public class PlanController {
 		return "index-logged";
 	}
 	@RequestMapping("/plan/{id}")
-	public String devuelvePlan(Model model, @PathVariable long id) {
+	public String retPlan(Model model, @PathVariable long id) {
 		Plan planActual=planRepository.findOne(id);
 		int asistentes=planActual.getAsistents().size();
 		boolean noExistComment= planActual.getComments().isEmpty();
@@ -94,16 +97,66 @@ public class PlanController {
 		model.addAttribute("plan",planActual);
 		return "plan";
 	}
-
+	@RequestMapping("/logged/plan/{id}")
+	public String retPlanLogged(Model model, @PathVariable long id){
+		Plan planActual=planRepository.findOne(id);
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		boolean assist = false;
+				if(user.getPlans().contains(planActual)){
+					assist=true;
+				}
+		boolean noAssist = !assist;
+		int asistentes=planActual.getAsistents().size();
+		boolean noExistComment= planActual.getComments().isEmpty();
+		model.addAttribute("noExistComment", noExistComment);
+		model.addAttribute("numAsistents",asistentes);
+		model.addAttribute("asisst", assist);
+		model.addAttribute("plan",planActual);
+		model.addAttribute("noAssist",noAssist);
+		return "plan-logged";
+	}
+	@RequestMapping (value="/logged/plan/{id}/addComment", method = RequestMethod.POST)
+	public String addComments(Model model, @PathVariable long id, String cont){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		Plan plan = planRepository.findOne(id);
+		int asistentes=plan.getAsistents().size();
+		Comment comment = new Comment("1/1/1", cont);
+		comment.setAuthor(userRepository.findById(userComponent.getLoggedUser().getId()));
+		commentRepository.save(comment);
+		plan.getComments().add(comment);	
+		model.addAttribute("plan",plan);
+		boolean noExistComment= plan.getComments().isEmpty();
+		model.addAttribute("noExistComment", noExistComment);
+		model.addAttribute("numAsistents",asistentes);
+		model.addAttribute("comments", comment);
+		
+		return "successfulComment";
+	}
+	@RequestMapping("/logged/plan/{id}/assist")
+	public String assistPlan(Model model, @PathVariable long id){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		Plan plan = planRepository.findOne(id);
+		boolean noExistComment= plan.getComments().isEmpty();
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		plan.getAsistents().add(user);
+		int asistentes=plan.getAsistents().size();
+		model.addAttribute("plan",plan);
+		model.addAttribute("noExistComment", noExistComment);
+		model.addAttribute("numAsistents",asistentes);
+		
+		return "plan-logged";
+	}
 	@RequestMapping("/user/{id}")
-	public String devuelveUser(Model model, @PathVariable String id) {
-		User usuario=userRepository.findById(id);
-		model.addAttribute("user", usuario);	
+	public String retUser(Model model, @PathVariable String id) {
+		User user=userRepository.findById(id);
+		model.addAttribute("user", user);
+		
 		return "ProfileHTML";
 
 	}
 	@RequestMapping("logged/user/{id}")
-	public String devuelveUserLogged(Model model, @PathVariable String id) {
+	public String retUserLogged(Model model, @PathVariable String id) {
 		User usuario=userRepository.findById(id);
 		model.addAttribute("user", usuario);
 		model.addAttribute("AllUsers",userRepository.findAll());
@@ -172,6 +225,7 @@ public class PlanController {
 	}
 	@RequestMapping("/createPlan")
 	public String createPlan(Model model, Plan plan){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		plan.setAuthor(userComponent.getLoggedUser());
 		planRepository.save(plan);
 		model.addAttribute("planes",plan);
@@ -179,8 +233,9 @@ public class PlanController {
 		model.addAttribute("idPlan",plan.getId());
 		model.addAttribute("title",plan.getTitle());
 		
-		return"SuccesfulPlan";
+		return"SuccessfulPlan";
 	}
+	
 	@RequestMapping("/logged/user/{id}/searchUsers")
 	public String searchAnUser(Model model, @PathVariable String id,String usearch, String filter){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
@@ -193,27 +248,29 @@ public class PlanController {
 			model.addAttribute("AllUsers",users);
 			noUsers=users.isEmpty();
 			model.addAttribute("noUsers",noUsers);
-			return "ProfileHTML-logged";
+			
 		}else if((!usearch.equals(""))&&(filter.equals("ident"))){
 			u=userRepository.findByIdIgnoreCase(usearch);
 			model.addAttribute("AllUsers",u);
 			noUsers=(u.equals(""));
 			model.addAttribute("noUsers",noUsers);
-			return "ProfileHTML-logged";
+			
 		}
 		else if((!usearch.equals(""))&&(filter.equals("province"))){
 			users=(ArrayList<User>)userRepository.findByProvinceIgnoreCase(usearch);
 			model.addAttribute("AllUsers",users);
 			noUsers=users.isEmpty();
 			model.addAttribute("noUsers",noUsers);
-			return "ProfileHTML-logged";
-		}else{
+			
+		}		
+		else{
 			users=(ArrayList<User>)userRepository.findAll();
 			model.addAttribute("AllUsers",users);
 			noUsers=users.isEmpty();
 			model.addAttribute("noUsers",noUsers);
-			return "ProfileHTML-logged";
+			
 		}
+		return "ProfileHTML-logged";
 		}
 	
 	@RequestMapping("/searchPlans")
