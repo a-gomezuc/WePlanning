@@ -7,8 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Plan {
@@ -29,10 +29,10 @@ public class Plan {
 	private String date;
 	private String description;
 	
-	@OneToMany
+	@ManyToMany
 	private List<Comment> comments;
 	
-	@OneToMany
+	@ManyToMany
 	private List<User> asistents;
 	
 	

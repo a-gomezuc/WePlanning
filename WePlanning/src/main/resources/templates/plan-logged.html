@@ -132,7 +132,7 @@
 						</article>
 						{{#noAssist}}
 						 <div class="asiste-btn">
-						 <form action="/logged/plan/{{id}}/assist">
+						 <form action="/logged/plan/{{id}}/assist" method="post">
                         <button type="submit" class="btn btn-default btn-asiste btn-info">Voy a asistir!</button>
                         </form>
                     </div>
@@ -146,7 +146,6 @@
 				</div>
 				
 			</div>
-			{{/plan}}
 			<!--- /plan --->
             
             <!--- comments -->
@@ -186,6 +185,7 @@
             </center>
         </div>
     </div>
+    			{{/plan}}
     <!--- /comments --->
     <!--Footer-->
     <footer class="footer">

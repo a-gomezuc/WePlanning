@@ -103,7 +103,7 @@ public class PlanController {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		boolean assist = false;
-				if(user.getPlans().contains(planActual)){
+				if(planActual.getAsistents().contains(user)){
 					assist=true;
 				}
 		boolean noAssist = !assist;
@@ -111,7 +111,7 @@ public class PlanController {
 		boolean noExistComment= planActual.getComments().isEmpty();
 		model.addAttribute("noExistComment", noExistComment);
 		model.addAttribute("numAsistents",asistentes);
-		model.addAttribute("asisst", assist);
+		model.addAttribute("assist", assist);
 		model.addAttribute("plan",planActual);
 		model.addAttribute("noAssist",noAssist);
 		return "plan-logged";
@@ -120,32 +120,22 @@ public class PlanController {
 	public String addComments(Model model, @PathVariable long id, String cont){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		Plan plan = planRepository.findOne(id);
-		int asistentes=plan.getAsistents().size();
 		Comment comment = new Comment("1/1/1", cont);
-		comment.setAuthor(userRepository.findById(userComponent.getLoggedUser().getId()));
+		comment.setAuthor(userComponent.getLoggedUser());
 		commentRepository.save(comment);
 		plan.getComments().add(comment);	
-		model.addAttribute("plan",plan);
-		boolean noExistComment= plan.getComments().isEmpty();
-		model.addAttribute("noExistComment", noExistComment);
-		model.addAttribute("numAsistents",asistentes);
-		model.addAttribute("comments", comment);
-		
-		return "successfulComment";
+		planRepository.save(plan);
+		return "SuccessfulComment";
 	}
-	@RequestMapping("/logged/plan/{id}/assist")
+	@RequestMapping(value="/logged/plan/{id}/assist", method = RequestMethod.POST)
 	public String assistPlan(Model model, @PathVariable long id){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		Plan plan = planRepository.findOne(id);
-		boolean noExistComment= plan.getComments().isEmpty();
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User user=userComponent.getLoggedUser();
 		plan.getAsistents().add(user);
-		int asistentes=plan.getAsistents().size();
-		model.addAttribute("plan",plan);
-		model.addAttribute("noExistComment", noExistComment);
-		model.addAttribute("numAsistents",asistentes);
-		
-		return "plan-logged";
+		userRepository.save(user);
+		planRepository.save(plan);
+		return "SuccesfulAssist";
 	}
 	@RequestMapping("/user/{id}")
 	public String retUser(Model model, @PathVariable String id) {
