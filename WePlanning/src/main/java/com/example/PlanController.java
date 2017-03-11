@@ -6,12 +6,14 @@ import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PlanController {
@@ -40,7 +42,7 @@ public class PlanController {
 		userRepository.save(joselito);
 		guillermito.getFriends().add(joselito);
 		userRepository.save(guillermito);
-		for (int i = 0; i <1; i++) {
+		for (int i = 0; i <30; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
@@ -72,13 +74,26 @@ public class PlanController {
 
 	@RequestMapping("/")
 	public String start(Model model, Pageable page) {
-		Page<Plan> planes = planRepository.findAll(page);
+		Page<Plan> planes = planRepository.findAll(new PageRequest(0,9));
 		model.addAttribute("planes", planes);
-		model.addAttribute("size", planes.getSize() + 10);
 		model.addAttribute("showButton", !planes.isLast());
 		return "index";
-
 	}
+	@RequestMapping("/morePlans")
+	public String moreStart(Model model, @RequestParam int page){
+		Page<Plan> planes= planRepository.findAll(new PageRequest(page,9));
+		model.addAttribute("planes", planes);
+		return "plansList";
+		
+	}
+	@RequestMapping("/morePlansUser")
+	public String moreStartUser(Model model, @RequestParam int page, @RequestParam String id){
+		Page<Plan> planes= planRepository.findAll(new PageRequest(page,9));
+		model.addAttribute("planes", planes);
+		return "plansList";
+		
+	}
+	
 	@RequestMapping("/logged")
 	public String startLogged(Model model, Pageable page) {
 //		Page<Plan> planes = planRepository.findAll(page);
@@ -99,6 +114,7 @@ public class PlanController {
 		model.addAttribute("plan",planActual);
 		return "plan";
 	}
+	
 	@RequestMapping("/logged/plan/{id}")
 	public String retPlanLogged(Model model, @PathVariable long id){
 		Plan planActual=planRepository.findOne(id);
@@ -143,6 +159,7 @@ public class PlanController {
 	public String retUser(Model model, @PathVariable String id) {
 		User user=userRepository.findById(id);
 		model.addAttribute("user", user);
+		model.addAttribute("plansPrueba",planRepository.findByAuthorId(id, new PageRequest(0,9)));
 		if(!user.isSponsor()){
 		return "ProfileHTML";
 		}

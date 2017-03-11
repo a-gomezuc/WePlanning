@@ -222,7 +222,8 @@
 				<center>
 					<p>No se han encontrado planes en la búsqueda</p>
 				</center>
-				{{/noPlanes}} {{#planes}}
+				{{/noPlanes}}
+				<div id="plans">{{#planes}}
 				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
 					<a href="/plan/{{id}}" class="planning-box"> <img
 						class=" img-responsive img-center"
@@ -235,19 +236,21 @@
 					</a>
 					<p class="datosPlan">
 						Título: {{title}} <br> Autor: <a href="/user/{{author.id}}"
-							class="creador-plan">{{author.id}}</a> o <a
-							href="SponsorHTML.html" class="creador-plan">@Sponsor</a> <br>
+							class="creador-plan">{{author.id}}</a><br>
 						Lugar: {{place}} <br> Fecha: {{date}}
 					</p>
 				</div>
 				{{/planes}}
+				</div> 
 			</div>
-			{{#showButton}}
+
 			<center>
-				<button onclick="location.href = '/?size={{size}}'"
+			<div id="spinner"></div>
+{{#showButton}}
+				<button id="btnMorePlans"
 					class="btn-info btn-mas">Mostrar más</button>
 			</center>
-			{{/showButton}}
+{{/showButton}}
 			</div>
 		</div>
 	</div>
@@ -293,6 +296,7 @@
 	<script src="/JS/jquery.js"></script>
 	<!-- Bootstrap Core JavaScript -->
 	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/morePlans.js"></script>
 </body>
 
 </html>
