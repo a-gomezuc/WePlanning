@@ -2,17 +2,24 @@
 <html>
 
 <head>
-    <title>Perfil</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/CSS/bootstrap.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> </head>
-<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans" rel="stylesheet">
+<title>Perfil</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/CSS/bootstrap.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+</head>
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
+	rel="stylesheet">
 
 <body>
-    <div id="wrap">
-        <div id="main" class="container clear-top">
+	<div id="wrap">
+		<div id="main" class="container clear-top">
 			<!-- Navigation -->
 			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
 				role="navigation">
@@ -64,10 +71,10 @@
 					</ul>
 					</li>
 					</ul>
-				<!-- /.navbar-collapse -->
+					<!-- /.navbar-collapse -->
 				</div>
-		<!-- /.container -->
-		</nav>
+				<!-- /.container -->
+			</nav>
 			{{#user}}
 			<div class="container-fluid contProfile">
 				<div class="row">
@@ -141,26 +148,35 @@
 									</center>
 								</div>
 								<div class="tab-pane fade in" id="tab2">
-									{{#plans}}
-									<div class="container-fluid ">
-										<div class="container-fluid">
-											<div class="row myplan-row">
-												<div class="col-md-6 img-myplan  ">
-													<img class="img-responsive" src="/IMG/quads02.jpg">
-												</div>
-												<div class="col-md-6">
-													<h3>
-														<strong>{{title}}</strong>
-													</h3>
-													<hr />
-													<p>En {{place}}</p>
-													<button onclick="location.href = '/logged/plan/{{id}}'"
-														type="button" class="btn-info">Ver Plan</button>
+									<div class="planscroll">
+										<div id="plans">
+											{{#plansUser}}
+											<div class="container-fluid ">
+												<div class="container-fluid">
+													<div class="row myplan-row">
+														<div class="col-md-6 img-myplan  ">
+															<img class="img-responsive" src="/IMG/quads02.jpg">
+														</div>
+														<div class="col-md-6">
+															<h3>
+																<strong>{{title}}</strong>
+															</h3>
+															<hr />
+															<p>En {{place}}</p>
+															<button onclick="location.href = '/logged/plan/{{id}}'"
+																type="button" class="btn-info">Ver Plan</button>
+														</div>
+													</div>
 												</div>
 											</div>
+											{{/plansUser}}
 										</div>
+										<center>
+											<div id="spinner"></div>
+											<button id="btnMorePlans" value="{{id}}"
+												class="btn-info btn-mas">Mostrar más</button>
+										</center>
 									</div>
-									{{/plans}}
 								</div>
 								<div class="tab-pane fade in" id="tab3">
 									<div class="friendsl">
@@ -191,36 +207,45 @@
 			</div>
 			{{/user}}
 		</div>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <center>
-                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="/IMG/Logo.png" /> </div>
-                </center>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
-                    <center>
-                        <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
-                        <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
-                        <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
-                    </center>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
-                </div>
-            </div>
-            <div class="row">
-                <div id="copyright">
-                    <center>
-                        <hr id="lineaCopyright">
-                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--FooterEnd-->
-    <script src="/JS/jquery.js"></script>
-    <script src="/JS/bootstrap.min.js"></script>
+		<footer class="footer">
+			<div class="container">
+				<div class="row">
+					<center>
+						<div class="col-md-4 col-sm-4 col-xs-12" id="logo">
+							<img class="img-responsive" src="/IMG/Logo.png" />
+						</div>
+					</center>
+					<div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+						<center>
+							<a href="https://www.facebook.com/"
+								class="fa fa-facebook-square fa-5x" target="_blank"
+								aria-hidden="true"></a> <a href="https://twitter.com"
+								class="fa fa-twitter-square fa-5x" target="_blank"
+								aria-hidden="true"></a> <a href="https://www.instagram.com"
+								class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+						</center>
+					</div>
+					<div class="col-md-4 col-sm-4 col-xs-12" id="links">
+						<center>
+							<a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a
+								href="/logged/contact" id="contacto">Contacto<br></a>
+						</center>
+					</div>
+				</div>
+				<div class="row">
+					<div id="copyright">
+						<center>
+							<hr id="lineaCopyright">
+							<div class="col-md-12">WePlanning &copy Copyright 2017</div>
+						</center>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!--FooterEnd-->
+		<script src="/JS/jquery.js"></script>
+		<script src="/JS/bootstrap.min.js"></script>
+		<script src="/JS/morePlansUserLogged.js"></script>
 </body>
 
 </html>

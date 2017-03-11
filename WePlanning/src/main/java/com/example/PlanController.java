@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,11 +41,8 @@ public class PlanController {
 		joselito.getFriends().add(guillermito);
 		userRepository.save(joselito);
 		guillermito.getFriends().add(joselito);
-		guillermito.getFriends().add(miguelito);
 		userRepository.save(guillermito);
-		miguelito.getFriends().add(guillermito);
-		userRepository.save(miguelito);
-		for (int i = 0; i < 5; i++) {
+		for (int i = 0; i < 1; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
