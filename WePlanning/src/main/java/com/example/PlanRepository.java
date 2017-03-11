@@ -14,4 +14,5 @@ public interface PlanRepository extends JpaRepository<Plan, Long>{
 	List<Plan> findByTitleAndPlaceIgnoreCase(String title, String place);
 	List<Plan> findByCategoryAndPlaceIgnoreCase(String category, String place);
 	List<Plan> findByTitleAndCategoryAndPlaceIgnoreCase(String title, String category, String place);
+	List<Plan> findByAuthor(User author);
 }
