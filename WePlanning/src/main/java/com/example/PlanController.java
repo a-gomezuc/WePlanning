@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -110,13 +111,28 @@ public class PlanController {
 	
 	@RequestMapping("/logged")
 	public String startLogged(Model model, Pageable page) {
-//		Page<Plan> planes = planRepository.findAll(page);
-//		model.addAttribute("planes", planes);
-//		model.addAttribute("size", planes.getSize() + 10);
-//		model.addAttribute("showButton", !planes.isLast());
-		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		model.addAttribute("id",userComponent.getLoggedUser().getId());
+		// Page<Plan> planes = planRepository.findAll(page);
+		// model.addAttribute("planes", planes);
+		// model.addAttribute("size", planes.getSize() + 10);
+		// model.addAttribute("showButton", !planes.isLast());
+		User newUser=userRepository.findById(userComponent.getLoggedUser().getId());
+		ArrayList<Plan>userplans=new ArrayList<>();
+		List<User>friends=newUser.getFriends();
+		for(User u:friends){
+			for(Plan p:u.getPlans()){
+				userplans.add(p);
+			}
+		}
+		
+		
+		Page<Plan> plans = planRepository.findAll(page);
+		model.addAttribute("userPlans",userplans);
+		model.addAttribute("planes", plans);
+		model.addAttribute("size", plans.getSize() + 10);
+		model.addAttribute("showButton", !plans.isLast());
+		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		return "index-logged";
+
 	}
 	@RequestMapping("/plan/{id}")
 	public String retPlan(Model model, @PathVariable long id) {
@@ -343,6 +359,12 @@ public class PlanController {
 				noPlanes=planes.isEmpty();
 				model.addAttribute(noPlanes);
 			}
+			
+			if(userComponent.isLoggedUser()){
+				model.addAttribute(userComponent.getLoggedUser().getId());
+				return "index-logged";
+			}
+			
 			return "index";
 		
 	}
