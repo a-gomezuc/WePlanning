@@ -48,6 +48,12 @@ public class PlanController {
 			planprueba.setAuthor(joselito);
 			planRepository.save(planprueba);
 		}
+		for (int i = 0; i <12; i++) {
+			Plan planprueba = (new Plan("Desarrollo web", "Cultura", "Las Palmas", "Universidad de Gran Canaria", i, "1/06/2017",
+					"Vamos a aprender a desarrollar una web"));
+			planprueba.setAuthor(desnet);
+			planRepository.save(planprueba);
+		}
 		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, "12/03/2017",
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
@@ -74,25 +80,33 @@ public class PlanController {
 
 	@RequestMapping("/")
 	public String start(Model model, Pageable page) {
-		Page<Plan> planes = planRepository.findAll(new PageRequest(0,9));
+		Page<Plan> planes = planRepository.findAll(new PageRequest(0,10));
 		model.addAttribute("planes", planes);
 		model.addAttribute("showButton", !planes.isLast());
 		return "index";
 	}
 	@RequestMapping("/morePlans")
 	public String moreStart(Model model, @RequestParam int page){
-		Page<Plan> planes= planRepository.findAll(new PageRequest(page,9));
+		Page<Plan> planes= planRepository.findAll(new PageRequest(page,10));
 		model.addAttribute("planes", planes);
 		return "plansList";
 		
 	}
 	@RequestMapping("/morePlansUser")
 	public String moreStartUser(Model model, @RequestParam int page, @RequestParam String id){
-		Page<Plan> planes= planRepository.findAll(new PageRequest(page,9));
-		model.addAttribute("planes", planes);
-		return "plansList";
+		Page<Plan> planes= planRepository.findByAuthorId(id, new PageRequest(page,10));
+		model.addAttribute("plans", planes);
+		return "plansListUser";
 		
 	}
+	@RequestMapping("/morePlansUserLogged")
+	public String moreStartUserLogged(Model model, @RequestParam int page, @RequestParam String id){
+		Page<Plan> planes= planRepository.findByAuthorId(id, new PageRequest(page,10));
+		model.addAttribute("plans", planes);
+		return "plansListUserLogged";
+		
+	}
+	
 	
 	@RequestMapping("/logged")
 	public String startLogged(Model model, Pageable page) {
@@ -159,7 +173,7 @@ public class PlanController {
 	public String retUser(Model model, @PathVariable String id) {
 		User user=userRepository.findById(id);
 		model.addAttribute("user", user);
-		model.addAttribute("plansPrueba",planRepository.findByAuthorId(id, new PageRequest(0,9)));
+		model.addAttribute("plansUser",planRepository.findByAuthorId(id, new PageRequest(0,10)));
 		if(!user.isSponsor()){
 		return "ProfileHTML";
 		}
@@ -171,6 +185,7 @@ public class PlanController {
 	public String retUserLogged(Model model, @PathVariable String id) {
 		User usuario=userRepository.findById(id);
 		model.addAttribute("user", usuario);
+		model.addAttribute("plansUser",planRepository.findByAuthorId(id, new PageRequest(0,10)));
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		model.addAttribute("AllUsers",userRepository.findAll());
 		if(id.equals(userComponent.getLoggedUser().getId())&&(!usuario.isSponsor())){

@@ -4,7 +4,7 @@ $(document).ready(function(){
 	  $('#spinner').html("<img src='/IMG/spinner.gif>");
 	  var valor= $("#btnMorePlans").attr("value");
 	  counter++;
-	  $.get("/morePlansUser", { page:counter, id:valor})
+	  $.get("/morePlansUserLogged", { page:counter, id:valor})
       .done(function(data) {
     	$('#spinner').empty();
         if (!$.trim(data)) {

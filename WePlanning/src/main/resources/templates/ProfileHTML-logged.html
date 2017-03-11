@@ -148,29 +148,37 @@
 									</div>
 								</center>
 							</div>
-							<div class="tab-pane fade in" id="tab2">
-								{{#plans}}
-								<div class="container-fluid ">
-									<div class="container-fluid">
-										<div class="row myplan-row">
-											<div class="col-md-6 img-myplan  ">
-												<img class="img-responsive" src="/IMG/quads02.jpg">
+									<div class="tab-pane fade in" id="tab2">
+									<div class="planscroll">
+										<div id="plans">
+											{{#plansUser}}
+											<div class="container-fluid ">
+												<div class="container-fluid">
+													<div class="row myplan-row">
+														<div class="col-md-6 img-myplan  ">
+															<img class="img-responsive" src="/IMG/quads02.jpg">
+														</div>
+														<div class="col-md-6">
+															<h3>
+																<strong>{{title}}</strong>
+															</h3>
+															<hr />
+															<p>En {{place}}</p>
+															<button onclick="location.href = '/logged/plan/{{id}}'"
+																type="button" class="btn-info">Ver Plan</button>
+														</div>
+													</div>
+												</div>
 											</div>
-											<div class="col-md-6">
-												<h3>
-													<strong>{{title}}</strong>
-												</h3>
-												<hr />
-												<p>En {{place}}</p>
-												<button onclick="location.href = '/logged/plan/{{id}}'"
-													type="button" class="btn-info">Ver Plan</button>
-											</div>
+											{{/plansUser}}
 										</div>
+										<center>
+											<div id="spinner"></div>
+											<button id="btnMorePlans" value="{{id}}"
+												class="btn-info btn-mas">Mostrar más</button>
+										</center>
 									</div>
 								</div>
-								{{/plans}}
-							</div>
-
 							<div class="tab-pane fade in" id="tab3">
 								<div class="friendsl">
 									<div class="row friends-row">
@@ -315,5 +323,6 @@
 	<!--FooterEnd-->
 	<script src="/JS/jquery.js"></script>
 	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/morePlansUserLogged.js"></script>
 </body>
 </html>

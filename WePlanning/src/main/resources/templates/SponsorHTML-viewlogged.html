@@ -2,87 +2,122 @@
 <html lang="es">
 
 <head>
-    <title>Sponsor</title>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/CSS/bootstrap.min.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="/CSS/styles.css"> </head>
-<link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans" rel="stylesheet">
+<title>Sponsor</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/CSS/bootstrap.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+</head>
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
+	rel="stylesheet">
 
 <body>
-    <div id="wrap">
-        <div id="main" class="container clear-top">
-            <!-- Navigation -->
-            <nav class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
-                <div class="container">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-                        <a class="navbar-brand" href="/logged"> <img src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
-                    </div>
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse " id="navbar-collapse1">
-                        <ul class="nav navbar-nav navbar-right">
-                            <li> <a href="/logged/aboutus">¿Qué es WePlanning?</a> </li>
-                            <li> <a href="/logged/contact">Contacta</a> </li>
-                            <li class="dropdown user-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
-                                <ul class="dropdown-menu dropdown-tc">
-                                        <li>
-                                            <center> <a href="/logged/user/{{idConectado}}">Accede a tu perfil</a> </center>
-                                        </li>
-                                        <li> </li>
-                                        <li class="divider"></li>
-                                        <li>
-                                            <center> <a href="/newPlan">Sube tu plan</a> </center>
-                                        </li>
-                                        <li class="divider"></li>
-                                        <li>
-											<div class="form-group">
-												<div class="col-lg-offset-2 col-lg-10">
-													<form action="/logout">
-														<input type="submit" class="btn btn-default"
-															value="Cerrar Sesión">
-													</form>
-												</div>
+	<div id="wrap">
+		<div id="main" class="container clear-top">
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
+				role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#navbar-collapse1">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/logged"> <img
+							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse " id="navbar-collapse1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/logged/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="/logged/contact">Contacta</a></li>
+							<li class="dropdown user-dropdown"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"><i
+									class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
+								<ul class="dropdown-menu dropdown-tc">
+									<li>
+										<center>
+											<a href="/logged/user/{{idConectado}}">Accede a tu perfil</a>
+										</center>
+									</li>
+									<li></li>
+									<li class="divider"></li>
+									<li>
+										<center>
+											<a href="/newPlan">Sube tu plan</a>
+										</center>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<form action="/logout">
+													<input type="submit" class="btn btn-default"
+														value="Cerrar Sesión">
+												</form>
 											</div>
-										</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    <!-- /.navbar-collapse -->
-                </div>
-                <!-- /.container -->
-            </nav>
-            {{#user}}
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
-                        <div class="card hovercard ">
-                            <div class="card-background"> <img class="card-bkimg" alt="" src="/IMG/imgplan4.jpg"> </div>
-                            <div class="useravatar"> <img id="imagenSponsor" src="/IMG/Sponsor.jpg"> </div>
-                            <div class="card-info"> <span id="tituloSponsor" class="card-title">{{Sponsor}}</span> </div>
-                        </div>
-                        <div class="btn-pref btn-group btn-group-justified btn-group-lg" role="group" aria-label="...">
-                            <div class="btn-group" role="group">
-                                <button type="button" id="btninfoSponsor" class="btn btn-primary" href="#tab1" data-toggle="tab"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    <div class="hidden-xs">Información</div>
-                                </button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" id="btnplanesSponsor" class="btn btn-default" href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-book" aria-hidden="true"></span>
-                                    <div class="hidden-xs">Planes</div>
-                                </button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" id="btnamigosSponsor" class="btn btn-default" href="#tab3" data-toggle="tab"><span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-                                    <div class="hidden-xs">Seguidores</div>
-                                </button>
-                            </div>
-                            <div class="btn-group" role="group">
-                                <button type="button" id="btnAgregar" class="btn btn-default" href="#" data-toggle="tab"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
-                </span>
+										</div>
+									</li>
+								</ul></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container -->
+			</nav>
+			{{#user}}
+			<div class="container-fluid">
+				<div class="row">
+					<div
+						class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
+						<div class="card hovercard ">
+							<div class="card-background">
+								<img class="card-bkimg" alt="" src="/IMG/imgplan4.jpg">
+							</div>
+							<div class="useravatar">
+								<img id="imagenSponsor" src="/IMG/Sponsor.jpg">
+							</div>
+							<div class="card-info">
+								<span id="tituloSponsor" class="card-title">{{Sponsor}}</span>
+							</div>
+						</div>
+						<div class="btn-pref btn-group btn-group-justified btn-group-lg"
+							role="group" aria-label="...">
+							<div class="btn-group" role="group">
+								<button type="button" id="btninfoSponsor"
+									class="btn btn-primary" href="#tab1" data-toggle="tab">
+									<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+									<div class="hidden-xs">Información</div>
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" id="btnplanesSponsor"
+									class="btn btn-default" href="#tab2" data-toggle="tab">
+									<span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+									<div class="hidden-xs">Planes</div>
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" id="btnamigosSponsor"
+									class="btn btn-default" href="#tab3" data-toggle="tab">
+									<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+									<div class="hidden-xs">Seguidores</div>
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" id="btnAgregar" class="btn btn-default"
+									href="#" data-toggle="tab">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
+									</span>
 
 									<div class="hidden-xs">Seguir sponsor</div>
 								</button>
@@ -94,41 +129,52 @@
 									<center>
 										<div class="profile-info container-fluid">
 											<h2>Información Del Anunciante</h2>
-											<hr/>
-											<p><strong>Empresa:</strong>&nbsp;{{id}}</p>
-											<p><strong>Provincia</strong>&nbsp;{{province}}
-											
-											<p><strong>Descripción:</strong>&nbsp;{{description}}</p>
+											<hr />
+											<p>
+												<strong>Empresa:</strong>&nbsp;{{id}}
+											</p>
+											<p>
+												<strong>Provincia</strong>&nbsp;{{province}}
+											<p>
+												<strong>Descripción:</strong>&nbsp;{{description}}
+											</p>
 										</div>
 									</center>
 								</div>
-								 <div class="tab-pane fade in" id="tab2">
-                                    <div class="container-fluid c-plan">
-                                        {{#plans}}
-									<div class="container-fluid ">
-										<div class="container-fluid">
-											<div class="row myplan-row">
-												<div class="col-md-6 img-myplan  ">
-													<img class="img-responsive" src="/IMG/quads02.jpg">
-												</div>
-												<div class="col-md-6">
-													<h3>
-														<strong>{{title}}</strong>
-													</h3>
-													<hr />
-													<p>En {{place}}</p>
-													<button onclick="location.href = 'logged/plan/{{id}}'"
-														type="button" class="btn-info">Ver Plan</button>
+								<div class="tab-pane fade in" id="tab2">
+									<div class="planscroll">
+										<div id="plans">
+											{{#plansUser}}
+											<div class="container-fluid ">
+												<div class="container-fluid">
+													<div class="row myplan-row">
+														<div class="col-md-6 img-myplan  ">
+															<img class="img-responsive" src="/IMG/quads02.jpg">
+														</div>
+														<div class="col-md-6">
+															<h3>
+																<strong>{{title}}</strong>
+															</h3>
+															<hr />
+															<p>En {{place}}</p>
+															<button onclick="location.href = '/logged/plan/{{id}}'"
+																type="button" class="btn-info">Ver Plan</button>
+														</div>
+													</div>
 												</div>
 											</div>
+											{{/plansUser}}
 										</div>
+										<center>
+											<div id="spinner"></div>
+											<button id="btnMorePlans" value="{{id}}"
+												class="btn-info btn-mas">Mostrar más</button>
+										</center>
 									</div>
-									{{/plans}}
-                                    </div>
-                                </div>
-								  <div class="tab-pane fade in" id="tab3">
+								</div>
+								<div class="tab-pane fade in" id="tab3">
 									<div class="friendsl">
-                                    {{#friends}}
+										{{#friends}}
 										<div class="row friends-row">
 											<div
 												class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
@@ -145,47 +191,58 @@
 											</div>
 										</div>
 										{{/friends}}
-                            </div>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			{{/user}}
 		</div>
-		{{/user}}
 	</div>
-	</div>
-        <!--Footer-->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <center>
-                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="/IMG/Logo.png" /> </div>
-                </center>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
-                    <center>
-                        <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
-                        <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
-                        <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
-                    </center>
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
-                </div>
-            </div>
-            <div class="row">
-                <div id="copyright">
-                    <center>
-                        <hr id="lineaCopyright">
-                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
-                    </center>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!--FooterEnd-->
-    <script src="/JS/jquery.js"></script>
-    <script src="/JS/bootstrap.min.js"></script>
+	<!--Footer-->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<center>
+					<div class="col-md-4 col-sm-4 col-xs-12" id="logo">
+						<img class="img-responsive" src="/IMG/Logo.png" />
+					</div>
+				</center>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+					<center>
+						<a href="https://www.facebook.com/"
+							class="fa fa-facebook-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://twitter.com"
+							class="fa fa-twitter-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://www.instagram.com"
+							class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+					</center>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="links">
+					<center>
+						<a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a
+							href="/logged/contact" id="contacto">Contacto<br></a>
+					</center>
+				</div>
+			</div>
+			<div class="row">
+				<div id="copyright">
+					<center>
+						<hr id="lineaCopyright">
+						<div class="col-md-12">WePlanning &copy Copyright 2017</div>
+					</center>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--FooterEnd-->
+	<script src="/JS/jquery.js"></script>
+	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/morePlansUserLogged.js"></script>
+
 </body>
 
-</html></html>
+</html>
+</html>
