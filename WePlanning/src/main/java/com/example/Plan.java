@@ -20,6 +20,8 @@ public class Plan {
 	private String title;
 	private String category;
 	
+	
+
 	@ManyToOne
 	private User author;
 	
@@ -28,6 +30,7 @@ public class Plan {
 	private long prize;
 	private String date;
 	private String description;
+	private String imagePlanTitle;
 	
 	@ManyToMany //(fetch = FetchType.EAGER)
 	private List<Comment> comments;
@@ -53,7 +56,13 @@ public class Plan {
 		this.asistents=new ArrayList<User>();
 		
 	}
+	public String getImagePlanTitle() {
+		return imagePlanTitle;
+	}
 
+	public void setImagePlanTitle(String imagePlanTitle) {
+		this.imagePlanTitle = imagePlanTitle;
+	}
 	public long getId() {
 		return id;
 	}

@@ -88,7 +88,7 @@
 								</div>
 							</center>
 							<div class="col-sm-6" id="panel-nw">
-								<form class="form-horizontal" method="post" action="/createPlan">
+								<form class="form-horizontal" method="post" action="/createPlan" enctype="multipart/form-data">
 									<div class="form-groupnw">
 										<label for="titulo" class="cols-sm-2 control-label">Título
 											del plan</label>
@@ -224,16 +224,19 @@
 											</label>
 										</div>
 									</div>
+								
 									<div class="form-groupnw">
 										<label for="ejemplo_archivo_1">Adjuntar un archivo</label> <input 
-											type="file" id="ejemplo_archivo_1">
+											type="file" id="ejemplo_archivo_1" name='file'>
 										<p class="help-block">Adjunte una foto de su plan</p>
+										
 									</div>
-									<div class="form-groupnw ">
+									<div class="form-groupnw " >
 										<button type="submit"
 											class="btn btn-primary btn-lg btn-block login-button">Enviar</button>
 									</div>
-								</form>
+									</form>
+								
 							</div>
 						</div>
 					</div>

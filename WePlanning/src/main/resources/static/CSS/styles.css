@@ -599,7 +599,8 @@ input::-webkit-input-placeholder {
 #btninfoPerfil,
 #btnamigosPerfil,
 #btnplanesPerfil,
-#btnubicacionPerfil {
+#btnubicacionPerfil
+#botonBuscadorAmigos{
     color: #fff;
     background-color: rgb(0, 0, 0);
     border-color: #fff;
@@ -620,6 +621,9 @@ input::-webkit-input-placeholder {
 #btnamigosPerfil:hover,
 #btnamigosPerfil:focus,
 #btnamigosPerfil:active,
+#botonBuscadorAmigos:hover,
+#botonBuscadorAmigos:active,
+#botonBuscadorAmigos:focus,
 #btnplanesPerfil:hover,
 #btnplanesPerfil:focus,
 #btnplanesPerfil:active,

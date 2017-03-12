@@ -53,7 +53,12 @@
 		 <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
-        </dependency>   
+        </dependency>  
+        <dependency>
+        <groupId>es.sidelab</groupId>
+	<artifactId>fileuploaddownload</artifactId>
+	<version>0.1.0</version> 
+	</dependency>
 	</dependencies>
 
 	<build>

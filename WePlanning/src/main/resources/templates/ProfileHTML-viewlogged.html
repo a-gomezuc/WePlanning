@@ -44,7 +44,7 @@
 									</li>
 									<li></li>
 									<li class="divider"></li>
-									<li>
+									<li> 
 										<center>
 											<a href="/newPlan">Sube tu plan</a>
 										</center>
@@ -58,12 +58,13 @@
 														value="Cerrar Sesión">
 												</form>
 											</div>
-										</div>
-					</div>
-					</li>
+										</div></li>
+					
+					
 					</ul>
 					</li>
 					</ul>
+						</div>
 				<!-- /.navbar-collapse -->
 				</div>
 		<!-- /.container -->
@@ -109,15 +110,29 @@
 									<div class="hidden-xs">Lista de amigos</div>
 								</button>
 							</div>
+							
+							
 							<div class="btn-group" role="group">
-								<button type="button" id="btnAgregar" class="btn btn-default"
-									href="#" data-toggle="tab">
+							{{#noFriends}}
+								<form action="/logged/user/{{id}}/addFriend" method="post">
+								<button type="submit" id="btnAgregar" class="btn btn-default btn-info">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 									</span>
 									<div class="hidden-xs">Agregar amigo</div>
 								</button>
+								</form>
+								{{/noFriends}}
+								{{#yesFriends}}
+								<button class="btn btn-default btn-info">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
+									</span>
+									<div class="hidden-xs">Ya sois amigos</div>
+								</button>
+								{{/yesFriends}}
 							</div>
+							
 						</div>
+						
 						<div class="well" id="escrituraPerfil">
 							<div class="tab-content">
 								<div class="tab-pane fade in active" id="tab1">
@@ -191,6 +206,7 @@
 			</div>
 			{{/user}}
 		</div>
+	</div>
     <footer class="footer">
         <div class="container">
             <div class="row">

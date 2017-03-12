@@ -13,6 +13,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
 @Controller
 public class PlanController {
 
@@ -45,16 +64,20 @@ public class PlanController {
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
 			planRepository.save(planprueba);
+			planprueba.setImagePlanTitle("carrera.jpg");
 		}
+		
 		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, "12/03/2017",
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
-		
+		planpruebaG.setImagePlanTitle("carrera.jpg");
 		
 		Plan planpruebaJ=new Plan("Curso universidad", "Cultura", "Albacete", "Universidad de Albacete", 250, "15/03/2017",
 				"Curso de programación web");
 		planpruebaJ.setAuthor(miguelito);
+		planpruebaJ.setImagePlanTitle("curso.jpg");
 		planRepository.save(planpruebaJ);
+		
 		Comment comentario1=new Comment ("10/1/2017", "Me ha gustado mucho");
 		comentario1.setAuthor(joselito);
 		Comment comentario2=new Comment ("10/2/2016", "Menuda castaña de plan");
@@ -129,6 +152,7 @@ public class PlanController {
 		planRepository.save(plan);
 		return "SuccessfulComment";
 	}
+	
 	@RequestMapping(value="/logged/plan/{id}/assist", method = RequestMethod.POST)
 	public String assistPlan(Model model, @PathVariable long id){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
@@ -137,7 +161,7 @@ public class PlanController {
 		plan.getAsistents().add(user);
 		userRepository.save(user);
 		planRepository.save(plan);
-		return "SuccesfulAssist";
+		return "SuccessfulAssist";
 	}
 	@RequestMapping("/user/{id}")
 	public String retUser(Model model, @PathVariable String id) {
@@ -152,23 +176,40 @@ public class PlanController {
 	}
 	@RequestMapping("logged/user/{id}")
 	public String retUserLogged(Model model, @PathVariable String id) {
-		User usuario=userRepository.findById(id);
-		model.addAttribute("user", usuario);
+		User userlog =userRepository.findById(userComponent.getLoggedUser().getId());
+		User user=userRepository.findById(id);
+		model.addAttribute("user", user);
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		model.addAttribute("AllUsers",userRepository.findAll());
-		if(id.equals(userComponent.getLoggedUser().getId())&&(!usuario.isSponsor())){
+		if(id.equals(userComponent.getLoggedUser().getId())&&(!user.isSponsor())){
 			return "ProfileHTML-logged";
 		}
-		else if(!id.equals(userComponent.getLoggedUser().getId())&&(!usuario.isSponsor())){
+		else if(!id.equals(userComponent.getLoggedUser().getId())&&(!user.isSponsor())){
+			boolean noFriends = !(userlog.getFriends().contains(user));
+			boolean yesFriends = !noFriends;
+		    model.addAttribute("noFriends",noFriends);
+			model.addAttribute("yesFriends", yesFriends);
 			return "ProfileHTML-viewlogged";
 		}
-		else if(id.equals(userComponent.getLoggedUser().getId())&&(usuario.isSponsor())){
+		else if(id.equals(userComponent.getLoggedUser().getId())&&(user.isSponsor())){
 			return "SponsorHTML-logged";
 		}
 		else{
 			return "SponsorHTML-viewlogged";
 		}
 
+	}
+	@RequestMapping(value="/logged/user/{id}/addFriend", method = RequestMethod.POST)
+	public String addFriend(Model model, @PathVariable String id){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User friend = userRepository.findById(id);
+		user.getFriends().add(friend);
+		friend.getFriends().add(user);
+		userRepository.save(user);
+		userRepository.save(friend);
+		
+		return "successfulFriend";
 	}
 	@RequestMapping("/aboutus")
 	public String aboutUs() {
@@ -217,9 +258,34 @@ public class PlanController {
 
 	}
 	@RequestMapping("/createPlan")
-	public String createPlan(Model model, Plan plan){
+	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user=userComponent.getLoggedUser();
+		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
+		Random rnd = new Random();
+		int cod =rnd.nextInt(1000000);
+		String fileName = cod+  user.getId() + ".jpg";
+		
+		if (!file.isEmpty()) {
+		try {
+
+			File filesFolder = new File(FILES_FOLDER);
+			if (!filesFolder.exists()) {
+				filesFolder.mkdirs();
+			}
+
+			File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+			file.transferTo(uploadedFile);
+
+		} catch (Exception e) {
+			
+			
+			return "newPlan";
+		}}
+	
+		
 		plan.setAuthor(userComponent.getLoggedUser());
+		plan.setImagePlanTitle(fileName);
 		planRepository.save(plan);
 		model.addAttribute("planes",plan);
 		model.addAttribute("id",plan.getAuthor().getId());
