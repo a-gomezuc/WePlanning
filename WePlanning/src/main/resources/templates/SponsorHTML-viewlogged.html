@@ -87,7 +87,7 @@
 								<img id="imagenSponsor" src="/IMG/Sponsor.jpg">
 							</div>
 							<div class="card-info">
-								<span id="tituloSponsor" class="card-title">{{Sponsor}}</span>
+								<span id="tituloSponsor" class="card-title">{{id}}</span>
 							</div>
 						</div>
 						<div class="btn-pref btn-group btn-group-justified btn-group-lg"
@@ -113,15 +113,28 @@
 									<div class="hidden-xs">Seguidores</div>
 								</button>
 							</div>
+							{{#isSponsor}}
 							<div class="btn-group" role="group">
-								<button type="button" id="btnAgregar" class="btn btn-default"
-									href="#" data-toggle="tab">
+							{{#noFriends}}
+							<form action="/logged/user/{{id}}/addFriend" method="post">
+								<button type="submit" id="btnAgregar" class="btn btn-default">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 									</span>
 
 									<div class="hidden-xs">Seguir sponsor</div>
 								</button>
+								</form>
+								{{/noFriends}}
+							
+								{{#yesFriends}}
+								<button class="btn btn-default btn-info">
+									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
+									</span>
+									<div class="hidden-xs">Sigues a este Sponsor</div>
+								</button>
+								{{/yesFriends}}
 							</div>
+							{{/isSponsor}}
 						</div>
 						<div class="well" id="escrituraSponsor">
 							<div class="tab-content">
@@ -181,7 +194,7 @@
 												</div>
 												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
 													<center>
-														<a href="logged/user/{{id}}" class="creador-plan">{{id}}</a>
+														<a href="/logged/user/{{id}}" class="creador-plan">{{id}}</a>
 														<p class="text-muted">{{province}}</p>
 													</center>
 												</div>

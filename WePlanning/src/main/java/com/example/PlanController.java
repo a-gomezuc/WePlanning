@@ -225,19 +225,22 @@ public class PlanController {
 	}
 	@RequestMapping("logged/user/{id}")
 	public String retUserLogged(Model model, @PathVariable String id) {
-
 		User userlog =userRepository.findById(userComponent.getLoggedUser().getId());
 		User user=userRepository.findById(id);
+		boolean isSponsor = !userlog.isSponsor();
+		model.addAttribute("isSponsor", isSponsor);
 		model.addAttribute("user", user);
 		model.addAttribute("plansUser",planRepository.findByAuthorId(id, new PageRequest(0,10)));
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		model.addAttribute("AllUsers",userRepository.findAll());
+		boolean noFriends = !(userlog.getFriends().contains(user));
+		boolean yesFriends = !noFriends;
+		
 		if(id.equals(userComponent.getLoggedUser().getId())&&(!user.isSponsor())){
 			return "ProfileHTML-logged";
 		}
 		else if(!id.equals(userComponent.getLoggedUser().getId())&&(!user.isSponsor())){
-			boolean noFriends = !(userlog.getFriends().contains(user));
-			boolean yesFriends = !noFriends;
+			
 		    model.addAttribute("noFriends",noFriends);
 			model.addAttribute("yesFriends", yesFriends);
 			return "ProfileHTML-viewlogged";
@@ -246,6 +249,8 @@ public class PlanController {
 			return "SponsorHTML-logged";
 		}
 		else{
+			model.addAttribute("noFriends",noFriends);
+			model.addAttribute("yesFriends", yesFriends);
 			return "SponsorHTML-viewlogged";
 		}
 
@@ -259,8 +264,12 @@ public class PlanController {
 		friend.getFriends().add(user);
 		userRepository.save(user);
 		userRepository.save(friend);
-		
+		if(friend.isSponsor()){
+			return "successfulSponsor";
+		}else{
+			
 		return "successfulFriend";
+		}
 	}
 	
 	@RequestMapping(value="/logged/user/{id}/removeFriend", method = RequestMethod.POST)
