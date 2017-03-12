@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,8 @@ public class PlanController {
 	private CommentRepository commentRepository;
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private ContactRepository contactRepository;
 
 	@PostConstruct
 	public void init() {
@@ -40,9 +43,11 @@ public class PlanController {
 		userRepository.save(guillermito);
 		userRepository.save(desnet);
 		joselito.getFriends().add(guillermito);
+		joselito.getFriends().remove(guillermito);
 		userRepository.save(joselito);
-		guillermito.getFriends().add(joselito);
-		userRepository.save(guillermito);
+		/*userRepository.save(guillermito);*/
+		guillermito .getFriends().remove(joselito);
+	
 		for (int i = 0; i <30; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
@@ -74,6 +79,9 @@ public class PlanController {
 		planpruebaG.getComments().add(comentario2);
 		planpruebaG.getAsistents().add(guillermito);
 		planRepository.save(planpruebaG);
+		/*planRepository.delete(planpruebaG);*/
+		
+		
 	}
 
 	public PlanController() {
@@ -234,6 +242,12 @@ public class PlanController {
 		return "contact";
 
 	}
+	@RequestMapping(value="/registerContact",  method = RequestMethod.POST)
+	public String registercontact ( String  C_FirstName, String C_LastName, String C_Company,String C_BusPhone, String C_EmailAddress, String description){
+		Contact contact =new Contact( C_FirstName,  C_FirstName ,C_LastName, C_Company,C_BusPhone, C_EmailAddress, description);
+		contactRepository.save(contact);
+		
+		return "index";}
 	@RequestMapping("/logged/contact")
 	public String loggedContact(Model model) {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
@@ -376,4 +390,47 @@ public class PlanController {
 	public String logError(){
 		return "loginerror";
 	}
+	
+	@RequestMapping("/logged/change/{id}")
+	public String change(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "changeInfo";
+
+	}
+	@RequestMapping(value="/logged/change/{id}" , method = RequestMethod.POST)
+	public String changeinfo(Model model ,@PathVariable String id,String username, String province, int age, String uemail,String description) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User usuario=userRepository.findById(id);
+		usuario.setId(username);
+		usuario.setProvince(province);
+		usuario.setAge(age);
+		usuario.setDescription(description);
+		userRepository.save(usuario);
+		
+		return "SuccesfulChangeInfo";
+
+	}
+	
+	@RequestMapping("/logged/changeS/{id}")
+	public String changeSponsor(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "changeInfoSponsor";
+
+	}
+	@RequestMapping(value="/logged/changeS/{id}" , method = RequestMethod.POST)
+	public String changeinfoSponsor(Model model ,@PathVariable String id,String username, String province,  String uemail,String description) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User usuario=userRepository.findById(id);
+		usuario.setId(username);
+		usuario.setProvince(province);
+		usuario.setDescription(description);
+		userRepository.save(usuario);
+		return "SuccesfulChangeInfo";
+
+	}
+	
+
+	
+	
 }
+
