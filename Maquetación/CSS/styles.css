@@ -73,8 +73,8 @@ body {
 /* ---------------- /navbar ---------*/
 /*------------LoginError--------------*/
 .error-icon{
-    max-width: 300px;
-    min-height: 300px;
+    max-width: 200px;
+    min-height: 200px;
     padding: 2%;
 }
 /*------------/LoginError-------------*/

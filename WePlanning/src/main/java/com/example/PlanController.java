@@ -334,11 +334,16 @@ public class PlanController {
 
 	}
 	@RequestMapping(value="/registerUser",  method = RequestMethod.POST)
-	public String registerUser (boolean sponsorCheckbox, String name, String surname, int age,
-			String province, String username, String email, String pass){	
+	public String registerUser (Model model, boolean sponsorCheckbox, String name, String surname, int age,
+			String province, String username, String email, String pass){
+		if(userRepository.findById(username)==null){
 			User user =new User(sponsorCheckbox,username ,name, surname ,province, age, email, pass, "ROLE_USER");
 			userRepository.save(user);
 			return "SuccesfulRegister";
+		}else{
+			model.addAttribute("userName",username);
+			return "usernameNotAvailable";
+		}
 	}
 	@RequestMapping("/newPlan")
 	public String newPlan(Model model) {
