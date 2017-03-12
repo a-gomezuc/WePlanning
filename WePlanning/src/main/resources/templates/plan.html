@@ -11,7 +11,11 @@
 <!-- Bootstrap Core CSS -->
 <link href="/CSS/bootstrap.min.css" rel="stylesheet">
 <!-- Custom CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
 <link href="/CSS/styles.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One"
 	rel="stylesheet">
@@ -24,7 +28,7 @@
 <body>
 	<div id="wrap">
 		<div id="main" class="container clear-top">
-						<!-- Navigation -->
+			<!-- Navigation -->
 			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
 				role="navigation">
 				<div class="container">
@@ -47,8 +51,8 @@
 							<li class="dropdown"><a href="#" class="dropdown-toggle"
 								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
-									<form action="/" class="form-horizontal form_ini"
-										role="form" method="post">
+									<form action="/" class="form-horizontal form_ini" role="form"
+										method="post">
 										<li>
 											<div class="form-group">
 												<label for="email" class="col-lg-2 control-label">Id</label>
@@ -132,20 +136,25 @@
 								<center>
 									<div class="text">
 										<div class="tab-pane fade in" id="tab3">
-										{{#asistents}}
-											<a href="/user/{{id}}">
-												<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
-													<div class="col-md-4 asistenteImg">
-														<img class="img-responsive img-circle imgMinima"
-															src="http://lorempixel.com/100/100/people/" id="circulo">
+											<div id="listAssistents">
+												{{#assistentsPlan}} <a href="/user/{{id}}">
+													<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
+														<div class="col-md-4 asistenteImg">
+															<img class="img-responsive img-circle imgMinima"
+																src="http://lorempixel.com/100/100/people/" id="circulo">
+														</div>
+														<div class="col-md-8  list-info asistente">
+															<span class="creador-plan ">{{id}}</span>
+															<p class="text-muted">{{province}}</p>
+														</div>
 													</div>
-													<div class="col-md-8  list-info asistente">
-														<span class="creador-plan ">{{id}}</span>
-														<p class="text-muted">{{province}}</p>
-													</div>
-												</div>
-											</a>
-											{{/asistents}} 
+												</a> {{/assistentsPlan}}
+											</div>
+											<center>
+												<div id="spinner"></div>
+												<button id="btnMoreAssistents" value="{{id}}"
+													class="btn-info btn-mas">Mostrar más</button>
+											</center>
 										</div>
 									</div>
 								</center>
@@ -160,7 +169,7 @@
 				<center>
 					<h3 id="tit-com">Comentarios</h3>
 					{{#noExistComment}}
-					<p> Este plan no tiene comentarios </p>
+					<p>Este plan no tiene comentarios</p>
 					{{/noExistComment}}
 					<section class="comments">
 						{{#comments}}
@@ -170,8 +179,8 @@
 									<p>{{content}}</p>
 								</div>
 								<p class="attribution">
-									Comentado por <a class="creador-plan" href="/user/{{author.id}}">{{author.id}}</a>
-									{{date}}
+									Comentado por <a class="creador-plan"
+										href="/user/{{author.id}}">{{author.id}}</a> {{date}}
 								</p>
 							</div>
 						</article>
@@ -225,6 +234,7 @@
 	<!-- Bootstrap Core JavaScript -->
 	<script src="/JS/bootstrap.min.js"></script>
 	<script src="/JS/asisten.js"></script>
+	<script src="/JS/moreAssistents.js"></script>
 </body>
 
 </html>

@@ -129,11 +129,17 @@
 									<center>
 										<div class="profile-info container-fluid">
 											<h2>Información Del Anunciante</h2>
-											<hr/>
-											<p><strong>Empresa:</strong>&nbsp;{{id}}</p>
-											<p><strong>Provincia</strong>&nbsp;{{province}}</p>
-											
-											<p><strong>Descripción:</strong>&nbsp;{{description}}</p>
+											<hr />
+											<p>
+												<strong>Empresa:</strong>&nbsp;{{id}}
+											</p>
+											<p>
+												<strong>Provincia</strong>&nbsp;{{province}}
+											</p>
+
+											<p>
+												<strong>Descripción:</strong>&nbsp;{{description}}
+											</p>
 
 										</div>
 									</center>
@@ -170,8 +176,8 @@
 									</div>
 								</div>
 								<div class="tab-pane fade in" id="tab3">
-									<div class="friendsl">
-										{{#friends}}
+									<div class="friendsl" id="friendsl">
+										{{#friendsUser}}
 										<div class="row friends-row">
 											<div
 												class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
@@ -181,14 +187,20 @@
 												</div>
 												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
 													<center>
-														<a href="logged/user/{{id}}" class="creador-plan">{{id}}</a>
+														<a href="/logged/user/{{id}}" class="creador-plan">{{id}}</a>
 														<p class="text-muted">{{province}}</p>
 													</center>
 												</div>
 											</div>
 										</div>
-										{{/friends}}
+										{{/friendsUser}}
+
 									</div>
+									<center>
+										<div id="spinner"></div>
+										<button id="btnMoreFriends" value="{{id}}"
+											class="btn-info btn-mas">Mostrar más</button>
+									</center>
 								</div>
 							</div>
 						</div>
@@ -238,6 +250,8 @@
 	<script src="/JS/jquery.js"></script>
 	<script src="/JS/bootstrap.min.js"></script>
 	<script src="/JS/morePlansUserLogged.js"></script>
+	<script src="/JS/moreFriendsLogged.js"></script>
+
 
 </body>
 

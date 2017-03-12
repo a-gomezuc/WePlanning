@@ -123,8 +123,7 @@
 							<div class="btn-group" role="group">
 								<button type="button" id="btnAgregar" class="btn btn-default"
 									href="#" data-toggle="tab">
-									<span class="fa fa-globe" aria-hidden="true">
-									</span>
+									<span class="fa fa-globe" aria-hidden="true"> </span>
 									<div class="hidden-xs">Agregar amigo</div>
 								</button>
 							</div>
@@ -183,8 +182,8 @@
 									</div>
 								</div>
 								<div class="tab-pane fade in" id="tab3">
-									<div class="friendsl">
-										{{#friends}}
+									<div class="friendsl" id="friendsl">
+										{{#friendsUser}}
 										<div class="row friends-row">
 											<div
 												class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
@@ -200,9 +199,14 @@
 												</div>
 											</div>
 										</div>
-										{{/friends}}
+										{{/friendsUser}}
 
 									</div>
+									<center>
+										<div id="spinner"></div>
+										<button id="btnMoreFriends" value="{{id}}"
+											class="btn-info btn-mas">Mostrar más</button>
+									</center>
 								</div>
 							</div>
 						</div>
@@ -251,6 +255,7 @@
 		<script src="/JS/jquery.js"></script>
 		<script src="/JS/bootstrap.min.js"></script>
 		<script src="/JS/morePlansUser.js"></script>
+		<script src="/JS/moreFriends.js"></script>
 </body>
 
 </html>
