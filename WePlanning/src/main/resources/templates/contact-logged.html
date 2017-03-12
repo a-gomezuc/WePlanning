@@ -70,8 +70,8 @@
                             <hr class="lineaNegra" /> </div>
                     </div>
                     <div class="mainl mainc">
-                        <form action="" class="form-horizontal track-event-form bv-form" data-goaltype="”General”" data-formname="”ContactUs”" method="post" id="contact-us-all" novalidate="novalidate">
-                            <div class="formgs">
+						<form action="/registerContact" class="form-horizontal track-event-form bv-form" data-goaltype="”General”" data-formname="”ContactUs”" method="post" id="contact-us-all" novalidate="novalidate">                            
+						<div class="formgs">
                                 <div class="form-group formgc">
                                     <div class="col-sm-6" id="nombre">
                                         <div class="input-group" id="nomCont">
@@ -105,14 +105,14 @@
                                 <div class="col-sm-12" id="textcon">
                                     <div class="input-group">
                                         <div class="input-group-addon"> <i class="fa fa-comment fa-fw"></i> </div>
-                                        <textarea class="form-control" name="Comments" id="Comments" rows="5" style="width:99.9%" placeholder="Introduzca su mensaje"></textarea>
+                                        <textarea class="form-control" name="description" id="Comments" rows="5" style="width:99.9%" placeholder="Introduzca su mensaje"></textarea>
                                     </div>
                                 </div>
                             </div>
-                            <center>
+                             <center>
                                 <div class="form-group formga">
                                     <div class="col-sm-12">
-                                        <button id="contacts-submit" type="submit" class="btn btn-default btn-info">Enviar</button>
+                                        <button id="contacts-submit" type="submit" class="btn btn-default btn-info" onClick="mi_alerta()">Enviar</button>
                                         <input type="reset" value="Borrar datos" class="btn btn-default btn-info"> </div>
                                 </div>
                             </center>

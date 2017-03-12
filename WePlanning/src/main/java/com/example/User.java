@@ -37,7 +37,7 @@ public class User {
 	@OneToMany(mappedBy = "author")
 	private List<Plan> plans;
 
-	@ManyToMany //(fetch = FetchType.EAGER)
+	@ManyToMany (fetch = FetchType.LAZY)
 	private List<User> friends;
 	
 	@ElementCollection(fetch = FetchType.EAGER)

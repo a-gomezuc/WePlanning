@@ -1,28 +1,24 @@
 <!DOCTYPE html>
-<html lang="es">
-
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>WePlanning - Registrate y empieza a planear!</title>
-<!-- Bootstrap Core CSS -->
-<link href="/CSS/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-<link href="/CSS/styles.css" rel="stylesheet">
+<title>Perfil</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/CSS/bootstrap.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+</head>
 <link href="https://fonts.googleapis.com/css?family=Fjalla+One"
 	rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
 	rel="stylesheet">
-</head>
-
 <body>
 	<div id="wrap">
 		<div id="main" class="container clear-top">
-						<!-- Navigation -->
+			<!-- Navigation -->
 			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
 				role="navigation">
 				<div class="container">
@@ -34,104 +30,77 @@
 								class="icon-bar"></span> <span class="icon-bar"></span> <span
 								class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="/"> <img
+						<a class="navbar-brand" href="/logged"> <img
 							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
 					</div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse " id="navbar-collapse1">
 						<ul class="nav navbar-nav navbar-right">
-							<li><a href="/aboutus">¿Qué es WePlanning?</a></li>
-							<li><a href="/contact">Contacta</a></li>
-							<li class="dropdown"><a href="#" class="dropdown-toggle"
-								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
+							<li><a href="/logged/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="/logged/contact">Contacta</a></li>
+							<li class="dropdown user-dropdown"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"><i
+									class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
 								<ul class="dropdown-menu dropdown-tc">
-									<form action="/" class="form-horizontal form_ini"
-										role="form" method="post">
-										<li>
-											<div class="form-group">
-												<label for="email" class="col-lg-2 control-label">Id</label>
-												<div class="col-lg-10">
-													<input type="text" class="form-control" name="id"
-														id="email" placeholder="Email">
-												</div>
+									<li>
+										<center>
+											<a href="/logged/user/{{idConectado}}">Accede a tu perfil</a>
+										</center>
+									</li>
+									<li></li>
+									<li class="divider"></li>
+									<li>
+										<center>
+											<a href="/newPlan">Sube tu plan</a>
+										</center>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<form action="/logout">
+													<input type="submit" class="btn btn-default"
+														value="Cerrar Sesión">
+												</form>
 											</div>
-										</li>
-										<li>
-											<div class="form-group">
-												<label for="password" class="col-lg-2 control-label">Contraseña</label>
-												<div class="col-lg-10">
-													<input type="password" class="form-control" name="pass"
-														id="password" placeholder="Contraseña">
-												</div>
-											</div>
-										</li>
-										<li class="divider"></li>
-										<li>
-											<div class="form-group">
-												<div class="col-lg-offset-2 col-lg-10">
-													<input type="submit" class="btn btn-default" value="Entrar">
-												</div>
-											</div>
-										</li>
-										<li><a href="/register">No tengo usuario. Registrarme</a></li>
-									</form>
-								</ul></li>
-							<li><a href="/register">Registrate</a></li>
-						</ul>
+										</div>
 					</div>
-					<!-- /.navbar-collapse -->
+					</li>
+					</ul>
+					</li>
+					</ul>
+				<!-- /.navbar-collapse -->
 				</div>
-				<!-- /.container -->
-			</nav>
+		<!-- /.container -->
+		</nav>
 			<!--register row -->
 			<div class="container">
 				<div class="row main">
 					<div class="panel-heading">
 						<div class="panel-title text-center">
-							<h1 class="page-header">Registrate</h1>
+							<h1 class="page-header">Introduce tus nuevos datos</h1>
 							<hr class="lineaNegra" />
 						</div>
 					</div>
 					<center>
 						<div class="main-login main-center">
 							<form class="form-horizontal" method="post"
-								action="/registerUser" onsubmit="return checkForm(this);">
+								action="/logged/change/{{idConectado}}" onsubmit="return checkForm(this);">
+								
 								<div class="form-group">
-									<div class="cols-sm-10">
-										<div class="input-group">
-											<label for="empresa" class="cols-sm-2 control-label">
-												<input name="sponsorCheckbox" type="checkbox" id="empresa"
-												value="true"> ¿Eres una empresa?
-											</label>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="name" class="cols-sm-2 control-label">Nombre
-										</label>
+									<label for="username" class="cols-sm-2 control-label">Nombre
+										de usuario</label>
 									<div class="cols-sm-10">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
-												name="name" type="text" class="form-control" id="name"
-												placeholder="Introduzca su nombre completo"
-												required />
+												class="fa fa-users fa-fw" aria-hidden="true"></i></span> <input
+												name="username" value="" type="text" class="form-control"
+												name="username" id="username"
+												placeholder="Introduzca su nombre de usuario" required />
 										</div>
 									</div>
 								</div>
-								<div class="form-group">
-									<label for="name" class="cols-sm-2 control-label">
-										Apellidos</label>
-									<div class="cols-sm-10">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
-												name="surname" type="text" class="form-control" id="name"
-												placeholder="Introduzca su nombre completo"
-												required />
-										</div>
-									</div>
-								</div>
+								
 								<div class="form-group">
 									<label for="age" class="cols-sm-2 control-label">Edad</label>
 									<div class="cols-sm-10">
@@ -220,45 +189,18 @@
 										</div>
 									</div>
 								</div>
+								
 								<div class="form-group">
-									<label for="username" class="cols-sm-2 control-label">Nombre
-										de usuario</label>
-									<div class="cols-sm-10">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="fa fa-users fa-fw" aria-hidden="true"></i></span> <input
-												name="username" value="" type="text" class="form-control"
-												name="username" id="username"
-												placeholder="Introduzca su nombre de usuario" required />
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="password1" class="cols-sm-2 control-label">Contraseña</label>
-									<div class="cols-sm-10">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="fa fa-lock fa-fw" aria-hidden="true"></i></span> <input
-												name="pass" value="" type="password" class="form-control"
-												name="password" id="password1" placeholder="Contraseña" required/>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label for="confirm" class="cols-sm-2 control-label">Confirma
-										la contraseña</label>
-									<div class="cols-sm-10">
-										<div class="input-group">
-											<span class="input-group-addon"><i
-												class="fa fa-lock fa-fw" aria-hidden="true"></i></span> <input
-												name="passwordConfirm" value="" type="password"
-												class="form-control" name="confirm" id="confirm"
-												placeholder="Repita su contraseña" required/>
-										</div>
-									</div>
-								</div>
+                                <div class="col-sm-12" id="textcon">
+                                    <div class="input-group">
+                                        <div class="input-group-addon"> <i class="fa fa-comment fa-fw"></i> </div>
+                                        <textarea class="form-control" name="description" id="Comments" rows="5" style="width:99.9%" placeholder="Introduzca su descripcion"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+								
 								<div class="form-group ">
-									<button type="submit" class="btn btn-lg btn-block btn-info">Registrar</button>
+									<button type="submit" class="btn btn-lg btn-block btn-info">Guardar</button>
 								</div>
 							</form>
 						</div>
@@ -289,8 +231,8 @@
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-12" id="links">
 					<center>
-						<a href="/aboutus" id="aboutUs">Conócenos<br></a> <a
-							href="/contact" id="contacto">Contacto<br></a>
+						<a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a
+							href="/logged/contact" id="contacto">Contacto<br></a>
 					</center>
 				</div>
 			</div>
@@ -305,12 +247,8 @@
 		</div>
 	</footer>
 	<!--FooterEnd-->
-	<!-- /.container -->
-	<!-- jQuery -->
-	<script src="JS/jquery.js"></script>
-	<!-- Bootstrap Core JavaScript -->
-	<script src="JS/bootstrap.min.js"></script>
-	<script src="JS/validationPassword.js"></script>
+	<script src="/JS/jquery.js"></script>
+	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/morePlansUserLogged.js"></script>
 </body>
-
 </html>

@@ -2,6 +2,8 @@ package com.example;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface PlanRepository extends JpaRepository<Plan, Long>{
@@ -14,4 +16,5 @@ public interface PlanRepository extends JpaRepository<Plan, Long>{
 	List<Plan> findByTitleAndPlaceIgnoreCase(String title, String place);
 	List<Plan> findByCategoryAndPlaceIgnoreCase(String category, String place);
 	List<Plan> findByTitleAndCategoryAndPlaceIgnoreCase(String title, String category, String place);
+	Page<Plan> findByAuthorId(String id, Pageable page);
 }

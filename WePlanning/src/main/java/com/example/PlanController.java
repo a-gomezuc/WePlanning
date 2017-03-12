@@ -1,17 +1,21 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -43,6 +47,8 @@ public class PlanController {
 	private CommentRepository commentRepository;
 	@Autowired
 	private UserComponent userComponent;
+	@Autowired
+	private ContactRepository contactRepository;
 
 	@PostConstruct
 	public void init() {
@@ -56,17 +62,19 @@ public class PlanController {
 		userRepository.save(guillermito);
 		userRepository.save(desnet);
 		joselito.getFriends().add(guillermito);
+		joselito.getFriends().remove(guillermito);
 		userRepository.save(joselito);
-		guillermito.getFriends().add(joselito);
-		userRepository.save(guillermito);
-		for (int i = 0; i <1; i++) {
+		/*userRepository.save(guillermito);*/
+		guillermito .getFriends().remove(joselito);
+	
+		for (int i = 0; i <30; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
 			planRepository.save(planprueba);
 			planprueba.setImagePlanTitle("carrera.jpg");
 		}
-		
+
 		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, "12/03/2017",
 				"Running en la universidad.");
 		planpruebaG.setAuthor(guillermito);
@@ -88,6 +96,9 @@ public class PlanController {
 		planpruebaG.getComments().add(comentario2);
 		planpruebaG.getAsistents().add(guillermito);
 		planRepository.save(planpruebaG);
+		/*planRepository.delete(planpruebaG);*/
+		
+		
 	}
 
 	public PlanController() {
@@ -95,22 +106,58 @@ public class PlanController {
 
 	@RequestMapping("/")
 	public String start(Model model, Pageable page) {
-		Page<Plan> planes = planRepository.findAll(page);
+		Page<Plan> planes = planRepository.findAll(new PageRequest(0,10));
 		model.addAttribute("planes", planes);
-		model.addAttribute("size", planes.getSize() + 10);
 		model.addAttribute("showButton", !planes.isLast());
 		return "index";
-
 	}
+	@RequestMapping("/morePlans")
+	public String moreStart(Model model, @RequestParam int page){
+		Page<Plan> planes= planRepository.findAll(new PageRequest(page,10));
+		model.addAttribute("planes", planes);
+		return "plansList";
+		
+	}
+	@RequestMapping("/morePlansUser")
+	public String moreStartUser(Model model, @RequestParam int page, @RequestParam String id){
+		Page<Plan> planes= planRepository.findByAuthorId(id, new PageRequest(page,10));
+		model.addAttribute("plans", planes);
+		return "plansListUser";
+		
+	}
+	@RequestMapping("/morePlansUserLogged")
+	public String moreStartUserLogged(Model model, @RequestParam int page, @RequestParam String id){
+		Page<Plan> planes= planRepository.findByAuthorId(id, new PageRequest(page,10));
+		model.addAttribute("plans", planes);
+		return "plansListUserLogged";
+		
+	}
+	
+	
 	@RequestMapping("/logged")
 	public String startLogged(Model model, Pageable page) {
-//		Page<Plan> planes = planRepository.findAll(page);
-//		model.addAttribute("planes", planes);
-//		model.addAttribute("size", planes.getSize() + 10);
-//		model.addAttribute("showButton", !planes.isLast());
-		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		model.addAttribute("id",userComponent.getLoggedUser().getId());
+		// Page<Plan> planes = planRepository.findAll(page);
+		// model.addAttribute("planes", planes);
+		// model.addAttribute("size", planes.getSize() + 10);
+		// model.addAttribute("showButton", !planes.isLast());
+		User newUser=userRepository.findById(userComponent.getLoggedUser().getId());
+		ArrayList<Plan>userplans=new ArrayList<>();
+		List<User>friends=newUser.getFriends();
+		for(User u:friends){
+			for(Plan p:u.getPlans()){
+				userplans.add(p);
+			}
+		}
+		
+		
+		Page<Plan> plans = planRepository.findAll(page);
+		model.addAttribute("userPlans",userplans);
+		model.addAttribute("planes", plans);
+		model.addAttribute("size", plans.getSize() + 10);
+		model.addAttribute("showButton", !plans.isLast());
+		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		return "index-logged";
+
 	}
 	@RequestMapping("/plan/{id}")
 	public String retPlan(Model model, @PathVariable long id) {
@@ -122,6 +169,7 @@ public class PlanController {
 		model.addAttribute("plan",planActual);
 		return "plan";
 	}
+	
 	@RequestMapping("/logged/plan/{id}")
 	public String retPlanLogged(Model model, @PathVariable long id){
 		Plan planActual=planRepository.findOne(id);
@@ -167,6 +215,7 @@ public class PlanController {
 	public String retUser(Model model, @PathVariable String id) {
 		User user=userRepository.findById(id);
 		model.addAttribute("user", user);
+		model.addAttribute("plansUser",planRepository.findByAuthorId(id, new PageRequest(0,10)));
 		if(!user.isSponsor()){
 		return "ProfileHTML";
 		}
@@ -176,9 +225,11 @@ public class PlanController {
 	}
 	@RequestMapping("logged/user/{id}")
 	public String retUserLogged(Model model, @PathVariable String id) {
+
 		User userlog =userRepository.findById(userComponent.getLoggedUser().getId());
 		User user=userRepository.findById(id);
 		model.addAttribute("user", user);
+		model.addAttribute("plansUser",planRepository.findByAuthorId(id, new PageRequest(0,10)));
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		model.addAttribute("AllUsers",userRepository.findAll());
 		if(id.equals(userComponent.getLoggedUser().getId())&&(!user.isSponsor())){
@@ -227,6 +278,12 @@ public class PlanController {
 		return "contact";
 
 	}
+	@RequestMapping(value="/registerContact",  method = RequestMethod.POST)
+	public String registercontact ( String  C_FirstName, String C_LastName, String C_Company,String C_BusPhone, String C_EmailAddress, String description){
+		Contact contact =new Contact( C_FirstName,  C_FirstName ,C_LastName, C_Company,C_BusPhone, C_EmailAddress, description);
+		contactRepository.save(contact);
+		
+		return "index";}
 	@RequestMapping("/logged/contact")
 	public String loggedContact(Model model) {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
@@ -249,7 +306,7 @@ public class PlanController {
 			String province, String username, String email, String pass){	
 			User user =new User(sponsorCheckbox,username ,name, surname ,province, age, email, pass, "ROLE_USER");
 			userRepository.save(user);
-			return "index";
+			return "SuccesfulRegister";
 	}
 	@RequestMapping("/newPlan")
 	public String newPlan(Model model) {
@@ -377,6 +434,12 @@ public class PlanController {
 				noPlanes=planes.isEmpty();
 				model.addAttribute(noPlanes);
 			}
+			
+			if(userComponent.isLoggedUser()){
+				model.addAttribute(userComponent.getLoggedUser().getId());
+				return "index-logged";
+			}
+			
 			return "index";
 		
 	}
@@ -388,4 +451,47 @@ public class PlanController {
 	public String logError(){
 		return "loginerror";
 	}
+	
+	@RequestMapping("/logged/change/{id}")
+	public String change(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "changeInfo";
+
+	}
+	@RequestMapping(value="/logged/change/{id}" , method = RequestMethod.POST)
+	public String changeinfo(Model model ,@PathVariable String id,String username, String province, int age, String uemail,String description) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User usuario=userRepository.findById(id);
+		usuario.setId(username);
+		usuario.setProvince(province);
+		usuario.setAge(age);
+		usuario.setDescription(description);
+		userRepository.save(usuario);
+		
+		return "SuccesfulChangeInfo";
+
+	}
+	
+	@RequestMapping("/logged/changeS/{id}")
+	public String changeSponsor(Model model) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		return "changeInfoSponsor";
+
+	}
+	@RequestMapping(value="/logged/changeS/{id}" , method = RequestMethod.POST)
+	public String changeinfoSponsor(Model model ,@PathVariable String id,String username, String province,  String uemail,String description) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User usuario=userRepository.findById(id);
+		usuario.setId(username);
+		usuario.setProvince(province);
+		usuario.setDescription(description);
+		userRepository.save(usuario);
+		return "SuccesfulChangeInfo";
+
+	}
+	
+
+	
+	
 }
+
