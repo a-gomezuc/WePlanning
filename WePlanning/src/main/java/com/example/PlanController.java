@@ -53,7 +53,7 @@ public class PlanController {
 	@PostConstruct
 	public void init() {
 		User miguelito= new User(false,"miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com", "miContraseñaM", "ROLE_USER");
-		User joselito = new User(false,"joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "miContraseña", "ROLE_USER");
+		User joselito = new User(false,"joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "mmmm", "ROLE_USER");
 		User guillermito = new User(false,"westernsquad", "Guille", "Navas", "Toledo", 22, "guillermitonavitas@gmail.com",
 				"mmm", "ROLE_USER");
 		User desnet = new User(true,"desnet", "DesNet", "Company", "Madrid", 1, "desnet@gmail.com",
@@ -62,10 +62,9 @@ public class PlanController {
 		userRepository.save(guillermito);
 		userRepository.save(desnet);
 		joselito.getFriends().add(guillermito);
-		joselito.getFriends().remove(guillermito);
 		userRepository.save(joselito);
-		/*userRepository.save(guillermito);*/
-		guillermito .getFriends().remove(joselito);
+		userRepository.save(guillermito);
+		/*guillermito .getFriends().remove(joselito);*/
 	
 		for (int i = 0; i <30; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
@@ -201,6 +200,7 @@ public class PlanController {
 		return "SuccessfulComment";
 	}
 	
+	
 	@RequestMapping(value="/logged/plan/{id}/assist", method = RequestMethod.POST)
 	public String assistPlan(Model model, @PathVariable long id){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
@@ -261,6 +261,19 @@ public class PlanController {
 		userRepository.save(friend);
 		
 		return "successfulFriend";
+	}
+	
+	@RequestMapping(value="/logged/user/{id}/removeFriend", method = RequestMethod.POST)
+	public String removeFriend(Model model, @PathVariable String id){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User friend = userRepository.findById(id);
+		user.getFriends().remove(friend);
+		friend.getFriends().remove(user);
+		userRepository.save(user);
+		userRepository.save(friend);
+		
+		return "successfulRemoveFriend";
 	}
 	@RequestMapping("/aboutus")
 	public String aboutUs() {
@@ -459,10 +472,10 @@ public class PlanController {
 
 	}
 	@RequestMapping(value="/logged/change/{id}" , method = RequestMethod.POST)
-	public String changeinfo(Model model ,@PathVariable String id,String username, String province, int age, String uemail,String description) {
+	public String changeinfo(Model model ,@PathVariable String id,String uname, String province, int age, String uemail,String description) {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		User usuario=userRepository.findById(id);
-		usuario.setId(username);
+		usuario.setUname(uname);
 		usuario.setProvince(province);
 		usuario.setAge(age);
 		usuario.setDescription(description);
@@ -479,10 +492,10 @@ public class PlanController {
 
 	}
 	@RequestMapping(value="/logged/changeS/{id}" , method = RequestMethod.POST)
-	public String changeinfoSponsor(Model model ,@PathVariable String id,String username, String province,  String uemail,String description) {
+	public String changeinfoSponsor(Model model ,@PathVariable String id,String uname, String province,  String uemail,String description) {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		User usuario=userRepository.findById(id);
-		usuario.setId(username);
+		usuario.setUname(uname);
 		usuario.setProvince(province);
 		usuario.setDescription(description);
 		userRepository.save(usuario);

@@ -127,9 +127,9 @@
 							<div class="tab-pane fade in active" id="tab1">
 								<center>
 									<div class="profile-info">
-										<button class="btn btn-primary pull-left btn-xs btn-edit">
-											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-										</button>
+										<button onclick="location.href = '/logged/change/{{id}}'" type="button" class="btn btn-primary pull-left btn-xs btn-edit">
+												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+											</button>
 										<h2>Información Personal</h2>
 										<hr />
 										<p>
@@ -146,7 +146,6 @@
 											<strong>Descripción:</strong>&nbsp; {{description}}
 										</p>
 									</div>
-									<button onclick="location.href = '/logged/change/{{id}}'" type="button" class="btn-info">Cambiar tu Informacion</button>
 								</center>
 							</div>
 									<div class="tab-pane fade in" id="tab2">
@@ -182,15 +181,15 @@
 								</div>
 							<div class="tab-pane fade in" id="tab3">
 								<div class="friendsl">
-									<div class="row friends-row">
-										<button class="btn btn-primary btn-xs btn-edit">
-											<i class="fa fa-user-times" aria-hidden="true"></i>
-										</button>
-									</div>
 									{{#friends}}
 									<div class="row friends-row">
-										<div
-											class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+										<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+										<form action="/logged/user/{{id}}/removeFriend" method="post">
+											<button type="submit" id="btneliminar" class="btn btn-primary btn-xs btn-edit">
+												<i class="fa fa-user-times" aria-hidden="true">
+												</i>
+											</button>
+										</form>
 											<div class="col-md-6 col-sm-4 col-xs-4 ">
 												<img class=" img-circle"
 													src="http://lorempixel.com/100/100/people/">

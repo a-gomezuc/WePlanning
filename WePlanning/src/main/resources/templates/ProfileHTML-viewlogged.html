@@ -131,11 +131,13 @@
 								</form>
 								{{/noFriends}}
 								{{#yesFriends}}
-								<button class="btn btn-default btn-info">
+								<form action="/logged/user/{{id}}/removeFriend" method="post">
+								<button type="submit" id="btneliminar" class="btn btn-default btn-info">
 									<span class="glyphicon glyphicon-plus-sign" aria-hidden="true">
 									</span>
-									<div class="hidden-xs">Ya sois amigos</div>
+									<div class="hidden-xs">Ya sois amigos ¿eliminar?</div>
 								</button>
+								</form>
 								{{/yesFriends}}
 							</div>
 							
