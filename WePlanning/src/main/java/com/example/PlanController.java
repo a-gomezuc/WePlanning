@@ -1,6 +1,8 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -22,6 +24,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -89,7 +93,6 @@ public class PlanController {
 		planpruebaJ.setAuthor(miguelito);
 		planpruebaJ.setImagePlanTitle("curso.jpg");
 		planRepository.save(planpruebaJ);
-
 		Comment comentario1 = new Comment("10/1/2017", "Me ha gustado mucho");
 		comentario1.setAuthor(joselito);
 		Comment comentario2 = new Comment("10/2/2016", "Menuda castaña de plan");
@@ -222,7 +225,13 @@ public class PlanController {
 	public String addComments(Model model, @PathVariable long id, String cont) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		Plan plan = planRepository.findOne(id);
-		Comment comment = new Comment("1/1/1", cont);
+		
+		/*Date*/
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		Calendar actualDate = Calendar.getInstance();
+		/*/Date*/
+		Comment comment = new Comment(format.format(date), cont);
 		comment.setAuthor(userComponent.getLoggedUser());
 		commentRepository.save(comment);
 		plan.getComments().add(comment);
@@ -362,12 +371,17 @@ public class PlanController {
 
 	}
 
-	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
-	public String registerUser(boolean sponsorCheckbox, String name, String surname, int age, String province,
-			String username, String email, String pass) {
-		User user = new User(sponsorCheckbox, username, name, surname, province, age, email, pass, "ROLE_USER");
-		userRepository.save(user);
-		return "SuccesfulRegister";
+	@RequestMapping(value="/registerUser",  method = RequestMethod.POST)
+	public String registerUser (Model model, boolean sponsorCheckbox, String name, String surname, int age,
+			String province, String username, String email, String pass){
+		if(userRepository.findById(username)==null){
+			User user =new User(sponsorCheckbox,username ,name, surname ,province, age, email, pass, "ROLE_USER");
+			userRepository.save(user);
+			return "SuccesfulRegister";
+		}else{
+			model.addAttribute("userName",username);
+			return "usernameNotAvailable";
+		}
 	}
 
 	@RequestMapping("/newPlan")
@@ -378,14 +392,14 @@ public class PlanController {
 	}
 
 	@RequestMapping("/createPlan")
-	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file) {
-		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User user = userComponent.getLoggedUser();
+	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user=userRepository.findById(userComponent.getLoggedUser().getId());
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
-		int cod = rnd.nextInt(1000000);
-		String fileName = cod + user.getId() + ".jpg";
-
+		int cod =rnd.nextInt(1000000);
+		String fileName = cod+  user.getId() + user.getPlans().size() +  ".jpg";
+		
 		if (!file.isEmpty()) {
 			try {
 
