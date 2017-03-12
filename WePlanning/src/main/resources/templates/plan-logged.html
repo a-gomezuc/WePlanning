@@ -111,20 +111,27 @@
 								<center>
 									<div class="text">
 										<div class="tab-pane fade in" id="tab3">
-										{{#asistents}}
-											<a href="/logged/user/{{id}}">
-												<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
-													<div class="col-md-4 asistenteImg">
-														<img class="img-responsive img-circle imgMinima"
-															src="/image/{{profilePhotoTitle}}" id="circulo">
+
+											<div id="listAssistents">
+												{{#assistentsPlan}} <a href="/logged/user/{{id}}">
+													<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
+														<div class="col-md-4 asistenteImg">
+															<img class="img-responsive img-circle imgMinima"
+																src="/image/{{profilePhotoTitle}}" id="circulo">
+														</div>
+														<div class="col-md-8  list-info asistente">
+															<span class="creador-plan ">{{id}}</span>
+															<p class="text-muted">{{province}}</p>
+														</div>
+
 													</div>
-													<div class="col-md-8  list-info asistente">
-														<span class="creador-plan ">{{id}}</span>
-														<p class="text-muted">{{province}}</p>
-													</div>
-												</div>
-											</a>
-											{{/asistents}} 
+												</a> {{/assistentsPlan}}
+											</div>
+											<center>
+												<div id="spinner"></div>
+												<button id="btnMoreAssistents" value="{{id}}"
+													class="btn-info btn-mas">Mostrar más</button>
+											</center>
 										</div>
 									</div>
 								</center>
@@ -221,6 +228,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="/JS/bootstrap.min.js"></script>
     <script src="/JS/asisten.js"></script>
+    <script src="/JS/moreAssistentsLogged.js"></script>
 </body>
 
 </html>
