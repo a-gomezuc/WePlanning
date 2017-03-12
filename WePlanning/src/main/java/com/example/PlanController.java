@@ -65,24 +65,26 @@ public class PlanController {
 				"guillermitonavitas@gmail.com", "mmm", "ROLE_USER");
 		User desnet = new User(true, "desnet", "DesNet", "Company", "Madrid", 1, "desnet@gmail.com", "perrete",
 				"ROLE_USER");
+		miguelito.setProfilePhotoTitle("profiledefault.jpg");
 		userRepository.save(miguelito);
 		userRepository.save(guillermito);
-		desnet.getFriends().add(guillermito);
-		desnet.getFriends().add(miguelito);
+		desnet.setProfilePhotoTitle("profiledefault.jpg");
 		userRepository.save(desnet);
 		joselito.getFriends().add(guillermito);
+		joselito.setProfilePhotoTitle("profiledefault.jpg");
 		userRepository.save(joselito);
 		guillermito.getFriends().add(joselito);
 		guillermito.getFriends().add(miguelito);
+		guillermito.setProfilePhotoTitle("profiledefault.jpg");
 		userRepository.save(guillermito);
-		/* guillermito .getFriends().remove(joselito); */
 
-		for (int i = 0; i < 30; i++) {
+		for (int i = 0; i < 10; i++) {
 			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
+			planprueba.setImagePlanTitle("planprueba" + i + ".jpg");
 			planRepository.save(planprueba);
-			planprueba.setImagePlanTitle("carrera.jpg");
+			 
 		}
 
 		Plan planpruebaG = new Plan("Carrera", "Deportes", "Madrid", "URJC Vicálvaro", 12, "12/03/2017",
@@ -95,9 +97,9 @@ public class PlanController {
 		planpruebaJ.setAuthor(miguelito);
 		planpruebaJ.setImagePlanTitle("curso.jpg");
 		planRepository.save(planpruebaJ);
-		Comment comentario1 = new Comment("10/1/2017", "Me ha gustado mucho");
+		Comment comentario1 = new Comment("10/01/2017", "Me ha gustado mucho");
 		comentario1.setAuthor(joselito);
-		Comment comentario2 = new Comment("10/2/2016", "Menuda castaña de plan");
+		Comment comentario2 = new Comment("10/02/2016", "Menuda castaña de plan");
 		comentario2.setAuthor(miguelito);
 		commentRepository.save(comentario1);
 		commentRepository.save(comentario2);
@@ -106,7 +108,7 @@ public class PlanController {
 		planpruebaG.getAsistents().add(guillermito);
 		planpruebaG.getAsistents().add(miguelito);
 		planRepository.save(planpruebaG);
-		/* planRepository.delete(planpruebaG); */
+	
 
 	}
 
@@ -311,14 +313,17 @@ public class PlanController {
 	public String retUserLogged(Model model, @PathVariable String id) {
 		User userlog = userRepository.findById(userComponent.getLoggedUser().getId());
 		User user = userRepository.findById(id);
-		boolean isSponsor = !userlog.isSponsor();
+		boolean noSponsor = true;
+		if(userlog.isSponsor()){
+			noSponsor=false;
+		}
 		if(!user.getFriends().isEmpty()){
 			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(),new PageRequest(0,1)));
 			}
 			else{
 				model.addAttribute("friendsUser", false);
 			}
-		model.addAttribute("isSponsor", isSponsor);
+		model.addAttribute("noSponsor", noSponsor);
 		model.addAttribute("user", user);
 		model.addAttribute("plansUser", planRepository.findByAuthorId(id, new PageRequest(0, 10)));
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
@@ -349,10 +354,11 @@ public class PlanController {
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		User friend = userRepository.findById(id);
 		user.getFriends().add(friend);
-		friend.getFriends().add(user);
 		userRepository.save(user);
-		userRepository.save(friend);
-		if (friend.isSponsor()) {
+
+		if(friend.isSponsor()){
+			friend.getFriends().add(user);
+			userRepository.save(friend);
 			return "successfulSponsor";
 		} else {
 
@@ -366,11 +372,17 @@ public class PlanController {
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		User friend = userRepository.findById(id);
 		user.getFriends().remove(friend);
-		friend.getFriends().remove(user);
+		if (friend.getFriends().contains(user)){
+			friend.getFriends().remove(user);
+			}
 		userRepository.save(user);
 		userRepository.save(friend);
+		if(friend.isSponsor()){
+			return "successfulRemoveSponsor";
+		} else {
 
-		return "successfulRemoveFriend";
+			return "successfulRemoveFriend";
+		}
 	}
 
 	@RequestMapping("/aboutus")
@@ -478,7 +490,22 @@ public class PlanController {
 
 		return "SuccessfulPlan";
 	}
+	@RequestMapping("/image/{fileName}")
+	public void handleFileDownload(@PathVariable String fileName, HttpServletResponse res) throws FileNotFoundException, IOException {
 
+		String filePath = "src/main/resources/static/planImages/"  + fileName + ".jpg";
+
+		
+		File file = new File(filePath);
+
+		if (file.exists()) {
+			res.setContentType("image/jpg");
+			res.setContentLength(new Long(file.length()).intValue());
+			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
+		} else {
+			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
+		}
+	}
 	@RequestMapping("/logged/user/{id}/searchUsers")
 	public String searchAnUser(Model model, @PathVariable String id, String usearch, String filter) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
@@ -666,7 +693,43 @@ public class PlanController {
 		return "SuccesfulChangeInfo";
 
 	}
+	@RequestMapping("/logged/{id}/changePhoto")
+	public String photoModifier(Model model, @PathVariable String id) {
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		
+		return "changePhoto";
 
+	}
+	
+	@RequestMapping(value = "/logged/{id}/profilePhoto", method = RequestMethod.POST)
+	public String changePhoto(Model model, @PathVariable String id, @RequestParam("file") MultipartFile file){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user=userRepository.findById(userComponent.getLoggedUser().getId());
+		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
+
+		String fileName = "profile"+  user.getId()  +  ".jpg";
+		
+		if (!file.isEmpty()) {
+			try {
+
+				File filesFolder = new File(FILES_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+				file.transferTo(uploadedFile);
+
+			} catch (Exception e) {
+
+				return "profileHTML-logged";
+			}
+		}
+		user.setProfilePhotoTitle(fileName);
+		userRepository.save(user);
+		return "profileHTML-logged";
+	}
+	
 	@RequestMapping("/logged/changeS/{id}")
 	public String changeSponsor(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
