@@ -86,7 +86,8 @@
 							</div>
 							<div class="useravatar">
 								<img id="imagenPerfil"
-									src="http://lorempixel.com/100/100/people/9/">
+									src="/image/{{profilePhotoTitle}}">
+								
 							</div>
 							<div class="card-info">
 								<span id="tituloPerfil" class="card-title">{{uname}}</span>
@@ -133,6 +134,12 @@
 												class="btn btn-primary pull-left btn-xs btn-edit">
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</button>
+											<span><form action="/logged/{{id}}/changePhoto" method="post">
+											<button type="submit" id="btneliminar" class="btn btn-primary btn-xs btn-edit">
+												<i class="fa fa-user" aria-hidden="true">
+												</i>
+											</button>
+										</form></span>
 											<h2>Información Personal</h2>
 											<hr />
 											<p>

@@ -89,7 +89,7 @@
 							</div>
 							<div class="useravatar">
 								<img id="imagenPerfil"
-									src="http://lorempixel.com/100/100/people/9/">
+									src="/image/{{profilePhotoTitle}}">
 							</div>
 							<div class="card-info">
 								<span id="tituloPerfil" class="card-title">{{uname}}</span>
@@ -120,25 +120,30 @@
 							</div>
 
 
+							{{#noSponsor}}
+
 							<div class="btn-group" role="group">
-								{{#noFriends}}
+							{{#noFriends}}
 								<form action="/logged/user/{{id}}/addFriend" method="post">
-									<button type="submit" id="btnAgregar"
-										class="btn btn-default btn-info">
-										<span class="fa fa-globe" " aria-hidden="true"> </span>
-										<div class="hidden-xs">Agregar amigo</div>
-									</button>
+								<button type="submit" id="btnAgregar" class="btn btn-default btn-info">
+									<span class="fa fa-globe" aria-hidden="true">
+									</span>
+									<div class="hidden-xs">Agregar amigo</div>
+								</button>
 								</form>
-								{{/noFriends}} {{#yesFriends}}
+								{{/noFriends}}
+								{{#yesFriends}}
 								<form action="/logged/user/{{id}}/removeFriend" method="post">
-									<button type="submit" id="btneliminar"
-										class="btn btn-default btn-info">
-										<span class="fa fa-globe" " aria-hidden="true"> </span>
-										<div class="hidden-xs">Ya sois amigos ¿eliminar?</div>
-									</button>
+								<button type="submit" id="btneliminar" class="btn btn-default btn-info">
+									<span class="fa fa-globe" aria-hidden="true">
+									</span>
+									<div class="hidden-xs">Eliminar Amigo</div>
+								</button>
 								</form>
 								{{/yesFriends}}
 							</div>
+
+							{{/noSponsor}}
 
 						</div>
 

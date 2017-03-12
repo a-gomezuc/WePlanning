@@ -34,6 +34,9 @@ public class User {
 	private String uemail;
 	private String passwordHash;
 	private String description;
+	private String profilePhotoTitle;
+	
+
 	@OneToMany(mappedBy = "author")
 	private List<Plan> plans;
 
@@ -63,7 +66,13 @@ public class User {
 		this.plans = new ArrayList<>();
 	}
 	
+	public String getProfilePhotoTitle() {
+		return profilePhotoTitle;
+	}
 
+	public void setProfilePhotoTitle(String profilePhotoTitle) {
+		this.profilePhotoTitle = profilePhotoTitle;
+	}
 	public long getIdentifier() {
 		return identifier;
 	}
