@@ -1,6 +1,8 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +23,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -85,9 +89,9 @@ public class PlanController {
 		planpruebaJ.setImagePlanTitle("curso.jpg");
 		planRepository.save(planpruebaJ);
 		
-		Comment comentario1=new Comment ("10/1/2017", "Me ha gustado mucho");
+		Comment comentario1=new Comment ("10/01/2017", "Me ha gustado mucho");
 		comentario1.setAuthor(joselito);
-		Comment comentario2=new Comment ("10/2/2016", "Menuda castaña de plan");
+		Comment comentario2=new Comment ("10/02/2016", "Menuda castaña de plan");
 		comentario2.setAuthor(miguelito);
 		commentRepository.save(comentario1);
 		commentRepository.save(comentario2);
@@ -192,7 +196,13 @@ public class PlanController {
 	public String addComments(Model model, @PathVariable long id, String cont){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		Plan plan = planRepository.findOne(id);
-		Comment comment = new Comment("1/1/1", cont);
+		
+		/*Date*/
+		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		Date date = new Date();
+		Calendar actualDate = Calendar.getInstance();
+		/*/Date*/
+		Comment comment = new Comment(format.format(date), cont);
 		comment.setAuthor(userComponent.getLoggedUser());
 		commentRepository.save(comment);
 		plan.getComments().add(comment);	
@@ -339,11 +349,11 @@ public class PlanController {
 	@RequestMapping("/createPlan")
 	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		User user=userComponent.getLoggedUser();
+		User user=userRepository.findById(userComponent.getLoggedUser().getId());
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
 		int cod =rnd.nextInt(1000000);
-		String fileName = cod+  user.getId() + ".jpg";
+		String fileName = cod+  user.getId() + user.getPlans().size() +  ".jpg";
 		
 		if (!file.isEmpty()) {
 		try {
