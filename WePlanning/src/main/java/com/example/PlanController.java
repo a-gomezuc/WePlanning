@@ -727,6 +727,7 @@ public class PlanController {
 		}
 		user.setProfilePhotoTitle(fileName);
 		userRepository.save(user);
+		model.addAttribute("user",user);
 		return "profileHTML-logged";
 	}
 	
