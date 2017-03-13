@@ -79,7 +79,7 @@ public class PlanController {
 		userRepository.save(guillermito);
 
 		for (int i = 0; i < 10; i++) {
-			Plan planprueba = (new Plan("Torneo LOL", "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
+			Plan planprueba = (new Plan("Plan de prueba -"+(i+1), "Cultura", "Madrid", "URJC Móstoles", i, "1/03/2017",
 					"Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
 			planprueba.setImagePlanTitle("planprueba" + i + ".jpg");
@@ -173,7 +173,7 @@ public class PlanController {
 	@RequestMapping("/moreFriendsLogged")
 	public String moreFriendsLogged(Model model, @RequestParam int page, @RequestParam String id) {
 		User user= userRepository.findById(id);
-		Page<User> friends = userRepository.findUsers(user.getFriends(), new PageRequest(page, 10));
+		Page<User> friends = userRepository.findUsers(user.getFriends(), new PageRequest(page, 1));
 		model.addAttribute("friendsUser", friends);
 		return "friendsLoggedList";
 
@@ -181,8 +181,8 @@ public class PlanController {
 	@RequestMapping("/moreAssistents")
 	public String moreAssistents(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan=planRepository.findOne(id);
-		if(!plan.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 10));
+		if(!plan.getAddress().isEmpty()){
+		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 1));
 		model.addAttribute("assistentsPlan",assistents);
 		}
 		else{
@@ -191,19 +191,7 @@ public class PlanController {
 		return "assistentList";
 
 	}
-	@RequestMapping("/moreAssistentsLogged")
-	public String moreAssistentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan=planRepository.findOne(id);
-		if(!plan.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 10));
-		model.addAttribute("assistentsPlan",assistents);
-		}
-		else{
-			model.addAttribute("assistentsPlan",false);
-		}
-		return "assistentListLogged";
 
-	}
 	@RequestMapping("/logged")
 	public String startLogged(Model model, Pageable page) {
 		// Page<Plan> planes = planRepository.findAll(page);
@@ -241,8 +229,8 @@ public class PlanController {
 		Plan planActual = planRepository.findOne(id);
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
-		if(!planActual.getAsistents().isEmpty()){
-			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 10));
+		if(!planActual.getAddress().isEmpty()){
+			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 1));
 			model.addAttribute("assistentsPlan",assistents);
 			}
 			else{
@@ -266,13 +254,6 @@ public class PlanController {
 		boolean noAssist = !assist;
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
-		if(!planActual.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 10));
-		model.addAttribute("assistentsPlan",assistents);
-		}
-		else{
-			model.addAttribute("assistentsPlan",false);
-		}
 		model.addAttribute("noExistComment", noExistComment);
 		model.addAttribute("numAsistents", asistentes);
 		model.addAttribute("assist", assist);
@@ -337,7 +318,7 @@ public class PlanController {
 			noSponsor=false;
 		}
 		if(!user.getFriends().isEmpty()){
-			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(),new PageRequest(0,10)));
+			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(),new PageRequest(0,1)));
 			}
 			else{
 				model.addAttribute("friendsUser", false);

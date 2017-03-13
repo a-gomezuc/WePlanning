@@ -64,6 +64,7 @@ public class User {
 		this.roles = new ArrayList<>(Arrays.asList(roles));
 		this.friends = new ArrayList<>();
 		this.plans = new ArrayList<>();
+		this.profilePhotoTitle="profiledefault.jpg";
 	}
 	
 	public String getProfilePhotoTitle() {
