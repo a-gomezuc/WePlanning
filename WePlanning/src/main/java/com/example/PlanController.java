@@ -478,14 +478,23 @@ public class PlanController {
 
 	}
 
-	@RequestMapping(value = "/registerContact", method = RequestMethod.POST)
+	@RequestMapping("/registerContact")
 	public String registercontact(String C_FirstName, String C_LastName, String C_Company, String C_BusPhone,
 			String C_EmailAddress, String description) {
 		Contact contact = new Contact(C_FirstName, C_FirstName, C_LastName, C_Company, C_BusPhone, C_EmailAddress,
 				description);
 		contactRepository.save(contact);
 
-		return "index";
+		return "SuccesfulContact";
+	}
+	@RequestMapping("/logged/registerContact")
+	public String registercontactLogged(String C_FirstName, String C_LastName, String C_Company, String C_BusPhone,
+			String C_EmailAddress, String description) {
+		Contact contact = new Contact(C_FirstName, C_FirstName, C_LastName, C_Company, C_BusPhone, C_EmailAddress,
+				description);
+		contactRepository.save(contact);
+
+		return "SuccesfulContactLogged";
 	}
 
 	@RequestMapping("/logged/contact")
