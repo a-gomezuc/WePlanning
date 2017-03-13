@@ -182,7 +182,7 @@ public class PlanController {
 	public String moreAssistents(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan=planRepository.findOne(id);
 		if(!plan.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 10));
+		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 1));
 		model.addAttribute("assistentsPlan",assistents);
 		}
 		else{
@@ -195,13 +195,47 @@ public class PlanController {
 	public String moreAssistentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan=planRepository.findOne(id);
 		if(!plan.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 10));
+		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 1));
 		model.addAttribute("assistentsPlan",assistents);
 		}
 		else{
 			model.addAttribute("assistentsPlan",false);
 		}
 		return "assistentListLogged";
+
+	}
+	
+	@RequestMapping ("/moreUsersSearch")
+		public String moreUsersSearch(Model model, @RequestParam int page) {
+			Page<User> users = userRepository.findAll(new PageRequest(page,1));
+			model.addAttribute("AllUsers", users);
+			return "userSearchList";
+		}
+		
+	@RequestMapping("/moreComments")
+	public String moreComments(Model model, @RequestParam int page, @RequestParam long id) {
+		Plan plan=planRepository.findOne(id);
+		if(!plan.getComments().isEmpty()){
+		Page<Comment> comments = commentRepository.findComments(plan.getComments(),new PageRequest(page, 1));
+		model.addAttribute("commentsPlan",comments);
+		}
+		else{
+			model.addAttribute("commentsPlan",false);
+		}
+		return "commentList";
+
+	}
+	@RequestMapping("/moreCommentsLogged")
+	public String moreCommentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
+		Plan plan=planRepository.findOne(id);
+		if(!plan.getComments().isEmpty()){
+		Page<Comment> comments = commentRepository.findComments(plan.getComments(),new PageRequest(page, 1));
+		model.addAttribute("commentsPlan",comments);
+		}
+		else{
+			model.addAttribute("commentsPlan",false);
+		}
+		return "commentListLogged";
 
 	}
 	@RequestMapping("/logged")
@@ -242,11 +276,19 @@ public class PlanController {
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
 		if(!planActual.getAsistents().isEmpty()){
-			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 10));
+			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 1));
 			model.addAttribute("assistentsPlan",assistents);
 			}
 			else{
 				model.addAttribute("assistentsPlan",false);
+			}
+		if(!planActual.getComments().isEmpty()){
+			Page<Comment> comments = commentRepository.findComments(planActual.getComments(),new PageRequest(0, 1));
+			model.addAttribute("commentsPlan",comments);
+			}
+			else{
+				model.addAttribute("commentsPlan",false);
+				model.addAttribute("noExistComment", true);
 			}
 		model.addAttribute("noExistComment", noExistComment);
 		model.addAttribute("numAsistents", asistentes);
@@ -267,12 +309,20 @@ public class PlanController {
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
 		if(!planActual.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 10));
+		Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 1));
 		model.addAttribute("assistentsPlan",assistents);
 		}
 		else{
 			model.addAttribute("assistentsPlan",false);
 		}
+		if(!planActual.getComments().isEmpty()){
+			Page<Comment> comments = commentRepository.findComments(planActual.getComments(),new PageRequest(0, 1));
+			model.addAttribute("commentsPlan",comments);
+			}
+			else{
+				model.addAttribute("commentsPlan",false);
+				model.addAttribute("noExistComment", true);
+			}
 		model.addAttribute("noExistComment", noExistComment);
 		model.addAttribute("numAsistents", asistentes);
 		model.addAttribute("assist", assist);
@@ -346,7 +396,7 @@ public class PlanController {
 		model.addAttribute("user", user);
 		model.addAttribute("plansUser", planRepository.findByAuthorId(id, new PageRequest(0, 10)));
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("AllUsers", userRepository.findAll());
+		model.addAttribute("AllUsers", userRepository.findAll(new PageRequest(0,1)));
 		boolean noFriends = !(userlog.getFriends().contains(user));
 		boolean yesFriends = !noFriends;
 

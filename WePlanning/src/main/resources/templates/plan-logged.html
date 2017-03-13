@@ -154,29 +154,36 @@
 			<!--- /plan --->
             
             <!--- comments -->
-            <div class="row">
+   			<div class="row">
 				<center>
 					<h3 id="tit-com">Comentarios</h3>
 					{{#noExistComment}}
-					<p> Este plan no tiene comentarios </p>
+					<p>Este plan no tiene comentarios</p>
 					{{/noExistComment}}
 					<section class="comments">
-						{{#comments}}
-						<article class="comment">
-							<div class="comment-body">
-								<div class="text">
-									<p>{{content}}</p>
+						<div id="comments">
+							{{#commentsPlan}}
+							<article class="comment">
+								<div class="comment-body">
+									<div class="text">
+										<p>{{content}}</p>
+									</div>
+									<p class="attribution">
+										Comentado por <a class="creador-plan"
+											href="/user/{{author.id}}">{{author.id}}</a> {{date}}
+									</p>
 								</div>
-								<p class="attribution">
-									Comentado por <a class="creador-plan" href="/logged/user/{{author.id}}">{{author.id}}</a>
-									{{date}}
-								</p>
-							</div>
-						</article>
-						{{/comments}}
+							</article>
+							{{/commentsPlan}}
+						</div>
 					</section>
 				</center>
 			</div>
+			<center>
+				<div id="spinner"></div>
+				<button id="btnMoreComments" value="{{id}}" class="btn-info btn-mas">Mostrar
+					más</button>
+			</center>
             <center>
                 <div class="row add-comment">
                     <form role="form" action="/logged/plan/{{id}}/addComment" method="post">
@@ -227,6 +234,7 @@
     <script src="/JS/bootstrap.min.js"></script>
     <script src="/JS/asisten.js"></script>
     <script src="/JS/moreAssistentsLogged.js"></script>
+    <script src="/JS/moreCommentsLogged.js"></script>
 </body>
 
 </html>
