@@ -758,6 +758,7 @@ public class PlanController {
 	@RequestMapping("/logged/change/{id}")
 	public String change(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
+		model.addAttribute("user",userRepository.findById(userComponent.getLoggedUser().getId()));
 		return "changeInfo";
 
 	}
