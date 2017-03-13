@@ -85,9 +85,8 @@
 								
 							</div>
 							<div class="useravatar">
-								<img id="imagenPerfil"
-									src="/image/{{profilePhotoTitle}}">
-								
+								<img id="imagenPerfil" src="/image/{{profilePhotoTitle}}">
+
 							</div>
 							<div class="card-info">
 								<span id="tituloPerfil" class="card-title">{{uname}}</span>
@@ -134,12 +133,13 @@
 												class="btn btn-primary pull-left btn-xs btn-edit">
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 											</button>
-											<span><form action="/logged/{{id}}/changePhoto" method="post">
-											<button type="submit" id="btneliminar" class="btn btn-primary btn-xs btn-edit">
-												<i class="fa fa-user" aria-hidden="true">
-												</i>
-											</button>
-										</form></span>
+											<span><form action="/logged/{{id}}/changePhoto"
+													method="post">
+													<button type="submit" id="btneliminar"
+														class="btn btn-primary btn-xs btn-edit">
+														<i class="fa fa-user" aria-hidden="true"> </i>
+													</button>
+												</form></span>
 											<h2>Información Personal</h2>
 											<hr />
 											<p>
@@ -177,7 +177,7 @@
 															<p>En {{place}}</p>
 															<button onclick="location.href = '/logged/plan/{{id}}'"
 																type="button" class="btn-info">Ver Plan</button>
-															
+
 														</div>
 													</div>
 												</div>
@@ -259,7 +259,8 @@
 											<div>
 												<p>No se han encontrado usuarios en la búsqueda</p>
 											</div>
-											{{/noUsers}} {{#AllUsers}}
+											{{/noUsers}} 
+											<div id="AllUsers">{{#AllUsers}}
 											<div class="profile-search">
 												<div class="row friends-search-row">
 													<div
@@ -275,18 +276,18 @@
 																<strong>Descripción:</strong>&nbsp;{{description}}
 															</p>
 														</div>
-														{{#noFriends}}
-														<center>
-															<button class="btn sr-btn btn-info" type="button">Agregar
-																Amigo</button>
-														</center>
-														{{/noFriends}}
 													</div>
 												</div>
+												{{/AllUsers}}
 											</div>
-											{{/AllUsers}}
+											</div>
 										</div>
 									</div>
+									<center>
+										<div id="spinner"></div>
+										<button id="btnMoreAllUsers" value="{{id}}"
+											class="btn-info btn-mas">Mostrar más</button>
+									</center>
 								</div>
 							</div>
 						</div>
@@ -337,5 +338,6 @@
 	<script src="/JS/bootstrap.min.js"></script>
 	<script src="/JS/morePlansUserLogged.js"></script>
 	<script src="/JS/moreFriendsLogged.js"></script>
+	<script src="/JS/moreUsersSearch.js"></script>
 </body>
 </html>

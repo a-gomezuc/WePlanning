@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="utf-8">
+</head>
+{{#AllUsers}}
+											<div class="profile-search">
+												<div class="row friends-search-row">
+													<div
+														class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-lg-offset2 col-xs-offset-2  friends-preview">
+														<div class="col-md-4">
+															<img class="img-responsive img-circle img-f"
+																src="http://lorempixel.com/100/100/people/">
+														</div>
+														<div class="col-md-8  friends-search-info">
+															<a href="/logged/user/{{id}}" class="creador-plan">{{id}}</a>
+															<p class="text-muted">{{province}}</p>
+															<p>
+																<strong>Descripción:</strong>&nbsp;{{description}}
+															</p>
+														</div>
+														{{#noFriends}}
+														<center>
+															<button class="btn sr-btn btn-info" type="button">Agregar
+																Amigo</button>
+														</center>
+														{{/noFriends}}
+													</div>
+												</div>
+											</div>
+											{{/AllUsers}}
+				</html>

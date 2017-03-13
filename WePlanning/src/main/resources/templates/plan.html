@@ -172,22 +172,29 @@
 					<p>Este plan no tiene comentarios</p>
 					{{/noExistComment}}
 					<section class="comments">
-						{{#comments}}
-						<article class="comment">
-							<div class="comment-body">
-								<div class="text">
-									<p>{{content}}</p>
+						<div id="comments">
+							{{#commentsPlan}}
+							<article class="comment">
+								<div class="comment-body">
+									<div class="text">
+										<p>{{content}}</p>
+									</div>
+									<p class="attribution">
+										Comentado por <a class="creador-plan"
+											href="/user/{{author.id}}">{{author.id}}</a> {{date}}
+									</p>
 								</div>
-								<p class="attribution">
-									Comentado por <a class="creador-plan"
-										href="/user/{{author.id}}">{{author.id}}</a> {{date}}
-								</p>
-							</div>
-						</article>
-						{{/comments}}
+							</article>
+							{{/commentsPlan}}
+						</div>
 					</section>
 				</center>
 			</div>
+			<center>
+				<div id="spinner"></div>
+				<button id="btnMoreComments" value="{{id}}" class="btn-info btn-mas">Mostrar
+					más</button>
+			</center>
 		</div>
 	</div>
 	{{/plan}}
@@ -235,6 +242,7 @@
 	<script src="/JS/bootstrap.min.js"></script>
 	<script src="/JS/asisten.js"></script>
 	<script src="/JS/moreAssistents.js"></script>
+	<script src="/JS/moreComments.js"></script>
 </body>
 
 </html>
