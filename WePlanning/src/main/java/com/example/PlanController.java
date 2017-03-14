@@ -818,6 +818,7 @@ public class PlanController {
 	@RequestMapping("/logged/changeS/{id}")
 	public String changeSponsor(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
+		model.addAttribute("user",userRepository.findById(userComponent.getLoggedUser().getId()));
 		return "changeInfoSponsor";
 
 	}

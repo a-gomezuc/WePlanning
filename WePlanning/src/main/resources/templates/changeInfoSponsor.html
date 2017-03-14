@@ -82,6 +82,7 @@
 							<hr class="lineaNegra" />
 						</div>
 					</div>
+					{{#user}}
 					<center>
 						<div class="main-login main-center">
 							<form class="form-horizontal" method="post"
@@ -94,7 +95,7 @@
 										<div class="input-group">
 											<span class="input-group-addon"><i
 												class="fa fa-users fa-fw" aria-hidden="true"></i></span> <input
-												name="uname" value="" type="text" class="form-control"
+												name="uname" value="{{uname}}" type="text" class="form-control"
 												name="uname" id="uname"
 												placeholder="Introduzca su nombre" required />
 										</div>
@@ -107,7 +108,7 @@
 									<div class="cols-sm-10">
 										<div class="input-group">
 											<span class="input-group-addon"><i
-												class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span> <select
+												class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span> <select value="{{province}}"
 												id="busquedaprovincia" name="province" required>
 												<option value='Álava'>Álava</option>
 												<option value='Albacete'>Albacete</option>
@@ -172,7 +173,7 @@
 										class="cols-sm-2 control-label">Descripcion</label>
                                     <div class="input-group">
                                         <div class="input-group-addon"> <i class="fa fa-comment fa-fw"></i> </div>
-                                        <textarea class="form-control" name="description" id="Comments" rows="5" style="width:99.9%" placeholder="Introduzca su nueva Descripcion"></textarea>
+                                        <textarea class="form-control" name="description" id="Comments" rows="5" style="width:99.9%">{{description}}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -183,6 +184,7 @@
 							</form>
 						</div>
 					</center>
+					{{/user}}
 				</div>
 			</div>
 		</div>
