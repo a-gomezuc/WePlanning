@@ -14,9 +14,6 @@ public class Contact {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long identifier;
 	
-	@Column(unique=true)
-	private String id;
-	
 	private String C_FirstName;
 	private String C_LastName;
 	private String C_Company;
@@ -31,7 +28,6 @@ public class Contact {
 
 	public Contact (String id,String C_FirstName,String C_LastName, String C_Company,String C_BusPhone, String C_EmailAddress,String description ) {
 		super();
-		this.id=id;
 		this.C_FirstName = C_FirstName;
 		this.C_LastName=C_LastName;
 		this.C_Company=C_Company;
@@ -43,7 +39,7 @@ public class Contact {
 	
 	@Override
 	public String toString() {
-		return "Contact [id=" + id + ", name=" + C_FirstName + ", C_LastName=" + C_LastName + ", C_Company=" + C_Company + ", C_BusPhone= " + C_BusPhone + ",uC_EmailAddress=" + C_EmailAddress + ", descripcion=" + description + "]";
+		return "Contact [name=" + C_FirstName + ", C_LastName=" + C_LastName + ", C_Company=" + C_Company + ", C_BusPhone= " + C_BusPhone + ",uC_EmailAddress=" + C_EmailAddress + ", descripcion=" + description + "]";
 	}
 
 	public String getDescription() {

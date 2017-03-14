@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>WePlanning - Registrate y empieza a planear!</title>
+<!-- Bootstrap Core CSS -->
+<link href="/CSS/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="/CSS/styles.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
+	rel="stylesheet">
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="main" class="container clear-top">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <a class="navbar-brand" href="/logged"> <img src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse " id="navbar-collapse1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li> <a href="/logged/aboutus">¿Qué es WePlanning?</a> </li>
+                            <li> <a href="/logged/contact">Contacta</a> </li>
+                            <li class="dropdown user-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-tc">
+                                        <li>
+                                            <center> <a href="/logged/user/{{idConectado}}">Accede a tu perfil</a> </center>
+                                        </li>
+                                        <li> </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <center> <a href="/newPlan">Sube tu plan</a> </center>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<form action="/logout">
+														<input type="submit" class="btn btn-default"
+															value="Cerrar Sesión">
+													</form>
+												</div>
+											</div>
+										</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+			<!-- FIN Navigation -->
+			<!-- NewPlan -->
+			<!--contacto-->
+			<div class="container" id="contnw">
+				<div class="row main">
+					<div class="panel-heading" id="panelnw">
+						<div class="panel-title text-center">
+							<h1 class="titlenw" id="frase">MODIFICA TU PLAN</h1>
+							<hr class="lineaNegra" />
+						</div>
+					</div>
+					{{#plan}}
+					<div class="mainnw mainnw">
+						<div class="formgnw">
+							<center>
+								<div class="preview col-md-6 col-sm-6">
+									<div class="preview-pic tab-content img-center">
+										<div class="tab-pane active" id="pic-1">
+											<img id="img-big"
+												src="/image/{{imagenPlanTitle}}" />
+										</div>
+									</div>
+								</div>
+							</center>
+							<div class="col-sm-6" id="panel-nw">
+								<form class="form-horizontal" method="post" action="/logged/modifiedPlan/{{id}}" enctype="multipart/form-data">
+									<div class="form-groupnw">
+										<label for="titulo" class="cols-sm-2 control-label">Título
+											del plan</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-user fa-fw" aria-hidden="true"></i></span> <input
+													type="text" class="form-control" name="title" id="title"
+													value="{{title}}" required/>
+											</div>
+										</div>
+									</div>
+									<div class="form-groupnw">
+										<label for="titulo" class="cols-sm-2 control-label">Categoría
+											</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-tags fa-fw" aria-hidden="true"></i></span> <select id="busquedacategoria" name="category" value="{{category}}" required>
+														<option value="">Seleccione categoría</option>
+														<option value='Música'>Música</option>
+														<option value='Cine'>Cine</option>
+														<option value='Fiestas'>Fiestas</option>
+														<option value='Naturaleza'>Naturaleza</option>
+														<option value='Deportes'>Deportes</option>
+														<option value='Cultura'>Cultura</option>
+													</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-groupnw">
+										<label for="fecha" class="cols-sm-2 control-label">Fecha</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-calendar fa-fw" aria-hidden="true"></i></span> <input
+													type="date" value="{{date}}" name="date" id="fecha" required/>
+											</div>
+										</div>
+									</div>
+									<div class="form-groupnw">
+										<label for="provincia" class="cols-sm-2 control-label">Provincia</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-map-marker fa-fw" aria-hidden="true"></i></span> <select name="place"
+													id="busquedaprovincia" value="{{place}}" required>
+													<option value='Álava'>Álava</option>
+													<option value='Albacete'>Albacete</option>
+													<option value='Alicante'>Alicante/Alacant</option>
+													<option value='Almería'>Almería</option>
+													<option value='Asturias'>Asturias</option>
+													<option value='Ávila'>Ávila</option>
+													<option value='Badajoz'>Badajoz</option>
+													<option value='Barcelona'>Barcelona</option>
+													<option value='Burgos'>Burgos</option>
+													<option value='Caceres'>Cáceres</option>
+													<option value='Cádiz'>Cádiz</option>
+													<option value='Cantabria'>Cantabria</option>
+													<option value='Castellon'>Castellón/Castelló</option>
+													<option value='Ceuta'>Ceuta</option>
+													<option value='Ciudad Real'>Ciudad Real</option>
+													<option value='Córdoba'>Córdoba</option>
+													<option value='Cuenca'>Cuenca</option>
+													<option value='Girona'>Girona</option>
+													<option value='Granada'>Granada</option>
+													<option value='Guadalajara'>Guadalajara</option>
+													<option value='Guipuzcoa'>Guipúzcoa</option>
+													<option value='Huelva'>Huelva</option>
+													<option value='Huesca'>Huesca</option>
+													<option value='Islas Baleares'>Illes Balears</option>
+													<option value='Jaén'>Jaén</option>
+													<option value='A coruña'>A Coruña</option>
+													<option value='las Palmas'>Las Palmas</option>
+													<option value='la Rioja'>La Rioja</option>
+													<option value='Leon'>León</option>
+													<option value='Lleida'>Lleida</option>
+													<option value='Lugo'>Lugo</option>
+													<option value='Madrid'>Madrid</option>
+													<option value='Malaga'>Málaga</option>
+													<option value='Melilla'>Melilla</option>
+													<option value='Murcia'>Murcia</option>
+													<option value='Navarra'>Navarra</option>
+													<option value='Ourense'>Ourense</option>
+													<option value='Palencia'>Palencia</option>
+													<option value='Pontevedra'>Pontevedra</option>
+													<option value='Salamanca'>Salamanca</option>
+													<option value='Segovia'>Segovia</option>
+													<option value='Sevilla'>Sevilla</option>
+													<option value='Soria'>Soria</option>
+													<option value='Tarragona'>Tarragona</option>
+													<option value='Santa Cruz de Tenerife'>Santa Cruz de
+														Tenerife</option>
+													<option value='Teruel'>Teruel</option>
+													<option value='Toledo'>Toledo</option>
+													<option value='Valencia'>Valencia/Valéncia</option>
+													<option value='Valladolid'>Valladolid</option>
+													<option value='Vizcaya'>Vizcaya</option>
+													<option value='Zamora'>Zamora</option>
+													<option value='Zaragoza'>Zaragoza</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="form-groupnnw">
+										<label for="dirección" class="cols-sm-2 control-label">Dirección</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-envelope fa-location-arrow fa-fw"
+													aria-hidden="true"></i></span> <input type="text"
+													class="form-control" name="address" id="dirección"
+													value="{{address}}" required/>
+											</div>
+										</div>
+									</div>
+									<div class="form-groupnnw">
+										<label for="precio" class="cols-sm-2 control-label">Precio
+											(€)</label>
+										<div class="cols-sm-10">
+											<div class="input-group">
+												<span class="input-group-addon"><i
+													class="fa fa-money fa-fw" aria-hidden="true"></i></span> <input
+													type="number" min="0" step="1" class="form-control" name="prize" id="precio"
+													value="{{prize}}" required/>
+											</div>
+										</div>
+									</div>
+									<div class="form-groupnw">
+										<div class="Text">
+											<label> Descripción <textarea type="text" rows="5" name="description"
+													id="txt" required>{{description}}</textarea>
+											</label>
+										</div>
+									</div>
+								
+									<div class="form-groupnw">
+										<label for="ejemplo_archivo_1">Adjuntar un archivo</label> <input 
+											type="file" id="ejemplo_archivo_1" name='file' required>
+										<p class="help-block">Adjunte una foto de su plan</p>
+										
+									</div>
+									<div class="form-groupnw " >
+										<button type="submit"
+											class="btn btn-primary btn-lg btn-block login-button">Enviar</button>
+									</div>
+									</form>
+								
+							</div>
+						</div>
+					</div>
+					{{/plan}}
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--FIN contacto-->
+	<!-- FIN Newplan -->
+    <!--Footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <center>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="/IMG/Logo.png" /> </div>
+                </center>
+                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+                    <center>
+                        <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
+                        <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
+                        <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+                    </center>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
+                </div>
+            </div>
+            <div class="row">
+                <div id="copyright">
+                    <center>
+                        <hr id="lineaCopyright">
+                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--FooterEnd-->
+	<script src="JS/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/imgnewplan.js"></script>
+	<script src="/JS/selectCategory.js"></script>
+	<script src="/JS/selectProvince.js"></script>
+</body>
+
+</html>
