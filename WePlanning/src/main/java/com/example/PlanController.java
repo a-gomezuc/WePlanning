@@ -833,7 +833,61 @@ public class PlanController {
 		usuario.setDescription(description);
 		userRepository.save(usuario);
 		return "SuccesfulChangeInfo";
+	}
+	@RequestMapping("/logged/modifyPlan/{id}")
+	public String modifyPlan(Model model, @PathVariable long id){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		Plan plan = planRepository.findOne(id);
+		if((userComponent.getLoggedUser().getId()).equals(plan.getAuthor().getId())){
+			model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+			model.addAttribute("plan", plan);
+			return "modifyPlan";
+		}else{
+			model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+			return "deniedChangePlanLogged";
+		}
+	}
+	@RequestMapping(value="/logged/modifiedPlan/{id}", method=RequestMethod.POST)
+	public String modifiedPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file){
+		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		User user=userRepository.findById(userComponent.getLoggedUser().getId());
+		Plan planModify = planRepository.findOne(plan.getId());
+		planModify.setTitle(plan.getTitle());
+		planModify.setAuthor(plan.getAuthor());
+		planModify.setPlace(plan.getPlace());
+		planModify.setAddress(plan.getAddress());
+		planModify.setDate(plan.getDate());
+		planModify.setDescription(plan.getDescription());
+		planModify.setComments(plan.getComments());
+		planModify.setAsistents(plan.getAsistents());
+		planModify.setImagePlanTitle(plan.getImagePlanTitle());
+		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
+		Random rnd = new Random();
+		int cod =rnd.nextInt(1000000);
+		String fileName = cod+  user.getId() + user.getPlans().size() +  ".jpg";
+		
+		if (!file.isEmpty()) {
+			try {
 
+				File filesFolder = new File(FILES_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+				file.transferTo(uploadedFile);
+
+			} catch (Exception e) {
+				model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+				return "contact-logged";
+			}
+		}
+
+		
+		planModify.setImagePlanTitle(fileName);
+		planRepository.save(plan);
+		
+		return "SuccessfulPlan";
 	}
 
 }
