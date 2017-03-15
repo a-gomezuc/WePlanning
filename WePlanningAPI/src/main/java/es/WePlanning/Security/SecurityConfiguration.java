@@ -18,30 +18,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     	
         http.csrf().disable();
     	
-    	// Public pages
-        http.authorizeRequests().antMatchers("/").permitAll();
-        http.authorizeRequests().antMatchers("/user/**").permitAll();
-        http.authorizeRequests().antMatchers("/contact").permitAll();
-        http.authorizeRequests().antMatchers("/register").permitAll();
-        http.authorizeRequests().antMatchers("/plan/**").permitAll();
-        http.authorizeRequests().antMatchers("/aboutus").permitAll();
-        http.authorizeRequests().antMatchers("/logout").permitAll();
-
-        // Private pages (all other pages)
-        http.authorizeRequests().antMatchers("/logged/**").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/newPlan").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers("/createPlan").hasAnyRole("USER");
-
-        // Login form
-        http.formLogin().loginPage("/");
-        http.formLogin().usernameParameter("id");
-        http.formLogin().passwordParameter("pass");
-        http.formLogin().defaultSuccessUrl("/logged");
-        http.formLogin().failureUrl("/loginerror");
-
-        // Logout
-        http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/");
+//    	// Public pages
+//        http.authorizeRequests().antMatchers("/").permitAll();
+//        http.authorizeRequests().antMatchers("/user/**").permitAll();
+//        http.authorizeRequests().antMatchers("/contact").permitAll();
+//        http.authorizeRequests().antMatchers("/register").permitAll();
+//        http.authorizeRequests().antMatchers("/plan/**").permitAll();
+//        http.authorizeRequests().antMatchers("/aboutus").permitAll();
+//        http.authorizeRequests().antMatchers("/logout").permitAll();
+//
+//        // Private pages (all other pages)
+//        http.authorizeRequests().antMatchers("/logged/**").hasAnyRole("USER");
+//        http.authorizeRequests().antMatchers("/newPlan").hasAnyRole("USER");
+//        http.authorizeRequests().antMatchers("/createPlan").hasAnyRole("USER");
+//
+//        // Login form
+//        http.formLogin().loginPage("/");
+//        http.formLogin().usernameParameter("id");
+//        http.formLogin().passwordParameter("pass");
+//        http.formLogin().defaultSuccessUrl("/logged");
+//        http.formLogin().failureUrl("/loginerror");
+//
+//        // Logout
+//        http.logout().logoutUrl("/logout");
+//        http.logout().logoutSuccessUrl("/");
     }
 
     @Override

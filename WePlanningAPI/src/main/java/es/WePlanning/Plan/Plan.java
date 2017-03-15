@@ -10,34 +10,57 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.User.User;
 
 @Entity
 public class Plan {
+	
+	public interface BasicAtt{}
+	public interface UserAtt{}
+	public interface CommentAtt{}
 
+	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
+	@JsonView(BasicAtt.class)
 	private String title;
+	
+	@JsonView(BasicAtt.class)
 	private String category;
 	
 	
-
+	@JsonView(UserAtt.class)
 	@ManyToOne
 	private User author;
 	
+	@JsonView(BasicAtt.class)
 	private String place;
+	
+	@JsonView(BasicAtt.class)
 	private String address;
+	
+	@JsonView(BasicAtt.class)
 	private long prize;
+	
+	@JsonView(BasicAtt.class)
 	private String date;
+	
+	@JsonView(BasicAtt.class)
 	private String description;
+	
+	@JsonView(BasicAtt.class)
 	private String imagePlanTitle;
 	
+	@JsonView(Comment.class)
 	@ManyToMany //(fetch = FetchType.EAGER)
 	private List<Comment> comments;
 	
+	@JsonView(UserAtt.class)
 	@ManyToMany //fetch = FetchType.EAGER)
 	private List<User> asistents;
 	

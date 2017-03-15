@@ -16,35 +16,64 @@ import javax.persistence.OneToMany;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import es.WePlanning.Plan.Plan;
 
 @Entity
 public class User {
 	
+	public interface BasicAtt{}
+	public interface PlansAtt{}
+	public interface FriendsAtt{}
+	public interface RolesAtt{}
+	
+	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long identifier;
 	
+	@JsonView(BasicAtt.class)
 	@Column(unique=true)
 	private String id;
-
+	
+	@JsonView(BasicAtt.class)
 	private boolean sponsor;
+	
+	@JsonView(BasicAtt.class)
 	private String uname;
+	
+	@JsonView(BasicAtt.class)
 	private String surname;
+	
+	@JsonView(BasicAtt.class)
 	private String province;
+	
+	@JsonView(BasicAtt.class)
 	private int age;
+	
+	@JsonView(BasicAtt.class)
 	private String uemail;
+	
+	@JsonIgnore
 	private String passwordHash;
+	
+	@JsonView(BasicAtt.class)
 	private String description;
+	
+	@JsonView(BasicAtt.class)
 	private String profilePhotoTitle;
 	
-
+	@JsonView(PlansAtt.class)
 	@OneToMany(mappedBy = "author")
 	private List<Plan> plans;
-
+	
+	@JsonView(FriendsAtt.class)
 	@ManyToMany (fetch = FetchType.LAZY)
 	private List<User> friends;
 	
+	@JsonView(RolesAtt.class)
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
 
