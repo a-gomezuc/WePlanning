@@ -806,15 +806,7 @@ public class WebPageController {
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		User user=userRepository.findById(userComponent.getLoggedUser().getId());
 		Plan planModify = planRepository.findOne(plan.getId());
-		planModify.setTitle(plan.getTitle());
-		planModify.setAuthor(plan.getAuthor());
-		planModify.setPlace(plan.getPlace());
-		planModify.setAddress(plan.getAddress());
-		planModify.setDate(plan.getDate());
-		planModify.setDescription(plan.getDescription());
-		planModify.setComments(plan.getComments());
-		planModify.setAsistents(plan.getAsistents());
-		planModify.setImagePlanTitle(plan.getImagePlanTitle());
+		
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
 		int cod =rnd.nextInt(1000000);
@@ -836,12 +828,21 @@ public class WebPageController {
 				return "contact-logged";
 			}
 		}
-
-		
+		planModify.setId(plan.getId());
+		planModify.setCategory(plan.getCategory());
+		planModify.setTitle(plan.getTitle());
+		planModify.setPlace(plan.getPlace());
+		planModify.setAddress(plan.getAddress());
+		planModify.setDate(plan.getDate());
+		planModify.setDescription(plan.getDescription());
 		planModify.setImagePlanTitle(fileName);
-		planRepository.save(plan);
-		
-		return "SuccessfulPlan";
+		planModify.setAuthor(userComponent.getLoggedUser());
+		planRepository.save(planModify);
+		model.addAttribute("id", planModify.getAuthor().getId());
+		model.addAttribute("planes", planModify);
+		model.addAttribute("idPlan", planModify.getId());
+		model.addAttribute("title", planModify.getTitle());
+		return "SuccessfulChangePlan";
 	}
 
 }
