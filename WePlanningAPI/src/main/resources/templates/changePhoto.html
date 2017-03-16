@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Perfil</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/CSS/bootstrap.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+</head>
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
+	rel="stylesheet">
+<body>
+	<div id="wrap">
+		<div id="main" class="container clear-top">
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
+				role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#navbar-collapse1">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/logged"> <img
+							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse " id="navbar-collapse1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/logged/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="/logged/contact">Contacta</a></li>
+							<li class="dropdown user-dropdown"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"><i
+									class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
+								<ul class="dropdown-menu dropdown-tc">
+									<li>
+										<center>
+											<a href="/logged/user/{{idConectado}}">Accede a tu perfil</a>
+										</center>
+									</li>
+									<li></li>
+									<li class="divider"></li>
+									<li>
+										<center>
+											<a href="/newPlan">Sube tu plan</a>
+										</center>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<form action="/logout">
+													<input type="submit" class="btn btn-default"
+														value="Cerrar Sesión">
+												</form>
+											</div>
+										</div>
+					</div>
+					</li>
+					</ul>
+					</li>
+					</ul>
+				<!-- /.navbar-collapse -->
+				</div>
+		<!-- /.container -->
+		</nav>
+			<!--register row -->
+			<div class="container">
+			<br/>
+			<br/>
+			<center>
+			<form class="form-horizontal" method="post" action="/logged/{{id}}/profilePhoto" enctype="multipart/form-data">
+				<div class="form-groupnw">
+										<label for="ejemplo_archivo_1">Adjuntar su nueva imagen de perfil</label> <input 
+											type="file" id="ejemplo_archivo_1" name='file' required>
+										<p class="help-block">Adjunte una fotografía para su perfil</p>
+										
+									</div>
+									<div class="form-groupnw " >
+										<button type="submit"
+											class="btn btn-primary btn-lg btn-block login-button">Enviar</button>
+									</div>
+									</form>
+									</center>
+		</div>
+	
+	<!--/register row -->
+	<!--Footer-->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<center>
+					<div class="col-md-4 col-sm-4 col-xs-12" id="logo">
+						<img class="img-responsive" src="/IMG/Logo.png" />
+					</div>
+				</center>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+					<center>
+						<a href="https://www.facebook.com/"
+							class="fa fa-facebook-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://twitter.com"
+							class="fa fa-twitter-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://www.instagram.com"
+							class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+					</center>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="links">
+					<center>
+						<a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a
+							href="/logged/contact" id="contacto">Contacto<br></a>
+					</center>
+				</div>
+			</div>
+			<div class="row">
+				<div id="copyright">
+					<center>
+						<hr id="lineaCopyright">
+						<div class="col-md-12">WePlanning &copy Copyright 2017</div>
+					</center>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--FooterEnd-->
+	<script src="/JS/jquery.js"></script>
+	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/morePlansUserLogged.js"></script>
+</body>
+</html>

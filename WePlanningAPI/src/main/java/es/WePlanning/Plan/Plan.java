@@ -56,7 +56,7 @@ public class Plan {
 	@JsonView(BasicAtt.class)
 	private String imagePlanTitle;
 	
-	@JsonView(Comment.class)
+	@JsonView(CommentAtt.class)
 	@ManyToMany //(fetch = FetchType.EAGER)
 	private List<Comment> comments;
 	
