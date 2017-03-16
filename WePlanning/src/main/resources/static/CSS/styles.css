@@ -384,7 +384,7 @@ body {
 
 /* ----------- Register -------- */
 
-#busquedaprovincia {
+#busquedaprovincia, #busquedacategoria {
     height: 30px;
     width: 100%;
 }
