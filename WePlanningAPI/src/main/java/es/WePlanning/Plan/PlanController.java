@@ -34,7 +34,7 @@ public class PlanController {
 	@Autowired
 	private ContactRepository contactRepository;
 
-	public interface PlanView extends Plan.BasicAtt, Plan.CommentAtt, Plan.UserAtt, User.BasicAtt, Comment.BasicAttr{}
+	public interface PlanView extends Plan.BasicAtt, Plan.CommentAtt, Plan.UserAtt, User.BasicAtt, Comment.BasicAtt{}
 	
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/plans", method= RequestMethod.GET)

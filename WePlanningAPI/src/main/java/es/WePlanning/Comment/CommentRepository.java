@@ -10,6 +10,9 @@ import org.springframework.data.repository.query.Param;
 
 public interface CommentRepository extends JpaRepository<Comment, Long>{
 	
+	List <Comment> findByAuthor(String id);
+	Comment findById(long id);
+	
 	@Query("SELECT c FROM Comment c WHERE c IN :u")
 	Page<Comment> findComments(@Param("u")List<Comment> u,Pageable page);
 }

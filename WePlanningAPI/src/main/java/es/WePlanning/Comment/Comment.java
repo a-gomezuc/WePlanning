@@ -15,21 +15,22 @@ import es.WePlanning.User.User;
 @Entity
 public class Comment {
 	
-	public interface BasicAttr {}
+	public interface BasicAtt {}
+	public interface UserAtt{}
 	
-	@JsonView(BasicAttr.class)
+	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
 	
-	@JsonView(BasicAttr.class)
+	@JsonView(UserAtt.class)
 	@OneToOne
 	private User author;
 	
-	@JsonView(BasicAttr.class)
+	@JsonView(BasicAtt.class)
 	private String date;
 	
-	@JsonView(BasicAttr.class)
+	@JsonView(BasicAtt.class)
 	private String content;
 	
 	public Comment(){
