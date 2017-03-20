@@ -63,6 +63,27 @@ public class PlanController {
 		}
 	}
 	@JsonView(PlanView.class)
+	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.PUT)
+	public ResponseEntity<Plan> planIndividualModify(@PathVariable long id, @RequestBody Plan planModified){
+		Plan plan= planRepository.findOne(id);
+		User userConnected=userRepository.findById(userComponent.getLoggedUser().getId());
+		if (plan != null) {
+			if (plan.getAuthor().getId().equals(userConnected.getId())){
+				planModified.setId(id);
+				planModified.setAuthor(userConnected);
+				planModified.setComments(plan.getComments());
+				planModified.setAsistents(plan.getAsistents());
+				planRepository.save(planModified);
+				return new ResponseEntity<>(plan, HttpStatus.OK);
+			}
+			else{
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}			
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}/assist", method= RequestMethod.POST)
 	public ResponseEntity<Plan> planIndividualAssist(@PathVariable long id){
 		Plan plan= planRepository.findOne(id);

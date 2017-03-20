@@ -37,8 +37,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/addPlan").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/assist").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/comment").hasAnyRole("USER");
+
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/user/**").hasAnyRole("USER");
 
+        http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/plans/{id}").hasAnyRole("USER");
         http.authorizeRequests().anyRequest().permitAll();
         
         // Login form
