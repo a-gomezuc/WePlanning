@@ -16,11 +16,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
 
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
 import es.WePlanning.Plan.Plan;
 import es.WePlanning.Plan.PlanRepository;
+import es.WePlanning.Security.LoginController;
 
 @RestController
 @RequestMapping("/api/user")
@@ -64,20 +66,26 @@ public class UserController {
 	@JsonView(UserAdd.class)
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public User addUser(@RequestBody User user) {
-		user.setRoles(Arrays.asList("ROLE_USER"));
-		user.setProfilePhotoTitle("profiledefault.jpg");
-		userRepository.save(user);
-		return user;
+	public ResponseEntity<User> addUser(@RequestBody User user) {
+		User userSearch= userRepository.findById(user.getId());
+		if(userSearch==null){
+			user.setRoles(Arrays.asList("ROLE_USER"));
+			user.setProfilePhotoTitle("profiledefault.jpg");
+			userRepository.save(user);
+			return new ResponseEntity<>(user,HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
 	}
 
 	@JsonView(User.BasicAtt.class)
 	@RequestMapping(value = "/modifyProfile/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<User> modifyProfile(@PathVariable String id, @RequestBody User userModify) {
-			//Falta comprobar si el usuario es el logueado
-			if (userRepository.findById(id) != null) {
-				User user = userRepository.findById(id);
 
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		if (user.getId().equals(id)) {
+
+			if (userRepository.findById(id) != null) {
 				user.setAge(userModify.getAge());
 				user.setUname(userModify.getUname());
 				user.setProvince(userModify.getProvince());
@@ -89,22 +97,29 @@ public class UserController {
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 
 	@JsonView(UserView.class)
 	@RequestMapping(value = "/{id}/assistPlan/{idPlan}", method = RequestMethod.PUT)
 	public ResponseEntity<Plan> asistPlan(@PathVariable String id, @PathVariable long idPlan) {
-			//Falta comprobar si el usuario es el logueado
-			User user = userRepository.findById(id);
-			Plan plan = planRepository.findById(idPlan);
-			if ((user != null) && (plan != null)) {
-				plan.getAsistents().add(user);
-				planRepository.save(plan);
-				userRepository.save(user);
-				return new ResponseEntity<>(plan, HttpStatus.OK);
-			} else {
-				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-			}
+		// Falta comprobar si el usuario es el logueado
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		if(user.getId().equals(id)){
+		Plan plan = planRepository.findById(idPlan);
+		if ((user != null) && (plan != null)) {
+			plan.getAsistents().add(user);
+			planRepository.save(plan);
+			userRepository.save(user);
+			return new ResponseEntity<>(plan, HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		}else{
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
 	}
 
 }
