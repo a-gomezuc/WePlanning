@@ -26,7 +26,7 @@ public class User {
 	
 	public interface BasicAtt{}
 	public interface PlansAtt{}
-	public interface FriendsAtt{}
+	public interface FriendsAtt extends BasicAtt{}
 	public interface RolesAtt{}
 	
 	@JsonView(BasicAtt.class)
