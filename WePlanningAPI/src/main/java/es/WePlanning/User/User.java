@@ -28,6 +28,7 @@ public class User {
 	public interface PlansAtt{}
 	public interface FriendsAtt extends BasicAtt{}
 	public interface RolesAtt{}
+	public interface passwordAtt{}
 	
 	@JsonView(BasicAtt.class)
 	@Id
@@ -56,7 +57,7 @@ public class User {
 	@JsonView(BasicAtt.class)
 	private String uemail;
 	
-	@JsonIgnore
+	@JsonView(passwordAtt.class)
 	private String passwordHash;
 	
 	@JsonView(BasicAtt.class)
@@ -174,7 +175,7 @@ public class User {
 	}
 
 	public void setPasswordHash(String passwordHash) {
-		this.passwordHash = passwordHash;
+		this.passwordHash = new BCryptPasswordEncoder().encode(passwordHash);
 	}
 
 	public List<String> getRoles() {

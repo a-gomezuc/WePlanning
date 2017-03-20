@@ -12,7 +12,7 @@ import es.WePlanning.User.User;
 
 public interface PlanRepository extends JpaRepository<Plan, Long>{
 	
-	List<Plan> findById(long id);
+	Plan findById(long id);
 	List<Plan> findByTitleIgnoreCase(String title);
 	List<Plan> findByCategoryIgnoreCase(String category);
 	List<Plan> findByPlaceIgnoreCase(String place);
