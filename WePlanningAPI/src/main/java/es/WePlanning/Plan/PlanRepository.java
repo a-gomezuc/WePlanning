@@ -24,4 +24,7 @@ public interface PlanRepository extends JpaRepository<Plan, Long>{
 	
 	@Query("SELECT p FROM Plan p WHERE p.author IN :u")
 	Page<Plan> findFriendsPlans(@Param("u")List<User> u,Pageable page);
+	
+	@Query("SELECT p FROM Plan p WHERE p.author IN :u")
+	List<Plan> findFriendsPlansNoPage(@Param("u")List<User> u);
 }

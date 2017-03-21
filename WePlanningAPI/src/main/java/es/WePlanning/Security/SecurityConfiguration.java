@@ -35,13 +35,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/newPlan").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/createPlan").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/addPlan").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers("/api/viewFriendsPlans").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/assist").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/comment").hasAnyRole("USER");
-
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/user/**").hasAnyRole("USER");
-
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/plans/{id}").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/comments/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/plans/{id}").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/plans/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().anyRequest().permitAll();
         
         // Login form
@@ -55,7 +56,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.logout().logoutUrl("/logout");
         http.logout().logoutSuccessUrl("/");
     }
-
     @Override
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {

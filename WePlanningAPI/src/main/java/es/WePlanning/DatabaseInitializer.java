@@ -32,6 +32,8 @@ public class DatabaseInitializer implements CommandLineRunner{
 
 	@PostConstruct
 	public void init() {
+		User admin = new User(false, "admin", "Administrador", "del Sistema", "Planning City", 0, "admin@gmail.com",
+				"adminpass", "ROLE_USER","ROLE_ADMIN");
 		User miguelito = new User(false, "miguel99", "Miguel", "Muñoz", "Vitoria", 25, "miguelon@gmail.com",
 				"miContraseñaM", "ROLE_USER");
 		User joselito = new User(false, "joselito_95", "José", "López", "Madrid", 25, "jose@gmail.com", "mmmm",
@@ -40,6 +42,8 @@ public class DatabaseInitializer implements CommandLineRunner{
 				"guillermitonavitas@gmail.com", "mmm", "ROLE_USER");
 		User desnet = new User(true, "desnet", "DesNet", "Company", "Madrid", 1, "desnet@gmail.com", "perrete",
 				"ROLE_USER");
+		admin.setProfilePhotoTitle("profiledefault.jpg");
+		userRepository.save(admin);
 		miguelito.setProfilePhotoTitle("profiledefault.jpg");
 		userRepository.save(miguelito);
 		userRepository.save(guillermito);

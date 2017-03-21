@@ -1,10 +1,14 @@
 package es.WePlanning.Plan;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -44,6 +48,20 @@ public class PlanController {
 	public List<Plan> plans(){
 		return planRepository.findAll();
 	}
+	
+	@JsonView(PlanView.class)
+	@RequestMapping(value="/api/viewFriendsPlans", method= RequestMethod.GET)
+	public List<Plan> plansFriends(){
+		User u= userRepository.findById(userComponent.getLoggedUser().getId());
+		if(!u.getFriends().isEmpty()){
+		List<Plan> plans=planRepository.findFriendsPlansNoPage(u.getFriends());
+		return plans;
+		}
+		else{
+			return new ArrayList<>();
+		}
+	}
+	
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/addPlan", method= RequestMethod.POST)
 	public ResponseEntity<Plan> nuevoPlan(@RequestBody Plan plan) {
@@ -83,6 +101,39 @@ public class PlanController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+	
+	@JsonView(PlanView.class)
+	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.DELETE)
+	public ResponseEntity<Plan> deletePlan(@PathVariable long id){
+		Plan plan= planRepository.findById(id);
+		User userConnected=userRepository.findById(userComponent.getLoggedUser().getId());
+		if (plan != null) {
+			if (plan.getAuthor().getId().equals(userConnected.getId())){
+				planRepository.delete(plan);
+				return new ResponseEntity<>(null, HttpStatus.OK);
+			}
+			else{
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+		}
+			else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@JsonView(PlanView.class)
+	@RequestMapping(value="/api/admin/plans/{id}", method= RequestMethod.DELETE)
+	public ResponseEntity<Plan> deletePlanAdmin(@PathVariable long id){
+		Plan plan= planRepository.findById(id);
+		if (plan != null) {
+				planRepository.delete(plan);
+				return new ResponseEntity<>(null, HttpStatus.OK);
+		}
+			else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+	}
+	
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}/assist", method= RequestMethod.POST)
 	public ResponseEntity<Plan> planIndividualAssist(@PathVariable long id){
