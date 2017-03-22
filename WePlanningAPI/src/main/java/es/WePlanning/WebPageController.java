@@ -50,6 +50,7 @@ import es.WePlanning.Plan.PlanRepository;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
+import es.WePlanning.User.UserService;
 
 @Controller
 public class WebPageController {
@@ -64,8 +65,9 @@ public class WebPageController {
 	private UserComponent userComponent;
 	@Autowired
 	private ContactRepository contactRepository;
+	@Autowired
+	private UserService userService;
 
-	
 	public WebPageController() {
 	}
 
@@ -92,10 +94,11 @@ public class WebPageController {
 		return "plansListLogged";
 
 	}
+
 	@RequestMapping("/morePlansFriendsLogged")
 	public String moreStartFriendsLogged(Model model, @RequestParam int page) {
-		User u= userRepository.findById(userComponent.getLoggedUser().getId());
-		Page<Plan> userplansPage = planRepository.findFriendsPlans(u.getFriends(),new PageRequest(page,10));
+		User u = userRepository.findById(userComponent.getLoggedUser().getId());
+		Page<Plan> userplansPage = planRepository.findFriendsPlans(u.getFriends(), new PageRequest(page, 10));
 		model.addAttribute("planes", userplansPage);
 		return "plansListLogged";
 
@@ -116,31 +119,33 @@ public class WebPageController {
 		return "plansListUserLogged";
 
 	}
+
 	@RequestMapping("/moreFriends")
 	public String moreFriends(Model model, @RequestParam int page, @RequestParam String id) {
-		User user= userRepository.findById(id);
+		User user = userRepository.findById(id);
 		Page<User> friends = userRepository.findUsers(user.getFriends(), new PageRequest(page, 10));
 		model.addAttribute("friendsUser", friends);
 		return "friendsList";
 
 	}
+
 	@RequestMapping("/moreFriendsLogged")
 	public String moreFriendsLogged(Model model, @RequestParam int page, @RequestParam String id) {
-		User user= userRepository.findById(id);
+		User user = userRepository.findById(id);
 		Page<User> friends = userRepository.findUsers(user.getFriends(), new PageRequest(page, 1));
 		model.addAttribute("friendsUser", friends);
 		return "friendsLoggedList";
 
 	}
+
 	@RequestMapping("/moreAssistents")
 	public String moreAssistents(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan=planRepository.findOne(id);
-		if(!plan.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 1));
-		model.addAttribute("assistentsPlan",assistents);
-		}
-		else{
-			model.addAttribute("assistentsPlan",false);
+		Plan plan = planRepository.findOne(id);
+		if (!plan.getAsistents().isEmpty()) {
+			Page<User> assistents = userRepository.findUsers(plan.getAsistents(), new PageRequest(page, 1));
+			model.addAttribute("assistentsPlan", assistents);
+		} else {
+			model.addAttribute("assistentsPlan", false);
 		}
 		return "assistentList";
 
@@ -148,47 +153,45 @@ public class WebPageController {
 
 	@RequestMapping("/moreAssistentsLogged")
 	public String moreAssistentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan=planRepository.findOne(id);
-		if(!plan.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(plan.getAsistents(),new PageRequest(page, 1));
-		model.addAttribute("assistentsPlan",assistents);
-		}
-		else{
-			model.addAttribute("assistentsPlan",false);
+		Plan plan = planRepository.findOne(id);
+		if (!plan.getAsistents().isEmpty()) {
+			Page<User> assistents = userRepository.findUsers(plan.getAsistents(), new PageRequest(page, 1));
+			model.addAttribute("assistentsPlan", assistents);
+		} else {
+			model.addAttribute("assistentsPlan", false);
 		}
 		return "assistentListLogged";
 
 	}
-	
-	@RequestMapping ("/moreUsersSearch")
-		public String moreUsersSearch(Model model, @RequestParam int page) {
-			Page<User> users = userRepository.findAll(new PageRequest(page,1));
-			model.addAttribute("AllUsers", users);
-			return "userSearchList";
-		}
-		
+
+	@RequestMapping("/moreUsersSearch")
+	public String moreUsersSearch(Model model, @RequestParam int page) {
+		Page<User> users = userRepository.findAll(new PageRequest(page, 1));
+		model.addAttribute("AllUsers", users);
+		return "userSearchList";
+	}
+
 	@RequestMapping("/moreComments")
 	public String moreComments(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan=planRepository.findOne(id);
-		if(!plan.getComments().isEmpty()){
-		Page<Comment> comments = commentRepository.findComments(plan.getComments(),new PageRequest(page, 1));
-		model.addAttribute("commentsPlan",comments);
-		}
-		else{
-			model.addAttribute("commentsPlan",false);
+		Plan plan = planRepository.findOne(id);
+		if (!plan.getComments().isEmpty()) {
+			Page<Comment> comments = commentRepository.findComments(plan.getComments(), new PageRequest(page, 1));
+			model.addAttribute("commentsPlan", comments);
+		} else {
+			model.addAttribute("commentsPlan", false);
 		}
 		return "commentList";
 
 	}
+
 	@RequestMapping("/moreCommentsLogged")
 	public String moreCommentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan=planRepository.findOne(id);
-		if(!plan.getComments().isEmpty()){
-		Page<Comment> comments = commentRepository.findComments(plan.getComments(),new PageRequest(page, 1));
-		model.addAttribute("commentsPlan",comments);
-		}
-		else{
-			model.addAttribute("commentsPlan",false);
+		Plan plan = planRepository.findOne(id);
+		if (!plan.getComments().isEmpty()) {
+			Page<Comment> comments = commentRepository.findComments(plan.getComments(), new PageRequest(page, 1));
+			model.addAttribute("commentsPlan", comments);
+		} else {
+			model.addAttribute("commentsPlan", false);
 		}
 		return "commentListLogged";
 
@@ -200,22 +203,20 @@ public class WebPageController {
 		// model.addAttribute("planes", planes);
 		// model.addAttribute("size", planes.getSize() + 10);
 		// model.addAttribute("showButton", !planes.isLast());
-		/*User newUser = userRepository.findById(userComponent.getLoggedUser().getId());
-		List<Plan> userplans = new ArrayList<>();
-		List<User> friends = newUser.getFriends();
-		for (User u : friends) {
-			for (Plan p : u.getPlans()) {
-				userplans.add(p);
-			}
-		}*/
-		User u= userRepository.findById(userComponent.getLoggedUser().getId());
-		if(!u.getFriends().isEmpty()){
-		Page<Plan> userplansPage = planRepository.findFriendsPlans(u.getFriends(),new PageRequest(0,10));
-		model.addAttribute("userPlans", userplansPage);
-		}
-		else{
-			model.addAttribute("userPlans",false);
-			model.addAttribute("noPlanesFriends",true);
+		/*
+		 * User newUser =
+		 * userRepository.findById(userComponent.getLoggedUser().getId());
+		 * List<Plan> userplans = new ArrayList<>(); List<User> friends =
+		 * newUser.getFriends(); for (User u : friends) { for (Plan p :
+		 * u.getPlans()) { userplans.add(p); } }
+		 */
+		User u = userRepository.findById(userComponent.getLoggedUser().getId());
+		if (!u.getFriends().isEmpty()) {
+			Page<Plan> userplansPage = planRepository.findFriendsPlans(u.getFriends(), new PageRequest(0, 10));
+			model.addAttribute("userPlans", userplansPage);
+		} else {
+			model.addAttribute("userPlans", false);
+			model.addAttribute("noPlanesFriends", true);
 		}
 		Page<Plan> plans = planRepository.findAll(new PageRequest(0, 10));
 		model.addAttribute("planes", plans);
@@ -232,21 +233,19 @@ public class WebPageController {
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
 
-		if(!planActual.getAsistents().isEmpty()){
-			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 1));
-			model.addAttribute("assistentsPlan",assistents);
-			}
-			else{
-				model.addAttribute("assistentsPlan",false);
-			}
-		if(!planActual.getComments().isEmpty()){
-			Page<Comment> comments = commentRepository.findComments(planActual.getComments(),new PageRequest(0, 1));
-			model.addAttribute("commentsPlan",comments);
-			}
-			else{
-				model.addAttribute("commentsPlan",false);
-				model.addAttribute("noExistComment", true);
-			}
+		if (!planActual.getAsistents().isEmpty()) {
+			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(), new PageRequest(0, 1));
+			model.addAttribute("assistentsPlan", assistents);
+		} else {
+			model.addAttribute("assistentsPlan", false);
+		}
+		if (!planActual.getComments().isEmpty()) {
+			Page<Comment> comments = commentRepository.findComments(planActual.getComments(), new PageRequest(0, 1));
+			model.addAttribute("commentsPlan", comments);
+		} else {
+			model.addAttribute("commentsPlan", false);
+			model.addAttribute("noExistComment", true);
+		}
 		model.addAttribute("noExistComment", noExistComment);
 		model.addAttribute("numAsistents", asistentes);
 		model.addAttribute("plan", planActual);
@@ -266,21 +265,19 @@ public class WebPageController {
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
 
-		if(!planActual.getAsistents().isEmpty()){
-		Page<User> assistents = userRepository.findUsers(planActual.getAsistents(),new PageRequest(0, 1));
-		model.addAttribute("assistentsPlan",assistents);
+		if (!planActual.getAsistents().isEmpty()) {
+			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(), new PageRequest(0, 1));
+			model.addAttribute("assistentsPlan", assistents);
+		} else {
+			model.addAttribute("assistentsPlan", false);
 		}
-		else{
-			model.addAttribute("assistentsPlan",false);
+		if (!planActual.getComments().isEmpty()) {
+			Page<Comment> comments = commentRepository.findComments(planActual.getComments(), new PageRequest(0, 1));
+			model.addAttribute("commentsPlan", comments);
+		} else {
+			model.addAttribute("commentsPlan", false);
+			model.addAttribute("noExistComment", true);
 		}
-		if(!planActual.getComments().isEmpty()){
-			Page<Comment> comments = commentRepository.findComments(planActual.getComments(),new PageRequest(0, 1));
-			model.addAttribute("commentsPlan",comments);
-			}
-			else{
-				model.addAttribute("commentsPlan",false);
-				model.addAttribute("noExistComment", true);
-			}
 
 		model.addAttribute("noExistComment", noExistComment);
 		model.addAttribute("numAsistents", asistentes);
@@ -294,12 +291,12 @@ public class WebPageController {
 	public String addComments(Model model, @PathVariable long id, String cont) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		Plan plan = planRepository.findOne(id);
-		
-		/*Date*/
+
+		/* Date */
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		Date date = new Date();
 		Calendar actualDate = Calendar.getInstance();
-		/*/Date*/
+		/* /Date */
 		Comment comment = new Comment(format.format(date), cont);
 		comment.setAuthor(userComponent.getLoggedUser());
 		commentRepository.save(comment);
@@ -322,11 +319,10 @@ public class WebPageController {
 	@RequestMapping("/user/{id}")
 	public String retUser(Model model, @PathVariable String id) {
 		User user = userRepository.findById(id);
-		model.addAttribute("user",user);
-		if(!user.getFriends().isEmpty()){
-		model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(),new PageRequest(0,10)));
-		}
-		else{
+		model.addAttribute("user", user);
+		if (!user.getFriends().isEmpty()) {
+			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(), new PageRequest(0, 10)));
+		} else {
 			model.addAttribute("friendsUser", false);
 		}
 		model.addAttribute("plansUser", planRepository.findByAuthorId(id, new PageRequest(0, 10)));
@@ -342,20 +338,19 @@ public class WebPageController {
 		User userlog = userRepository.findById(userComponent.getLoggedUser().getId());
 		User user = userRepository.findById(id);
 		boolean noSponsor = true;
-		if(userlog.isSponsor()){
-			noSponsor=false;
+		if (userlog.isSponsor()) {
+			noSponsor = false;
 		}
-		if(!user.getFriends().isEmpty()){
-			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(),new PageRequest(0,1)));
-			}
-			else{
-				model.addAttribute("friendsUser", false);
-			}
+		if (!user.getFriends().isEmpty()) {
+			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(), new PageRequest(0, 1)));
+		} else {
+			model.addAttribute("friendsUser", false);
+		}
 		model.addAttribute("noSponsor", noSponsor);
 		model.addAttribute("user", user);
 		model.addAttribute("plansUser", planRepository.findByAuthorId(id, new PageRequest(0, 10)));
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("AllUsers", userRepository.findAll(new PageRequest(0,1)));
+		model.addAttribute("AllUsers", userRepository.findAll(new PageRequest(0, 1)));
 		boolean noFriends = !(userlog.getFriends().contains(user));
 		boolean yesFriends = !noFriends;
 
@@ -384,7 +379,7 @@ public class WebPageController {
 		user.getFriends().add(friend);
 		userRepository.save(user);
 
-		if(friend.isSponsor()){
+		if (friend.isSponsor()) {
 			friend.getFriends().add(user);
 			userRepository.save(friend);
 			return "successfulSponsor";
@@ -400,12 +395,12 @@ public class WebPageController {
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		User friend = userRepository.findById(id);
 		user.getFriends().remove(friend);
-		if (friend.getFriends().contains(user)){
+		if (friend.getFriends().contains(user)) {
 			friend.getFriends().remove(user);
-			}
+		}
 		userRepository.save(user);
 		userRepository.save(friend);
-		if(friend.isSponsor()){
+		if (friend.isSponsor()) {
 			return "successfulRemoveSponsor";
 		} else {
 
@@ -441,6 +436,7 @@ public class WebPageController {
 
 		return "SuccesfulContact";
 	}
+
 	@RequestMapping("/logged/registerContact")
 	public String registercontactLogged(String C_FirstName, String C_LastName, String C_Company, String C_BusPhone,
 			String C_EmailAddress, String description) {
@@ -471,15 +467,15 @@ public class WebPageController {
 
 	}
 
-	@RequestMapping(value="/registerUser",  method = RequestMethod.POST)
-	public String registerUser (Model model, boolean sponsorCheckbox, String name, String surname, int age,
-			String province, String username, String email, String pass){
-		if(userRepository.findById(username)==null){
-			User user =new User(sponsorCheckbox,username ,name, surname ,province, age, email, pass, "ROLE_USER");
+	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
+	public String registerUser(Model model, boolean sponsorCheckbox, String name, String surname, int age,
+			String province, String username, String email, String pass) {
+		if (userRepository.findById(username) == null) {
+			User user = new User(sponsorCheckbox, username, name, surname, province, age, email, pass, "ROLE_USER");
 			userRepository.save(user);
 			return "SuccesfulRegister";
-		}else{
-			model.addAttribute("userName",username);
+		} else {
+			model.addAttribute("userName", username);
 			return "usernameNotAvailable";
 		}
 	}
@@ -492,14 +488,14 @@ public class WebPageController {
 	}
 
 	@RequestMapping("/createPlan")
-	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file){
-		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		User user=userRepository.findById(userComponent.getLoggedUser().getId());
+	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file) {
+		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
-		int cod =rnd.nextInt(1000000);
-		String fileName = cod+  user.getId() + user.getPlans().size() +  ".jpg";
-		
+		int cod = rnd.nextInt(1000000);
+		String fileName = cod + user.getId() + user.getPlans().size() + ".jpg";
+
 		if (!file.isEmpty()) {
 			try {
 
@@ -527,12 +523,13 @@ public class WebPageController {
 
 		return "SuccessfulPlan";
 	}
+
 	@RequestMapping("/image/{fileName}")
-	public void handleFileDownload(@PathVariable String fileName, HttpServletResponse res) throws FileNotFoundException, IOException {
+	public void handleFileDownload(@PathVariable String fileName, HttpServletResponse res)
+			throws FileNotFoundException, IOException {
 
-		String filePath = "src/main/resources/static/planImages/"  + fileName + ".jpg";
+		/*String filePath = "src/main/resources/static/planImages/" + fileName + ".jpg";
 
-		
 		File file = new File(filePath);
 
 		if (file.exists()) {
@@ -541,8 +538,10 @@ public class WebPageController {
 			FileCopyUtils.copy(new FileInputStream(file), res.getOutputStream());
 		} else {
 			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
-		}
+		}*/
+		userService.getImg().handleFileDownload(fileName, res);
 	}
+
 	@RequestMapping("/logged/user/{id}/searchUsers")
 	public String searchAnUser(Model model, @PathVariable String id, String usearch, String filter) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
@@ -712,7 +711,7 @@ public class WebPageController {
 	@RequestMapping("/logged/change/{id}")
 	public String change(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("user",userRepository.findById(userComponent.getLoggedUser().getId()));
+		model.addAttribute("user", userRepository.findById(userComponent.getLoggedUser().getId()));
 		return "changeInfo";
 
 	}
@@ -731,19 +730,21 @@ public class WebPageController {
 		return "SuccesfulChangeInfo";
 
 	}
+
 	@RequestMapping("/logged/{id}/changePhoto")
 	public String photoModifier(Model model, @PathVariable String id) {
-		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		
+		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
+
 		return "changePhoto";
 
 	}
-	
+
 	@RequestMapping(value = "/logged/{id}/profilePhoto", method = RequestMethod.POST)
 	public String changePhoto(Model model, @PathVariable String id, @RequestParam("file") MultipartFile file){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		User user=userRepository.findById(userComponent.getLoggedUser().getId());
-		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
+		
+		/*String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 
 		String fileName = "profile"+  user.getId()  +  ".jpg";
 		
@@ -762,17 +763,23 @@ public class WebPageController {
 
 				return "profileHTML-logged";
 			}
+		}*/
+		
+		boolean changed = userService.getImg().changePhoto(id, file);
+		if(changed){
+			user.setProfilePhotoTitle(userService.getImg().getFileName());
+			userRepository.save(user);
+			model.addAttribute("user",user);
+			return "SuccessfulChangePhoto";
+		}else{
+			return "profileHTML-logged";
 		}
-		user.setProfilePhotoTitle(fileName);
-		userRepository.save(user);
-		model.addAttribute("user",user);
-		return "SuccessfulChangePhoto";
 	}
-	
+
 	@RequestMapping("/logged/changeS/{id}")
 	public String changeSponsor(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("user",userRepository.findById(userComponent.getLoggedUser().getId()));
+		model.addAttribute("user", userRepository.findById(userComponent.getLoggedUser().getId()));
 		return "changeInfoSponsor";
 
 	}
@@ -788,30 +795,32 @@ public class WebPageController {
 		userRepository.save(usuario);
 		return "SuccesfulChangeInfo";
 	}
+
 	@RequestMapping("/logged/modifyPlan/{id}")
-	public String modifyPlan(Model model, @PathVariable long id){
-		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+	public String modifyPlan(Model model, @PathVariable long id) {
+		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		Plan plan = planRepository.findOne(id);
-		if((userComponent.getLoggedUser().getId()).equals(plan.getAuthor().getId())){
-			model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		if ((userComponent.getLoggedUser().getId()).equals(plan.getAuthor().getId())) {
+			model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 			model.addAttribute("plan", plan);
 			return "modifyPlan";
-		}else{
-			model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+		} else {
+			model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 			return "deniedChangePlanLogged";
 		}
 	}
-	@RequestMapping(value="/logged/modifiedPlan/{id}", method=RequestMethod.POST)
-	public String modifiedPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file){
-		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		User user=userRepository.findById(userComponent.getLoggedUser().getId());
+
+	@RequestMapping(value = "/logged/modifiedPlan/{id}", method = RequestMethod.POST)
+	public String modifiedPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file) {
+		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
+		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		Plan planModify = planRepository.findOne(plan.getId());
-		
+
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
-		int cod =rnd.nextInt(1000000);
-		String fileName = cod+  user.getId() + user.getPlans().size() +  ".jpg";
-		
+		int cod = rnd.nextInt(1000000);
+		String fileName = cod + user.getId() + user.getPlans().size() + ".jpg";
+
 		if (!file.isEmpty()) {
 			try {
 
@@ -824,7 +833,7 @@ public class WebPageController {
 				file.transferTo(uploadedFile);
 
 			} catch (Exception e) {
-				model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
+				model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 				return "contact-logged";
 			}
 		}

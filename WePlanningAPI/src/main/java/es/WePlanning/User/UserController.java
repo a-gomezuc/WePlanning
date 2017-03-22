@@ -1,5 +1,6 @@
 package es.WePlanning.User;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
@@ -28,17 +31,14 @@ import es.WePlanning.Security.LoginController;
 @RestController
 public class UserController {
 
-	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	@Autowired
 	private PlanRepository planRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
-	private CommentRepository commentRepository;
-	@Autowired
 	private UserComponent userComponent;
 	@Autowired
-	private ContactRepository contactRepository;
+	private UserService userService;
 
 	public interface UserView extends User.BasicAtt, User.PlansAtt, Plan.BasicAtt, User.RolesAtt {
 	}
@@ -62,41 +62,41 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
-	@JsonView (UserView.class)
-	@RequestMapping(value= "/api/user/searchByName/{name}", method =RequestMethod.GET)
-	public List<User>usersName(@PathVariable String name){
-			List <User> users=userRepository.findByUnameIgnoreCase(name);
-			if(!users.isEmpty()){
-				return users;
-			}else{
-				return new ArrayList<>();
-			}
-	}
-	
-	@JsonView (UserView.class)
-	@RequestMapping(value ="/api/user/searchByProvince/{province}", method=RequestMethod.GET)
-	public List<User> userProvince (@PathVariable String province){
-		List <User>users =userRepository.findByProvinceIgnoreCase(province);
-		if(!users.isEmpty()){
+
+	@JsonView(UserView.class)
+	@RequestMapping(value = "/api/user/searchByName/{name}", method = RequestMethod.GET)
+	public List<User> usersName(@PathVariable String name) {
+		List<User> users = userRepository.findByUnameIgnoreCase(name);
+		if (!users.isEmpty()) {
 			return users;
-		}else{
+		} else {
 			return new ArrayList<>();
 		}
-		
 	}
-	
+
+	@JsonView(UserView.class)
+	@RequestMapping(value = "/api/user/searchByProvince/{province}", method = RequestMethod.GET)
+	public List<User> userProvince(@PathVariable String province) {
+		List<User> users = userRepository.findByProvinceIgnoreCase(province);
+		if (!users.isEmpty()) {
+			return users;
+		} else {
+			return new ArrayList<>();
+		}
+
+	}
+
 	@JsonView(UserAdd.class)
 	@RequestMapping(value = "/api/user/addUser", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-		User userSearch= userRepository.findByIdIgnoreCase(user.getId());
-		if(userSearch==null){
+		User userSearch = userRepository.findByIdIgnoreCase(user.getId());
+		if (userSearch == null) {
 			user.setRoles(Arrays.asList("ROLE_USER"));
 			user.setProfilePhotoTitle("profiledefault.jpg");
 			userRepository.save(user);
-			return new ResponseEntity<>(user,HttpStatus.OK);
-		}else{
+			return new ResponseEntity<>(user, HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 	}
@@ -126,32 +126,72 @@ public class UserController {
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/api/user/{id}/assistPlan/{idPlan}", method = RequestMethod.PUT)
-	public ResponseEntity<User> asistPlan(@PathVariable String id, @PathVariable long idPlan) {
+	@RequestMapping(value = "/api/user/{id}/modifyProfilePhoto", method = RequestMethod.PUT)
+	public ResponseEntity<User> modifyProfilePhoto(@PathVariable String id, @RequestParam("file") MultipartFile file) {
+
 		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
-		if(user.getId().equals(id)){
-		Plan plan = planRepository.findById(idPlan);
-		if ((user != null) && (plan != null)) {
-			plan.getAsistents().add(user);
-			planRepository.save(plan);
-			userRepository.save(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
+		if (user.getId().equals(id)) {
+			/*String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
+			String fileName = "profile" + user.getId() + ".jpg";
+
+			if (!file.isEmpty()) {
+				try {
+
+					File filesFolder = new File(FILES_FOLDER);
+					if (!filesFolder.exists()) {
+						filesFolder.mkdirs();
+					}
+
+					File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+					file.transferTo(uploadedFile);
+
+				} catch (Exception e) {
+
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+			}*/
+			boolean changed = userService.getImg().changePhoto(id, file);
+			if(changed){
+				
+				user.setProfilePhotoTitle(userService.getImg().getFileName());
+				userRepository.save(user);
+	
+				return new ResponseEntity<User>(user, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		} else {
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}
-		}else{
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-	
+
 	@JsonView(UserView.class)
-	@RequestMapping(value="/api/admin/users/{id}", method=RequestMethod.DELETE)
-	public ResponseEntity<User>deleteUser(@PathVariable String id){
-		User user =userRepository.findByIdIgnoreCase(id);
-		if(user!=null){
+	@RequestMapping(value = "/api/user/{id}/assistPlan/{idPlan}", method = RequestMethod.PUT)
+	public ResponseEntity<User> asistPlan(@PathVariable String id, @PathVariable long idPlan) {
+		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		if (user.getId().equals(id)) {
+			Plan plan = planRepository.findById(idPlan);
+			if ((user != null) && (plan != null)) {
+				plan.getAsistents().add(user);
+				planRepository.save(plan);
+				userRepository.save(user);
+				return new ResponseEntity<>(user, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+		} else {
+			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+
+	@JsonView(UserView.class)
+	@RequestMapping(value = "/api/admin/users/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<User> deleteUser(@PathVariable String id) {
+		User user = userRepository.findByIdIgnoreCase(id);
+		if (user != null) {
 			userRepository.delete(user);
-			return new ResponseEntity<>(null,HttpStatus.OK);
-		}else{
+			return new ResponseEntity<>(null, HttpStatus.OK);
+		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
