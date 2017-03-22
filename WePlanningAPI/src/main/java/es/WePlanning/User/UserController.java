@@ -1,5 +1,6 @@
 package es.WePlanning.User;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -25,7 +26,6 @@ import es.WePlanning.Plan.PlanRepository;
 import es.WePlanning.Security.LoginController;
 
 @RestController
-@RequestMapping("/api/user")
 public class UserController {
 
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
@@ -47,27 +47,50 @@ public class UserController {
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user", method = RequestMethod.GET)
 	public List<User> users() {
 		return userRepository.findAll();
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
 	public ResponseEntity<User> usersID(@PathVariable String id) {
-		User usu = userRepository.findById(id);
+		User usu = userRepository.findByIdIgnoreCase(id);
 		if (usu != null) {
 			return new ResponseEntity<>(usu, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
+	
+	@JsonView (UserView.class)
+	@RequestMapping(value= "/api/user/searchByName/{name}", method =RequestMethod.GET)
+	public List<User>usersName(@PathVariable String name){
+			List <User> users=userRepository.findByUnameIgnoreCase(name);
+			if(!users.isEmpty()){
+				return users;
+			}else{
+				return new ArrayList<>();
+			}
+	}
+	
+	@JsonView (UserView.class)
+	@RequestMapping(value ="/api/user/searchByProvince/{province}", method=RequestMethod.GET)
+	public List<User> userProvince (@PathVariable String province){
+		List <User>users =userRepository.findByProvinceIgnoreCase(province);
+		if(!users.isEmpty()){
+			return users;
+		}else{
+			return new ArrayList<>();
+		}
+		
+	}
+	
 	@JsonView(UserAdd.class)
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/user/addUser", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-		User userSearch= userRepository.findById(user.getId());
+		User userSearch= userRepository.findByIdIgnoreCase(user.getId());
 		if(userSearch==null){
 			user.setRoles(Arrays.asList("ROLE_USER"));
 			user.setProfilePhotoTitle("profiledefault.jpg");
@@ -79,13 +102,13 @@ public class UserController {
 	}
 
 	@JsonView(User.BasicAtt.class)
-	@RequestMapping(value = "/modifyProfile/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/user/modifyProfile/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<User> modifyProfile(@PathVariable String id, @RequestBody User userModify) {
 
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		if (user.getId().equals(id)) {
 
-			if (userRepository.findById(id) != null) {
+			if (userRepository.findByIdIgnoreCase(id) != null) {
 				user.setAge(userModify.getAge());
 				user.setUname(userModify.getUname());
 				user.setProvince(userModify.getProvince());
@@ -103,22 +126,33 @@ public class UserController {
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/{id}/assistPlan/{idPlan}", method = RequestMethod.PUT)
-	public ResponseEntity<Plan> asistPlan(@PathVariable String id, @PathVariable long idPlan) {
-		// Falta comprobar si el usuario es el logueado
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+	@RequestMapping(value = "/api/user/{id}/assistPlan/{idPlan}", method = RequestMethod.PUT)
+	public ResponseEntity<User> asistPlan(@PathVariable String id, @PathVariable long idPlan) {
+		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		if(user.getId().equals(id)){
 		Plan plan = planRepository.findById(idPlan);
 		if ((user != null) && (plan != null)) {
 			plan.getAsistents().add(user);
 			planRepository.save(plan);
 			userRepository.save(user);
-			return new ResponseEntity<>(plan, HttpStatus.OK);
+			return new ResponseEntity<>(user, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 		}else{
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+	
+	@JsonView(UserView.class)
+	@RequestMapping(value="/api/admin/users/{id}", method=RequestMethod.DELETE)
+	public ResponseEntity<User>deleteUser(@PathVariable String id){
+		User user =userRepository.findByIdIgnoreCase(id);
+		if(user!=null){
+			userRepository.delete(user);
+			return new ResponseEntity<>(null,HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
