@@ -4,6 +4,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonView;
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
+import es.WePlanning.Plan.Plan;
 import es.WePlanning.Plan.PlanRepository;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
@@ -40,37 +43,70 @@ public class CommentController {
 		public interface CommentView extends Comment.BasicAtt, Comment.UserAtt, User.BasicAtt{}
 		
 		@JsonView(CommentView.class)
-		@RequestMapping(value="/comments", method= RequestMethod.GET)
-		public List<Comment> comments(Model model){
+		@RequestMapping(value="/api/comments", method= RequestMethod.GET)
+		public List<Comment> comments(){
 			return commentRepository.findAll();
 		}
-		
 		@JsonView(CommentView.class)
-		@RequestMapping(value="/comments/author/{id}", method= RequestMethod.GET)
-		public List<Comment> commentsAuthor(Model model, @PathVariable String id){
-			return commentRepository.findByAuthor(id);
-		}
-		@JsonView(CommentView.class)
-		@RequestMapping(value="/commentDelete/{id}", method= RequestMethod.DELETE)
-		public void  commentDelete(Model model, @PathVariable long id){
-			 commentRepository.delete(id);
-		}
-		
-		@JsonView(CommentView.class)
-		@RequestMapping(value="/commentPut/{id}", method= RequestMethod.PUT)
-		public Comment commentPut(Model model, @PathVariable long id, @RequestBody Comment commentModified){
-			commentModified.setId(id);
-			Comment comment = commentRepository.saveAndFlush(commentModified);
-			return commentRepository.findById(comment.getId());
+		@RequestMapping(value="/api/comments/{id}", method= RequestMethod.GET)
+		public ResponseEntity<Comment> comment(@PathVariable long id){
+			Comment comment = commentRepository.findOne(id);
+			if (comment != null) {
+				return new ResponseEntity<>(comment, HttpStatus.OK);
+			} else {
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
 		}
 		
+		
 		@JsonView(CommentView.class)
-		@RequestMapping(value="/commentPost", method= RequestMethod.POST)
-		public Comment commentPost(Model model, @RequestBody Comment newComment){
-			newComment.setId(0);
-			Comment comment = commentRepository.saveAndFlush(newComment);
-			return commentRepository.findById(comment.getId());
+		@RequestMapping(value="/api/comments/author/{id}", method= RequestMethod.GET)
+			public ResponseEntity<List<Comment>> commentByAuthor(@PathVariable String id){				
+				List <Comment> comments = commentRepository.findByAuthorId(id);
+				if (comments != null) {
+					return new ResponseEntity<>(comments, HttpStatus.OK);
+				} else {
+					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+				}
+			}
+		@JsonView(CommentView.class)
+		@RequestMapping(value="/api/comments/{id}", method= RequestMethod.PUT)
+			public ResponseEntity<Comment> commentModify(@PathVariable long id, @RequestBody Comment commentModified){				
+			User user =userRepository.findById(userComponent.getLoggedUser().getId());	
+			Comment comment = commentRepository.findOne(id);
+			if(comment!=null){
+			if(comment.getAuthor().getId().equals(user.getId())){
+				commentModified.setId(id);
+				commentModified.setAuthor(user);
+				commentRepository.save(commentModified);
+				return new ResponseEntity<>(comment, HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+			}
+			else{
+				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			}
+				
+			}
+														
+		@JsonView(CommentView.class)
+		@RequestMapping(value="api/comments/{id}", method= RequestMethod.DELETE)
+		public ResponseEntity<Comment> commentDelete(@PathVariable long id){	
+			User user =userRepository.findById(userComponent.getLoggedUser().getId());
+			Comment comment = commentRepository.findOne(id);
+			if((comment.getAuthor().getId().equals(user))&&(comment!=null)){
+				commentRepository.delete(id);
+				return new ResponseEntity<>(null,HttpStatus.OK);
+			}else{
+				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+			}
+			 
 		}
+		
+	
+		
+	
 		
 
 	}

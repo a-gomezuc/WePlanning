@@ -15,5 +15,6 @@ public interface CommentRepository extends JpaRepository<Comment, Long>{
 	
 	@Query("SELECT c FROM Comment c WHERE c IN :u")
 	Page<Comment> findComments(@Param("u")List<Comment> u,Pageable page);
+	List<Comment> findByAuthorId(String id);
 }
 
