@@ -27,14 +27,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/plan/**").permitAll();
         http.authorizeRequests().antMatchers("/aboutus").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/user/addUser").permitAll();
-        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user/**").permitAll();
+        //http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/user/addUser").permitAll();
+        //http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user/**").permitAll();
 
         // Private pages (all other pages)
         http.authorizeRequests().antMatchers("/logged/**").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/newPlan").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/createPlan").hasAnyRole("USER");
-        http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/addPlan").hasAnyRole("USER");
+        /*http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/addPlan").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/api/viewFriendsPlans").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/assist").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/comment").hasAnyRole("USER");
@@ -43,7 +43,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/comments/{id}").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/plans/{id}").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/plans/{id}").hasAnyRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/users/{id}").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/users/{id}").hasAnyRole("ADMIN");*/
         
        
 
