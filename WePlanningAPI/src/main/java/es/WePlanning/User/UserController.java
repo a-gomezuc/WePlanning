@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
 
+import es.WePlanning.ApiService;
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
 import es.WePlanning.Plan.Plan;
@@ -38,7 +39,7 @@ public class UserController {
 	@Autowired
 	private UserComponent userComponent;
 	@Autowired
-	private UserService userService;
+	private ApiService imageService;
 
 	public interface UserView extends User.BasicAtt, User.PlansAtt, Plan.BasicAtt, User.RolesAtt {
 	}
@@ -131,29 +132,11 @@ public class UserController {
 
 		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		if (user.getId().equals(id)) {
-			/*String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
-			String fileName = "profile" + user.getId() + ".jpg";
-
-			if (!file.isEmpty()) {
-				try {
-
-					File filesFolder = new File(FILES_FOLDER);
-					if (!filesFolder.exists()) {
-						filesFolder.mkdirs();
-					}
-
-					File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
-					file.transferTo(uploadedFile);
-
-				} catch (Exception e) {
-
-					return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-				}
-			}*/
-			boolean changed = userService.getImg().changePhoto(id, file);
+			
+			boolean changed = imageService.getImg().changePhoto(id, file);
 			if(changed){
 				
-				user.setProfilePhotoTitle(userService.getImg().getFileName());
+				user.setProfilePhotoTitle(imageService.getImg().getFileName());
 				userRepository.save(user);
 	
 				return new ResponseEntity<User>(user, HttpStatus.OK);

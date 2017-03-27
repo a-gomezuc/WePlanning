@@ -1,19 +1,21 @@
-package es.WePlanning.User;
+package es.WePlanning;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import es.WePlanning.User.ModuleImages;
+
 @Service
-public class UserService {
+public class ApiService {
 	
 	@Autowired
 	ModuleImages  img;
 	
-	public UserService (){
+	public ApiService (){
 		
 	}
 	
-	public UserService (ModuleImages img){
+	public ApiService (ModuleImages img){
 		this.img=img;
 	}
 

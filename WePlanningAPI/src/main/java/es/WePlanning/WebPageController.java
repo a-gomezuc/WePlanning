@@ -50,7 +50,7 @@ import es.WePlanning.Plan.PlanRepository;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
-import es.WePlanning.User.UserService;
+
 
 @Controller
 public class WebPageController {
@@ -66,7 +66,7 @@ public class WebPageController {
 	@Autowired
 	private ContactRepository contactRepository;
 	@Autowired
-	private UserService userService;
+	private ApiService imageService;
 
 	public WebPageController() {
 	}
@@ -539,7 +539,7 @@ public class WebPageController {
 		} else {
 			res.sendError(404, "File" + fileName + "(" + file.getAbsolutePath() + ") does not exist");
 		}*/
-		userService.getImg().handleFileDownload(fileName, res);
+		imageService.getImg().handleFileDownload(fileName, res);
 	}
 
 	@RequestMapping("/logged/user/{id}/searchUsers")
@@ -743,31 +743,10 @@ public class WebPageController {
 	public String changePhoto(Model model, @PathVariable String id, @RequestParam("file") MultipartFile file){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
 		User user=userRepository.findById(userComponent.getLoggedUser().getId());
-		
-		/*String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
-
-		String fileName = "profile"+  user.getId()  +  ".jpg";
-		
-		if (!file.isEmpty()) {
-			try {
-
-				File filesFolder = new File(FILES_FOLDER);
-				if (!filesFolder.exists()) {
-					filesFolder.mkdirs();
-				}
-
-				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
-				file.transferTo(uploadedFile);
-
-			} catch (Exception e) {
-
-				return "profileHTML-logged";
-			}
-		}*/
-		
-		boolean changed = userService.getImg().changePhoto(id, file);
+	
+		boolean changed = imageService.getImg().changePhoto(id, file);
 		if(changed){
-			user.setProfilePhotoTitle(userService.getImg().getFileName());
+			user.setProfilePhotoTitle(imageService.getImg().getFileName());
 			userRepository.save(user);
 			model.addAttribute("user",user);
 			return "SuccessfulChangePhoto";

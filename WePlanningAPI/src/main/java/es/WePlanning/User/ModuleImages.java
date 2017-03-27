@@ -41,7 +41,7 @@ public class ModuleImages {
 	
 	public boolean changePhoto(String id,MultipartFile file){
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
-		fileName = "profile"+  id  +  ".jpg";
+		fileName = "newPhoto"+  id  +  ".jpg";
 		
 		if (!file.isEmpty()) {
 			try {
@@ -63,6 +63,28 @@ public class ModuleImages {
 	}
 	
 	
+	public boolean changePhotoPlan(long id,MultipartFile file){
+		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
+		fileName = "profile"+  id  +  ".jpg";
+		
+		if (!file.isEmpty()) {
+			try {
+
+				File filesFolder = new File(FILES_FOLDER);
+				if (!filesFolder.exists()) {
+					filesFolder.mkdirs();
+				}
+
+				File uploadedFile = new File(filesFolder.getAbsolutePath(), fileName);
+				file.transferTo(uploadedFile);
+
+			} catch (Exception e) {
+
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	/*public String getFilePath() {
 		return filePath;
