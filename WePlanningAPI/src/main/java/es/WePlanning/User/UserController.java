@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -95,8 +96,12 @@ public class UserController {
 		if (userSearch == null) {
 			user.setRoles(Arrays.asList("ROLE_USER"));
 			user.setProfilePhotoTitle("profiledefault.jpg");
+			if(user.getPasswordHash()==null){
+				user.setPasswordHash("pass");
+			}
 			userRepository.save(user);
-			return new ResponseEntity<>(user, HttpStatus.OK);
+			User userChanged= userRepository.findById(user.getId());
+			return new ResponseEntity<>(userChanged, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
@@ -148,7 +153,7 @@ public class UserController {
 		}
 	}
 
-	@JsonView(UserView.class)
+	/*@JsonView(UserView.class)
 	@RequestMapping(value = "/api/user/{id}/assistPlan/{idPlan}", method = RequestMethod.PUT)
 	public ResponseEntity<User> asistPlan(@PathVariable String id, @PathVariable long idPlan) {
 		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
@@ -166,7 +171,7 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-
+*/
 	@JsonView(UserView.class)
 	@RequestMapping(value = "/api/admin/users/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable String id) {
