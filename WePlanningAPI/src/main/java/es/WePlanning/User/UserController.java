@@ -1,16 +1,12 @@
 package es.WePlanning.User;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,20 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
-
 import es.WePlanning.ApiService;
-import es.WePlanning.Comment.CommentRepository;
-import es.WePlanning.Contact.ContactRepository;
 import es.WePlanning.Plan.Plan;
-import es.WePlanning.Plan.PlanRepository;
-import es.WePlanning.Security.LoginController;
 
 @RestController
 public class UserController {
 
-	@Autowired
-	private PlanRepository planRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -118,8 +106,8 @@ public class UserController {
 				user.setAge(userModify.getAge());
 				user.setUname(userModify.getUname());
 				user.setProvince(userModify.getProvince());
+				user.setUemail(userModify.getUemail());
 				user.setDescription(userModify.getDescription());
-				user.setProfilePhotoTitle(userModify.getProfilePhotoTitle());
 				userRepository.save(user);
 
 				return new ResponseEntity<>(user, HttpStatus.OK);
@@ -172,6 +160,13 @@ public class UserController {
 		}
 	}
 */
+	@JsonView (User.BasicAtt.class)
+	@RequestMapping(value = "/api/user/viewFriends", method = RequestMethod.GET)
+	public List<User>viewFriends (){
+		User user =userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		return user.getFriends();
+	}
+	
 	@JsonView(UserView.class)
 	@RequestMapping(value = "/api/admin/users/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable String id) {
