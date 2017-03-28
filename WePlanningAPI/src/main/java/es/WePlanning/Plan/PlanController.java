@@ -27,6 +27,7 @@ import es.WePlanning.ApiService;
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
+import es.WePlanning.IndexController.PlanView;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
@@ -200,5 +201,32 @@ public class PlanController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
+	}
+	@JsonView(PlanView.class)
+	@RequestMapping(value="/api/plans/searchPlans/title={title}/category={category}/place={place}", method= RequestMethod.GET)
+	public List<Plan> searchplans(@PathVariable String title,@PathVariable String category,@PathVariable String place){
+		if ((title.equals("")) && (category.equals("")) && (place.equals(""))) {
+			return  planRepository.findAll();
+			
+		}else if ((!title.equals("")) && (!category.equals("")) && (place.equals(""))) {
+			return planRepository.findByTitleAndCategoryIgnoreCase(title, category);
+			
+		}else if ((title.equals("")) && (!category.equals("")) && (!place.equals(""))) {
+			return  planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
+			
+		}else if  ((!title.equals("")) && (category.equals("")) && (!place.equals(""))){
+			return planRepository.findByTitleAndPlaceIgnoreCase(title, place);
+			
+		}else if  ((!title.equals("")) && (category.equals("")) && (place.equals(""))){
+			return planRepository.findByTitleIgnoreCase(title);
+
+		}else if ((title.equals("")) && (!category.equals("")) && (place.equals(""))){
+			return planRepository.findByCategoryIgnoreCase(category);
+			
+		}else if ((title.equals("")) && (category.equals("")) && (!place.equals(""))){
+			return planRepository.findByPlaceIgnoreCase(place);
+			
+		}
+		return null;
 	}
 }

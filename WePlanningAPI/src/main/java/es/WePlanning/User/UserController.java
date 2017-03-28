@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ser.std.UUIDSerializer;
 import es.WePlanning.ApiService;
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
+import es.WePlanning.IndexController.UserView;
 import es.WePlanning.Plan.Plan;
 import es.WePlanning.Plan.PlanRepository;
 import es.WePlanning.Security.LoginController;
@@ -64,27 +65,28 @@ public class UserController {
 		}
 	}
 
+	
+	
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/api/user/searchByName/{name}", method = RequestMethod.GET)
-	public List<User> usersName(@PathVariable String name) {
-		List<User> users = userRepository.findByUnameIgnoreCase(name);
-		if (!users.isEmpty()) {
-			return users;
-		} else {
-			return new ArrayList<>();
-		}
-	}
-
-	@JsonView(UserView.class)
-	@RequestMapping(value = "/api/user/searchByProvince/{province}", method = RequestMethod.GET)
-	public List<User> userProvince(@PathVariable String province) {
-		List<User> users = userRepository.findByProvinceIgnoreCase(province);
-		if (!users.isEmpty()) {
-			return users;
-		} else {
-			return new ArrayList<>();
-		}
-
+	@RequestMapping(value="/api/user/searchUsers/filter={filter}/usearch={usearch}", method= RequestMethod.GET)
+	public List<User> searchUser(@PathVariable String filter,@PathVariable String usearch){
+		
+			if ((!usearch.equals("")) && (filter.equals("ident"))) {
+				ArrayList<User> resultados= new ArrayList<>();
+				User userId=userRepository.findByIdIgnoreCase(usearch);
+				if (userId!=null)
+				resultados.add(userId);
+				return resultados;
+				
+			}else if ((usearch.equals("")) && (filter.equals("name"))) {
+				return userRepository.findByUnameIgnoreCase(usearch);
+				
+			}else if ((usearch.equals("")) && (filter.equals("province"))) {
+				return userRepository.findByProvinceIgnoreCase(usearch);
+			}else
+				return userRepository.findAll();
+			
+	
 	}
 
 	@JsonView(UserAdd.class)
