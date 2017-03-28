@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -140,6 +141,19 @@ public class UserController {
 			}
 		} else {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+		}
+	}
+	@JsonView(UserView.class)
+	@RequestMapping(value="/api/user/addFriend/{id}", method =RequestMethod.PUT)
+	public ResponseEntity<User>addFriend (@PathVariable String id){
+		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		User friend = userRepository.findByIdIgnoreCase(id);
+		if((!user.getId().equals(id))&&(friend != null)&&(!user.isSponsor())){
+			user.getFriends().add(friend);
+			userRepository.save(user);
+			return new ResponseEntity<>(user,HttpStatus.OK);
+		}else{
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 
