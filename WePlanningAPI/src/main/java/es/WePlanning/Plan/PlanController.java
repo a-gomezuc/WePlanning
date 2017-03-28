@@ -27,7 +27,6 @@ import es.WePlanning.ApiService;
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
-import es.WePlanning.IndexController.PlanView;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
