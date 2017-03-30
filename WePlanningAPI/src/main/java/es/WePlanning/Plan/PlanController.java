@@ -7,15 +7,10 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,10 +30,16 @@ import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
 
-import es.WePlanning.User.UserController.UserView;
 @RestController
 public class PlanController {
-	private static final Logger log = LoggerFactory.getLogger(PlanController.class);
+	
+	private static final String[] provinces = {"Álava","Albacete","Alicante","Almería","Asturias","Ávila","Badajoz","Barcelona","Burgos","Cáceres",
+            "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
+            "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
+            "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
+            "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"};
+	
+	private static final String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
 	
 	@Autowired
 	private PlanRepository planRepository;
@@ -77,11 +78,6 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/addPlan", method= RequestMethod.POST)
 	public ResponseEntity<Plan> newPlan(@RequestBody Plan plan) {
-		String[] provinces = {"Álava","Albacete","Alicante","Almería","Asturias","Ávila","Badajoz","Barcelona","Burgos","Cáceres",
-		                     "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
-		                     "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
-		                     "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
-		                     "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"};
 		String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
 		
 		if(Arrays.asList(provinces).contains(plan.getPlace()) && (Arrays.asList(categories).contains(plan.getCategory()))){
@@ -109,12 +105,6 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.PUT)
 	public ResponseEntity<Plan> planIndividualModify(@PathVariable long id, @RequestBody Plan planModified){
-		String[] provinces = {"Álava","Albacete","Alicante","Almería","Asturias","Ávila","Badajoz","Barcelona","Burgos","Cáceres",
-                "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
-                "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
-                "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
-                "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"};
-		String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
 		Plan plan= planRepository.findOne(id);
 		User userConnected=userRepository.findById(userComponent.getLoggedUser().getId());
 		if (plan != null) {
@@ -183,8 +173,8 @@ public class PlanController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 
+		}
 	}
-}
 	
 	
 	@JsonView(PlanView.class)
@@ -204,9 +194,9 @@ public class PlanController {
 				return new ResponseEntity<>(plan, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-	}
+			}
 
-}
+	}
 	@JsonView(PlanView.class)
 	@RequestMapping(value = "/api/plans/{id}/modifyPlanPhoto", method = RequestMethod.PUT)
 	public ResponseEntity<Plan> modifyPlanPhoto(@PathVariable long id, @RequestParam("file") MultipartFile file) {
@@ -254,8 +244,10 @@ public class PlanController {
 			return planRepository.findByPlaceIgnoreCase(place);
 			
 		}else if (!(title.equals("")) && (!category.equals("")) && (!place.equals(""))){
-		return planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title,category,place);
-	}
+			return planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title,category,place);
+		}
 		return null;
 	}
 }
+
+
