@@ -1,6 +1,10 @@
 package es.WePlanning.Plan;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -73,10 +77,24 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/addPlan", method= RequestMethod.POST)
 	public ResponseEntity<Plan> newPlan(@RequestBody Plan plan) {
+		String[] provinces = {"Álava","Albacete","Alicante","Almería","Asturias","Ávila","Badajoz","Barcelona","Burgos","Cáceres",
+		                     "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
+		                     "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
+		                     "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
+		                     "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"};
+		String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
+		
+		if(Arrays.asList(provinces).contains(plan.getPlace()) && (Arrays.asList(categories).contains(plan.getCategory()))){
+		
 		plan.setAuthor(userComponent.getLoggedUser());
 		plan.setId(0);
+		plan.setImagePlanTitle("planDefault.jpg");
 		planRepository.save(plan);
 		return new ResponseEntity<>(plan,HttpStatus.CREATED);
+		}
+		else{
+			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+		}
 	}
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.GET)
@@ -91,10 +109,16 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.PUT)
 	public ResponseEntity<Plan> planIndividualModify(@PathVariable long id, @RequestBody Plan planModified){
+		String[] provinces = {"Álava","Albacete","Alicante","Almería","Asturias","Ávila","Badajoz","Barcelona","Burgos","Cáceres",
+                "Cádiz","Cantabria","Castellón","Ciudad Real","Córdoba","La Coruña","Cuenca","Gerona","Granada","Guadalajara",
+                "Guipúzcoa","Huelva","Huesca","Islas Baleares","Jaén","León","Lérida","Lugo","Madrid","Málaga","Murcia","Navarra",
+                "Orense","Palencia","Las Palmas","Pontevedra","La Rioja","Salamanca","Segovia","Sevilla","Soria","Tarragona",
+                "Santa Cruz de Tenerife","Teruel","Toledo","Valencia","Valladolid","Vizcaya","Zamora","Zaragoza"};
+		String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
 		Plan plan= planRepository.findOne(id);
 		User userConnected=userRepository.findById(userComponent.getLoggedUser().getId());
 		if (plan != null) {
-			if (plan.getAuthor().getId().equals(userConnected.getId())){
+			if (plan.getAuthor().getId().equals(userConnected.getId()) && Arrays.asList(provinces).contains(planModified.getPlace()) && (Arrays.asList(categories).contains(planModified.getCategory()))){
 				planModified.setId(id);
 				planModified.setAuthor(userConnected);
 				planModified.setComments(plan.getComments());
@@ -143,7 +167,7 @@ public class PlanController {
 	}
 	
 	@JsonView(PlanView.class)
-	@RequestMapping(value="/api/plans/{id}/assist", method= RequestMethod.POST)
+	@RequestMapping(value="/api/plans/{id}/assist", method= RequestMethod.PUT)
 	public ResponseEntity<Plan> planIndividualAssist(@PathVariable long id){
 		Plan plan= planRepository.findOne(id);
 		if (plan != null) {
@@ -167,10 +191,13 @@ public class PlanController {
 	@RequestMapping(value="/api/plans/{id}/comment", method=RequestMethod.POST)
 	public ResponseEntity<Plan> planIndividualComment(@PathVariable long id, @RequestBody Comment comment){
 			Plan plan= planRepository.findOne(id);
+			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+			Date date = new Date();
 			if (plan != null) {
 				User userConnected= userRepository.findById(userComponent.getLoggedUser().getId());
 				comment.setId(0);
 				comment.setAuthor(userConnected);
+				comment.setDate(format.format(date));
 				commentRepository.save(comment);
 				plan.getComments().add(comment);
 				planRepository.save(plan);
@@ -185,7 +212,8 @@ public class PlanController {
 	public ResponseEntity<Plan> modifyPlanPhoto(@PathVariable long id, @RequestParam("file") MultipartFile file) {
 
 		Plan plan = planRepository.findById(id);
-		if (plan.getId()==id) {
+		User userConnected= userRepository.findById(userComponent.getLoggedUser().getId());
+		if (plan.getId()==id && plan.getAuthor().getId().equals(userConnected.getId())) {
 			
 			boolean changed = imageService.getImg().changePhotoPlan(id, file);
 			if(changed){
@@ -225,7 +253,9 @@ public class PlanController {
 		}else if ((title.equals("")) && (category.equals("")) && (!place.equals(""))){
 			return planRepository.findByPlaceIgnoreCase(place);
 			
-		}
+		}else if (!(title.equals("")) && (!category.equals("")) && (!place.equals(""))){
+		return planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title,category,place);
+	}
 		return null;
 	}
 }

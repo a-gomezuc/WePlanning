@@ -39,7 +39,7 @@ public class UserController {
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/api/user", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/users", method = RequestMethod.GET)
 	public List<User> users() {
 		return userRepository.findAll();
 	}
@@ -85,6 +85,7 @@ public class UserController {
 	public ResponseEntity<User> addUser(@RequestBody User user) {
 		User userSearch = userRepository.findByIdIgnoreCase(user.getId());
 		if (userSearch == null) {
+			user.setIdentifier(0);;
 			user.setRoles(Arrays.asList("ROLE_USER"));
 			user.setProfilePhotoTitle("profiledefault.jpg");
 			if(user.getPasswordHash()==null){
