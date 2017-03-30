@@ -155,7 +155,13 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 		}
 	}
-
+	@JsonView(Plan.BasicAtt.class)
+	@RequestMapping(value="/api/user/myPlans", method=RequestMethod.GET)
+	public ResponseEntity<List>viewMyPlnas(){
+		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		
+		return new ResponseEntity<>(user.getPlans(),HttpStatus.OK);
+	}
 	@JsonView(User.BasicAtt.class)
 	@RequestMapping(value = "/api/user/addFriend/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<List> addFriend(@PathVariable String id) {
