@@ -26,12 +26,13 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter{
 	    
         
         // URLs that need authentication to access to it
-        
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/addContact").permitAll();
 	    http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/{id}/comment").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.POST,"/api/plans/addPlan").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/viewFriendsPlans").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user/viewFriends").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user/myPlans").hasAnyRole("USER");
+        http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/admin/contacts").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.GET,"/api/user/searchUsers/filter={filter}/usearch={usearch}").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/plans/{id}/assist").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT,"/api/plans/{id}/modifyPlanPhoto").hasAnyRole("USER");
@@ -43,7 +44,8 @@ public class RestSecurityConfiguration extends WebSecurityConfigurerAdapter{
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/plans/{id}").hasAnyRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/plans/{id}").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/users/{id}").hasAnyRole("ADMIN");
-        
+        http.authorizeRequests().antMatchers(HttpMethod.DELETE,"/api/admin/removeContact/{id}").hasAnyRole("ADMIN");
+
 
 	    http.authorizeRequests().anyRequest().permitAll();
         

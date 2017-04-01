@@ -1,25 +1,40 @@
 
 package es.WePlanning.Contact;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonView;
+
+import es.WePlanning.User.User.BasicAtt;
+
+
 
 
 @Entity
 public class Contact {
+	public interface BasicAtt{}
+	
+	@JsonView(BasicAtt.class)
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long identifier;
 	
-	private String C_FirstName;
-	private String C_LastName;
-	private String C_Company;
-	private String C_BusPhone;
-	private String C_EmailAddress;
-	private String description;
+	@JsonView(BasicAtt.class)
+	private String firstName;
+	@JsonView(BasicAtt.class)
+	private String lastName;
+	@JsonView(BasicAtt.class)
+	private String company;
+	@JsonView(BasicAtt.class)
+	private String phone;
+	@JsonView(BasicAtt.class)
+	private String emailAddress;
+	@JsonView(BasicAtt.class)
+	private String message;
+	
 	
 
 	public Contact() {
@@ -28,67 +43,74 @@ public class Contact {
 
 	public Contact (String id,String C_FirstName,String C_LastName, String C_Company,String C_BusPhone, String C_EmailAddress,String description ) {
 		super();
-		this.C_FirstName = C_FirstName;
-		this.C_LastName=C_LastName;
-		this.C_Company=C_Company;
-		this.C_BusPhone=C_BusPhone;
-		this.C_EmailAddress = C_EmailAddress;
-		this.description=description;
+		this.firstName = C_FirstName;
+		this.lastName=C_LastName;
+		this.company=C_Company;
+		this.phone=C_BusPhone;
+		this.emailAddress = C_EmailAddress;
+		this.message=description;
 	}
 
 	
 	@Override
 	public String toString() {
-		return "Contact [name=" + C_FirstName + ", C_LastName=" + C_LastName + ", C_Company=" + C_Company + ", C_BusPhone= " + C_BusPhone + ",uC_EmailAddress=" + C_EmailAddress + ", descripcion=" + description + "]";
+		return "Contact [name=" + firstName + ", C_LastName=" + lastName + ", C_Company=" + company + ", C_BusPhone= " + phone + ",uC_EmailAddress=" + emailAddress + ", descripcion=" + message + "]";
 	}
 
-	public String getDescription() {
-		return description;
+	public String getMessage() {
+		return message;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public void setIdentifier(long identifier) {
+		this.identifier = identifier;
 	}
 
 	public String getC_EmailAddress() {
-		return C_EmailAddress;
+		return emailAddress;
 	}
 
 	public void setC_EmailAddress(String C_EmailAddress) {
-		this.C_EmailAddress = C_EmailAddress;
+		this.emailAddress = C_EmailAddress;
 	}
 
 	
 
 	public String getC_LastName() {
-		return C_LastName;
+		return lastName;
 	}
 
 	public void setC_LastName(String C_LastName) {
-		this.C_LastName = C_LastName;
+		this.lastName = C_LastName;
 	}
 
 	public String getC_FirstName() {
-		return C_FirstName;
+		return firstName;
 	}
 
 	public void setC_FirstName(String C_FirstName) {
-		this.C_FirstName = C_FirstName;
+		this.firstName = C_FirstName;
 	}
 
 	public String getC_Company() {
-		return C_Company;
+		return company;
 	}
 
 	public void setCompan(String C_Company) {
-		this.C_Company = C_Company;
+		this.company = C_Company;
 	}
 
-	public String getC_BusPhone() {
-		return C_BusPhone;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setC_BusPhone(String c_BusPhone) {
-		C_BusPhone = c_BusPhone;
+	public void setphone(String c_BusPhone) {
+		phone = c_BusPhone;
+	}
+
+	public Object getIdentifier() {
+		return identifier;
 	}
 }
