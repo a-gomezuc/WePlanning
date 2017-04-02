@@ -157,7 +157,7 @@ public class UserController {
 	}
 	@JsonView(Plan.BasicAtt.class)
 	@RequestMapping(value="/api/user/myPlans", method=RequestMethod.GET)
-	public ResponseEntity<List>viewMyPlnas(){
+	public ResponseEntity<List>viewMyPlans(){
 		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		
 		return new ResponseEntity<>(user.getPlans(),HttpStatus.OK);
