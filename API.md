@@ -6,19 +6,19 @@
 
 ### URL:"/api/users"</br>
 **Método:** GET </br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Muestra la información de todos los usuarios de la aplicación en formato JSON.</br>
 **Descripción:** Si la petición de ha realizado de manera correcta, se devolverá un código de estado: 200 OK </br>
 
 ### URL:"/api/user/{id}"</br>
 **Método:** GET </br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Muestra la información del usuario cuyo ID se corresponda con el que hemos introducido.</br>
 **Descripción:** Si el usuario existe en la base de datos se devolverá un código de estado: 200 OK. En caso contrario se devolverá el codigo de estado: 404 NOT FOUND</br>
 
 ### URL:"/api/user/searchUsers/filter={filter}/usearch={usearch}"</br>
 **Método:** GET </br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** La información de los usuarios que cumplan con los criterios de búsqueda introducidos.</br>
 **Descripción:** Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 Unauthorized.</br>
 Si el usuario esta registrado en el sistema y la petición se realiza de forma correcta se devolverá el código de estado: 200 OK.</br>
@@ -43,7 +43,7 @@ Y por último si ha habido algun error, se visualizará: 404 NOT FOUND.  </br>
 
 ### URL:"/api/user/modifyProfile/{id}"</br>
 **Método:** POST  </br>
-**Entrada:**Se introducirá un JSON con la siguiente estructura.</br>
+**Entrada:** Se introducirá un JSON con la siguiente estructura.</br>
 "uname": </br>
 "surname": </br>
 "province": </br>
@@ -67,7 +67,7 @@ Y si se ha producido algún tipo de error, se visualizará: 404 NOT FOUND.</br>
 
 ### URL:"/api/user/myPlans"</br>
 **Método:** GET </br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Se mostrará la información de los planes subidos por el usuario </br>
 **Descripción:** Con este método podremos visualizar los planes que ha subido el usuario con el que nos encontremos logueados en el sistema.</br>
 Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
@@ -76,7 +76,7 @@ Si se ha producido algún tipo de error, se visualizará: 404 NOT FOUND.</br>
 
 ### URL:"/api/user/addFriend/{id}"</br>
 **Método:** PUT  </br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Se mostrará la lista de amigos actualizada, con la infromación de cada uno.</br>
 **Descripción:** Añadiremos a la lista de amigos al usuario cuyo id coincida con el que hemos introducido.</br>
 Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
@@ -85,7 +85,7 @@ Si se ha producido algún tipo de error, un sponsor intenta añadir a alguien a 
 
 ### URL:"/api/user/removeFriend/{id}"</br>
 **Método:** DELETE</br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Se mostrará la lista de amigos actualizada, con la infromación de cada uno. </br>
 **Descripción:** Eliminaremos de la lista al amigo cuyo ID conincida con el que hemos introducido.</br>
 Para realizar esta peticón es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
@@ -96,14 +96,14 @@ Si se ha producido algún tipo de error o el ID que hemos introducido no corresp
 
 ### URL:"/api/plans"</br>
 **Método:** GET</br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Devuelve todo los planes existentes </br>
 **Descripción:** Si la petición es correcta devolverá un código de estado:200 OK  </br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/viewFriendsPlans" </br>
 **Método:** GET</br>
-**Entrada:**</br>
+**Entrada:** </br>
 **Salida:** Devuelve todos los planes de tus amigos</br>
 **Descripción:** Se tendra que estar logeado para acceder a esta URL, si lo esta le devolverá un código de estado:200 OK</br> 
 Si no se esta logeado le devolvera el código de estado: 401 Unauthorized </br>
@@ -126,15 +126,15 @@ Si no se esta logeado le devolvera el código de estado: 401 Unauthorized </br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}" </br>
-**Método:GET**</br>
-**Entrada:**</br>
+**Método:GET** </br>
+**Entrada:** </br>
 **Salida:** Devuelve el plan con la id que se ha introduccido en la url</br>
 **Descripción:** Si la petición es correcta devolverá un código de estado:200 OK, </br>
 Si no se esta logeado le devolvera el código de estado: 401 Unauthorized </br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}" </br>
-**Método:**PUT</br>
+**Método:** PUT</br>
 **Entrada:** Se introducirá un JSON con la siguiente estructura</br>
 "Título": </br>
 "Categoría": </br>
@@ -191,7 +191,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 ## Comment </br>
 
 ### URL:/api/comments </br>
-**Metodo:**GET </br>
+**Metodo:** GET </br>
 **Entrada:** </br>
 **Salida:** </br>
 **Descripcion:** Si la petición es correcta devolverá un status:200 OK </br>
@@ -199,7 +199,7 @@ en caso de que no existiera ningun comentario devolverá null y un estatus:200 O
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:/api/comments/{id}</br>
-**Metodo:**GET </br>
+**Metodo:** GET </br>
 **Entrada:** </br>
 **Salida:** Devuelve el comentario que tenga la id de la url junto con el autor </br>
 Descripcion:Si la petición es correcta devolvera un status:200 OK </br>
@@ -207,7 +207,7 @@ en caso de que no existiera ningun comentario devolverá null y un estatus:200 O
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:/api/comments/author/{id}</br>
-**Metodo:**GET </br>
+**Metodo:** GET </br>
 **Entrada:** </br>
 **Salida:** Devuelve el comentario del autor que se introduzca en la URL </br>
 **Descripcion:** Si la petición es correcta devolverá un status:200 OK </br>
@@ -226,7 +226,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 ## Contact
 
 ### URL:/api/admin/contacts</br>
-**Metodo:**PUT </br>
+**Metodo:** PUT </br>
 **Entrada:** </br>
 **Salida:** Devuelve todos los comentarios </br>
 **Descripcion:** Si la petición es correcta devolvera un status:200 OK</br>
@@ -245,7 +245,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 "email": </br>
 "Descripcion":</br>
 **Salida:** Devuelve el comentario modificado </br>
-**Descripcion:**Si la petición es correcta devolvera un status:200 OK </br>
+**Descripcion:** Si la petición es correcta devolvera un status:200 OK </br>
 en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
