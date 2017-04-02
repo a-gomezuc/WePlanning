@@ -19,19 +19,19 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 ## Plan </br>
 
-URL:/api/plans </br>
+**URL:/api/plans**</br>
 Metodo:GET</br>
 Entrada:</br>
 Salida:Devuelve todo los planes</br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK  </br>
 
-URL:/api/viewFriendsPlans </br>
+**URL:/api/viewFriendsPlans** </br>
 Metodo:GET</br>
 Entrada:</br>
 Salida:Devuelve todos los planes amigos</br>
 Descripcion:Se tendra que estar logeado para acceder a esta URL, si lo esta le devolvera un status 200 OK </br>
 
-URL:/api/plans/addPlan </br>
+**URL:/api/plans/addPlan** </br>
 Metodo:POST</br>
 Entrada:"title":
  "category": 
@@ -44,43 +44,43 @@ Entrada:"title":
 Salida:Devuelve el nuevo plan creado</br>
 Descripcion:Si se crea correctamente el plan se le devolvera un status:201 Created </br>
 
-URL:/api/plans/{id} </br>
+**URL:/api/plans/{id}** </br>
 Metodo:GET</br>
 Entrada:</br>
 Salida:Devuelve el plan con la id que se ha introduccido en la url</br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
 
-URL:/api/plans/{id} </br>
+**URL:/api/plans/{id}** </br>
 Metodo:PUT</br>
 Entrada:Los datos del plan que se quiera modificar</br>
 Salida:Devuelve el plan modificado</br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
 
-URL:/api/plans/{id} </br>
+**URL:/api/plans/{id}** </br>
 Metodo:DELETE</br>
 Entrada:</br>
 Salida:nul</br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
 
-URL:/api/plans/{id}/assist </br>
+**URL:/api/plans/{id}/assist** </br>
 Metodo:POST</br>
 Entrada:</br>
 Salida:Devuelve el plan y con la lista de los q asistiran actualizada</br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
 
-URL:/api/plans/{id}/comment </br>
+**URL:/api/plans/{id}/comment** </br>
 Metodo:Post</br>
 Entrada:"comment":{tu comentario}</br>
 Salida:Devuelve el plan con la lista de comentarios actualizada con el nuevo comentario</br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
 
-URL:/api/plans/{id}/modifyPlanPhoto </br>
+**URL:/api/plans/{id}/modifyPlanPhoto** </br>
 Metodo:put</br>
 Entrada:Se legira un archivo png o jpg</br>
 Salida:Devuelve el plan con la nueva foto </br>
 Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
 
-URL:/api/plans/searchPlans/title={title}/category={category}/place={place}</br>
+**URL:/api/plans/searchPlans/title={title}/category={category}/place={place}**</br>
 Metodo:GET</br>
 Entrada:</br>
 Salida:Devuelve los planes que coincidan con los parametron introducios en la url</br>
