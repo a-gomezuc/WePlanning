@@ -90,19 +90,19 @@ public class CommentController {
 				
 			}
 														
-		@JsonView(CommentView.class)
+		/*@JsonView(CommentView.class)
 		@RequestMapping(value="api/comments/{id}", method= RequestMethod.DELETE)
 		public ResponseEntity<Comment> commentDelete(@PathVariable long id){	
 			User user =userRepository.findById(userComponent.getLoggedUser().getId());
 			Comment comment = commentRepository.findOne(id);
-			if((comment.getAuthor().getId().equals(user))&&(comment!=null)){
+			if((comment.getAuthor().getId().equals(user.getId()))&&(comment!=null)){
 				commentRepository.delete(id);
 				return new ResponseEntity<>(null,HttpStatus.OK);
 			}else{
 				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 			}
 			 
-		}
+		}*/
 		
 	
 		

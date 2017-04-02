@@ -1,0 +1,367 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Evaluación Fase 4",
+		"_postman_id": "82cdde98-97f6-e689-4e3b-5d09fd838514",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "https://localhost:8443/api/plans",
+			"request": {
+				"url": "https://localhost:8443/api/plans",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/users",
+			"request": {
+				"url": "https://localhost:8443/api/users",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/12",
+			"request": {
+				"url": "https://localhost:8443/api/plans/12",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/searchPlans/title=Carrera/category=Deportes/place=Madrid",
+			"request": {
+				"url": "https://localhost:8443/api/plans/searchPlans/title=Carrera/category=Deportes/place=Madrid",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/westernsquad",
+			"request": {
+				"url": "https://localhost:8443/api/user/westernsquad",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/westernsquad/viewFriends",
+			"request": {
+				"url": "https://localhost:8443/api/user/westernsquad/viewFriends",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/addUser",
+			"request": {
+				"url": "https://localhost:8443/api/user/addUser",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n    \"identifier\": 10,\n    \"id\": \"nuevoUsuarioDAW\",\n    \"passwordHash\": \"contraseña\",\n    \"sponsor\": false,\n    \"uname\": \"Daw\",\n    \"surname\": \"Clase\",\n    \"province\": \"Madrid\",\n    \"age\": 22,\n    \"uemail\": \"DAW@gmail.com\",\n    \"description\": \"Soy un usuario de prueba para la evaluación de la Fase 4 de la práctica de DAW.\",\n    \"profilePhotoTitle\": \"profiledefault.jpg\"\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/login",
+			"request": {
+				"url": "https://localhost:8443/api/login",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bnVldm9Vc3VhcmlvREFXOmNvbnRyYXNlw7Fh",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n    \"identifier\": 10,\n    \"id\": \"nuevoUsuarioDAW\",\n    \"passwordHash\": \"contraseña\",\n    \"sponsor\": false,\n    \"uname\": \"Daw\",\n    \"surname\": \"Clase\",\n    \"province\": \"Madrid\",\n    \"age\": 22,\n    \"uemail\": \"DAW@gmail.com\",\n    \"description\": \"Soy un usuario de prueba para la evaluación de la Fase 4 de la práctica de DAW.\",\n    \"profilePhotoTitle\": \"profiledefault.jpg\"\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/modifyProfile/nuevoUsuarioDAW",
+			"request": {
+				"url": "https://localhost:8443/api/user/modifyProfile/nuevoUsuarioDAW",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "  {\n    \"identifier\": 10,\n    \"id\": \"nuevoUsuarioDAW\",\n    \"passwordHash\": \"contraseña\",\n    \"sponsor\": false,\n    \"uname\": \"Daw\",\n    \"surname\": \"Clase\",\n    \"province\": \"Madrid\",\n    \"age\": 20,\n    \"uemail\": \"DAW@gmail.com\",\n    \"description\": \"Soy un usuario de prueba para la evaluación de la Fase 4 de la práctica de DAW.(Modificado)\",\n    \"profilePhotoTitle\": \"profiledefault.jpg\"\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/nuevoUsuarioDAW/modifyProfilePhoto",
+			"request": {
+				"url": "https://localhost:8443/api/user/nuevoUsuarioDAW/modifyProfilePhoto",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Ted.jpg"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/searchUsers/filter=ident/usearch=westernsquad",
+			"request": {
+				"url": "https://localhost:8443/api/user/searchUsers/filter=ident/usearch=westernsquad",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Ted.jpg"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/addFriend/westernsquad",
+			"request": {
+				"url": "https://localhost:8443/api/user/addFriend/westernsquad",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/nuevoUsuarioDAW/viewFriends",
+			"request": {
+				"url": "https://localhost:8443/api/user/nuevoUsuarioDAW/viewFriends",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/viewFriendsPlans",
+			"request": {
+				"url": "https://localhost:8443/api/viewFriendsPlans",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/12/assist",
+			"request": {
+				"url": "https://localhost:8443/api/plans/12/assist",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/12/comment",
+			"request": {
+				"url": "https://localhost:8443/api/plans/12/comment",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n    \"date\": \"03/04/2017\",\n    \"content\": \"Comentario para la evaluación de la fase 4 de DAW.\"\n  }"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/addPlan",
+			"request": {
+				"url": "https://localhost:8443/api/plans/addPlan",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 12,\n  \"title\": \"Clase Angular\",\n  \"category\": \"Cultura\",\n  \"place\": \"Madrid\",\n  \"address\": \"URJC Móstoles\",\n  \"prize\": 50,\n  \"date\": \"12/05/2017\",\n  \"description\": \"Clases de Angular y Typescript.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/13",
+			"request": {
+				"url": "https://localhost:8443/api/plans/13",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": 12,\n  \"title\": \"Clase Angular 2\",\n  \"category\": \"Cultura\",\n  \"place\": \"Madrid\",\n  \"address\": \"URJC Móstoles\",\n  \"prize\": 50,\n  \"date\": \"12/05/2017\",\n  \"description\": \"Clases de Angular 2 y Typescript.\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/13/modifyPlanPhoto",
+			"request": {
+				"url": "https://localhost:8443/api/plans/13/modifyPlanPhoto",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Angular.png"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/user/myPlans",
+			"request": {
+				"url": "https://localhost:8443/api/user/myPlans",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Angular.png"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/plans/13/",
+			"request": {
+				"url": "https://localhost:8443/api/plans/13/",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Angular.png"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "https://localhost:8443/api/logout",
+			"request": {
+				"url": "https://localhost:8443/api/logout",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"enabled": true,
+							"src": "Angular.png"
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

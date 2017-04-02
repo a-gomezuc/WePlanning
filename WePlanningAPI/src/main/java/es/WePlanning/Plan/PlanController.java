@@ -113,6 +113,7 @@ public class PlanController {
 				planModified.setAuthor(userConnected);
 				planModified.setComments(plan.getComments());
 				planModified.setAsistents(plan.getAsistents());
+				planModified.setImagePlanTitle(plan.getImagePlanTitle());
 				planRepository.save(planModified);
 				return new ResponseEntity<>(plan, HttpStatus.OK);
 			}

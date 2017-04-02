@@ -208,10 +208,13 @@ public class UserController {
 	 * ResponseEntity<>(HttpStatus.UNAUTHORIZED); } }
 	 */
 	@JsonView(User.BasicAtt.class)
-	@RequestMapping(value = "/api/user/viewFriends", method = RequestMethod.GET)
-	public List<User> viewFriends() {
-		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
-		return user.getFriends();
+	@RequestMapping(value = "/api/user/{id}/viewFriends", method = RequestMethod.GET)
+	public ResponseEntity<List<User>> viewFriends(@PathVariable String id) {
+		User user = userRepository.findByIdIgnoreCase(id);
+		if(user!=null)
+		return new ResponseEntity<>(user.getFriends(), HttpStatus.OK);
+		else
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
 	@JsonView(UserView.class)
