@@ -19,10 +19,10 @@ Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 ## Plan </br>
 
-URL:/api/plans
-Metodo:plans().
-Entrada:GET
-Salida:Devuelve todos los planes.
+URL:/api/plans </br>
+Metodo:plans().</br>
+Entrada:GET</br>
+Salida:Devuelve todos los planes.</br>
 
 
 ## Templates </br>
@@ -36,7 +36,7 @@ En ellos se han modificado todos los aspectos de diseño principales y se ha man
 
 ## Diagrama de clases y templates</br>
 
-![ClassDiagram](/Maquetación/IMG/Screenshots3/classDiagram.png)
+![ClassDiagram](/Maquetación/IMG/Screenshots4/classDiagram.png)
 
 ## Entidades de la base de datos.</brt>
 
