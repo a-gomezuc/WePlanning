@@ -97,14 +97,17 @@ Si se ha producido algún tipo de error o el ID que hemos introducido no corresp
 ### URL:"/api/plans"</br>
 **Método:** GET</br>
 **Entrada:**</br>
-**Salida:**Devuelve todo los planes existentes </br>
-**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK  </br>
+**Salida:** Devuelve todo los planes existentes </br>
+**Descripción:** Si la petición es correcta devolverá un código de estado:200 OK  </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/viewFriendsPlans" </br>
 **Método:** GET</br>
 **Entrada:**</br>
-**Salida:**Devuelve todos los planes de tus amigos</br>
-**Descripción:**Se tendra que estar logeado para acceder a esta URL, si lo esta le devolverá un código de estado:200 OK </br>
+**Salida:** Devuelve todos los planes de tus amigos</br>
+**Descripción:** Se tendra que estar logeado para acceder a esta URL, si lo esta le devolverá un código de estado:200 OK</br> 
+Si no se esta logeado le devolvera el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/addPlan" </br>
 **Método:** POST</br>
@@ -117,48 +120,143 @@ Si se ha producido algún tipo de error o el ID que hemos introducido no corresp
  "date": </br>
  "description": </br>
  "imagePlanTitle": </br>
-**Salida:**Devuelve el nuevo plan creado</br>
-**Descripción:**Si se crea correctamente el plan se le devolverá un código de estado::201 Created </br>
+**Salida:** Devuelve el nuevo plan creado</br>
+**Descripción:** se tendra que estar logueado para añadir un plna, si se creo correctamente el plan se le devolverá un código de estado::201 Created </br>
+Si no se esta logeado le devolvera el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}" </br>
 **Método:GET**</br>
 **Entrada:**</br>
-**Salida:**Devuelve el plan con la id que se ha introduccido en la url</br>
-**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK, en caso de que no existiera esa id devolverá null y un código de estado :404 not found </br>
+**Salida:** Devuelve el plan con la id que se ha introduccido en la url</br>
+**Descripción:** Si la petición es correcta devolverá un código de estado:200 OK, </br>
+Si no se esta logeado le devolvera el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}" </br>
 **Método:**PUT</br>
-**Entrada:**Los datos del plan que se quiera modificar</br>
-**Salida:**Devuelve el plan modificado</br>
-**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
+**Entrada:** Se introducirá un JSON con la siguiente estructura</br>
+"Título": </br>
+"Categoría": </br>
+"Fecha": </br>
+"Provicia": </br>
+"Direcciòn": </br>
+"Precio": </br>
+"Descripción":</br>
+**Salida:** Devuelve el plan modificado</br>
+**Descripción:** Si la petición es correcta y se esta logeado devolverá un código de estado:200 OK </br>
+Si no se esta logeado o no eres el autor de ese plan le devolverá el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}" </br>
-**Método:**DELETE</br>
-**Entrada:**</br>
-**Salida:**null</br>
-Descripción:Si la petición es correcta devolverá un código de estadó:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
+**Método:** DELETE</br>
+**Entrada:** </br>
+**Salida:** null</br>
+Descripción:Si la petición es correcta devolverá un código de estadó:200 OK </br>
+Si no se esta logeado o no eres el usuario que ha creado el plan le devolverá el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}/assist" </br>
-**Método:**POST</br>
-**Entrada:**</br>
-**Salida:**Devuelve el plan y con la lista de los q asistiran actualizada</br>
-**Descripción:**Si la petición es correcta devolvera un status:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
+**Método:** POST</br>
+**Entrada:** </br>
+**Salida:** Devuelve el plan y con la lista de los q asistiran actualizada</br>
+**Descripción:** Si la petición es correcta devolvera un status:200 OK </br>
+Si no se esta logeado le devolverá el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}/comment" </br>
-**Método:**POST</br>
-**Entrada:**"comment":{tu comentario}</br>
-**Salida:**Devuelve el plan con la lista de comentarios actualizada con el nuevo comentario</br>
-**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
+**Método:** POST</br>
+**Entrada:** Se introducirá un JSON con la siguiente estructura </br>
+"comment":{tu comentario}</br>
+**Salida:** Devuelve el plan con la lista de comentarios actualizada con el nuevo comentario</br>
+**Descripción:** Si la petición es correcta devolverá un código de estado:200 OK </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/{id}/modifyPlanPhoto" </br>
-**Método:**PUT</br>
-**Entrada:**Se legira un archivo png o jpg</br>
-**Salida:**Devuelve el plan con la nueva foto </br>
-Descripción:Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera esa id devolverá null y un código de estado :404 not found </br>
+**Método:** PUT</br>
+**Entrada:**  En body accederemos a form-data. Elegiremos el tipo "file". En el campo key escribiremos "file" y adjuntaremos la imagen que queramos añadir a nuestro plan.</br>
+**Salida:** Devuelve el plan con la nueva foto </br>
+Descripción:Si la petición es correcta devolverá un código de estado:200 OK </br>
+Si no se esta logeado o no es el autor del plan le devolverá el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ### URL:"/api/plans/searchPlans/title={title}/category={category}/place={place}"</br>
-**Método:**GET</br>
-**Entrada:**</br>
-**Salida:**Devuelve los planes que coincidan con los parametron introducios en la url</br>
-**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera ningún plan que coincida devolvera null y un código de estado :200 OK</br>
+**Método:** GET</br>
+**Entrada:** </br>
+**Salida:** Devuelve los planes que coincidan con los parametron introducios en la url</br>
+**Descripción:** Si la petición es correcta devolverá un código de estado:200 OK </br>
+en caso de que no existiera ningún plan que coincida devolvera null y un código de estado :200 OK</br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+## Comment </br>
+
+### URL:/api/comments </br>
+**Metodo:**GET </br>
+**Entrada:** </br>
+**Salida:** </br>
+**Descripcion:** Si la petición es correcta devolverá un status:200 OK </br>
+en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+### URL:/api/comments/{id}</br>
+**Metodo:**GET </br>
+**Entrada:** </br>
+**Salida:** Devuelve el comentario que tenga la id de la url junto con el autor </br>
+Descripcion:Si la petición es correcta devolvera un status:200 OK </br>
+en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+### URL:/api/comments/author/{id}</br>
+**Metodo:**GET </br>
+**Entrada:** </br>
+**Salida:** Devuelve el comentario del autor que se introduzca en la URL </br>
+**Descripcion:** Si la petición es correcta devolverá un status:200 OK </br>
+en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+### URL:/api/comments/{id}</br>
+**Metodo:** PUT </br>
+**Entrada:** Se introducirá un JSON con la siguiente estructura </br>
+"comment":</br>
+**Salida:** Devuelve el comentario modificado </br>
+**Descripcion:** Si la petición es correcta devolvera un status:200 OK , en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+Si no se esta logeado o no es el autor del comentario le devolvera el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+## Contact
+
+### URL:/api/admin/contacts</br>
+**Metodo:**PUT </br>
+**Entrada:** </br>
+**Salida:** Devuelve todos los comentarios </br>
+**Descripcion:** Si la petición es correcta devolvera un status:200 OK</br>
+en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+Si no eres un admin le devolverá el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+
+### URL:/api/addcontacts</br>
+**Metodo:** POST</br>
+**Entrada:**  Se introducirá un JSON con la siguiente estructura</br>
+"Nombre":</br>
+"Apellido":</br>
+"Compañia":</br>
+"Telefono": </br>
+"email": </br>
+"Descripcion":</br>
+**Salida:** Devuelve el comentario modificado </br>
+**Descripcion:**Si la petición es correcta devolvera un status:200 OK </br>
+en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+
+### URL:/api/removecontact/{id}</br>
+**Metodo:** DELETE</br>
+**Entrada:** </br>
+**Salida:** </br>
+**Descripcion:** Si la petición es correcta devolvera un status:200 OK </br>
+en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
+Si no eres un admin le devolverá el código de estado: 401 Unauthorized </br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
 
