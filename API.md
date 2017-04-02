@@ -1,0 +1,43 @@
+﻿# WePlanning </br>
+## ¿Qué es WePlanning? </br>
+Se trata de una web donde los usuarios pueden publicar planes que han realizado o proponer nuevos planes indicando el lugar, el precio, el tiempo, el número de personas, y dando una descripción en la que pueden aparecer fotografías. Cada usuario visualizará una página de inicio con planes personalizados, podrá valorar y comentar planes de otros usuarios y subir a la página web sus planes.
+
+## Entidades principales </br>
+**Usuario:** El usuario tendrá nombre, apellidos, ubicación y lista de amigos y podrá añadir planes y valorar y comentar planes de otros usuarios.</br>
+**Patrocinador:** Se trata de un perfil de empresa que tendrá planes patrocinados, nombre, email, página web y seguidores.</br>
+**Plan:** Los planes podrán ser experiencias pasadas o propuestas, contarán con una ubicación, una hora, usuarios que asisten o han asistido y una descripción. Estos planes podrán ser patrocinados por un patrocinador o ser un plan de usuario simple. </br>
+**Categoría de planes:** Los planes se podrán clasificar en distintas categorías nocturnos, escapadas, deportes, gastronomía, cultural, ocio, etc...</br>
+**Comentario/Valoración:** Los planes podrán tener valoraciones y comentarios con imágenes adjuntas.</br>
+
+## Integrantes del equipo de desarrollo </br> 
+Rubén Golderos Serrano, r.golderos@alumnos.urjc.es, rgolderos</br>
+Guillermo Navas García, g.navasg@alumnos.urjc.es, westernsquad</br>
+Jorge Sánchez Márquez, j.sanchezmarq@alumnos.urjc.es, jorge0594</br>
+Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
+
+## Trello  https://trello.com/b/eZYgeXfU/weplanning
+
+## Plan </br>
+
+URL:/api/plans
+Metodo:plans().
+Entrada:GET
+Salida:Devuelve todos los planes.
+
+
+## Templates </br>
+Para la realización de nuestra página web solo se ha usado un template para los htmls ProfileHTML.html, Sponsor.html, ProfileHTML-logged.html y Sponsor-logged.html. </br>
+En ellos se han modificado todos los aspectos de diseño principales y se ha mantenido el "tab" y su funcionamiento.</br>
+* Template utilizado: http://bootsnipp.com/snippets/featured/people-card-with-tabs </br>
+
+## Diagrama de navegación </br>
+
+![navigatorDiagram](/Maquetación/IMG/Screenshots3/NavigatorDiagram.png)
+
+## Diagrama de clases y templates</br>
+
+![ClassDiagram](/Maquetación/IMG/Screenshots3/classDiagram.png)
+
+## Entidades de la base de datos.</brt>
+
+![BDDiagram](/Maquetación/IMG/Screenshots3/BDDiagram.png)
