@@ -16,6 +16,7 @@ Jorge Sánchez Márquez, j.sanchezmarq@alumnos.urjc.es, jorge0594</br>
 Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
 
 ## Trello  https://trello.com/b/eZYgeXfU/weplanning
+## API https://github.com/a-gomezuc/WePlanning/blob/master/API.md
 
 ## Páginas diseñadas </br>
 ### Fallo en log-in</br>
