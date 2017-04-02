@@ -1,108 +1,164 @@
-﻿# WePlanning </br>
-## ¿Qué es WePlanning? </br>
-Se trata de una web donde los usuarios pueden publicar planes que han realizado o proponer nuevos planes indicando el lugar, el precio, el tiempo, el número de personas, y dando una descripción en la que pueden aparecer fotografías. Cada usuario visualizará una página de inicio con planes personalizados, podrá valorar y comentar planes de otros usuarios y subir a la página web sus planes.
+# Documentación API REST </br>
 
-## Entidades principales </br>
-**Usuario:** El usuario tendrá nombre, apellidos, ubicación y lista de amigos y podrá añadir planes y valorar y comentar planes de otros usuarios.</br>
-**Patrocinador:** Se trata de un perfil de empresa que tendrá planes patrocinados, nombre, email, página web y seguidores.</br>
-**Plan:** Los planes podrán ser experiencias pasadas o propuestas, contarán con una ubicación, una hora, usuarios que asisten o han asistido y una descripción. Estos planes podrán ser patrocinados por un patrocinador o ser un plan de usuario simple. </br>
-**Categoría de planes:** Los planes se podrán clasificar en distintas categorías nocturnos, escapadas, deportes, gastronomía, cultural, ocio, etc...</br>
-**Comentario/Valoración:** Los planes podrán tener valoraciones y comentarios con imágenes adjuntas.</br>
+## Métodos exclusivos del administrador del sistema
 
-## Integrantes del equipo de desarrollo </br> 
-Rubén Golderos Serrano, r.golderos@alumnos.urjc.es, rgolderos</br>
-Guillermo Navas García, g.navasg@alumnos.urjc.es, westernsquad</br>
-Jorge Sánchez Márquez, j.sanchezmarq@alumnos.urjc.es, jorge0594</br>
-Alex Gómez Uceda, a.gomezuc@alumnos.urjc.es, alexgomezuceda</br>
+## User </br>
 
-## Trello  https://trello.com/b/eZYgeXfU/weplanning
+### URL:"/api/users"</br>
+**Método:** GET </br>
+**Entrada:**</br>
+**Salida:** Muestra la información de todos los usuarios de la aplicación en formato JSON.</br>
+**Descripción:** Si la petición de ha realizado de manera correcta, se devolverá un código de estado: 200 OK </br>
+
+### URL:"/api/user/{id}"</br>
+**Método:** GET </br>
+**Entrada:**</br>
+**Salida:** Muestra la información del usuario cuyo ID se corresponda con el que hemos introducido.</br>
+**Descripción:** Si el usuario existe en la base de datos se devolverá un código de estado: 200 OK. En caso contrario se devolverá el codigo de estado: 404 NOT FOUND</br>
+
+### URL:"/api/user/searchUsers/filter={filter}/usearch={usearch}"</br>
+**Método:** GET </br>
+**Entrada:**</br>
+**Salida:** La información de los usuarios que cumplan con los criterios de búsqueda introducidos.</br>
+**Descripción:** Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 Unauthorized.</br>
+Si el usuario esta registrado en el sistema y la petición se realiza de forma correcta se devolverá el código de estado: 200 OK.</br>
+En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
+
+### URL:"/api/user/addUser"</br>
+**Método:** POST </br>
+**Entrada:** Se introducirá un JSON con la siguiente estructura:</br>
+"sponsor": </br>
+"uname": </br>
+"surname": </br>
+"province": </br>
+"age": </br>
+"uemail": </br>
+"passwordHash" </br>
+"description":</br>
+**Salida:** Nos mostrará la información del usuario que acabamos de crear. </br>
+**Descripción:** Si la creación del usuario se ha realizado de manera correcta se devolverá un código de estado: 200 OK.</br> 
+En caso de haber introducido una provincia inexistente de España mostrará un código de estado: 406 NOT ACCEPTABLE.</br>
+Si introducimos un id ya existente en la base de datos, se muestra: 409 CONFLICT.</br>
+Y por último si ha habido algun error, se visualizará: 404 NOT FOUND.  </br>
+
+### URL:"/api/user/modifyProfile/{id}"</br>
+**Método:** POST  </br>
+**Entrada:**Se introducirá un JSON con la siguiente estructura.</br>
+"uname": </br>
+"surname": </br>
+"province": </br>
+"age": </br>
+"uemail": </br>
+"description":</br>
+**Salida:** Se mostrará la infromación del perfil de ese usuario </br>
+**Descripción:** Solo se podrán modificar los campos "age", "uname", "surname", "province", "description" y "uemail".</br>
+Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo o intentar modificar un perfil que no sea el nuestro, se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
+Si la modificación del perfil de usuario se ha realizado de manera correcta se mostrará un código de estado: 200 OK.</br>
+En caso de haber introducido una provincia inexistente de España mostrará un código de estado: 406 NOT ACCEPTABLE.</br>
+Y si se ha producido algún tipo de error, se visualizará: 404 NOT FOUND.</br>
+
+### URL:"/api/user/{id}/modifyProfilePhoto"</br>
+**Método:** POST </br>
+**Entrada:** En body accederemos a form-data. Elegiremos el tipo "file". En el campo key escribiremos "file" y adjuntaremos la imagen que queramos añadir a nuestro perfil.</br>
+**Salida:** Se nos mostrarán los datos del usuario que hemos modificado.</br>
+**Descripción:** Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo o que intentemos modificar un perfil que no sea el nuestro, se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
+Si la modificación de la foto de perfil se ha realizado de manera correcta se mostrará el código de estado: 200 OK.</br>
+Y si se ha producido algún tipo de error, se visualizará: 404 NOT FOUND.</br>
+
+### URL:"/api/user/myPlans"</br>
+**Método:** GET </br>
+**Entrada:**</br>
+**Salida:** Se mostrará la información de los planes subidos por el usuario </br>
+**Descripción:** Con este método podremos visualizar los planes que ha subido el usuario con el que nos encontremos logueados en el sistema.</br>
+Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
+Si la petición se ha realizado de manera correcta se mostrará el código de estado: 200 OK.</br>
+Si se ha producido algún tipo de error, se visualizará: 404 NOT FOUND.</br>
+
+### URL:"/api/user/addFriend/{id}"</br>
+**Método:** PUT  </br>
+**Entrada:**</br>
+**Salida:** Se mostrará la lista de amigos actualizada, con la infromación de cada uno.</br>
+**Descripción:** Añadiremos a la lista de amigos al usuario cuyo id coincida con el que hemos introducido.</br>
+Para realizar esta petición es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
+Si la petición se ha realizado de manera correcta se mostrará el código de estado: 200 OK.</br>
+Si se ha producido algún tipo de error, un sponsor intenta añadir a alguien a amigos o el amigo no existe en la base de datos, se visualizará: 404 NOT FOUND.</br>
+
+### URL:"/api/user/removeFriend/{id}"</br>
+**Método:** DELETE</br>
+**Entrada:**</br>
+**Salida:** Se mostrará la lista de amigos actualizada, con la infromación de cada uno. </br>
+**Descripción:** Eliminaremos de la lista al amigo cuyo ID conincida con el que hemos introducido.</br>
+Para realizar esta peticón es necesario que el usuario este logueado en el sistema. En caso de no estarlo se devolverá el codigo de estado: 401 UNAUTHORIZED.</br>
+Si la petición se ha realizado de manera correcta se mostrará el código de estado: 200 OK.</br>
+Si se ha producido algún tipo de error o el ID que hemos introducido no corresponde a ningúm amigo de nuestra lista se moestrará: 404 NOT FOUND </br> 
 
 ## Plan </br>
 
-**URL:/api/plans**</br>
-Metodo:GET</br>
-Entrada:</br>
-Salida:Devuelve todo los planes</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK  </br>
+### URL:"/api/plans"</br>
+**Método:** GET</br>
+**Entrada:**</br>
+**Salida:**Devuelve todo los planes existentes </br>
+**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK  </br>
 
-**URL:/api/viewFriendsPlans** </br>
-Metodo:GET</br>
-Entrada:</br>
-Salida:Devuelve todos los planes amigos</br>
-Descripcion:Se tendra que estar logeado para acceder a esta URL, si lo esta le devolvera un status 200 OK </br>
+### URL:"/api/viewFriendsPlans" </br>
+**Método:** GET</br>
+**Entrada:**</br>
+**Salida:**Devuelve todos los planes de tus amigos</br>
+**Descripción:**Se tendra que estar logeado para acceder a esta URL, si lo esta le devolverá un código de estado:200 OK </br>
 
-**URL:/api/plans/addPlan** </br>
-Metodo:POST</br>
-Entrada:"title":
- "category": 
-"place": 
-"address": 
-"prize": 
- "date": 
- "description": 
+### URL:"/api/plans/addPlan" </br>
+**Método:** POST</br>
+**Entrada:** Se introducirá un JSON con la siguiente estructura:</br>
+"title": </br>
+ "category": </br> 
+"place": </br>
+"address": </br>
+"prize": </br>
+ "date": </br>
+ "description": </br>
  "imagePlanTitle": </br>
-Salida:Devuelve el nuevo plan creado</br>
-Descripcion:Si se crea correctamente el plan se le devolvera un status:201 Created </br>
+**Salida:**Devuelve el nuevo plan creado</br>
+**Descripción:**Si se crea correctamente el plan se le devolverá un código de estado::201 Created </br>
 
-**URL:/api/plans/{id}** </br>
-Metodo:GET</br>
-Entrada:</br>
-Salida:Devuelve el plan con la id que se ha introduccido en la url</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
+### URL:"/api/plans/{id}" </br>
+**Método:GET**</br>
+**Entrada:**</br>
+**Salida:**Devuelve el plan con la id que se ha introduccido en la url</br>
+**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK, en caso de que no existiera esa id devolverá null y un código de estado :404 not found </br>
 
-**URL:/api/plans/{id}** </br>
-Metodo:PUT</br>
-Entrada:Los datos del plan que se quiera modificar</br>
-Salida:Devuelve el plan modificado</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
+### URL:"/api/plans/{id}" </br>
+**Método:**PUT</br>
+**Entrada:**Los datos del plan que se quiera modificar</br>
+**Salida:**Devuelve el plan modificado</br>
+**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
 
-**URL:/api/plans/{id}** </br>
-Metodo:DELETE</br>
-Entrada:</br>
-Salida:nul</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
+### URL:"/api/plans/{id}" </br>
+**Método:**DELETE</br>
+**Entrada:**</br>
+**Salida:**null</br>
+Descripción:Si la petición es correcta devolverá un código de estadó:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
 
-**URL:/api/plans/{id}/assist** </br>
-Metodo:POST</br>
-Entrada:</br>
-Salida:Devuelve el plan y con la lista de los q asistiran actualizada</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
+### URL:"/api/plans/{id}/assist" </br>
+**Método:**POST</br>
+**Entrada:**</br>
+**Salida:**Devuelve el plan y con la lista de los q asistiran actualizada</br>
+**Descripción:**Si la petición es correcta devolvera un status:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
 
-**URL:/api/plans/{id}/comment** </br>
-Metodo:Post</br>
-Entrada:"comment":{tu comentario}</br>
-Salida:Devuelve el plan con la lista de comentarios actualizada con el nuevo comentario</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
+### URL:"/api/plans/{id}/comment" </br>
+**Método:**POST</br>
+**Entrada:**"comment":{tu comentario}</br>
+**Salida:**Devuelve el plan con la lista de comentarios actualizada con el nuevo comentario</br>
+**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera esa id devolvera null y un código de estado :404 not found </br>
 
-**URL:/api/plans/{id}/modifyPlanPhoto** </br>
-Metodo:put</br>
-Entrada:Se legira un archivo png o jpg</br>
-Salida:Devuelve el plan con la nueva foto </br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera esa id devolvera null y un estatus:404 not found </br>
+### URL:"/api/plans/{id}/modifyPlanPhoto" </br>
+**Método:**PUT</br>
+**Entrada:**Se legira un archivo png o jpg</br>
+**Salida:**Devuelve el plan con la nueva foto </br>
+Descripción:Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera esa id devolverá null y un código de estado :404 not found </br>
 
-**URL:/api/plans/searchPlans/title={title}/category={category}/place={place}**</br>
-Metodo:GET</br>
-Entrada:</br>
-Salida:Devuelve los planes que coincidan con los parametron introducios en la url</br>
-Descripcion:Si la peticion es correcta devolvera un status:200 OK , en caso de que no esistiera ningun plan que coincida devolvera null y un estatus:200 OK</br>
+### URL:"/api/plans/searchPlans/title={title}/category={category}/place={place}"</br>
+**Método:**GET</br>
+**Entrada:**</br>
+**Salida:**Devuelve los planes que coincidan con los parametron introducios en la url</br>
+**Descripción:**Si la petición es correcta devolverá un código de estado:200 OK , en caso de que no existiera ningún plan que coincida devolvera null y un código de estado :200 OK</br>
 
-
-
-
-
-## Templates </br>
-Para la realización de nuestra página web solo se ha usado un template para los htmls ProfileHTML.html, Sponsor.html, ProfileHTML-logged.html y Sponsor-logged.html. </br>
-En ellos se han modificado todos los aspectos de diseño principales y se ha mantenido el "tab" y su funcionamiento.</br>
-* Template utilizado: http://bootsnipp.com/snippets/featured/people-card-with-tabs </br>
-
-## Diagrama de navegación </br>
-
-![navigatorDiagram](/Maquetación/IMG/Screenshots3/NavigatorDiagram.png)
-
-## Diagrama de clases y templates</br>
-
-![ClassDiagram](/Maquetación/IMG/Screenshots4/ClassDiagram.png)
-
-## Entidades de la base de datos.</brt>
-
-![BDDiagram](/Maquetación/IMG/Screenshots3/BDDiagram.png)

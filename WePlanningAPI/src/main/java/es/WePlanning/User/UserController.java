@@ -191,22 +191,6 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
-
-	/*
-	 * @JsonView(UserView.class)
-	 * 
-	 * @RequestMapping(value = "/api/user/{id}/assistPlan/{idPlan}", method =
-	 * RequestMethod.PUT) public ResponseEntity<User> asistPlan(@PathVariable
-	 * String id, @PathVariable long idPlan) { User user =
-	 * userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
-	 * if (user.getId().equals(id)) { Plan plan =
-	 * planRepository.findById(idPlan); if ((user != null) && (plan != null)) {
-	 * plan.getAsistents().add(user); planRepository.save(plan);
-	 * userRepository.save(user); return new ResponseEntity<>(user,
-	 * HttpStatus.OK); } else { return new
-	 * ResponseEntity<>(HttpStatus.NOT_FOUND); } } else { return new
-	 * ResponseEntity<>(HttpStatus.UNAUTHORIZED); } }
-	 */
 	@JsonView(User.BasicAtt.class)
 	@RequestMapping(value = "/api/user/{id}/viewFriends", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> viewFriends(@PathVariable String id) {
@@ -217,7 +201,7 @@ public class UserController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 	}
 
-	@JsonView(UserView.class)
+	/*@JsonView(UserView.class)
 	@RequestMapping(value = "/api/admin/users/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable String id) {
 		User user = userRepository.findByIdIgnoreCase(id);
@@ -227,6 +211,6 @@ public class UserController {
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}*/
 
 }
