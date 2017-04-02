@@ -190,7 +190,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ## Comment </br>
 
-### URL:/api/comments </br>
+### URL:"/api/comments" </br>
 **Metodo:** GET </br>
 **Entrada:** </br>
 **Salida:** </br>
@@ -198,7 +198,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
-### URL:/api/comments/{id}</br>
+### URL:"/api/comments/{id}"</br>
 **Metodo:** GET </br>
 **Entrada:** </br>
 **Salida:** Devuelve el comentario que tenga la id de la url junto con el autor </br>
@@ -206,7 +206,7 @@ Descripcion:Si la petición es correcta devolvera un status:200 OK </br>
 en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
-### URL:/api/comments/author/{id}</br>
+### URL:"/api/comments/author/{id}"</br>
 **Metodo:** GET </br>
 **Entrada:** </br>
 **Salida:** Devuelve el comentario del autor que se introduzca en la URL </br>
@@ -214,7 +214,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 en caso de que no existiera ningun comentario devolverá null y un estatus:200 OK</br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
-### URL:/api/comments/{id}</br>
+### URL:"/api/comments/{id}"</br>
 **Metodo:** PUT </br>
 **Entrada:** Se introducirá un JSON con la siguiente estructura </br>
 "comment":</br>
@@ -225,7 +225,7 @@ En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 ## Contact
 
-### URL:/api/admin/contacts</br>
+### URL:"/api/admin/contacts"</br>
 **Metodo:** PUT </br>
 **Entrada:** </br>
 **Salida:** Devuelve todos los comentarios </br>
@@ -235,7 +235,7 @@ Si no eres un admin le devolverá el código de estado: 401 Unauthorized </br>
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 
-### URL:/api/addcontacts</br>
+### URL:"/api/addcontacts"</br>
 **Metodo:** POST</br>
 **Entrada:**  Se introducirá un JSON con la siguiente estructura</br>
 "Nombre":</br>
@@ -250,7 +250,7 @@ en caso de que no existiera ningun comentario devolverá null y un estatus:200 O
 En caso de que hubiera algún error mostrará el estado: 404 NOT FOUND</br>
 
 
-### URL:/api/removecontact/{id}</br>
+### URL:"/api/removecontact/{id}"</br>
 **Metodo:** DELETE</br>
 **Entrada:** </br>
 **Salida:** </br>
