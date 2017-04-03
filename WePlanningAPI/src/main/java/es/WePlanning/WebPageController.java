@@ -28,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.Comment.CommentRepository;
+import es.WePlanning.Comment.CommentService;
 import es.WePlanning.Contact.Contact;
 import es.WePlanning.Contact.ContactRepository;
 import es.WePlanning.Plan.Plan;
@@ -43,8 +44,8 @@ public class WebPageController {
 
 	@Autowired
 	private PlanRepository planRepository;
-	@Autowired
-	private CommentRepository commentRepository;
+	/*@Autowired
+	private CommentRepository commentRepository;*/
 	@Autowired
 	private UserComponent userComponent;
 	@Autowired
@@ -55,6 +56,8 @@ public class WebPageController {
 	private UserService userService;
 	@Autowired
 	private PlanService planService;
+	@Autowired
+	private CommentService commentService;
 
 	public WebPageController() {
 	}
@@ -163,7 +166,7 @@ public class WebPageController {
 	public String moreComments(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan = planService.findOne(id);
 		if (!plan.getComments().isEmpty()) {
-			Page<Comment> comments = commentRepository.findComments(plan.getComments(), new PageRequest(page, 1));
+			Page<Comment> comments = commentService.findComments(plan.getComments(), new PageRequest(page, 1));
 			model.addAttribute("commentsPlan", comments);
 		} else {
 			model.addAttribute("commentsPlan", false);
@@ -176,7 +179,7 @@ public class WebPageController {
 	public String moreCommentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan = planService.findOne(id);
 		if (!plan.getComments().isEmpty()) {
-			Page<Comment> comments = commentRepository.findComments(plan.getComments(), new PageRequest(page, 1));
+			Page<Comment> comments = commentService.findComments(plan.getComments(), new PageRequest(page, 1));
 			model.addAttribute("commentsPlan", comments);
 		} else {
 			model.addAttribute("commentsPlan", false);
@@ -228,7 +231,7 @@ public class WebPageController {
 			model.addAttribute("assistentsPlan", false);
 		}
 		if (!planActual.getComments().isEmpty()) {
-			Page<Comment> comments = commentRepository.findComments(planActual.getComments(), new PageRequest(0, 1));
+			Page<Comment> comments = commentService.findComments(planActual.getComments(), new PageRequest(0, 1));
 			model.addAttribute("commentsPlan", comments);
 		} else {
 			model.addAttribute("commentsPlan", false);
@@ -260,7 +263,7 @@ public class WebPageController {
 			model.addAttribute("assistentsPlan", false);
 		}
 		if (!planActual.getComments().isEmpty()) {
-			Page<Comment> comments = commentRepository.findComments(planActual.getComments(), new PageRequest(0, 1));
+			Page<Comment> comments = commentService.findComments(planActual.getComments(), new PageRequest(0, 1));
 			model.addAttribute("commentsPlan", comments);
 		} else {
 			model.addAttribute("commentsPlan", false);
@@ -287,7 +290,7 @@ public class WebPageController {
 		/* /Date */
 		Comment comment = new Comment(format.format(date), cont);
 		comment.setAuthor(userComponent.getLoggedUser());
-		commentRepository.save(comment);
+		commentService.save(comment);
 		plan.getComments().add(comment);
 		planService.savePlan(plan);
 		return "SuccessfulComment";

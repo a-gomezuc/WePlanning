@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
+import es.WePlanning.ApiService;
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.Comment.CommentRepository;
 import es.WePlanning.Contact.ContactRepository;
@@ -34,23 +35,23 @@ public class CommentController {
 		@Autowired
 		private UserRepository userRepository;
 		@Autowired
-		private CommentRepository commentRepository;
-		@Autowired
 		private UserComponent userComponent;
 		@Autowired
 		private ContactRepository contactRepository;
+		@Autowired
+		private CommentService commentService;
 
 		public interface CommentView extends Comment.BasicAtt, Comment.UserAtt, User.BasicAtt{}
 		
 		@JsonView(CommentView.class)
 		@RequestMapping(value="/api/comments", method= RequestMethod.GET)
 		public List<Comment> comments(){
-			return commentRepository.findAll();
+			return commentService.findAll();
 		}
 		@JsonView(CommentView.class)
 		@RequestMapping(value="/api/comments/{id}", method= RequestMethod.GET)
 		public ResponseEntity<Comment> comment(@PathVariable long id){
-			Comment comment = commentRepository.findOne(id);
+			Comment comment = commentService.findOne(id);
 			if (comment != null) {
 				return new ResponseEntity<>(comment, HttpStatus.OK);
 			} else {
@@ -62,7 +63,7 @@ public class CommentController {
 		@JsonView(CommentView.class)
 		@RequestMapping(value="/api/comments/author/{id}", method= RequestMethod.GET)
 			public ResponseEntity<List<Comment>> commentByAuthor(@PathVariable String id){				
-				List <Comment> comments = commentRepository.findByAuthorId(id);
+				List <Comment> comments = commentService.findByAuthorId(id);
 				if (comments != null) {
 					return new ResponseEntity<>(comments, HttpStatus.OK);
 				} else {
@@ -73,12 +74,12 @@ public class CommentController {
 		@RequestMapping(value="/api/comments/{id}", method= RequestMethod.PUT)
 			public ResponseEntity<Comment> commentModify(@PathVariable long id, @RequestBody Comment commentModified){				
 			User user =userRepository.findById(userComponent.getLoggedUser().getId());	
-			Comment comment = commentRepository.findOne(id);
+			Comment comment = commentService.findOne(id);
 			if(comment!=null){
 			if(comment.getAuthor().getId().equals(user.getId())){
 				commentModified.setId(id);
 				commentModified.setAuthor(user);
-				commentRepository.save(commentModified);
+				commentService.save(commentModified);
 				return new ResponseEntity<>(comment, HttpStatus.OK);
 			}else{
 				return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
