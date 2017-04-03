@@ -150,7 +150,7 @@ En ellos se han modificado todos los aspectos de diseño principales y se ha man
 
 ## Diagrama de clases y templates</br>
 
-![ClassDiagram](/Maquetación/IMG/Screenshots3/classDiagram.png)
+![ClassDiagram](/Maquetación/IMG/Screenshots4/ClassDiagram.png)
 
 ## Entidades de la base de datos.</brt>
 
