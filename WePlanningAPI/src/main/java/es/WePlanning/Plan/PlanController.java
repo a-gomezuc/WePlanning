@@ -25,7 +25,7 @@ import es.WePlanning.ApiService;
 
 import es.WePlanning.Comment.Comment;
 import es.WePlanning.Comment.CommentRepository;
-import es.WePlanning.Contact.ContactRepository;
+import es.WePlanning.User.PlanService;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
@@ -42,24 +42,22 @@ public class PlanController {
 	private static final String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
 	
 	@Autowired
-	private PlanRepository planRepository;
-	@Autowired
 	private UserRepository userRepository;
 	@Autowired
 	private CommentRepository commentRepository;
 	@Autowired
 	private UserComponent userComponent;
 	@Autowired
-	private ContactRepository contactRepository;
-	@Autowired
 	private ApiService imageService;
+	@Autowired
+	private PlanService planService;
 
 	public interface PlanView extends Plan.BasicAtt, Plan.CommentAtt, Plan.UserAtt, User.BasicAtt, Comment.BasicAtt{}
 	
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans", method= RequestMethod.GET)
 	public List<Plan> plans(){
-		return planRepository.findAll();
+		return planService.findAllPlans();
 	}
 	
 	@JsonView(PlanView.class)
@@ -67,7 +65,7 @@ public class PlanController {
 	public List<Plan> plansFriends(){
 		User u= userRepository.findById(userComponent.getLoggedUser().getId());
 		if(!u.getFriends().isEmpty()){
-		List<Plan> plans=planRepository.findFriendsPlansNoPage(u.getFriends());
+		List<Plan> plans=planService.findFriendsPlans(u.getFriends());
 		return plans;
 		}
 		else{
@@ -85,7 +83,7 @@ public class PlanController {
 		plan.setAuthor(userComponent.getLoggedUser());
 		plan.setId(0);
 		plan.setImagePlanTitle("planDefault.jpg");
-		planRepository.save(plan);
+		planService.savePlan(plan);
 		return new ResponseEntity<>(plan,HttpStatus.CREATED);
 		}
 		else{
@@ -95,7 +93,7 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.GET)
 	public ResponseEntity<Plan> planIndividual(@PathVariable long id){
-		Plan plan= planRepository.findOne(id);
+		Plan plan= planService.findOne(id);
 		if (plan != null) {
 			return new ResponseEntity<>(plan, HttpStatus.OK);
 		} else {
@@ -105,7 +103,7 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.PUT)
 	public ResponseEntity<Plan> planIndividualModify(@PathVariable long id, @RequestBody Plan planModified){
-		Plan plan= planRepository.findOne(id);
+		Plan plan= planService.findOne(id);
 		User userConnected=userRepository.findById(userComponent.getLoggedUser().getId());
 		if (plan != null) {
 			if (plan.getAuthor().getId().equals(userConnected.getId()) && Arrays.asList(provinces).contains(planModified.getPlace()) && (Arrays.asList(categories).contains(planModified.getCategory()))){
@@ -114,7 +112,7 @@ public class PlanController {
 				planModified.setComments(plan.getComments());
 				planModified.setAsistents(plan.getAsistents());
 				planModified.setImagePlanTitle(plan.getImagePlanTitle());
-				planRepository.save(planModified);
+				planService.savePlan(planModified);
 				return new ResponseEntity<>(plan, HttpStatus.OK);
 			}
 			else{
@@ -128,11 +126,11 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}", method= RequestMethod.DELETE)
 	public ResponseEntity<Plan> deletePlan(@PathVariable long id){
-		Plan plan= planRepository.findById(id);
+		Plan plan= planService.findById(id);
 		User userConnected=userRepository.findById(userComponent.getLoggedUser().getId());
 		if (plan != null) {
 			if (plan.getAuthor().getId().equals(userConnected.getId())){
-				planRepository.delete(plan);
+				planService.deletePlan(plan);
 				return new ResponseEntity<>(null, HttpStatus.OK);
 			}
 			else{
@@ -147,9 +145,9 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/admin/plans/{id}", method= RequestMethod.DELETE)
 	public ResponseEntity<Plan> deletePlanAdmin(@PathVariable long id){
-		Plan plan= planRepository.findById(id);
+		Plan plan= planService.findById(id);
 		if (plan != null) {
-				planRepository.delete(plan);
+				planService.deletePlan(plan);
 				return new ResponseEntity<>(null, HttpStatus.OK);
 		}
 			else {
@@ -160,12 +158,12 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}/assist", method= RequestMethod.PUT)
 	public ResponseEntity<Plan> planIndividualAssist(@PathVariable long id){
-		Plan plan= planRepository.findOne(id);
+		Plan plan= planService.findOne(id);
 		if (plan != null) {
 			User userConnected= userRepository.findById(userComponent.getLoggedUser().getId());
 			if (!plan.getAsistents().contains(userConnected)){
 			plan.getAsistents().add(userConnected);
-			planRepository.save(plan);
+			planService.savePlan(plan);
 			}
 			else{
 				return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -181,7 +179,7 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}/comment", method=RequestMethod.POST)
 	public ResponseEntity<Plan> planIndividualComment(@PathVariable long id, @RequestBody Comment comment){
-			Plan plan= planRepository.findOne(id);
+			Plan plan= planService.findOne(id);
 			DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 			Date date = new Date();
 			if (plan != null) {
@@ -191,7 +189,7 @@ public class PlanController {
 				comment.setDate(format.format(date));
 				commentRepository.save(comment);
 				plan.getComments().add(comment);
-				planRepository.save(plan);
+				planService.savePlan(plan);
 				return new ResponseEntity<>(plan, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -202,7 +200,7 @@ public class PlanController {
 	@RequestMapping(value = "/api/plans/{id}/modifyPlanPhoto", method = RequestMethod.PUT)
 	public ResponseEntity<Plan> modifyPlanPhoto(@PathVariable long id, @RequestParam("file") MultipartFile file) {
 
-		Plan plan = planRepository.findById(id);
+		Plan plan = planService.findById(id);
 		User userConnected= userRepository.findById(userComponent.getLoggedUser().getId());
 		if (plan.getId()==id && plan.getAuthor().getId().equals(userConnected.getId())) {
 			
@@ -210,7 +208,7 @@ public class PlanController {
 			if(changed){
 				
 				plan.setImagePlanTitle(imageService.getImg().getFileName());
-				planRepository.save(plan);
+				planService.savePlan(plan);
 	
 				return new ResponseEntity<Plan>(plan, HttpStatus.OK);
 			}else{
@@ -223,31 +221,7 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/searchPlans/title={title}/category={category}/place={place}", method= RequestMethod.GET)
 	public List<Plan> searchplans(@PathVariable String title,@PathVariable String category,@PathVariable String place){
-		if ((title.equals("")) && (category.equals("")) && (place.equals(""))) {
-			return  planRepository.findAll();
-			
-		}else if ((!title.equals("")) && (!category.equals("")) && (place.equals(""))) {
-			return planRepository.findByTitleAndCategoryIgnoreCase(title, category);
-			
-		}else if ((title.equals("")) && (!category.equals("")) && (!place.equals(""))) {
-			return  planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
-			
-		}else if  ((!title.equals("")) && (category.equals("")) && (!place.equals(""))){
-			return planRepository.findByTitleAndPlaceIgnoreCase(title, place);
-			
-		}else if  ((!title.equals("")) && (category.equals("")) && (place.equals(""))){
-			return planRepository.findByTitleIgnoreCase(title);
-
-		}else if ((title.equals("")) && (!category.equals("")) && (place.equals(""))){
-			return planRepository.findByCategoryIgnoreCase(category);
-			
-		}else if ((title.equals("")) && (category.equals("")) && (!place.equals(""))){
-			return planRepository.findByPlaceIgnoreCase(place);
-			
-		}else if (!(title.equals("")) && (!category.equals("")) && (!place.equals(""))){
-			return planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title,category,place);
-		}
-		return null;
+		return planService.searchPlan(title, category, place);
 	}
 }
 

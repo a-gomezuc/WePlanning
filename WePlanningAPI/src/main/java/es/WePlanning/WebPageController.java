@@ -32,6 +32,7 @@ import es.WePlanning.Contact.Contact;
 import es.WePlanning.Contact.ContactRepository;
 import es.WePlanning.Plan.Plan;
 import es.WePlanning.Plan.PlanRepository;
+import es.WePlanning.User.PlanService;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
 import es.WePlanning.User.UserRepository;
@@ -52,13 +53,15 @@ public class WebPageController {
 	private ContactRepository contactRepository;
 	@Autowired
 	private ApiService imageService;
+	@Autowired
+	private PlanService planService;
 
 	public WebPageController() {
 	}
 
 	@RequestMapping("/")
 	public String start(Model model) {
-		Page<Plan> planes = planRepository.findAll(new PageRequest(0, 10));
+		Page<Plan> planes = planService.findAllPlansPageable(new PageRequest(0, 10));
 		model.addAttribute("planes", planes);
 		model.addAttribute("showButton", !planes.isLast());
 		return "index";
@@ -66,7 +69,7 @@ public class WebPageController {
 
 	@RequestMapping("/morePlans")
 	public String moreStart(Model model, @RequestParam int page) {
-		Page<Plan> planes = planRepository.findAll(new PageRequest(page, 10));
+		Page<Plan> planes = planService.findAllPlansPageable(new PageRequest(page, 10));
 		model.addAttribute("planes", planes);
 		return "plansList";
 
@@ -74,7 +77,7 @@ public class WebPageController {
 
 	@RequestMapping("/morePlansLogged")
 	public String moreStartLogged(Model model, @RequestParam int page) {
-		Page<Plan> planes = planRepository.findAll(new PageRequest(page, 10));
+		Page<Plan> planes = planService.findAllPlansPageable(new PageRequest(page, 10));
 		model.addAttribute("planes", planes);
 		return "plansListLogged";
 
@@ -83,7 +86,7 @@ public class WebPageController {
 	@RequestMapping("/morePlansFriendsLogged")
 	public String moreStartFriendsLogged(Model model, @RequestParam int page) {
 		User u = userRepository.findById(userComponent.getLoggedUser().getId());
-		Page<Plan> userplansPage = planRepository.findFriendsPlans(u.getFriends(), new PageRequest(page, 10));
+		Page<Plan> userplansPage = planService.findFriendsPlansPageable(u.getFriends(), new PageRequest(page, 10));
 		model.addAttribute("planes", userplansPage);
 		return "plansListLogged";
 
@@ -91,7 +94,7 @@ public class WebPageController {
 
 	@RequestMapping("/morePlansUser")
 	public String moreStartUser(Model model, @RequestParam int page, @RequestParam String id) {
-		Page<Plan> planes = planRepository.findByAuthorId(id, new PageRequest(page, 10));
+		Page<Plan> planes = planService.findByAuthorIdPageable(id, new PageRequest(page, 10));
 		model.addAttribute("plans", planes);
 		return "plansListUser";
 
@@ -99,7 +102,7 @@ public class WebPageController {
 
 	@RequestMapping("/morePlansUserLogged")
 	public String moreStartUserLogged(Model model, @RequestParam int page, @RequestParam String id) {
-		Page<Plan> planes = planRepository.findByAuthorId(id, new PageRequest(page, 10));
+		Page<Plan> planes = planService.findByAuthorIdPageable(id, new PageRequest(page, 10));
 		model.addAttribute("plans", planes);
 		return "plansListUserLogged";
 
@@ -125,7 +128,7 @@ public class WebPageController {
 
 	@RequestMapping("/moreAssistents")
 	public String moreAssistents(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 		if (!plan.getAsistents().isEmpty()) {
 			Page<User> assistents = userRepository.findUsers(plan.getAsistents(), new PageRequest(page, 1));
 			model.addAttribute("assistentsPlan", assistents);
@@ -138,7 +141,7 @@ public class WebPageController {
 
 	@RequestMapping("/moreAssistentsLogged")
 	public String moreAssistentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 		if (!plan.getAsistents().isEmpty()) {
 			Page<User> assistents = userRepository.findUsers(plan.getAsistents(), new PageRequest(page, 1));
 			model.addAttribute("assistentsPlan", assistents);
@@ -158,7 +161,7 @@ public class WebPageController {
 
 	@RequestMapping("/moreComments")
 	public String moreComments(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 		if (!plan.getComments().isEmpty()) {
 			Page<Comment> comments = commentRepository.findComments(plan.getComments(), new PageRequest(page, 1));
 			model.addAttribute("commentsPlan", comments);
@@ -171,7 +174,7 @@ public class WebPageController {
 
 	@RequestMapping("/moreCommentsLogged")
 	public String moreCommentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 		if (!plan.getComments().isEmpty()) {
 			Page<Comment> comments = commentRepository.findComments(plan.getComments(), new PageRequest(page, 1));
 			model.addAttribute("commentsPlan", comments);
@@ -197,13 +200,13 @@ public class WebPageController {
 		 */
 		User u = userRepository.findById(userComponent.getLoggedUser().getId());
 		if (!u.getFriends().isEmpty()) {
-			Page<Plan> userplansPage = planRepository.findFriendsPlans(u.getFriends(), new PageRequest(0, 10));
+			Page<Plan> userplansPage = planService.findFriendsPlansPageable(u.getFriends(), new PageRequest(0, 10));
 			model.addAttribute("userPlans", userplansPage);
 		} else {
 			model.addAttribute("userPlans", false);
 			model.addAttribute("noPlanesFriends", true);
 		}
-		Page<Plan> plans = planRepository.findAll(new PageRequest(0, 10));
+		Page<Plan> plans = planService.findAllPlansPageable(new PageRequest(0, 10));
 		model.addAttribute("planes", plans);
 		model.addAttribute("size", plans.getSize() + 10);
 		model.addAttribute("showButton", !plans.isLast());
@@ -214,7 +217,7 @@ public class WebPageController {
 
 	@RequestMapping("/plan/{id}")
 	public String retPlan(Model model, @PathVariable long id) {
-		Plan planActual = planRepository.findOne(id);
+		Plan planActual = planService.findOne(id);
 		int asistentes = planActual.getAsistents().size();
 		boolean noExistComment = planActual.getComments().isEmpty();
 
@@ -239,7 +242,7 @@ public class WebPageController {
 
 	@RequestMapping("/logged/plan/{id}")
 	public String retPlanLogged(Model model, @PathVariable long id) {
-		Plan planActual = planRepository.findOne(id);
+		Plan planActual = planService.findOne(id);
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
 		boolean assist = false;
@@ -275,7 +278,7 @@ public class WebPageController {
 	@RequestMapping(value = "/logged/plan/{id}/addComment", method = RequestMethod.POST)
 	public String addComments(Model model, @PathVariable long id, String cont) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 
 		/* Date */
 		DateFormat format = new SimpleDateFormat("dd/MM/yyyy");
@@ -286,18 +289,18 @@ public class WebPageController {
 		comment.setAuthor(userComponent.getLoggedUser());
 		commentRepository.save(comment);
 		plan.getComments().add(comment);
-		planRepository.save(plan);
+		planService.savePlan(plan);
 		return "SuccessfulComment";
 	}
 
 	@RequestMapping(value = "/logged/plan/{id}/assist", method = RequestMethod.POST)
 	public String assistPlan(Model model, @PathVariable long id) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 		User user = userComponent.getLoggedUser();
 		plan.getAsistents().add(user);
 		userRepository.save(user);
-		planRepository.save(plan);
+		planService.savePlan(plan);
 		return "SuccessfulAssist";
 	}
 
@@ -310,7 +313,7 @@ public class WebPageController {
 		} else {
 			model.addAttribute("friendsUser", false);
 		}
-		model.addAttribute("plansUser", planRepository.findByAuthorId(id, new PageRequest(0, 10)));
+		model.addAttribute("plansUser", planService.findByAuthorIdPageable(id, new PageRequest(0, 10)));
 		if (!user.isSponsor()) {
 			return "ProfileHTML";
 		} else {
@@ -333,7 +336,7 @@ public class WebPageController {
 		}
 		model.addAttribute("noSponsor", noSponsor);
 		model.addAttribute("user", user);
-		model.addAttribute("plansUser", planRepository.findByAuthorId(id, new PageRequest(0, 10)));
+		model.addAttribute("plansUser", planService.findByAuthorIdPageable(id, new PageRequest(0, 10)));
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		model.addAttribute("AllUsers", userRepository.findAll(new PageRequest(0, 1)));
 		boolean noFriends = !(userlog.getFriends().contains(user));
@@ -500,7 +503,7 @@ public class WebPageController {
 
 		plan.setAuthor(userComponent.getLoggedUser());
 		plan.setImagePlanTitle(fileName);
-		planRepository.save(plan);
+		planService.savePlan(plan);
 		model.addAttribute("planes", plan);
 		model.addAttribute("id", plan.getAuthor().getId());
 		model.addAttribute("idPlan", plan.getId());
@@ -566,58 +569,10 @@ public class WebPageController {
 	public String search(Model model, String title, String category, String place) {
 		ArrayList<Plan> planes;
 		boolean noPlanes;
-
-		if ((!title.equals("")) && (!category.equals("")) && (!place.equals(""))) {// title,
-																					// category
-																					// and
-																					// place
-			planes = (ArrayList<Plan>) planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title, category, place);
+			planes = (ArrayList<Plan>) planService.searchPlan(title, category, place);
 			model.addAttribute("planes", planes);
 			noPlanes = planes.isEmpty();
 			model.addAttribute("noPlanes", noPlanes);
-		} else if ((!title.equals("")) && (!category.equals("")) && (place.equals(""))) {// title
-																							// and
-																							// category
-			planes = (ArrayList<Plan>) planRepository.findByTitleAndCategoryIgnoreCase(title, category);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((title.equals("")) && (!category.equals("")) && (!place.equals(""))) {// category
-																							// and
-																							// place
-			planes = (ArrayList<Plan>) planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((!title.equals("")) && (category.equals("")) && (!place.equals(""))) {// title
-																							// and
-																							// place
-			planes = (ArrayList<Plan>) planRepository.findByTitleAndPlaceIgnoreCase(title, place);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((!title.equals("")) && (category.equals("")) && (place.equals(""))) {// title
-			planes = (ArrayList<Plan>) planRepository.findByTitleIgnoreCase(title);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((title.equals("")) && (!category.equals("")) && (place.equals(""))) {// category
-			planes = (ArrayList<Plan>) planRepository.findByCategoryIgnoreCase(category);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((title.equals("")) && (category.equals("")) && (!place.equals(""))) {// place
-			planes = (ArrayList<Plan>) planRepository.findByPlaceIgnoreCase(place);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else {// nothing
-			planes = (ArrayList<Plan>) planRepository.findAll();
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute(noPlanes);
-		}
-
 		return "index";
 
 	}
@@ -627,58 +582,10 @@ public class WebPageController {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		ArrayList<Plan> planes;
 		boolean noPlanes;
-
-		if ((!title.equals("")) && (!category.equals("")) && (!place.equals(""))) {// title,
-																					// category
-																					// and
-																					// place
-			planes = (ArrayList<Plan>) planRepository.findByTitleAndCategoryAndPlaceIgnoreCase(title, category, place);
+			planes = (ArrayList<Plan>) planService.searchPlan(title, category, place);
 			model.addAttribute("planes", planes);
 			noPlanes = planes.isEmpty();
 			model.addAttribute("noPlanes", noPlanes);
-		} else if ((!title.equals("")) && (!category.equals("")) && (place.equals(""))) {// title
-																							// and
-																							// category
-			planes = (ArrayList<Plan>) planRepository.findByTitleAndCategoryIgnoreCase(title, category);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((title.equals("")) && (!category.equals("")) && (!place.equals(""))) {// category
-																							// and
-																							// place
-			planes = (ArrayList<Plan>) planRepository.findByCategoryAndPlaceIgnoreCase(category, place);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((!title.equals("")) && (category.equals("")) && (!place.equals(""))) {// title
-																							// and
-																							// place
-			planes = (ArrayList<Plan>) planRepository.findByTitleAndPlaceIgnoreCase(title, place);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((!title.equals("")) && (category.equals("")) && (place.equals(""))) {// title
-			planes = (ArrayList<Plan>) planRepository.findByTitleIgnoreCase(title);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((title.equals("")) && (!category.equals("")) && (place.equals(""))) {// category
-			planes = (ArrayList<Plan>) planRepository.findByCategoryIgnoreCase(category);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else if ((title.equals("")) && (category.equals("")) && (!place.equals(""))) {// place
-			planes = (ArrayList<Plan>) planRepository.findByPlaceIgnoreCase(place);
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute("noPlanes", noPlanes);
-		} else {// nothing
-			planes = (ArrayList<Plan>) planRepository.findAll();
-			model.addAttribute("planes", planes);
-			noPlanes = planes.isEmpty();
-			model.addAttribute(noPlanes);
-		}
-
 		return "index-logged";
 
 	}
@@ -763,7 +670,7 @@ public class WebPageController {
 	@RequestMapping("/logged/modifyPlan/{id}")
 	public String modifyPlan(Model model, @PathVariable long id) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		Plan plan = planRepository.findOne(id);
+		Plan plan = planService.findOne(id);
 		if ((userComponent.getLoggedUser().getId()).equals(plan.getAuthor().getId())) {
 			model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 			model.addAttribute("plan", plan);
@@ -778,7 +685,7 @@ public class WebPageController {
 	public String modifiedPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
 		User user = userRepository.findById(userComponent.getLoggedUser().getId());
-		Plan planModify = planRepository.findOne(plan.getId());
+		Plan planModify = planService.findOne(plan.getId());
 
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
@@ -810,7 +717,7 @@ public class WebPageController {
 		planModify.setDescription(plan.getDescription());
 		planModify.setImagePlanTitle(fileName);
 		planModify.setAuthor(userComponent.getLoggedUser());
-		planRepository.save(planModify);
+		planService.savePlan(planModify);
 		model.addAttribute("id", planModify.getAuthor().getId());
 		model.addAttribute("planes", planModify);
 		model.addAttribute("idPlan", planModify.getId());
