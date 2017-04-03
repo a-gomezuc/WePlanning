@@ -33,7 +33,7 @@ public class UserController {
 			"Santa Cruz de Tenerife", "Teruel", "Toledo", "Valencia", "Valladolid", "Vizcaya", "Zamora",
 			"Zaragoza" };
 	@Autowired
-	private UserRepository userRepository;
+	private UserService userService;
 	@Autowired
 	private UserComponent userComponent;
 	@Autowired
@@ -48,13 +48,13 @@ public class UserController {
 	@JsonView(UserView.class)
 	@RequestMapping(value = "/api/users", method = RequestMethod.GET)
 	public List<User> users() {
-		return userRepository.findAll();
+		return userService.findAll();
 	}
 
 	@JsonView(UserView.class)
 	@RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
 	public ResponseEntity<User> usersID(@PathVariable String id) {
-		User usu = userRepository.findByIdIgnoreCase(id);
+		User usu = userService.findByIdIgnoreCase(id);
 		if (usu != null) {
 			return new ResponseEntity<>(usu, HttpStatus.OK);
 		} else {
@@ -63,31 +63,18 @@ public class UserController {
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/api/user/searchUsers/filter={filter}/usearch={usearch}", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/search/filter={filter}/usearch={usearch}", method = RequestMethod.GET)
 	public List<User> searchUser(@PathVariable String filter, @PathVariable String usearch) {
 
-		if ((!usearch.equals("")) && (filter.equals("ident"))) {
-			ArrayList<User> resultados = new ArrayList<>();
-			User userId = userRepository.findByIdIgnoreCase(usearch);
-			if (userId != null)
-				resultados.add(userId);
-			return resultados;
-
-		} else if ((usearch.equals("")) && (filter.equals("name"))) {
-			return userRepository.findByUnameIgnoreCase(usearch);
-
-		} else if ((usearch.equals("")) && (filter.equals("province"))) {
-			return userRepository.findByProvinceIgnoreCase(usearch);
-		} else
-			return userRepository.findAll();
+		return userService.searchUser(usearch, filter);
 
 	}
 
 	@JsonView(UserAdd.class)
-	@RequestMapping(value = "/api/user/addUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/api/user/", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public ResponseEntity<User> addUser(@RequestBody User user) {
-		User userSearch = userRepository.findByIdIgnoreCase(user.getId());
+		User userSearch = userService.findByIdIgnoreCase(user.getId());
 		if (userSearch == null) {
 			if (Arrays.asList(provinces).contains(user.getProvince())) {
 				user.setIdentifier(0);
@@ -96,8 +83,8 @@ public class UserController {
 				if (user.getPasswordHash() == null) {
 					user.setPasswordHash("pass");
 				}
-				userRepository.save(user);
-				User userChanged = userRepository.findById(user.getId());
+				userService.save(user);
+				User userChanged = userService.findByIdIgnoreCase(user.getId());
 				return new ResponseEntity<>(userChanged, HttpStatus.OK);
 			} else {
 				return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -108,19 +95,19 @@ public class UserController {
 	}
 
 	@JsonView(User.BasicAtt.class)
-	@RequestMapping(value = "/api/user/modifyProfile/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/user/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<User> modifyProfile(@PathVariable String id, @RequestBody User userModify) {
-		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		if (user.getId().equals(id)) {
 
-			if (userRepository.findByIdIgnoreCase(id) != null) {
+			if (userService.findByIdIgnoreCase(id) != null) {
 				if (Arrays.asList(provinces).contains(userModify.getProvince())) {
 					user.setAge(userModify.getAge());
 					user.setUname(userModify.getUname());
 					user.setProvince(userModify.getProvince());
 					user.setUemail(userModify.getUemail());
 					user.setDescription(userModify.getDescription());
-					userRepository.save(user);
+					userService.save(user);
 
 					return new ResponseEntity<>(user, HttpStatus.OK);
 				} else {
@@ -135,17 +122,17 @@ public class UserController {
 	}
 
 	@JsonView(UserView.class)
-	@RequestMapping(value = "/api/user/{id}/modifyProfilePhoto", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/user/{id}/photo", method = RequestMethod.PUT)
 	public ResponseEntity<User> modifyProfilePhoto(@PathVariable String id, @RequestParam("file") MultipartFile file) {
 
-		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		if (user.getId().equals(id)) {
 
 			boolean changed = imageService.getImg().changePhoto(id, file);
 			if (changed) {
 
 				user.setProfilePhotoTitle(imageService.getImg().getFileName());
-				userRepository.save(user);
+				userService.save(user);
 
 				return new ResponseEntity<User>(user, HttpStatus.OK);
 			} else {
@@ -156,20 +143,20 @@ public class UserController {
 		}
 	}
 	@JsonView(Plan.BasicAtt.class)
-	@RequestMapping(value="/api/user/myPlans", method=RequestMethod.GET)
+	@RequestMapping(value="/api/user/plans", method=RequestMethod.GET)
 	public ResponseEntity<List>viewMyPlans(){
-		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		
 		return new ResponseEntity<>(user.getPlans(),HttpStatus.OK);
 	}
 	@JsonView(User.BasicAtt.class)
-	@RequestMapping(value = "/api/user/addFriend/{id}", method = RequestMethod.PUT)
+	@RequestMapping(value = "/api/user/friend/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<List> addFriend(@PathVariable String id) {
-		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
-		User friend = userRepository.findByIdIgnoreCase(id);
+		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		User friend = userService.findByIdIgnoreCase(id);
 		if ((!user.getId().equals(id)) && (friend != null) && (!user.isSponsor())) {
 			user.getFriends().add(friend);
-			userRepository.save(user);
+			userService.save(user);
 			return new ResponseEntity<>(user.getFriends(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -177,24 +164,24 @@ public class UserController {
 	}
 
 	@JsonView(User.BasicAtt.class)
-	@RequestMapping(value = "/api/user/removeFriend/{id}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/api/user/friend/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<List> deleteFriend(@PathVariable String id) {
-		User user = userRepository.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
-		User friend = userRepository.findById(id);
+		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
+		User friend = userService.findByIdIgnoreCase(id);
 		if ((user.getFriends().contains(friend)) && (friend.getFriends().contains(user))) {
 			user.getFriends().remove(friend);
 			friend.getFriends().remove(user);
-			userRepository.save(user);
-			userRepository.save(friend);
+			userService.save(user);
+			userService.save(friend);
 			return new ResponseEntity<>(user.getFriends(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
 	@JsonView(User.BasicAtt.class)
-	@RequestMapping(value = "/api/user/{id}/viewFriends", method = RequestMethod.GET)
+	@RequestMapping(value = "/api/user/{id}/friends", method = RequestMethod.GET)
 	public ResponseEntity<List<User>> viewFriends(@PathVariable String id) {
-		User user = userRepository.findByIdIgnoreCase(id);
+		User user = userService.findByIdIgnoreCase(id);
 		if(user!=null)
 		return new ResponseEntity<>(user.getFriends(), HttpStatus.OK);
 		else
@@ -204,9 +191,9 @@ public class UserController {
 	/*@JsonView(UserView.class)
 	@RequestMapping(value = "/api/admin/users/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<User> deleteUser(@PathVariable String id) {
-		User user = userRepository.findByIdIgnoreCase(id);
+		User user = userService.findByIdIgnoreCase(id);
 		if (user != null) {
-			userRepository.delete(user);
+			userService.delete(user);
 			return new ResponseEntity<>(null, HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
