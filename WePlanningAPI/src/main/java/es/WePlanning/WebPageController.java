@@ -35,7 +35,7 @@ import es.WePlanning.Plan.PlanRepository;
 import es.WePlanning.User.PlanService;
 import es.WePlanning.User.User;
 import es.WePlanning.User.UserComponent;
-import es.WePlanning.User.UserRepository;
+import es.WePlanning.User.UserService;
 
 
 @Controller
@@ -44,8 +44,6 @@ public class WebPageController {
 	@Autowired
 	private PlanRepository planRepository;
 	@Autowired
-	private UserRepository userRepository;
-	@Autowired
 	private CommentRepository commentRepository;
 	@Autowired
 	private UserComponent userComponent;
@@ -53,6 +51,8 @@ public class WebPageController {
 	private ContactRepository contactRepository;
 	@Autowired
 	private ApiService imageService;
+	@Autowired
+	private UserService userService;
 	@Autowired
 	private PlanService planService;
 
@@ -85,7 +85,7 @@ public class WebPageController {
 
 	@RequestMapping("/morePlansFriendsLogged")
 	public String moreStartFriendsLogged(Model model, @RequestParam int page) {
-		User u = userRepository.findById(userComponent.getLoggedUser().getId());
+		User u = userService.findById(userComponent.getLoggedUser().getId());
 		Page<Plan> userplansPage = planService.findFriendsPlansPageable(u.getFriends(), new PageRequest(page, 10));
 		model.addAttribute("planes", userplansPage);
 		return "plansListLogged";
@@ -110,8 +110,8 @@ public class WebPageController {
 
 	@RequestMapping("/moreFriends")
 	public String moreFriends(Model model, @RequestParam int page, @RequestParam String id) {
-		User user = userRepository.findById(id);
-		Page<User> friends = userRepository.findUsers(user.getFriends(), new PageRequest(page, 10));
+		User user = userService.findById(id);
+		Page<User> friends = userService.findUsers(user.getFriends(), new PageRequest(page, 10));
 		model.addAttribute("friendsUser", friends);
 		return "friendsList";
 
@@ -119,8 +119,8 @@ public class WebPageController {
 
 	@RequestMapping("/moreFriendsLogged")
 	public String moreFriendsLogged(Model model, @RequestParam int page, @RequestParam String id) {
-		User user = userRepository.findById(id);
-		Page<User> friends = userRepository.findUsers(user.getFriends(), new PageRequest(page, 1));
+		User user = userService.findById(id);
+		Page<User> friends = userService.findUsers(user.getFriends(), new PageRequest(page, 1));
 		model.addAttribute("friendsUser", friends);
 		return "friendsLoggedList";
 
@@ -130,7 +130,7 @@ public class WebPageController {
 	public String moreAssistents(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan = planService.findOne(id);
 		if (!plan.getAsistents().isEmpty()) {
-			Page<User> assistents = userRepository.findUsers(plan.getAsistents(), new PageRequest(page, 1));
+			Page<User> assistents = userService.findUsers(plan.getAsistents(), new PageRequest(page, 1));
 			model.addAttribute("assistentsPlan", assistents);
 		} else {
 			model.addAttribute("assistentsPlan", false);
@@ -143,7 +143,7 @@ public class WebPageController {
 	public String moreAssistentsLogged(Model model, @RequestParam int page, @RequestParam long id) {
 		Plan plan = planService.findOne(id);
 		if (!plan.getAsistents().isEmpty()) {
-			Page<User> assistents = userRepository.findUsers(plan.getAsistents(), new PageRequest(page, 1));
+			Page<User> assistents = userService.findUsers(plan.getAsistents(), new PageRequest(page, 1));
 			model.addAttribute("assistentsPlan", assistents);
 		} else {
 			model.addAttribute("assistentsPlan", false);
@@ -154,7 +154,7 @@ public class WebPageController {
 
 	@RequestMapping("/moreUsersSearch")
 	public String moreUsersSearch(Model model, @RequestParam int page) {
-		Page<User> users = userRepository.findAll(new PageRequest(page, 1));
+		Page<User> users = userService.findAllPage(new PageRequest(page, 1));
 		model.addAttribute("AllUsers", users);
 		return "userSearchList";
 	}
@@ -193,12 +193,12 @@ public class WebPageController {
 		// model.addAttribute("showButton", !planes.isLast());
 		/*
 		 * User newUser =
-		 * userRepository.findById(userComponent.getLoggedUser().getId());
+		 * userService.findById(userComponent.getLoggedUser().getId());
 		 * List<Plan> userplans = new ArrayList<>(); List<User> friends =
 		 * newUser.getFriends(); for (User u : friends) { for (Plan p :
 		 * u.getPlans()) { userplans.add(p); } }
 		 */
-		User u = userRepository.findById(userComponent.getLoggedUser().getId());
+		User u = userService.findById(userComponent.getLoggedUser().getId());
 		if (!u.getFriends().isEmpty()) {
 			Page<Plan> userplansPage = planService.findFriendsPlansPageable(u.getFriends(), new PageRequest(0, 10));
 			model.addAttribute("userPlans", userplansPage);
@@ -222,7 +222,7 @@ public class WebPageController {
 		boolean noExistComment = planActual.getComments().isEmpty();
 
 		if (!planActual.getAsistents().isEmpty()) {
-			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(), new PageRequest(0, 1));
+			Page<User> assistents = userService.findUsers(planActual.getAsistents(), new PageRequest(0, 1));
 			model.addAttribute("assistentsPlan", assistents);
 		} else {
 			model.addAttribute("assistentsPlan", false);
@@ -244,7 +244,7 @@ public class WebPageController {
 	public String retPlanLogged(Model model, @PathVariable long id) {
 		Plan planActual = planService.findOne(id);
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User user = userService.findById(userComponent.getLoggedUser().getId());
 		boolean assist = false;
 		if (planActual.getAsistents().contains(user)) {
 			assist = true;
@@ -254,7 +254,7 @@ public class WebPageController {
 		boolean noExistComment = planActual.getComments().isEmpty();
 
 		if (!planActual.getAsistents().isEmpty()) {
-			Page<User> assistents = userRepository.findUsers(planActual.getAsistents(), new PageRequest(0, 1));
+			Page<User> assistents = userService.findUsers(planActual.getAsistents(), new PageRequest(0, 1));
 			model.addAttribute("assistentsPlan", assistents);
 		} else {
 			model.addAttribute("assistentsPlan", false);
@@ -299,17 +299,17 @@ public class WebPageController {
 		Plan plan = planService.findOne(id);
 		User user = userComponent.getLoggedUser();
 		plan.getAsistents().add(user);
-		userRepository.save(user);
+		userService.save(user);
 		planService.savePlan(plan);
 		return "SuccessfulAssist";
 	}
 
 	@RequestMapping("/user/{id}")
 	public String retUser(Model model, @PathVariable String id) {
-		User user = userRepository.findById(id);
+		User user = userService.findById(id);
 		model.addAttribute("user", user);
 		if (!user.getFriends().isEmpty()) {
-			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(), new PageRequest(0, 10)));
+			model.addAttribute("friendsUser", userService.findUsers(user.getFriends(), new PageRequest(0, 10)));
 		} else {
 			model.addAttribute("friendsUser", false);
 		}
@@ -323,14 +323,14 @@ public class WebPageController {
 
 	@RequestMapping("logged/user/{id}")
 	public String retUserLogged(Model model, @PathVariable String id) {
-		User userlog = userRepository.findById(userComponent.getLoggedUser().getId());
-		User user = userRepository.findById(id);
+		User userlog = userService.findById(userComponent.getLoggedUser().getId());
+		User user = userService.findById(id);
 		boolean noSponsor = true;
 		if (userlog.isSponsor()) {
 			noSponsor = false;
 		}
 		if (!user.getFriends().isEmpty()) {
-			model.addAttribute("friendsUser", userRepository.findUsers(user.getFriends(), new PageRequest(0, 1)));
+			model.addAttribute("friendsUser", userService.findUsers(user.getFriends(), new PageRequest(0, 1)));
 		} else {
 			model.addAttribute("friendsUser", false);
 		}
@@ -338,7 +338,7 @@ public class WebPageController {
 		model.addAttribute("user", user);
 		model.addAttribute("plansUser", planService.findByAuthorIdPageable(id, new PageRequest(0, 10)));
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("AllUsers", userRepository.findAll(new PageRequest(0, 1)));
+		model.addAttribute("AllUsers", userService.findAllPage(new PageRequest(0, 1)));
 		boolean noFriends = !(userlog.getFriends().contains(user));
 		boolean yesFriends = !noFriends;
 
@@ -362,14 +362,14 @@ public class WebPageController {
 	@RequestMapping(value = "/logged/user/{id}/addFriend", method = RequestMethod.POST)
 	public String addFriend(Model model, @PathVariable String id) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
-		User friend = userRepository.findById(id);
+		User user = userService.findById(userComponent.getLoggedUser().getId());
+		User friend = userService.findById(id);
 		user.getFriends().add(friend);
-		userRepository.save(user);
+		userService.save(user);
 
 		if (friend.isSponsor()) {
 			friend.getFriends().add(user);
-			userRepository.save(friend);
+			userService.save(friend);
 			return "successfulSponsor";
 		} else {
 
@@ -380,14 +380,14 @@ public class WebPageController {
 	@RequestMapping(value = "/logged/user/{id}/removeFriend", method = RequestMethod.POST)
 	public String removeFriend(Model model, @PathVariable String id) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
-		User friend = userRepository.findById(id);
+		User user = userService.findById(userComponent.getLoggedUser().getId());
+		User friend = userService.findById(id);
 		user.getFriends().remove(friend);
 		if (friend.getFriends().contains(user)) {
 			friend.getFriends().remove(user);
 		}
-		userRepository.save(user);
-		userRepository.save(friend);
+		userService.save(user);
+		userService.save(friend);
 		if (friend.isSponsor()) {
 			return "successfulRemoveSponsor";
 		} else {
@@ -458,9 +458,9 @@ public class WebPageController {
 	@RequestMapping(value = "/registerUser", method = RequestMethod.POST)
 	public String registerUser(Model model, boolean sponsorCheckbox, String name, String surname, int age,
 			String province, String username, String email, String pass) {
-		if (userRepository.findById(username) == null) {
+		if (userService.findById(username) == null) {
 			User user = new User(sponsorCheckbox, username, name, surname, province, age, email, pass, "ROLE_USER");
-			userRepository.save(user);
+			userService.save(user);
 			return "SuccesfulRegister";
 		} else {
 			model.addAttribute("userName", username);
@@ -478,7 +478,7 @@ public class WebPageController {
 	@RequestMapping("/createPlan")
 	public String createPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User user = userService.findById(userComponent.getLoggedUser().getId());
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		Random rnd = new Random();
 		int cod = rnd.nextInt(1000000);
@@ -533,35 +533,13 @@ public class WebPageController {
 	@RequestMapping("/logged/user/{id}/searchUsers")
 	public String searchAnUser(Model model, @PathVariable String id, String usearch, String filter) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("user", userRepository.findById(id));
+		model.addAttribute("user", userService.findById(id));
 		ArrayList<User> users;
-		User u;
-		boolean noUsers;
-		if ((!usearch.equals("")) && (filter.equals("name"))) {
-			users = (ArrayList<User>) userRepository.findByUnameIgnoreCase(usearch);
-			model.addAttribute("AllUsers", users);
-			noUsers = users.isEmpty();
-			model.addAttribute("noUsers", noUsers);
-
-		} else if ((!usearch.equals("")) && (filter.equals("ident"))) {
-			u = userRepository.findByIdIgnoreCase(usearch);
-			model.addAttribute("AllUsers", u);
-			noUsers = (u.equals(""));
-			model.addAttribute("noUsers", noUsers);
-
-		} else if ((!usearch.equals("")) && (filter.equals("province"))) {
-			users = (ArrayList<User>) userRepository.findByProvinceIgnoreCase(usearch);
-			model.addAttribute("AllUsers", users);
-			noUsers = users.isEmpty();
-			model.addAttribute("noUsers", noUsers);
-
-		} else {
-			users = (ArrayList<User>) userRepository.findAll();
-			model.addAttribute("AllUsers", users);
-			noUsers = users.isEmpty();
-			model.addAttribute("noUsers", noUsers);
-
-		}
+		users = (ArrayList<User>) userService.searchUser(usearch, filter);
+		model.addAttribute("AllUsers", users);
+		boolean noUsers = users.isEmpty();
+		model.addAttribute("noUsers", noUsers);
+		
 		return "ProfileHTML-logged";
 	}
 
@@ -603,7 +581,7 @@ public class WebPageController {
 	@RequestMapping("/logged/change/{id}")
 	public String change(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("user", userRepository.findById(userComponent.getLoggedUser().getId()));
+		model.addAttribute("user", userService.findById(userComponent.getLoggedUser().getId()));
 		return "changeInfo";
 
 	}
@@ -612,12 +590,12 @@ public class WebPageController {
 	public String changeinfo(Model model, @PathVariable String id, String uname, String province, int age,
 			String uemail, String description) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User usuario = userRepository.findById(id);
+		User usuario = userService.findById(id);
 		usuario.setUname(uname);
 		usuario.setProvince(province);
 		usuario.setAge(age);
 		usuario.setDescription(description);
-		userRepository.save(usuario);
+		userService.save(usuario);
 
 		return "SuccesfulChangeInfo";
 
@@ -634,12 +612,12 @@ public class WebPageController {
 	@RequestMapping(value = "/logged/{id}/profilePhoto", method = RequestMethod.POST)
 	public String changePhoto(Model model, @PathVariable String id, @RequestParam("file") MultipartFile file){
 		model.addAttribute("idConectado",userComponent.getLoggedUser().getId());
-		User user=userRepository.findById(userComponent.getLoggedUser().getId());
+		User user=userService.findById(userComponent.getLoggedUser().getId());
 	
 		boolean changed = imageService.getImg().changePhoto(id, file);
 		if(changed){
 			user.setProfilePhotoTitle(imageService.getImg().getFileName());
-			userRepository.save(user);
+			userService.save(user);
 			model.addAttribute("user",user);
 			return "SuccessfulChangePhoto";
 		}else{
@@ -650,7 +628,7 @@ public class WebPageController {
 	@RequestMapping("/logged/changeS/{id}")
 	public String changeSponsor(Model model) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		model.addAttribute("user", userRepository.findById(userComponent.getLoggedUser().getId()));
+		model.addAttribute("user", userService.findById(userComponent.getLoggedUser().getId()));
 		return "changeInfoSponsor";
 
 	}
@@ -659,11 +637,11 @@ public class WebPageController {
 	public String changeinfoSponsor(Model model, @PathVariable String id, String uname, String province, String uemail,
 			String description) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User usuario = userRepository.findById(id);
+		User usuario = userService.findById(id);
 		usuario.setUname(uname);
 		usuario.setProvince(province);
 		usuario.setDescription(description);
-		userRepository.save(usuario);
+		userService.save(usuario);
 		return "SuccesfulChangeInfo";
 	}
 
@@ -684,7 +662,7 @@ public class WebPageController {
 	@RequestMapping(value = "/logged/modifiedPlan/{id}", method = RequestMethod.POST)
 	public String modifiedPlan(Model model, Plan plan, @RequestParam("file") MultipartFile file) {
 		model.addAttribute("idConectado", userComponent.getLoggedUser().getId());
-		User user = userRepository.findById(userComponent.getLoggedUser().getId());
+		User user = userService.findById(userComponent.getLoggedUser().getId());
 		Plan planModify = planService.findOne(plan.getId());
 
 		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";

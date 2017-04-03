@@ -1,12 +1,11 @@
 package es.WePlanning.User;
 
-import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 
@@ -20,10 +19,18 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+	public Page<User>findAllPage(Pageable page){
+		return userRepository.findAll(page);
+	}
+	
+	public User findById(String id){
+		return userRepository.findByIdIgnoreCase(id);
+	}
 	
 	public User findByIdIgnoreCase(String id){
 		return userRepository.findByIdIgnoreCase(id);
 	}
+	
 	public List<User>searchUser (String usearch, String filter){
 		if ((!usearch.equals("")) && (filter.equals("ident"))) {
 			ArrayList<User> resultados = new ArrayList<>();
@@ -40,6 +47,7 @@ public class UserService {
 		} else
 			return userRepository.findAll();
 	}
+	
 	public List<User>findByUnameIgnoreCase(String uname){
 		return userRepository.findByUnameIgnoreCase(uname);
 	}
@@ -48,8 +56,8 @@ public class UserService {
 		return userRepository.findByProvinceIgnoreCase(province);
 	}
 	
-	public Page<User> findUsers(List<User> list, int page){
-		return userRepository.findUsers(list, new PageRequest(page, 10));
+	public Page<User> findUsers(List<User> list, Pageable page){
+		return userRepository.findUsers(list, page);
 	}
 	
 	public void save (User user){
