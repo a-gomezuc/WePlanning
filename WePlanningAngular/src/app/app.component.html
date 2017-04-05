@@ -1,3 +1,32 @@
-<h1>
-  {{title}}
-</h1>
+<div id="wrap">
+    <div id="main" class="container clear-top">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="assets/IMG/Logo.png" /> </div>
+
+            <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+
+                <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
+                <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
+                <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                <a [routerLink]="['/aboutus']" id="aboutUs">Conócenos<br></a> <a [routerLink]="['/contact']" id="contacto">Contacto<br></a>
+            </div>
+        </div>
+        <div class="row">
+            <div id="copyright">
+
+                <hr id="lineaCopyright">
+                <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
+
+            </div>
+        </div>
+    </div>
+</footer>
