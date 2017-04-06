@@ -388,8 +388,12 @@ body {
 #busquedaprovincia {
     height: 30px;
     width: 100%;
+    text-align:center;
+    float:none;
 }
-
+.input-append{
+    margin:0 auto;
+}
 h1.title {
     font-size: 50px;
     font-weight: 400;
@@ -400,7 +404,6 @@ h1.title {
     margin-top: 5px;
     margin-left: -20px;
 }
-
 label {
     margin-bottom: 15px;
     font-family: 'Fjalla One', sans-serif !important;
@@ -593,7 +596,9 @@ input::-webkit-input-placeholder {
     color: #fff;
     border-color: #333;
 }
-
+#btnMorePlans{
+    text-align: center;
+}
 #btninfoSponsor,
 #btnamigosSponsor,
 #btnplanesSponsor,
@@ -852,7 +857,9 @@ input::-webkit-input-placeholder {
 
 
 /* ----------- /Footer -------- */
-
+#redesSociales{
+    text-align: center;
+}
 #redesSociales a {
     color: black;
 }
@@ -899,7 +906,9 @@ input::-webkit-input-placeholder {
     font-size: 1.3em;
     font-weight: 600;
 }
-
+#textoCopyright {
+    text-align:center;
+}
 #copyright {
     margin-left: 5px;
 }
