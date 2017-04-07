@@ -11,8 +11,8 @@ export class Plan{
   private prize:number;
   private date: string;
 
-  private setAuthor(user:User){
-    this.author= user;
+  setAuthor(user:any){
+    this.author= user as User;
   }
 }
 

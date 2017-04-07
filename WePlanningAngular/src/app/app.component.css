@@ -5,7 +5,7 @@ body {
     position: relative;
     min-height: 100%;
     padding-top: 50px;
-    background: url("assets/IMG/background.png");
+    background: url("../assets/IMG/background.png");
     margin: 0px;
 }
 
@@ -88,7 +88,7 @@ body {
 }
 
 .jumbo .jumbotron {
-    background: url("assets/IMG/imgplan6.jpg");
+    background: url("../assets/IMG/imgplan6.jpg");
     background-size: cover;
     background-position: center center;
     height: 400px;
@@ -559,7 +559,7 @@ input::-webkit-input-placeholder {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 20px;
-    background: url("assets/IMG/stardust.png");
+    background: url("../assets/IMG/stardust.png");
     border: 1px solid #333;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
@@ -571,7 +571,7 @@ input::-webkit-input-placeholder {
     min-height: 20px;
     padding: 19px;
     margin-bottom: 10px;
-    background: url("assets/IMG/stardust.png");
+    background: url("../assets/IMG/stardust.png");
     border: 1px solid #333;
     border-radius: 4px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
