@@ -1,50 +1,49 @@
 <div class="container-fluid jumbo">
-    <div class="jumbotron">
-        <div class="jumbo-slogan">
-            <h1>Encuentra el mejor plan cerca de ti!</h1>
-            <p>Planea, Disfruta, Comenta, Comparte</p>
-            <p>Únete a WePlanning</p>
-        </div>
-    </div>
+	<div class="jumbotron">
+		<div class="jumbo-slogan">
+			<h1>Encuentra el mejor plan cerca de ti!</h1>
+			<p>Planea, Disfruta, Comenta, Comparte</p>
+			<p>Únete a WePlanning</p>
+		</div>
+	</div>
 </div>
 <!-- /Jumbotron -->
 <!-- row-ads -->
 <div class="container-fluid">
-    <div class="row center-block" id="row-ads">
-        <div class="col-md-6 col-sm-12 col-xs-12">
-            <div class="ads">
-                <img id="ad1" class="image-responsive ads-img" src="assets/IMG/ad1.jpg">
-            </div>
-        </div>
-        <div class="col-md-6 col-sm-12 col-xs-12">
-            <div class="ads">
-                <img id="ad2" class="image-responsive ads-img" src="assets/IMG/ad2.jpg">
-            </div>
-        </div>
-    </div>
+	<div class="row center-block" id="row-ads">
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div class="ads">
+				<img id="ad1" class="image-responsive ads-img" src="assets/IMG/ad1.jpg">
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div class="ads">
+				<img id="ad2" class="image-responsive ads-img" src="assets/IMG/ad2.jpg">
+			</div>
+		</div>
+	</div>
 </div>
-			<div class="container-fluid">
-				<div class="row ">
-						<div class="col-lg-12">
-							<h2 class="page-header">Encuentra tu plan</h2>
-						</div>
-				</div>
-				<div class="row ">
-						<div class="col-md-12 col-sm-12 col-xs-12 search">
-							<div class="input-append" class="col-md-12">
-								<form action="/searchPlans" method="get">
-								<div id="inputSearch" class="col-md-12 col-md-offset-5">
-									<input name="title" type="text" class="sr-input"
-										 placeholder="Busca un plan">
-									<button type="submit" class="btn sr-btn btn-info" type="button">
+<div class="container-fluid">
+	<div class="row ">
+		<div class="col-lg-12">
+			<h2 class="page-header">Encuentra tu plan</h2>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="col-md-12 col-sm-12 col-xs-12 search">
+			<div class="input-append" class="col-md-12">
+				<form action="/searchPlans" method="get">
+					<div id="inputSearch" class="col-md-12 col-md-offset-5">
+						<input name="title" type="text" class="sr-input" placeholder="Busca un plan">
+						<button type="submit" class="btn sr-btn btn-info" type="button">
 										<i class="fa fa-search"></i>
 									</button>
-								</div>
-										<div class="form-group">
-											<div class="col-md-6 col-sm-6 col-xs-6">
-												<h4 class="page-header">Categorías</h4>
-												<div class="input-group" class="center-block">
-													<select id="busquedaprovincia" name="category">
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<h4 class="page-header">Categorías</h4>
+							<div class="input-group" class="center-block">
+								<select id="busquedaprovincia" name="category">
 														<option value="">Seleccione categoría</option>
 														<option value='Musica'>Música</option>
 														<option value='Cine'>Cine</option>
@@ -53,14 +52,14 @@
 														<option value='Deportes'>Deportes</option>
 														<option value='Cultura'>Cultura</option>
 													</select>
-												</div>
-											</div>
-										</div>
-										<div class="form-group">
-											<div class="col-md-6 col-sm-6 col-xs-6">
-												<h4 class="page-header">Provincias</h4>
-												<div class="input-group" class="block-center">
-													<select id="busquedaprovincia" name="place">
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<h4 class="page-header">Provincias</h4>
+							<div class="input-group" class="block-center">
+								<select id="busquedaprovincia" name="place">
 														<option value="">Seleccione provincia</option>
 														<option value='alava'>Álava</option>
 														<option value='albacete'>Albacete</option>
@@ -116,41 +115,36 @@
 														<option value='zamora'>Zamora</option>
 														<option value='zaragoza'>Zaragoza</option>
 													</select>
-												</div>
-											</div>
-										</div>
-								</form>
 							</div>
 						</div>
-				</div>
+					</div>
+				</form>
 			</div>
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-lg-12">
-					<h2 class="page-header">TOP PLANNING</h2>
-				</div>
-				<div id="plans">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
-					<a href="#" class="planning-box"> <img
-						class=" img-responsive img-center"
-						src="assets/IMG/imgplan1.jpg" alt="">
-						<div class="planning-box-caption">
-							<div class="planning-box-caption-content">
-								<div class="user-name text-faded">Detalles</div>
-							</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">TOP PLANNING</h2>
+		</div>
+		<div *ngFor ="let plan of plans" id="plans">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
+				<a href="#" class="planning-box"> <img class=" img-responsive img-center" src="assets/IMG/imgplan1.jpg" alt="">
+					<div class="planning-box-caption">
+						<div class="planning-box-caption-content">
+							<div class="user-name text-faded">Detalles</div>
 						</div>
-					</a>
-					<p class="datosPlan">
-						Título: {{plan.title}} <br> Autor: <a href="#"
-							class="creador-plan">{{plan.author}}</a><br>
-						Lugar: {{plan.place}} <br> Fecha: {{plan.date}}
-					</p>
-				</div>
-				</div> 
+					</div>
+				</a>
+				<p class="datosPlan">
+					Título: {{plan.title}} <br> Autor: <a href="#" class="creador-plan">{{plan.author}}</a><br> Lugar: {{plan.place}} <br>					Fecha: {{plan.date}}
+				</p>
 			</div>
-			</div>
-			<div id="spinner"></div>
-				<div class="col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 col-xs-4 col-xs-offset-5">
-				<button id="btnMorePlans" type="button"
-					class="btn-info btn-mas">Mostrar más</button>
-				</div>
+		</div>
+	</div>
+</div>
+<div id="spinner"></div>
+<div class="col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 col-xs-4 col-xs-offset-5">
+	<button id="btnMorePlans" type="button" class="btn-info btn-mas">Mostrar más</button>
+</div>
