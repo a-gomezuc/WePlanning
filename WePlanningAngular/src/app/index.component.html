@@ -138,7 +138,7 @@
 					</div>
 				</a>
 				<p class="datosPlan">
-					Título: {{plan.title}} <br> Autor: <a href="#" class="creador-plan">{{plan.author.id}}</a><br> Lugar: {{plan.place}} <br>					Fecha: {{plan.date}}
+					Título: {{plan.title}} <br> Autor: <a [routerLink]="['/profile']" class="creador-plan">{{plan.author.id}}</a><br> Lugar: {{plan.place}} <br>					Fecha: {{plan.date}}
 				</p>
 			</div>
 		</div>

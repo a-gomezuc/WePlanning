@@ -32,4 +32,14 @@ export class User {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  private showMenu:boolean = true;
+  private menuCollapse:boolean = true;
+
+  showDropdown(typeMenu:string){
+    if(typeMenu === "collapse"){
+      this.menuCollapse=!this.menuCollapse;
+    }else if(typeMenu === "loginMenu"){
+      this.showMenu=!this.showMenu;
+    }
+  }
 }
