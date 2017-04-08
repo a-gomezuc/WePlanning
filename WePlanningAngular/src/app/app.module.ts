@@ -5,13 +5,12 @@ import { HttpModule,JsonpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import { AboutusComponent } from './aboutus.component';
 import { IndexComponent } from './index.component';
-import { ProfileComponent} from './profile.component';
 import { ContactComponent } from './contact.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 @NgModule({
   declarations: [
-    AppComponent, AboutusComponent, IndexComponent, ContactComponent, ProfileComponent
+    AppComponent, AboutusComponent, IndexComponent, ContactComponent
   ],
   imports: [
     BrowserModule,
