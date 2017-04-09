@@ -435,11 +435,9 @@ input::-webkit-input-placeholder {
 }
 
 .main-center {
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
     max-width: 330px;
     padding: 40px 40px;
+    text-align: -webkit-center;
 }
 
 .login-button {

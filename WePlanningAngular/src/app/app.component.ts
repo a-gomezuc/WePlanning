@@ -10,21 +10,25 @@ export class Plan{
   private address:string;
   private prize:number;
   private date: string;
-
+  
   setAuthor(user:any){
     this.author= user as User;
   }
 }
 
 export class User {
-  
+
   private identifier:number;
-  private id:string;
-  private sponsor:boolean;
-  private uname:string;
-  private surname:string;
-  private province:string;
-  private age:number; 
+  private description ="";
+  constructor(
+  private id:string,
+  private sponsor:boolean,
+  private uname:string,
+  private surname:string,
+  private uemail:string,
+  private province:string,
+  private age:number,
+  private passwordHash:string){}
 }
 @Component({
   selector: 'app-root',

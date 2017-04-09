@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { AboutusComponent } from './aboutus.component';
 import { IndexComponent } from './index.component';
 import { ContactComponent } from './contact.component';
+import { RegisterComponent } from './register.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 @NgModule({
   declarations: [
-    AppComponent, AboutusComponent, IndexComponent, ContactComponent
+    AppComponent, AboutusComponent, IndexComponent, ContactComponent, RegisterComponent
   ],
   imports: [
     BrowserModule,
