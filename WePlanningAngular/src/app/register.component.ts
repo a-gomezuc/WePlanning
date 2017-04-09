@@ -1,8 +1,10 @@
 import { Component, NgModule } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import {Http} from '@angular/http';
-import {User} from './app.component';
+import { UserService } from './user.service';
+
+import { Http } from '@angular/http';
+import { User } from './app.component';
 @Component({
   selector: 'app-root',
   templateUrl: './register.component.html',
@@ -12,14 +14,12 @@ export class RegisterComponent {
 
   private sponsor = false;
 
-  constructor(private http:Http){}
+  constructor(private http:Http, private userService:UserService){}
   newUser(id:string, uname:string, surname:string, uemail:string, province:string, age:number, passwordHash:string ){
     let user = new User (id, this.sponsor, uname, surname, uemail, province, age, passwordHash);
 
-    this.http.post("https://localhost:8443/api/user/",user).subscribe(
-      response => console.log(response),
-      error => console.log(error)
+    this.userService.addUser(user).subscribe(
+      result => console.log(user)
     );
-    console.log();
   }
 }
