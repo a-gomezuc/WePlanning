@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { Http } from '@angular/http';
 
+import { LoginService } from './Services/login.service';
 export class Plan{
 
   private id:number; 
@@ -36,8 +38,22 @@ export class User {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   private showMenu:boolean = true;
   private menuCollapse:boolean = true;
+  jwt:string;
+  decodedJwt:string;
+
+
+  constructor (private http:Http, private loginService:LoginService){}
+
+  
+
+  logIn(id:string, pass:string){
+    this.loginService.login(id ,pass).subscribe(
+      user => console.log(user)
+    );
+  }
 
   showDropdown(typeMenu:string){
     if(typeMenu === "collapse"){

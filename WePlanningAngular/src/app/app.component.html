@@ -18,23 +18,23 @@
                                     <form class="form-horizontal form_ini" role="form">
                                         <li>
                                             <div class="form-group">
-                                                <label for="email" class="col-lg-4 control-label">Email</label>
+                                                <label for="email" class="col-lg-4 control-label">Id</label>
                                                 <div class="col-lg-10">
-                                                    <input type="email" class="form-control" id="email" placeholder="Email"> </div>
+                                                    <input #id type="email" class="form-control" id="id" placeholder="Nombre de usuario"> </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="form-group">
                                                 <label for="password" class="col-lg-4 control-label">Contraseña</label>
                                                 <div class="col-lg-10">
-                                                    <input type="password" class="form-control" id="password" placeholder="Contraseña"> </div>
+                                                    <input #pass type="password" class="form-control" id="password" placeholder="Contraseña"> </div>
                                             </div>
                                         </li>
                                         <li class="divider"></li>
                                         <li>
                                             <div class="form-group">
                                                 <div class="col-lg-offset-2 col-lg-10">
-                                                    <button type="submit" class="btn btn-default">Entrar</button>
+                                                    <button (click) = "logIn(id.value, pass.value)"type="submit" class="btn btn-default">Entrar</button>
                                                 </div>
                                             </div>
                                         </li>

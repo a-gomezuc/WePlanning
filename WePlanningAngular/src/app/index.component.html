@@ -23,6 +23,27 @@
 		</div>
 	</div>
 </div>
+<div *ngIf = "loginService.isUserLogged()" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">PLANES DE MIS AMIGOS</h2>
+		</div>
+		<div *ngFor ="let lan of friendPlans" id="plans">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
+				<a href="#" class="planning-box"> <img class=" img-responsive img-center" src="assets/IMG/imgplan1.jpg" alt="">
+					<div class="planning-box-caption">
+						<div class="planning-box-caption-content">
+							<div class="user-name text-faded">Detalles</div>
+						</div>
+					</div>
+				</a>
+				<p class="datosPlan">
+					Título: {{plan.title}} <br> Autor: <a [routerLink]="['/profile']" class="creador-plan">{{plan.author.id}}</a><br> Lugar: {{plan.place}} <br>					Fecha: {{plan.date}}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
 <div class="container-fluid">
 	<div class="row ">
 		<div class="col-lg-12">
@@ -123,6 +144,7 @@
 		</div>
 	</div>
 </div>
+
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-lg-12">

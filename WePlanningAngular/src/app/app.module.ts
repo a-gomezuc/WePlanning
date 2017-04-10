@@ -10,8 +10,11 @@ import { RegisterComponent } from './register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 
-import { UserService} from './user.service';
-import { PlanService } from './plan.service';
+import { RouterModule } from '@angular/router';
+
+import { UserService} from './Services/user.service';
+import { PlanService } from './Services/plan.service';
+import { LoginService } from './Services/login.service';
 @NgModule({
   declarations: [
     AppComponent, AboutusComponent, IndexComponent, ContactComponent, RegisterComponent
@@ -19,9 +22,11 @@ import { PlanService } from './plan.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule, JsonpModule,NgbModule.forRoot(), routing
+    HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing, {
+      useHash: true
+    })
   ],
-  providers: [UserService, PlanService],
+  providers: [UserService, PlanService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

@@ -11,10 +11,15 @@ export class PlanService {
      getPlans (){
          return this.http.get("https://localhost:8443/api/plans/")
          .map(response => response.json())
-         .catch(error => this.hadnleError(error))
+         .catch(error => this.handleError(error))
      }
 
-     private hadnleError(error:any){
+     getFriendPlans (){
+         return this.http.get("https://localhost:8443/api/viewFriendsPlans")
+         .map (response => response.json())
+         .catch(error => this.handleError(error))
+     }
+     private handleError(error:any){
          console.log(error);
          return Observable.throw("Server error ("+ error.status +"): "+error.text())
      }
