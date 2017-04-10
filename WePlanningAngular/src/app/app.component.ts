@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { LoginService } from './Services/login.service';
+import { PlanService } from './Services/plan.service';
+
 export class Plan{
 
   private id:number; 
@@ -41,11 +43,9 @@ export class AppComponent {
 
   private showMenu:boolean = true;
   private menuCollapse:boolean = true;
-  jwt:string;
-  decodedJwt:string;
 
 
-  constructor (private http:Http, private loginService:LoginService){}
+  constructor (private http:Http, private loginService:LoginService, private planService:PlanService){}
 
   
 
@@ -54,7 +54,6 @@ export class AppComponent {
       user => console.log(user)
     );
   }
-
   showDropdown(typeMenu:string){
     if(typeMenu === "collapse"){
       this.menuCollapse=!this.menuCollapse;

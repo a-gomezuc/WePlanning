@@ -22,9 +22,7 @@ import { LoginService } from './Services/login.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing, {
-      useHash: true
-    })
+    HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing)
   ],
   providers: [UserService, PlanService, LoginService],
   bootstrap: [AppComponent]

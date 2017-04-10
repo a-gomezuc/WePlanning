@@ -9,6 +9,5 @@ export const  routing : Routes = [
     { path: 'aboutus', component: AboutusComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'register', component: RegisterComponent },
-    { path: '', redirectTo: 'index', pathMatch: 'full' },
-    { path: '**', redirectTo: 'index' }
+    { path: '', redirectTo: 'index', pathMatch: 'full' }
 ];
