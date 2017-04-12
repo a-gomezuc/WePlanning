@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 
-import { Plan } from '../app.component';
+import { Plan } from '../Class/plan.model';
 import { LoginService } from './login.service';
 
 import 'rxjs/Rx';

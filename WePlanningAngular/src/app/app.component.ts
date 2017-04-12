@@ -4,49 +4,12 @@ import { Http } from '@angular/http';
 import { LoginService } from './Services/login.service';
 import { PlanService } from './Services/plan.service';
 
-export class Plan{
-
-  private id:number; 
-  private title:string; 
-  private category:string; 
-  private author:User; 
-  private place:string;
-  private address:string;
-  private prize:number;
-  private date: string;
-  
-  setAuthor(user:any){
-    this.author= user as User;
-  }
-}
-
-export class User {
-
-  private identifier:number;
-  private description ="";
-  constructor(
-  private id:string,
-  private sponsor:boolean,
-  private uname:string,
-  private surname:string,
-  private uemail:string,
-  private province:string,
-  private age:number,
-  private passwordHash:string){}
-
-  getId(){
-    return this.id;
-  }
-
-  getpaswordHash(){
-    return this.passwordHash;
-  }
-}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent implements OnInit{
 
   private showMenu:boolean = true;

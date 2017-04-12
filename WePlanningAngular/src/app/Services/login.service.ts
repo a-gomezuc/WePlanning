@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 
-import { User } from '../app.component';
+import { User } from '../Class/user.model';
 import { UserService } from '../Services/user.service';
 
 import 'rxjs/Rx';

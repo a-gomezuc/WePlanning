@@ -3,10 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule,JsonpModule} from '@angular/http';
 import { AppComponent } from './app.component';
-import { AboutusComponent } from './aboutus.component';
-import { IndexComponent } from './index.component';
-import { ContactComponent } from './contact.component';
-import { RegisterComponent } from './register.component';
+import { AboutusComponent } from './Home/aboutus.component';
+import { IndexComponent } from './Home/index.component';
+import { ContactComponent } from './Home/contact.component';
+import { RegisterComponent } from './Home/register.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { routing } from './app.routing';
 
