@@ -1,4 +1,4 @@
-import { Component,OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Http } from '@angular/http';
 
@@ -12,25 +12,10 @@ import { User } from './app.component';
   templateUrl: './index.component.html',
   styleUrls: ['./app.component.css']
 })
-export class IndexComponent implements OnInit{
 
-    private plans: Plan []=[];
-    private friendPlans: Plan [] = [];
+export class IndexComponent{
+
     constructor(private http:Http, private planService: PlanService, private loginService:LoginService){}
 
-    ngOnInit(){
-      this.update();
-    }
-
-    update(){
-      this.planService.getPlans().subscribe(
-        plans => this.plans = plans
-      );
-      if(this.loginService.isUserLogged()){
-        this.planService.getFriendPlans().subscribe(
-          friendPlans => this.friendPlans = friendPlans
-        )
-      }
-    }
 
 }

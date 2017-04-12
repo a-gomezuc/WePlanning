@@ -8,9 +8,9 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
-    
-    constructor( private http:Http){}
 
+    constructor( private http:Http){}
+    
     addUser(user:User){
         return this.http.post("https://localhost:8443/api/user/",user)
         .map(response => response.json())

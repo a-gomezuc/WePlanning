@@ -39,7 +39,7 @@ public class LoginController {
 		}
 	}
 
-	@RequestMapping("/api//logout")
+	@RequestMapping("/api/logout")
 	public ResponseEntity<Boolean> logOut(HttpSession session) {
 
 		if (!userComponent.isLoggedUser()) {

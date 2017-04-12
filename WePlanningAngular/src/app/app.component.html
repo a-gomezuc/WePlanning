@@ -17,13 +17,24 @@
                                 <ul [ngbCollapse]="showMenu" class="dropdown-menu dropdown-tc">
                                     <form class="form-horizontal form_ini" role="form">
                                         <li>
-                                            <a [routerLink]><!-- Esto es para cuando haya peticiones de amistad, hay que usar una ptiion ajax cada x tiempo para comprobarlo, si las hay lo muestra<span class="badge custom-badge red pull-right">!!</span>-->Accede a tu perfil</a>                                               
+                                            <a [routerLink]>Accede a tu perfil</a>                                               
                                         </li>
                                         <li> </li>
                                         <li class="divider"></li>
                                         <li>
                                             <a [routerLink]>Sube tu plan</a> 
                                         </li>
+                                        <li class = "divider"></li>
+                                        <li>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<form>
+													<input (click)="logOut()" type="submit" class="btn btn-default"
+														value="Cerrar Sesión">
+												</form>
+											</div>
+										</div>
+									</li>
                                     </form>
                                 </ul>
                             </li>

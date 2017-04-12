@@ -15,6 +15,7 @@ export class RegisterComponent {
   private sponsor = false;
 
   constructor(private http:Http, private userService:UserService){}
+  
   newUser(id:string, uname:string, surname:string, uemail:string, province:string, age:number, passwordHash:string ){
     let user = new User (id, this.sponsor, uname, surname, uemail, province, age, passwordHash);
 
