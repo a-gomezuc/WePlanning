@@ -1,18 +1,22 @@
-import { User } from './user.model';
+
 
 export class Plan{
 
-  private id:number; 
-  private title:string; 
-  private category:string; 
-  private author:User; 
-  private place:string;
-  private address:string;
-  private prize:number;
-  private date: string;
+  private id:number;
+  constructor(
+  private title:string, 
+  private category:string,
+  private place:string,
+  private address:string,
+  private prize:number,
+  private date: string,
+  ){}
+  private description ="";
+  private imagePlanTitle:string;
   
-  setAuthor(user:any){
-    this.author= user as User;
+  
+  getTitle(){
+    return this.title;
   }
   
  }

@@ -4,31 +4,37 @@ import { Http } from '@angular/http';
 import { LoginService } from './Services/login.service';
 import { PlanService } from './Services/plan.service';
 
+import { User } from './Class/user.model';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent{
 
   private showMenu:boolean = true;
   private menuCollapse:boolean = true;
+  private userLogged:User;
 
 
-  constructor (private http:Http, private loginService:LoginService, private planService:PlanService){}
+  constructor (private http:Http, private loginService:LoginService, private planService:PlanService){
+    console.log("Inicializo ppcomponent constructor");
+    this.planService.initIndexPlans();//Inicializa los planes que se mostraran al comienzo en el index
+    console.log("Inicializo metodo oninit");
+  }
 
   
 
-  ngOnInit(){
-    this.planService.initIndexPlans();//Inicializa los planes que se mostraran al comienzo en el index
-  }
 
   logIn(id:string, pass:string){
     this.loginService.login(id ,pass).subscribe(
-      user => console.log(user)
-    );
-    this.planService.initFriendsPlans();//Inicializamos los planes de nuestros amiogos que se mostrarán en el index una vez logueados.
+      user => {this.userLogged = user;
+        console.log(this.userLogged);
+      });
+    this.planService.initIndexPlans();
+    this.planService.initFriendsPlans();//Inicializamos los planes de nuestros amigos que se mostrarán en el index una vez logueados.ng 
   }
 
   logOut(){

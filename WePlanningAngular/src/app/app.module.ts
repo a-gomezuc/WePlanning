@@ -7,7 +7,9 @@ import { AboutusComponent } from './Home/aboutus.component';
 import { IndexComponent } from './Home/index.component';
 import { ContactComponent } from './Home/contact.component';
 import { RegisterComponent } from './Home/register.component';
+import { PlanComponent } from './Plan/plan.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {Ng2PaginationModule} from 'ng2-pagination';
 import { routing } from './app.routing';
 
 import { RouterModule } from '@angular/router';
@@ -15,14 +17,17 @@ import { RouterModule } from '@angular/router';
 import { UserService} from './Services/user.service';
 import { PlanService } from './Services/plan.service';
 import { LoginService } from './Services/login.service';
+
 @NgModule({
   declarations: [
-    AppComponent, AboutusComponent, IndexComponent, ContactComponent, RegisterComponent
+    AppComponent, AboutusComponent, IndexComponent, ContactComponent,
+    RegisterComponent, PlanComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing)
+    HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing),
+    Ng2PaginationModule
   ],
   providers: [UserService, PlanService, LoginService],
   bootstrap: [AppComponent]

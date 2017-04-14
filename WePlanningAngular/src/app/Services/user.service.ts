@@ -1,8 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import { User } from '../Class/user.model';
 
+import { PlanService } from './plan.service';
+import { User } from '../Class/user.model';
+import { Plan } from '../Class/plan.model';
 import 'rxjs/Rx';
 
 

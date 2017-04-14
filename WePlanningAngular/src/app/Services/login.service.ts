@@ -22,6 +22,9 @@ export class LoginService {
         return this.credentials;
     }
 
+    getUserLogged(){
+        return this.user;
+    }
     setCredentials(credentials:string){
         this.credentials = credentials;
     }
@@ -58,7 +61,8 @@ export class LoginService {
         return this.http.get("https://localhost:8443/api/logout", {headers:headers})
         .map(response =>{
             this.isLogged = false;
-            localStorage.removeItem("user");
+            this.user = null;
+            localStorage.clear();
             return true;
         })
         .catch (error => this.handleError(error))

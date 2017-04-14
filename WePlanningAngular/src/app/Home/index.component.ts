@@ -15,7 +15,13 @@ import { User } from '../Class/user.model';
 
 export class IndexComponent{
 
-    constructor(private http:Http, private planService: PlanService, private loginService:LoginService){}
+    constructor(private http:Http, private planService: PlanService, private loginService:LoginService){
+      this.planService.initIndexPlans();
+    }
+
+    search(title:string, category:string, place:string){
+      this.planService.searchPlansBy(title,category,place).subscribe();
+    }
 
 
 }

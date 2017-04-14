@@ -3,7 +3,9 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 
 import { Plan } from '../Class/plan.model';
+import { User } from '../Class/user.model'
 import { LoginService } from './login.service';
+import { UserService } from './user.service';
 
 import 'rxjs/Rx';
 
@@ -15,7 +17,7 @@ export class PlanService {
     private friendPlans: Plan [] = [];//Array de los que contiene los planes de los amigos del usuario logueado.
 
 
-    constructor(private http: Http, private loginService: LoginService) {}
+    constructor(private http: Http, private loginService: LoginService, private userService:UserService) {}
     
     initIndexPlans(){//Introduce en el array de planes todos los planes que s emostrarán en el sistema.
         this.getApiPlans().subscribe(
@@ -28,7 +30,6 @@ export class PlanService {
             friendPlans => this.friendPlans = friendPlans
         );
     }
-
     getPlans(){
         return this.plans;
     }
@@ -36,10 +37,24 @@ export class PlanService {
     getFriendPlans(){
         return this.friendPlans;
     }
+
     getApiPlans() {
         return this.http.get("https://localhost:8443/api/plans/")
-            .map(response => this.plans = response.json())
+            .map(response => {return response.json()})
             .catch(error => this.handleError(error))
+    }
+
+    getApiPlanById(id:number){
+        return this.http.get("https://localhost:8443/api/plans/"+id)
+            .map(response => { return response.json()})
+            .catch(error => this.handleError(error))
+    }
+
+   searchPlansBy(title:string, category:string, place:string){
+        return this.http.get("https://localhost:8443/api/plans/searchPlans/title=" + title + 
+        "/category=" + category + "/place=" + place)
+        .map(response => {return this.plans = response.json()})
+        .catch(error => this.handleError(error))
     }
 
     getApiFriendPlans() {
@@ -48,7 +63,7 @@ export class PlanService {
         console.log(this.credentials);
         headers.append('Authorization', 'Basic ' + this.credentials);
         return this.http.get("https://localhost:8443/api/viewFriendsPlans",{headers : headers})
-            .map(response => this.friendPlans = response.json())
+            .map(response =>{return response.json()})
             .catch(error => this.handleError(error))
     }
     private handleError(error: any) {

@@ -1,7 +1,10 @@
+import { Plan } from './plan.model';
+
 export class User {
 
   private identifier:number;
   private description ="";
+  private plans:Plan[] = [];
   constructor(
   private id:string,
   private sponsor:boolean,
@@ -12,7 +15,7 @@ export class User {
   private age:number,
   private passwordHash:string){}
 
-  getId(){
+  public getId(){
     return this.id;
   }
 
