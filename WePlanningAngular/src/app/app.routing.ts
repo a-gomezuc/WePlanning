@@ -4,6 +4,9 @@ import { AboutusComponent } from './Home/aboutus.component';
 import { ContactComponent } from './Home/contact.component';
 import { RegisterComponent } from './Home/register.component';
 import { PlanComponent } from './Plan/plan.component';
+import { NewPlanComponent } from './Plan/newPlan.component';
+
+import { RouterSecurity } from './Services/routerSecurity.service';
 
 export const  routing : Routes = [
     { path: 'index', component: IndexComponent },
@@ -12,5 +15,6 @@ export const  routing : Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'plan/:id', component: PlanComponent },
     { path: 'register', component: RegisterComponent },
+    { path: 'newPlan', component: NewPlanComponent, canActivate:[RouterSecurity]},
     { path: '', redirectTo: 'index', pathMatch: 'full' }
 ];

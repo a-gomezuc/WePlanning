@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 import { LoginService } from './Services/login.service';
 import { PlanService } from './Services/plan.service';
@@ -19,10 +20,8 @@ export class AppComponent {
   private userLogged: User;
 
 
-  constructor(private http: Http, private loginService: LoginService, private planService: PlanService) {
-    console.log("Inicializo ppcomponent constructor");
+  constructor(private router:Router, private http: Http, private loginService: LoginService, private planService: PlanService) {
     this.planService.initIndexPlans();//Inicializa los planes que se mostraran al comienzo en el index
-    console.log("Inicializo metodo oninit");
   }
 
 
@@ -45,6 +44,7 @@ export class AppComponent {
       error => {
         console.log(error);
       });
+      this.router.navigate(['/index']);
   }
 
   showDropdown(typeMenu: string) {// Método encargado de los dropdowns del navbar

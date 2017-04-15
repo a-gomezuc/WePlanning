@@ -49,7 +49,6 @@ export class LoginService {
                 .map(response => {
                     this.handleLogIn(response);
                     localStorage.setItem("user", response.json());
-                    console.log(this.credentials);
                     return response.json();
                 })
                 .catch(error => this.handleError(error))

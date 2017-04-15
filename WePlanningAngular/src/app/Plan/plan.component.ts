@@ -17,6 +17,7 @@ export class PlanComponent {
 
   constructor(private planService: PlanService, private activatedRoute: ActivatedRoute) {
     let id = this.activatedRoute.snapshot.params['id'];
+    //Ésta sería la forma eficiente de hacerlo pero da error.
     /*this.planService.getApiPlanById(id).subscribe(
       plan => {
         this.plan = plan;
