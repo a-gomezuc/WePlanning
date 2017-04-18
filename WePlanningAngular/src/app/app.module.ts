@@ -16,6 +16,7 @@ import { NewPlanComponent } from './Plan/newPlan.component';
 
 import { RouterModule } from '@angular/router';
 
+import { ContactService} from './Services/contact.service';
 import { UserService} from './Services/user.service';
 import { PlanService } from './Services/plan.service';
 import { LoginService } from './Services/login.service';
@@ -32,7 +33,7 @@ import { RouterSecurity } from './Services/routerSecurity.service';
     HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing),
     NgxPaginationModule
   ],
-  providers: [UserService, PlanService, LoginService, RouterSecurity],
+  providers: [ContactService, UserService, PlanService, LoginService, RouterSecurity],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
