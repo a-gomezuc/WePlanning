@@ -1207,3 +1207,62 @@ myplan-row {
 .badge.custom-badge.red {
 	background-color: #e9372e;
 }
+    /* ----------- PaginationAngular -------- */
+.my-pagination .ngx-pagination {
+  margin-left: 0;
+  margin-bottom: 1rem; }
+  .my-pagination .ngx-pagination::before, .ngx-pagination::after {
+    content: ' ';
+    display: table; }
+  .my-pagination .ngx-pagination::after {
+    clear: both; }
+  .my-pagination .ngx-pagination li {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    margin-right: 0.0625rem;
+    border-radius: 0; }
+  .my-pagination .ngx-pagination li {
+    display: inline-block; }
+  .my-pagination .ngx-pagination a,
+  .my-pagination .ngx-pagination button {
+    color: orangered; 
+    display: block;
+    padding: 0.1875rem 0.625rem;
+    border-radius: 0; }
+    .my-pagination .ngx-pagination a:hover,
+    .ngx-pagination button:hover {
+      background: orangered; }
+  .my-pagination .ngx-pagination .current {
+    padding: 0.1875rem 0.625rem;
+    background: orangered;
+    color: #fefefe;
+    cursor: default; }
+  .my-pagination .ngx-pagination .disabled {
+    padding: 0.1875rem 0.625rem;
+    color: #cacaca;
+    cursor: default; } 
+    .my-pagination .ngx-pagination .disabled:hover {
+      background: transparent; }
+  .my-pagination .ngx-pagination .ellipsis::after {
+    content: '…';
+    padding: 0.1875rem 0.625rem;
+    color: #0a0a0a; }
+.my-pagination .ngx-pagination .pagination-previous a::before,
+.my-pagination .ngx-pagination .pagination-previous.disabled::before { 
+  content: '«';
+  display: inline-block;
+  margin-right: 0.5rem; }
+.my-pagination .ngx-pagination .pagination-next a::after,
+.ngx-pagination .pagination-next.disabled::after {
+  content: '»';
+  display: inline-block;
+  margin-left: 0.5rem; }
+.ngx-pagination .show-for-sr {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0); 
+  }
+    /* ----------- PaginationAngular -------- */

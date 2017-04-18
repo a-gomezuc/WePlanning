@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule,JsonpModule} from '@angular/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {Ng2PaginationModule} from 'ng2-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
@@ -30,7 +30,7 @@ import { RouterSecurity } from './Services/routerSecurity.service';
     BrowserModule,
     FormsModule,
     HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing),
-    Ng2PaginationModule
+    NgxPaginationModule
   ],
   providers: [UserService, PlanService, LoginService, RouterSecurity],
   bootstrap: [AppComponent]
