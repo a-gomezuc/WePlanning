@@ -25,6 +25,9 @@ export class LoginService {
     getUserLogged() {
         return this.user;
     }
+    getUserLoggedId() {
+        return this.user.getId();
+    }
     setCredentials(credentials: string) {
         this.credentials = credentials;
     }

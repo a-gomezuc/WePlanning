@@ -19,5 +19,8 @@ export class Plan{
   getTitle(){
     return this.title;
   }
+  getAuthorId(){
+    return this.author.getId();
+  }
   
  }

@@ -15,7 +15,7 @@ export class User {
   private age:number,
   private passwordHash:string){}
 
-  public getId(){
+  getId(){
     return this.id;
   }
 
