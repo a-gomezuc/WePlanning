@@ -1,6 +1,6 @@
 <div class="row plan">
 				<div class="col-md-12">
-					<h3></h3>
+					<h3>{{plan.category}}</h3>
 					<div class="preview col-md-6">
 						<div class="preview-pic tab-content img-center">
 							<div class="tab-pane active" id="pic-1">
@@ -10,33 +10,33 @@
 					</div>
 					<div class="col-md-6 plan-desc">
 						<div class="col-md-12 nombre-plan">
-							<h3></h3>
+							<h3>{{plan.title}}</h3>
 						</div>
 
 
 						<div class="provincia-plan">
-							<p>Provincia:{{plan}} </p>
+							<p>Provincia: {{plan.place}} </p>
 							<div class="direccion-plan">
-								<p>Dirección: </p>
+								<p>Dirección: {{plan.address}}</p>
 							</div>
 						</div>
 						<div class="fecha-plan">
-							<p>Fecha: </p>
+							<p>Fecha: {{plan.date}}</p>
 						</div>
 						<div class="descripcion-plan">
-							<p>Descripción: </p>
+							<p>Descripción: {{plan.description}}</p>
 						</div>
 						<div>
 							<p>
-								Subido por: <a class="creador-plan" ></a>
+								Subido por: <a [routerLink] class="creador-plan" >{{plan.author.id}}</a>
 							</p>
 						</div>
 						<div class="precio-plan">
-							<p>Precio: €</p>
+							<p>Precio: {{plan.prize}}€</p>
 						</div>
 						<div class="asistentes-plan">
 							Asistirán:
-							<button class="boton btn-info "></button>
+							<button class="boton btn-info ">0</button>
 						</div>
 						<article>
 							<div class="asisten center-block" style="display: none;">

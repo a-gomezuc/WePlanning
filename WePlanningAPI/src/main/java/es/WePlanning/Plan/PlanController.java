@@ -76,7 +76,7 @@ public class PlanController {
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/addPlan", method= RequestMethod.POST)
 	public ResponseEntity<Plan> newPlan(@RequestBody Plan plan) {
-		String[] categories= {"Deportes","Música", "Cine","Fiestas","Naturaleza","Cultura"};
+		String[] categories= {"Deportes","Música","Cine","Fiestas","Naturaleza","Cultura"};
 		
 		if(Arrays.asList(provinces).contains(plan.getPlace()) && (Arrays.asList(categories).contains(plan.getCategory()))){
 		
