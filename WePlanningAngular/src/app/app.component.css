@@ -8,7 +8,9 @@ body {
     background: url("../assets/IMG/background.png");
     margin: 0px;
 }
-
+.n_center{
+    margin-left:10%;
+}
 .btn-info {
     color: #fff;
     background: rgb(198, 88, 7) !important;
@@ -1207,3 +1209,7 @@ myplan-row {
 .badge.custom-badge.red {
 	background-color: #e9372e;
 }
+
+
+
+

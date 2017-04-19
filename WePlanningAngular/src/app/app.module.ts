@@ -11,7 +11,7 @@ import { PlanComponent } from './Plan/plan.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {Ng2PaginationModule} from 'ng2-pagination';
 import { routing } from './app.routing';
-
+import { UserComponent } from './User/user.component';
 import { RouterModule } from '@angular/router';
 
 import { UserService} from './Services/user.service';
@@ -21,7 +21,7 @@ import { LoginService } from './Services/login.service';
 @NgModule({
   declarations: [
     AppComponent, AboutusComponent, IndexComponent, ContactComponent,
-    RegisterComponent, PlanComponent
+    RegisterComponent, PlanComponent, UserComponent
   ],
   imports: [
     BrowserModule,
