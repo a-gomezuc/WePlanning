@@ -66,6 +66,16 @@ export class PlanService {
             .map(response => { return response.json() })
             .catch(error => this.handleError(error))
     }
+    assist(plan:Plan){
+         this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        let id= plan.id;
+        console.log(this.credentials);
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.put("https://localhost:8443/api/plan/"+id+"/assist",{headers: headers})
+            .map(response => response.json())
+            .catch(error => this.handleError(error))
+    }
 
     addPlan(plan:Plan) {
         this.credentials = this.loginService.getCredentials();

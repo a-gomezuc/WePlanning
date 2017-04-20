@@ -13,7 +13,7 @@ export class LoginService {
 
     private isLogged: boolean = false;//Variable con la cual sabremos si el uisuario esta logeuado o no el sistema.
     private credentials: string;//Credenciales del usuario (Encriptadas).
-    private user: User;//Usuario logueado actuamente en el sistema
+    private userLogged: User;//Usuario logueado actuamente en el sistema
 
 
     constructor(private router: Router, private http: Http, private userService: UserService) { }
@@ -23,10 +23,10 @@ export class LoginService {
     }
 
     getUserLogged() {
-        return this.user;
+        return this.userLogged;
     }
     getUserLoggedId() {
-        return this.user.getId();
+        return this.userLogged.getId();
     }
     setCredentials(credentials: string) {
         this.credentials = credentials;
@@ -39,7 +39,7 @@ export class LoginService {
     private handleLogIn(response) {
         this.isLogged = true;
         this.userService.getUser(response.json().id).subscribe(
-            user => this.user = user
+            user => this.userLogged = user
         );
     }
 
@@ -68,7 +68,7 @@ export class LoginService {
         return this.http.get("https://localhost:8443/api/logout", { headers: headers })
             .map(response => {
                 this.isLogged = false;
-                this.user = null;
+                this.userLogged = null;
                 localStorage.clear();
                 return true;
             })

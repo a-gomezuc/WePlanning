@@ -5,6 +5,7 @@ import  {  Router,  ActivatedRoute  }  from  '@angular/router';
 import { PlanService } from '../Services/plan.service';
 import { LoginService} from '../Services/login.service';
 import { Plan } from '../Class/plan.model';
+import { User } from '../Class/user.model';
 
 
 @Component({
@@ -27,7 +28,9 @@ export class PlanComponent {
     );*/
     this.plan = this.planService.getPlans()[id-1];
   }
-  sameAuthor(){
-    return (this.loginService.getUserLoggedId()===this.plan.getAuthorId());
+
+  assistPlan(plan:Plan){
+    this.planService.assist(plan);
   }
+
 }

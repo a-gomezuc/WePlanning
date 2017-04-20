@@ -3,6 +3,7 @@ import { User } from './user.model';
 export class Plan{
 
   private id:number;
+  private asistents:User[] = [];
   constructor(
   private title:string, 
   private category:string,
@@ -21,6 +22,12 @@ export class Plan{
   }
   getAuthorId(){
     return this.author.getId();
+  }
+  getAsistents(){
+    return this.asistents;
+  }
+  getId(){
+    return this.id;
   }
   
  }
