@@ -2,8 +2,8 @@
 import { User } from './user.model';
 export class Plan{
 
-  private id:number;
-  private asistents:User[] = [];
+  id:number;
+  asistents:User[] = [];
   constructor(
   private title:string, 
   private category:string,

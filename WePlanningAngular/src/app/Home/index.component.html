@@ -30,7 +30,7 @@
 		</div>
 		<div *ngFor="let plan of planService.getFriendPlans() | paginate :{itemsPerPage: 9, currentPage:p1, id: 'first'}" id="plans">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
-				<a [routerLink]="['/plan',plan.id]" class="planning-box"> <img class=" img-responsive img-center" src="assets/IMG/imgplan1.jpg" alt="">
+				<a [routerLink]="['/plan', plan.id]" class="planning-box"> <img class=" img-responsive img-center" src="assets/IMG/imgplan1.jpg" alt="">
 					<div class="planning-box-caption">
 						<div class="planning-box-caption-content">
 							<div class="user-name text-faded">Detalles</div>
@@ -38,7 +38,7 @@
 					</div>
 				</a>
 				<p class="datosPlan">
-					Título: {{plan.title}} <br> Autor: <a [routerLink] class="creador-plan">{{plan.author.id}}</a><br> Lugar: {{plan.place}}
+					Título: {{plan.title}} <br> Autor: <a [routerLink] = "['/profile', plan.author.id]"  class="creador-plan">{{plan.author.id}}</a><br> Lugar: {{plan.place}}
 					<br> Fecha: {{plan.date}}
 				</p>
 			</div>
@@ -170,7 +170,7 @@
 					</div>
 				</a>
 				<p class="datosPlan">
-					Título: {{plan.title}} <br> Autor: <a [routerLink]="['/profile']" class="creador-plan">{{plan.author.id}}</a><br> Lugar:
+					Título: {{plan.title}} <br> Autor: <a [routerLink] = "['/profile', plan.author.id]" class="creador-plan">{{plan.author.id}}</a><br> Lugar:
 					{{plan.place}} <br> Fecha: {{plan.date}}
 				</p>
 			</div>

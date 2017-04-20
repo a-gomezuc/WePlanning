@@ -12,10 +12,9 @@ import { IndexComponent } from './Home/index.component';
 import { ContactComponent } from './Home/contact.component';
 import { RegisterComponent } from './Home/register.component';
 import { PlanComponent } from './Plan/plan.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import {Ng2PaginationModule} from 'ng2-pagination';
-import { routing } from './app.routing';
+import { Ng2PaginationModule } from 'ng2-pagination';
 import { UserComponent } from './User/user.component';
+import { NewPlanComponent } from './Plan/newPlan.component';
 
 import { RouterModule } from '@angular/router';
 
@@ -29,7 +28,7 @@ import { RouterSecurity } from './Services/routerSecurity.service';
   declarations: [
     AppComponent, AboutusComponent, IndexComponent, ContactComponent,
 
-    RegisterComponent, PlanComponent, UserComponent
+    RegisterComponent, PlanComponent, UserComponent, NewPlanComponent
 
   ],
   imports: [

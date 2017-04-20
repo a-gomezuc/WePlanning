@@ -19,10 +19,7 @@ export const  routing : Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'plan/:id', component: PlanComponent },
     { path: 'register', component: RegisterComponent },
-
-    { path: '', redirectTo: 'index', pathMatch: 'full' },
     { path: 'profile/:id', component: UserComponent },
-
     { path: 'newPlan', component: NewPlanComponent, canActivate:[RouterSecurity]},
     { path: '', redirectTo: 'index', pathMatch: 'full' }
 

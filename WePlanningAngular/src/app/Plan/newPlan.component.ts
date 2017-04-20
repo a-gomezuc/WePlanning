@@ -19,8 +19,10 @@ export class NewPlanComponent {
      address:string, prize:number, description:string){
         let plan = new Plan(title, category, date, place, address, prize, description);
         this.planService.addPlan(plan).subscribe(
-            plan => console.log (plan)
+            plan => {
+                console.log (plan);
+                this.router.navigate(['/index']);
+            }
         );
-        this.router.navigate(['/index']);
     }
 }

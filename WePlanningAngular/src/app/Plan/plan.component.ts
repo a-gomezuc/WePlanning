@@ -17,16 +17,14 @@ export class PlanComponent {
 
   plan: Plan;
 
-  constructor(private planService: PlanService, private activatedRoute: ActivatedRoute, private loginService:LoginService) {
+  constructor(private router:Router, private planService: PlanService, private activatedRoute: ActivatedRoute, private loginService:LoginService) {
     let id = this.activatedRoute.snapshot.params['id'];
-    //Ésta sería la forma eficiente de hacerlo pero da error.
-    /*this.planService.getApiPlanById(id).subscribe(
+    this.planService.getApiPlanById(id).subscribe(
       plan => {
         this.plan = plan;
         console.log(this.plan);
       }
-    );*/
-    this.plan = this.planService.getPlans()[id-1];
+    );
   }
 
   assistPlan(plan:Plan){
