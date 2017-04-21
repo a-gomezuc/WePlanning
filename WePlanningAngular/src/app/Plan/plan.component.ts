@@ -27,8 +27,18 @@ export class PlanComponent {
     );
   }
 
-  assistPlan(plan:Plan){
-    this.planService.assist(plan);
+  assistPlan(planAssist:Plan){
+     this.planService.assist(planAssist).subscribe(
+            result => {
+                console.log (planAssist);
+                this.planService.getApiPlanById(planAssist.id).subscribe(
+      plan => {
+        this.plan = plan;
+        console.log(this.plan);
+      }
+    );
+            }
+        )
   }
 
 }

@@ -157,7 +157,7 @@ public class PlanController {
 	
 	@JsonView(PlanView.class)
 	@RequestMapping(value="/api/plans/{id}/assist", method= RequestMethod.PUT)
-	public ResponseEntity<Plan> planIndividualAssist(@PathVariable long id){
+	public ResponseEntity<Plan> planIndividualAssist(@PathVariable long id, @RequestBody Plan planAssist){
 		Plan plan= planService.findOne(id);
 		if (plan != null) {
 			User userConnected= userRepository.findById(userComponent.getLoggedUser().getId());
