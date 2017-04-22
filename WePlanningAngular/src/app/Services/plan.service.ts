@@ -67,7 +67,7 @@ export class PlanService {
             .catch(error => this.handleError(error))
     }
     assist(plan:Plan){
-         this.credentials = this.loginService.getCredentials();
+        this.credentials = this.loginService.getCredentials();
         let headers = new Headers();
         let id= plan.id;
         console.log("https://localhost:8443/api/plans/"+id+"/assist");
@@ -81,12 +81,12 @@ export class PlanService {
         console.log("Assist:");
         console.log(plan);
         if(plan!=undefined){
-        for(let i=0; i<=plan.asistents.length; i++){
-            if(plan.asistents[i].id===userAsistent.id){
-                assist=true;
+                for(let i=0; i<plan.asistents.length; i++){
+                    if(plan.asistents[i].id===userAsistent.id){
+                        assist=true;
+                    }
+                }
             }
-        }
-        }
         return assist;
     }
 

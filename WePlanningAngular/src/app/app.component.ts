@@ -36,7 +36,8 @@ export class AppComponent {
       error => alert(error)
     );
     this.planService.initIndexPlans();
-    this.planService.initFriendsPlans();//Inicializamos los planes de nuestros amigos que se mostrarán en el index una vez logueados.ng 
+    this.planService.initFriendsPlans();//Inicializamos los planes de nuestros amigos que se mostrarán en el index una vez logueados.ng
+    this.router.navigate(['/index']);
   }
 
   logOut() {
