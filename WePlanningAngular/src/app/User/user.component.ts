@@ -14,6 +14,7 @@ import{ LoginService } from '../Services/login.service'
 export class UserComponent {
 
   user: User;
+  userFriends: User[];
 
   constructor(private userService: UserService, private activatedRoute: ActivatedRoute, private loginService:LoginService) {
     let id = this.activatedRoute.snapshot.params['id'];
@@ -23,5 +24,11 @@ export class UserComponent {
         console.log(this.user);
       }
     );
+    this.userService.getFriends(id).subscribe(
+      userFriends => {
+          this.userFriends=userFriends;
+          console.log(this.userFriends);
+      }
+    )
   }
 }

@@ -2,25 +2,26 @@ import { Plan } from './plan.model';
 
 export class User {
 
-  private identifier:number;
-  private description ="";
-  private plans:Plan[] = [];
+  public identifier: number;
+  public description = "";
+  public plans: Plan[] = [];
+  public friends: User[] = [];
   constructor(
-  private id:string,
-  private sponsor:boolean,
-  private uname:string,
-  private surname:string,
-  private uemail:string,
-  private province:string,
-  private age:number,
-  private passwordHash:string){}
+    public id: string,
+    public sponsor: boolean,
+    public uname: string,
+    public surname: string,
+    public uemail: string,
+    public province: string,
+    public age: number,
+    public passwordHash: string) { }
 
-  getId(){
+  getId() {
     return this.id;
   }
 
-  getpaswordHash(){
+  getpaswordHash() {
     return this.passwordHash;
   }
-  
+
 }

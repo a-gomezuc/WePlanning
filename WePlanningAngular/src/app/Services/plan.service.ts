@@ -76,6 +76,19 @@ export class PlanService {
             .map(response => response.json())
             .catch(error => this.handleError(error))
     }
+    isAsistent(plan:Plan, userAsistent:User){
+        let assist=false;
+        console.log("Assist:");
+        console.log(plan);
+        if(plan!=undefined){
+        for(let i=0; i<=plan.asistents.length; i++){
+            if(plan.asistents[i].id===userAsistent.id){
+                assist=true;
+            }
+        }
+        }
+        return assist;
+    }
 
     addPlan(plan:Plan) {
         this.credentials = this.loginService.getCredentials();

@@ -22,16 +22,16 @@
 									<h2>Información Personal</h2>
 									<hr>
 									<p>
-										<strong>Alias:</strong>&nbsp;
+										<strong>Alias:</strong> {{user?.id}};
 									</p>
 									<p>
-										<strong>Provincia:</strong>&nbsp;
+										<strong>Provincia:</strong> {{user?.province}}
 									</p>
 									<p>
-										<strong>Edad:</strong>&nbsp;
+										<strong>Edad:</strong> {{user?.age}}
 									</p>
 									<p>
-										<strong>Descripción:</strong>&nbsp;
+										<strong>Descripción:</strong> {{user?.description}}
 									</p>
 									<div class="btn-follow">
 									<button type="button" class="btn-info">Seguir Amigo</button>
@@ -45,23 +45,24 @@
 				<template ngbTabContent>
 					<div class="planscroll">
 									<div id="plans">
-
+										<div *ngFor="let plan of user.plans">				
 										<div class="container-fluid ">
 											<div class="container-fluid">
 												<div class="row myplan-row">
 													<div class="col-md-6 img-myplan  ">
-														<img class="img-responsive" src="">
+														<img class="img-responsive" src="assets/IMG/Logo.png">
 													</div>
 													<div class="col-md-6">
 														<h3>
-															<strong></strong>
+															<strong>{{plan.title}}</strong>
 														</h3>
 														<hr />
-														<p>En </p>
-														<button type="button" class="btn-info">Ver Plan</button>
+														<p>En {{plan?.place}}</p>
+														<button [routerLink]="['/plan', plan.id]" type="button" class="btn-info">Ver Plan</button>
 													</div>
 												</div>
 											</div>
+										</div>
 										</div>
 
 									</div>
@@ -71,19 +72,20 @@
 			<ngb-tab title="Lista de Amigos">
 				<template ngbTabContent>
 				<div class="friendsl" id="friendsl">
-
+					<div *ngFor="let friend of userFriends">
 								<div class="row friends-row">
 									<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
 										<div class="col-md-6 col-sm-4 col-xs-4 ">
-											<img class=" img-circle" src="">
+											<img class=" img-circle" src="assets/IMG/FrikiCivil.jpg">
 										</div>
 										<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
 											<div class="n_center">
-												<a href="" class="creador-plan"></a>
-												<p class="text-muted"></p>
+												<a  [routerLink]="['/profile', friend.id]"class="creador-plan">{{friend.id}}</a>
+												<p class="text-muted">{{friend.province}}</p>
 											</div>
 										</div>
 									</div>
+								</div>
 								</div>
 				</div>
 				</template>

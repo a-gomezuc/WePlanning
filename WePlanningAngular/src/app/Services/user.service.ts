@@ -24,6 +24,11 @@ export class UserService {
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
+    getFriends(id:string){
+        return this.http.get("https://localhost:8443/api/user/"+id+"/friends")
+             .map(response => response.json())
+            .catch(error => this.handleError(error));
+    }
 
     private handleError(error: any) {
         console.error(error);

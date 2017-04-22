@@ -35,17 +35,20 @@
 				<p>Precio: {{plan?.prize}}€</p>
 			</div>
 			<div class="asistentes-plan">
-				Asistirán: {{plan?.asistents.length}} usuarios
+				Asistirá/n: <span id="assistentsPlan">{{plan?.asistents.length}} </span>usuario/s
 			</div>
-			<div *ngIf="loginService.isUserLogged()" class="container-fluid">
+			<div *ngIf="loginService.isUserLogged() && loggedUserAssist==false" class="container-fluid">
 				<button (click)="assistPlan(plan)" type="submit" class="btn btn-default btn-asiste btn-info">Voy a asistir!</button>
+			</div>
+			<div *ngIf="loginService.isUserLogged() && loggedUserAssist==true" class="container-fluid">
+				<p id="nowAssist">¡Ya asistes a este plan!</p>
 			</div>
 			<article>
 
 				<div class="asisten center-block">
 					<div class="text">
 						<div *ngFor="let asistent of plan?.asistents">
-							<a>
+							<a [routerLink]="['/profile', asistent.id]">
 								<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
 									<div class="col-md-4 asistenteImg">
 										<img class="img-responsive img-circle imgMinima" src="assets/IMG/FrikiCivil.jpg" id="circulo">

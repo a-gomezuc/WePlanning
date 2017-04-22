@@ -11,6 +11,18 @@ body {
 .n_center{
     margin-left:10%;
 }
+.planscroll{
+    height:280px;
+    overflow-y:scroll;
+}
+#nowAssist{
+    color: red;
+    font-size:18px;
+}
+#assistentsPlan{
+    color:rgba(198, 88, 7, 0.94);
+    font-size:30px;
+}
 .btn-info {
     color: #fff;
     background: rgb(198, 88, 7) !important;
@@ -729,7 +741,6 @@ input::-webkit-input-placeholder {
 	background:rgba(255, 255, 255, 0.5);
 	padding:3%;
 	height:auto;
-	
 	width:inherit;
 	
 }
