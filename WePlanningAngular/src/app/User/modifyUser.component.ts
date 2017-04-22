@@ -8,10 +8,10 @@ import{ LoginService } from '../Services/login.service'
 
 @Component({
   selector: 'app-root',
-  templateUrl: './user.component.html',
+  templateUrl: './modifyUser.component.html',
   styleUrls: ['../app.component.css'],
 })
-export class UserComponent {
+export class ModifyUserComponent {
 
   user: User;
   userFriends: User[];
@@ -24,19 +24,20 @@ export class UserComponent {
         console.log(this.user);
       }
     );
-    this.userService.getFriends(id).subscribe(
-      userFriends => {
-          this.userFriends=userFriends;
-          console.log(this.userFriends);
-      }
-    )
   }
+  modifyUserParams(user:User, newName:string, newAge:number, newProvince:string, newEmail:string, newDescription:string){
+    user.uname=newName;
+    user.age=newAge;
+    user.province=newProvince;
+    user.uemail=newEmail;
+    user.description=newDescription;
+    this.userService.modifyUser(user, user.id).subscribe(
+      newUser =>{
+        this.user=newUser;
+        console.log(newUser);
+      }
 
-  isSame(user:User){
-    let isSame=false;
-    if (this.loginService.isUserLogged() && user!=undefined){
-      isSame=(this.loginService.getUserLogged().id===user.id)
-    }
-    return isSame;
+    )
+
   }
 }

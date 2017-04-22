@@ -4,7 +4,7 @@ import { AboutusComponent } from './Home/aboutus.component';
 import { ContactComponent } from './Home/contact.component';
 import { RegisterComponent } from './Home/register.component';
 import { PlanComponent } from './Plan/plan.component';
-
+import { ModifyUserComponent } from './User/modifyUser.component';
 import { UserComponent } from './User/user.component';
 
 import { NewPlanComponent } from './Plan/newPlan.component';
@@ -20,6 +20,7 @@ export const  routing : Routes = [
     { path: 'plan/:id', component: PlanComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'profile/:id', component: UserComponent },
+    { path: 'modifyProfile/:id', component: ModifyUserComponent },
     { path: 'newPlan', component: NewPlanComponent, canActivate:[RouterSecurity]},
     { path: '', redirectTo: 'index', pathMatch: 'full' }
 

@@ -1,8 +1,9 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { PlanService } from './plan.service';
+import { LoginService } from './login.service';
 import { User } from '../Class/user.model';
 import { Plan } from '../Class/plan.model';
 import 'rxjs/Rx';
@@ -10,11 +11,21 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
+    private credentials:string;
 
-    constructor(private http: Http) { }
+    constructor(private http: Http, private loginService:LoginService) { }
 
     addUser(user: User) {
         return this.http.post("https://localhost:8443/api/user/", user)
+            .map(response => response.json())
+            .catch(error => this.handleError(error));
+    }
+    modifyUser(user:User, id:string){
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        console.log(this.credentials);
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.put("https://localhost:8443/api/user/"+id, user, {headers:headers})
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
