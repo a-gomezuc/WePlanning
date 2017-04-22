@@ -2,24 +2,23 @@
 import { User } from './user.model';
 export class Plan{
 
-  id:number;
-  asistents:User[] = [];
+  public id:number;
+  public asistents:User[] = [];
+  
   constructor(
-  private title:string, 
-  private category:string,
-  private date: string,
-  private place:string,
-  private address:string,
-  private prize:number,
-  private description:string,
+  public title:string, 
+  public category:string,
+  public date: string,
+  public place:string,
+  public address:string,
+  public prize:number,
+  public description:string,
   ){}
-  private author:User;
-  private imagePlanTitle:string;
+
+  public author:User;
+  public imagePlanTitle:string;
   
   
-  getTitle(){
-    return this.title;
-  }
   getAuthorId(){
     return this.author.getId();
   }

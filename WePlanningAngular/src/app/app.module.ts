@@ -12,6 +12,7 @@ import { IndexComponent } from './Home/index.component';
 import { ContactComponent } from './Home/contact.component';
 import { RegisterComponent } from './Home/register.component';
 import { PlanComponent } from './Plan/plan.component';
+import { ModifyPlanComponent } from './Plan/modifyPlan.component';
 import { Ng2PaginationModule } from 'ng2-pagination';
 import { UserComponent } from './User/user.component';
 import { NewPlanComponent } from './Plan/newPlan.component';
@@ -28,7 +29,9 @@ import { RouterSecurity } from './Services/routerSecurity.service';
   declarations: [
     AppComponent, AboutusComponent, IndexComponent, ContactComponent,
 
-    RegisterComponent, PlanComponent, UserComponent, NewPlanComponent
+    RegisterComponent, PlanComponent, UserComponent, NewPlanComponent,
+
+    ModifyPlanComponent
 
   ],
   imports: [

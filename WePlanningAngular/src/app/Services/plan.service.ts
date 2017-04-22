@@ -76,10 +76,20 @@ export class PlanService {
             .map(response => response.json())
             .catch(error => this.handleError(error))
     }
+
+    modifyPlan(plan:Plan){
+        let id = plan.id;
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        console.log("modifica plan");
+        return this.http.put("https://localhost:8443/api/plans/" + id, plan, { headers: headers })
+            .map(response => response.json())
+            .catch(error => this.handleError(error))
+    }
+
     isAsistent(plan:Plan, userAsistent:User){
         let assist=false;
-        console.log("Assist:");
-        console.log(plan);
         if(plan!=undefined){
                 for(let i=0; i<plan.asistents.length; i++){
                     if(plan.asistents[i].id===userAsistent.id){
@@ -88,6 +98,16 @@ export class PlanService {
                 }
             }
         return assist;
+    }
+
+    isAuthor(plan:Plan, id:string){
+        let author = false;
+        if(plan != undefined){
+            if(plan.author.id === id){
+                author = true;
+            }
+        }
+        return author;
     }
 
     addPlan(plan:Plan) {

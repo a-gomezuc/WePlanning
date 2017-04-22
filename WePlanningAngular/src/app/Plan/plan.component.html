@@ -1,6 +1,7 @@
 <div class="row plan">
 	<div *ngIf="plan !== undefined " class="col-md-12">
-		<h3>{{plan.category}}</h3>
+		<h3>{{plan.category}}
+		</h3>
 		<div class="preview col-md-6">
 			<div class="preview-pic tab-content img-center">
 				<div class="tab-pane active" id="pic-1">
@@ -9,6 +10,9 @@
 			</div>
 		</div>
 		<div class="col-md-6 plan-desc">
+			<div *ngIf = "loginService.isUserLogged() && planService.isAuthor(plan, loginService.getUserLogged().id)" class="container-fluid">
+				<button [routerLink]="['/modifyPlan', plan.id]" type="submit" class="btn btn-default btn-asiste btn-info">Modificar plan!</button>
+			</div>
 			<div class="col-md-12 nombre-plan">
 				<h3>{{plan.title}}</h3>
 			</div>
