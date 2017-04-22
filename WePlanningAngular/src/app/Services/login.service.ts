@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Http, Headers } from '@angular/http';
 
 import { User } from '../Class/user.model';
-import { UserService } from '../Services/user.service';
+import { ColisionService } from '../Services/colision.service';
 
 import 'rxjs/Rx';
 
@@ -16,7 +16,7 @@ export class LoginService {
     private userLogged: User;//Usuario logueado actuamente en el sistema
 
 
-    constructor(private router: Router, private http: Http, private userService: UserService) { }
+    constructor(private router: Router, private http: Http, private colisionService: ColisionService) { }
 
     getCredentials() {// Obtencion de las cedenciales del usuario
         return this.credentials;
@@ -38,7 +38,7 @@ export class LoginService {
 
     private handleLogIn(response) {
         this.isLogged = true;
-        this.userService.getUser(response.json().id).subscribe(
+        this.colisionService.getUser(response.json().id).subscribe(
             user => this.userLogged = user
         );
     }
