@@ -11,21 +11,21 @@ import 'rxjs/Rx';
 
 @Injectable()
 export class UserService {
-    private credentials:string;
+    private credentials: string;
 
-    constructor(private http: Http, private loginService:LoginService) { }
+    constructor(private http: Http, private loginService: LoginService) { }
 
     addUser(user: User) {
         return this.http.post("https://localhost:8443/api/user/", user)
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
-    modifyUser(user:User, id:string){
+    modifyUser(user: User, id: string) {
         this.credentials = this.loginService.getCredentials();
         let headers = new Headers();
         console.log(this.credentials);
         headers.append('Authorization', 'Basic ' + this.credentials);
-        return this.http.put("https://localhost:8443/api/user/"+id, user, {headers:headers})
+        return this.http.put("https://localhost:8443/api/user/" + id, user, { headers: headers })
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
@@ -35,10 +35,21 @@ export class UserService {
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
-    getFriends(id:string){
-        return this.http.get("https://localhost:8443/api/user/"+id+"/friends")
-             .map(response => response.json())
+    getFriends(id: string) {
+        return this.http.get("https://localhost:8443/api/user/" + id + "/friends")
+            .map(response => response.json())
             .catch(error => this.handleError(error));
+    }
+    isFriend(user: User) {
+        let user_log: User;
+        let friends: boolean;
+        friends = false;
+        for (let i = 0; i < user_log.friends.length; i++) {
+            if (user_log.friends[i].id === user.id) {
+                friends = true;
+            }
+        }
+        return friends;
     }
 
     private handleError(error: any) {

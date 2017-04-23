@@ -35,6 +35,10 @@ export class LoginService {
     isUserLogged() {//
         return this.isLogged;
     }
+    isThisUserLogged(user:User) {//
+        return (this.userLogged==user);
+    }
+    
 
     private handleLogIn(response) {
         this.isLogged = true;
