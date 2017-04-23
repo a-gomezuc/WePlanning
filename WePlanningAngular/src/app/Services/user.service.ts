@@ -12,7 +12,7 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
     private credentials: string;
-
+    
     constructor(private http: Http, private loginService: LoginService) { }
 
     addUser(user: User) {
@@ -43,6 +43,7 @@ export class UserService {
     isFriend(user: User) {
         let user_log: User;
         let friends: boolean;
+        user_log=this.loginService.getUserLogged();
         friends = false;
         for (let i = 0; i < user_log.friends.length; i++) {
             if (user_log.friends[i].id === user.id) {
