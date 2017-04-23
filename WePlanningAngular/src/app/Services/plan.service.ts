@@ -77,6 +77,18 @@ export class PlanService {
             .catch(error => this.handleError(error))
     }
 
+     selectImagePlan(file:File, id:number){
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        console.log(this.credentials);
+        let formData = new FormData();
+        formData.append('file', file); 
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.put("https://localhost:8443/api/plans/" + id + "/modifyPlanPhoto", formData, {headers:headers})
+            .map(response => response.json())
+            .catch(error => this.handleError(error))
+    }
+
     modifyPlan(plan:Plan){
         let id = plan.id;
         this.credentials = this.loginService.getCredentials();

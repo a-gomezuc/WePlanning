@@ -13,6 +13,7 @@ import { PlanService } from '../Services/plan.service';
 })
 export class NewPlanComponent {
 
+    file:File;
     constructor(private router:Router, private http:Http, private planService: PlanService){}
 
     newPlan(title:string, category:string, date:string, place:string,
@@ -21,8 +22,18 @@ export class NewPlanComponent {
         this.planService.addPlan(plan).subscribe(
             plan => {
                 console.log (plan);
+                console.log(this.file);
+                this.planService.selectImagePlan(this.file, plan.id).subscribe(
+                    plan => console.log(plan)
+                );
                 this.router.navigate(['/index']);
             }
         );
+    }
+
+    changed(fileInput:any){
+        console.log("Cambio imagen");
+        this.file = fileInput.target.files[0];
+        console.log("No llego hasta aqui");
     }
 }

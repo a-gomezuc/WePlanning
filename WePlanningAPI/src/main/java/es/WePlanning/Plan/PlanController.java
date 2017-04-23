@@ -82,7 +82,6 @@ public class PlanController {
 		
 		plan.setAuthor(userComponent.getLoggedUser());
 		plan.setId(0);
-		plan.setImagePlanTitle("planDefault.jpg");
 		planService.savePlan(plan);
 		return new ResponseEntity<>(plan,HttpStatus.CREATED);
 		}

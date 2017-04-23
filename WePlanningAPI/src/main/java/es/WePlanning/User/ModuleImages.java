@@ -26,7 +26,6 @@ public class ModuleImages {
 	
 	public void handleFileDownload(String fName, HttpServletResponse res)throws FileNotFoundException, IOException{
 		
-		String filePath="src/main/resources/static/planImages/"+fName+".jpg";
 		File file= new File(filePath);
 		
 		if (file.exists()) {
@@ -40,7 +39,6 @@ public class ModuleImages {
 	}
 	
 	public boolean changePhoto(String id,MultipartFile file){
-		String FILES_FOLDER = "src\\main\\resources\\static\\planImages";
 		fileName = "newPhoto"+  id  +  ".jpg";
 		
 		if (!file.isEmpty()) {
