@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { LoginService } from './Services/login.service';
 import { PlanService } from './Services/plan.service';
-
+import { UserService } from './Services/user.service';
 import { User } from './Class/user.model';
 
 @Component({
@@ -20,7 +20,7 @@ export class AppComponent {
   private userLogged: User;
 
 
-  constructor(private router:Router, private http: Http, private loginService: LoginService, private planService: PlanService) {
+  constructor(private router:Router, private http: Http, private loginService: LoginService, private planService: PlanService, private userService:UserService) {
     this.planService.initIndexPlans();//Inicializa los planes que se mostraran al comienzo en el index
   }
 

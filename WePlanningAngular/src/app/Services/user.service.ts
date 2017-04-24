@@ -1,6 +1,7 @@
 import { Injectable, Inject, forwardRef } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import  {  Router,  ActivatedRoute  }  from  '@angular/router';
 
 import { PlanService } from './plan.service';
 import { LoginService } from './login.service';
@@ -12,8 +13,10 @@ import 'rxjs/Rx';
 @Injectable()
 export class UserService {
     private credentials: string;
+    private userS: User;
+    private userFriendsS: User[];
     
-    constructor(private http: Http, private loginService: LoginService) { }
+    constructor(private http: Http, private loginService: LoginService, private router: Router) { }
 
     addUser(user: User) {
         return this.http.post("https://localhost:8443/api/user/", user)
@@ -29,30 +32,71 @@ export class UserService {
             .map(response => response.json())
             .catch(error => this.handleError(error));
     }
+    addFriend(user:User, id:string){
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        console.log(this.credentials);
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.put("https://localhost:8443/api/user/friend/"+ id,user,{ headers: headers })
+            .map(response => response.json())
+            .catch(error => this.handleError(error));
+
+    }
 
     getUser(id: string) {
         return this.http.get("https://localhost:8443/api/user/" + id)
-            .map(response => response.json())
+            .map(response => {return this.userS=response.json()})
             .catch(error => this.handleError(error));
     }
     getFriends(id: string) {
         return this.http.get("https://localhost:8443/api/user/" + id + "/friends")
-            .map(response => response.json())
+            .map(response => {return this.userFriendsS=response.json()})
             .catch(error => this.handleError(error));
+    }
+    getUserS() {
+        return this.userS;
+    }
+    getFriendsS() {
+        return this.userFriendsS;
+    }
+    setUserS(newUser:User){
+        this.userS=newUser;
+    }
+    setUserFriendsS(newFriendsS:User[]){
+        this.userFriendsS=newFriendsS;
     }
     isFriend(user: User) {
         let user_log: User;
         let friends: boolean;
         user_log=this.loginService.getUserLogged();
         friends = false;
-        for (let i = 0; i < user_log.friends.length; i++) {
-            if (user_log.friends[i].id === user.id) {
+        console.log(user);
+        console.log(user_log);
+        if(this.loginService.getUserLoggedFriends()!=undefined){
+        for (let i = 0; i < this.loginService.getUserLoggedFriends().length; i++) {
+            console.log(this.loginService.getUserLoggedFriends()[i].id+ "="+user.id);
+            if (this.loginService.getUserLoggedFriends()[i].id === user.id) {
                 friends = true;
             }
         }
+        }
         return friends;
     }
-
+    recharge(idNavigate:string){
+    this.router.navigate(['/profile/'+idNavigate]);
+    this.getUser(idNavigate).subscribe(
+      User => {
+        this.userS = User;
+        console.log(this.userS);
+      }
+    );
+    this.getFriends(idNavigate).subscribe(
+      userFriends => {
+          this.userFriendsS=userFriends;
+          console.log(this.userFriendsS);
+      }
+    )
+    }
     private handleError(error: any) {
         console.error(error);
         switch (error.status) {

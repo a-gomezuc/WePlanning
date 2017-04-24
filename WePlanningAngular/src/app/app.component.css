@@ -11,6 +11,9 @@ body {
 .n_center{
     margin-left:10%;
 }
+#accesoPerfil{
+    cursor:pointer;
+}
 .planscroll{
     height:280px;
     overflow-y:scroll;

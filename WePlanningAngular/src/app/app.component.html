@@ -17,7 +17,7 @@
                                 <ul [ngbCollapse]="showMenu" class="dropdown-menu dropdown-tc">
                                     <form class="form-horizontal form_ini" role="form">
                                         <li>
-                                            <a [routerLink]="['/profile', userLogged.id]">Accede a tu perfil</a>                                               
+                                            <a (click)="userService.recharge(userLogged.id)" id="accesoPerfil">Accede a tu perfil</a>                                               
                                         </li>
                                         <li> </li>
                                         <li class="divider"></li>

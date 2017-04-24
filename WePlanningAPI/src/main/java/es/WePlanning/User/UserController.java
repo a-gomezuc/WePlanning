@@ -151,7 +151,7 @@ public class UserController {
 	}
 	@JsonView(User.BasicAtt.class)
 	@RequestMapping(value = "/api/user/friend/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<List> addFriend(@PathVariable String id) {
+	public ResponseEntity<List> addFriend(@PathVariable String id,@RequestBody User userModify) {
 		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		User friend = userService.findByIdIgnoreCase(id);
 		if ((!user.getId().equals(id)) && (friend != null) && (!user.isSponsor())) {

@@ -19,7 +19,6 @@ import { ModifyUserComponent } from './User/modifyUser.component';
 import { NewPlanComponent } from './Plan/newPlan.component';
 
 import { RouterModule } from '@angular/router';
-
 import { ContactService} from './Services/contact.service';
 import { UserService} from './Services/user.service';
 import { PlanService } from './Services/plan.service';

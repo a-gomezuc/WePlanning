@@ -14,7 +14,7 @@ export class LoginService {
     private isLogged: boolean = false;//Variable con la cual sabremos si el uisuario esta logeuado o no el sistema.
     private credentials: string;//Credenciales del usuario (Encriptadas).
     private userLogged: User;//Usuario logueado actuamente en el sistema
-
+    private userLoggedFriends: User[];
 
     constructor(private router: Router, private http: Http, private colisionService: ColisionService) { }
 
@@ -24,6 +24,9 @@ export class LoginService {
 
     getUserLogged() {
         return this.userLogged;
+    }
+    getUserLoggedFriends() {
+        return this.userLoggedFriends;
     }
     getUserLoggedId() {
         return this.userLogged.getId();
@@ -36,7 +39,7 @@ export class LoginService {
         return this.isLogged;
     }
     isThisUserLogged(user:User) {//
-        return (this.userLogged==user);
+        return (this.userLogged.id==user.id);
     }
     
 
@@ -44,6 +47,9 @@ export class LoginService {
         this.isLogged = true;
         this.colisionService.getUser(response.json().id).subscribe(
             user => this.userLogged = user
+        );
+        this.colisionService.getFriends(response.json().id).subscribe(
+            userFriends => this.userLoggedFriends = userFriends
         );
     }
 
