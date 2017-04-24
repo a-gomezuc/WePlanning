@@ -20,10 +20,10 @@ export const  routing : Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'plan/:id', component: PlanComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'modifyPlan/:id', component: ModifyPlanComponent },
+    { path: 'modifyPlan/:id', component: ModifyPlanComponent,canActivate:[RouterSecurity] },
     { path: 'profile/:id', component: UserComponent },
-    { path: 'modifyProfile/:id', component: ModifyUserComponent },
-    { path: 'newPlan', component: NewPlanComponent, canActivate:[RouterSecurity]},
+    { path: 'modifyProfile/:id', component: ModifyUserComponent,canActivate:[RouterSecurity] },
+    { path: 'newPlan', component: NewPlanComponent, canActivate:[RouterSecurity] },
     { path: '', redirectTo: 'index', pathMatch: 'full' }
 
 ];

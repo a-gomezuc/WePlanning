@@ -57,7 +57,7 @@ public class DatabaseInitializer implements CommandLineRunner{
 		guillermito.setProfilePhotoTitle("profiledefault.jpg");
 		userRepository.save(guillermito);
 
-		for (int i = 0; i < 1; i++) {
+		for (int i = 0; i < 20; i++) {
 			Plan planprueba = (new Plan("Plan de prueba -" + (i + 1), "Cultura", "Madrid", "URJC Móstoles", i,
 					"1/03/2017", "Torneo del videojuego más famoso de la carrera de Ingeniería del Software"));
 			planprueba.setAuthor(joselito);
