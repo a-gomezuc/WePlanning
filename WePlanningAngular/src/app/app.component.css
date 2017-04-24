@@ -1148,6 +1148,7 @@ myplan-row {
 .comments {
     width: 80%;
     background: rgba(0, 0, 0, .05);
+    margin-left: 12%;
 }
 
 .comment {
@@ -1176,6 +1177,7 @@ myplan-row {
 .add-comment {
     width: 80%;
     padding: 5px;
+    margin-left: 12%;
 }
 
 .add-comment label {
@@ -1186,6 +1188,7 @@ myplan-row {
 
 #btnComment {
     margin-top: 10px;
+    margin-left: 43%;
 }
 
 #tit-com {

@@ -3,9 +3,11 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 
 import { PlanService } from '../Services/plan.service';
+import { CommentService } from '../Services/comment.service';
 import { LoginService } from '../Services/login.service';
 import { Plan } from '../Class/plan.model';
 import { User } from '../Class/user.model';
+import { Comment } from '../Class/comment.model';
 
 
 @Component({
@@ -38,9 +40,23 @@ export class PlanComponent {
           }
         );
       },
-      error=>{
+      error => {
         alert(error);
       }
     )
+  }
+  newComments(content: string, date: string) {
+    let comments = new Comment(content, date);
+    let id = this.plan.id;
+    this.planService.addcomment(this.plan, comments).subscribe(
+      Comment => {
+        console.log(comments);
+        this.planService.getApiPlanById(id).subscribe(
+          plan => {
+            this.plan = plan;
+          }
+        )
+      }
+    );
   }
 }

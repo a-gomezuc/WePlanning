@@ -13,10 +13,10 @@ import { ContactComponent } from './Home/contact.component';
 import { RegisterComponent } from './Home/register.component';
 import { PlanComponent } from './Plan/plan.component';
 import { ModifyPlanComponent } from './Plan/modifyPlan.component';
-import { Ng2PaginationModule } from 'ng2-pagination';
 import { UserComponent } from './User/user.component';
 import { ModifyUserComponent } from './User/modifyUser.component';
 import { NewPlanComponent } from './Plan/newPlan.component';
+
 
 import { RouterModule } from '@angular/router';
 import { ContactService} from './Services/contact.service';
@@ -25,6 +25,7 @@ import { PlanService } from './Services/plan.service';
 import { LoginService } from './Services/login.service';
 import { ColisionService } from './Services/colision.service';
 import { RouterSecurity } from './Services/routerSecurity.service';
+import { CommentService } from './Services/comment.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,7 @@ import { RouterSecurity } from './Services/routerSecurity.service';
     HttpModule, JsonpModule,NgbModule.forRoot(), RouterModule.forRoot(routing),
     NgxPaginationModule
   ],
-  providers: [ContactService, UserService, PlanService, LoginService, ColisionService, RouterSecurity],
+  providers: [ContactService, UserService, PlanService, LoginService, ColisionService, RouterSecurity,CommentService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

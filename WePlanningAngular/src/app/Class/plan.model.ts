@@ -1,9 +1,11 @@
 
 import { User } from './user.model';
+import { Comment } from './comment.model';
 export class Plan{
 
   public id:number;
   public asistents:User[] = [];
+  public comments:Comment[] = [];
   
   constructor(
   public title:string, 

@@ -71,3 +71,34 @@
 	</div>
 </div>
 <!-- /plan-->
+	<div class="row center-block">
+				<div *ngFor="let comments of plan?.comments">
+						<section class="comments">
+							<div id="comments">
+								<article class="comment">
+									<div class="comment-body">
+										<div class="text">
+											<p>{{comments.content}}</p>
+										</div>
+									</div>
+									<p class="attribution">
+									fecha del comentario:{{comments.date}}
+									</p>	
+								</article>
+							</div>
+						</section>
+				</div>
+			</div>
+			<div *ngIf="loginService.isUserLogged()" class="container-fluid center-block">
+			<!--Comentar-->
+				<div class="row add-comment">
+                    <form role="form" method="post">
+                        <div class="form-groupC">
+                            <label for="comentario" name="comment">	Escribe tu comentario</label>
+                            <textarea id="comentario" #comment class="form-control" rows="1" name="cont"></textarea>
+                            <button (click)="newComments(comment.value)" type="submit" id="btnComment" class="btn btn-info" >Comentar</button>
+                        </div>
+                    </form>
+                </div>
+			</div>
+			<!--Comentar-->

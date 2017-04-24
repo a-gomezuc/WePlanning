@@ -3,9 +3,12 @@ import { Observable } from 'rxjs/Observable';
 import { Http, Headers } from '@angular/http';
 
 import { Plan } from '../Class/plan.model';
-import { User } from '../Class/user.model'
+import { User } from '../Class/user.model';
+import { Comment } from '../Class/comment.model';
 import { LoginService } from './login.service';
 import { UserService } from './user.service';
+import { CommentService } from './comment.service';
+
 
 import 'rxjs/Rx';
 
@@ -73,6 +76,17 @@ export class PlanService {
         console.log("https://localhost:8443/api/plans/"+id+"/assist");
         headers.append('Authorization', 'Basic ' + this.credentials);
         return this.http.put("https://localhost:8443/api/plans/"+id+"/assist",plan,{headers: headers})
+            .map(response => response.json())
+            .catch(error => this.handleError(error))
+    }
+    addcomment(plan:Plan, comment:Comment){
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        let id= plan.id;
+        console.log(this.credentials);
+        console.log(comment)
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.post("https://localhost:8443/api/plans/"+id+"/comment",comment,{headers: headers})
             .map(response => response.json())
             .catch(error => this.handleError(error))
     }
