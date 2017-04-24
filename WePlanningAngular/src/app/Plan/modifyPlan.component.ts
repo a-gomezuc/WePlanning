@@ -16,7 +16,7 @@ import { LoginService } from '../Services/login.service';
 export class ModifyPlanComponent {
 
     private plan: Plan;
-
+    private file:File;
     constructor(private router: Router, private planService: PlanService, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
         let id = this.activatedRoute.snapshot.params['id'];
         this.planService.getApiPlanById(id).subscribe(
@@ -42,6 +42,10 @@ export class ModifyPlanComponent {
             },
             error => console.log(error)
         );
+    }
+
+    changed(fileInput:any){
+        this.file = fileInput.target.files[0];
     }
 
 }
