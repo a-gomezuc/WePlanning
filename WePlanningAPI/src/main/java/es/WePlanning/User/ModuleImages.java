@@ -26,6 +26,7 @@ public class ModuleImages {
 	
 	public void handleFileDownload(String fName, HttpServletResponse res)throws FileNotFoundException, IOException{
 		
+		String filePath="../WePlanningAngular/src/assets/IMG"+fName+".jpg";
 		File file= new File(filePath);
 		
 		if (file.exists()) {
@@ -39,6 +40,7 @@ public class ModuleImages {
 	}
 	
 	public boolean changePhoto(String id,MultipartFile file){
+		String FILES_FOLDER = "..\\WePlanningAngular\\src\\assets\\IMG";
 		fileName = "newPhoto"+  id  +  ".jpg";
 		
 		if (!file.isEmpty()) {
