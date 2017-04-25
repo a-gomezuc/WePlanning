@@ -5,7 +5,7 @@
 		<div class="preview col-md-6">
 			<div class="preview-pic tab-content img-center">
 				<div class="tab-pane active" id="pic-1">
-					<img id="img-big" src="assets/IMG/{{plan.imagePlanTitle}}" />
+					<img id="img-big" src="https://localhost:8443/image/{{plan.imagePlanTitle}}" />
 				</div>
 			</div>
 		</div>
@@ -55,7 +55,7 @@
 							<a [routerLink]="['/profile', asistent.id]">
 								<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
 									<div class="col-md-4 asistenteImg">
-										<img class="img-responsive img-circle imgMinima" src="assets/IMG/FrikiCivil.jpg" id="circulo">
+										<img class="img-responsive img-circle imgMinima" src="https://localhost:8443/image/{{asistent.profilePhotoTitle}}" id="circulo">
 									</div>
 									<div class="col-md-8  list-info asistente">
 										<span class="creador-plan ">{{asistent?.id}}</span>

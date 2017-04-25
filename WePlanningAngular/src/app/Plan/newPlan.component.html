@@ -11,7 +11,8 @@
                     <div class="preview col-md-6 col-sm-6">
                         <div class="preview-pic tab-content img-center">
                             <div class="tab-pane active" id="pic-1">
-                                <img id="img-big" src="https://dummyimage.com/600x400/000/b4b5b8.png&text=A%C3%B1ade+la+foto+de+tu+plan" />
+                                <img *ngIf = "!showPreview" id="img-big" src="https://dummyimage.com/600x400/000/b4b5b8.png&text=A%C3%B1ade+la+foto+de+tu+plan" />
+                                <img *ngIf = "showPreview"id="img-big" [src]='fileReader' alt=""/>
                             </div>
                         </div>
                     </div>
@@ -76,7 +77,7 @@
 													<option value='Caceres'>Cáceres</option>
 													<option value='Cádiz'>Cádiz</option>
 													<option value='Cantabria'>Cantabria</option>
-													<option value='Castellon'>Castellón/Castelló</option>
+													<option value='Castellón'>Castellón/Castelló</option>
 													<option value='Ceuta'>Ceuta</option>
 													<option value='Ciudad Real'>Ciudad Real</option>
 													<option value='Córdoba'>Córdoba</option>

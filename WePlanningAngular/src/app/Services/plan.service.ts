@@ -94,7 +94,6 @@ export class PlanService {
      selectImagePlan(file:File, id:number){
         this.credentials = this.loginService.getCredentials();
         let headers = new Headers();
-        console.log(this.credentials);
         let formData = new FormData();
         formData.append('file', file); 
         headers.append('Authorization', 'Basic ' + this.credentials);
