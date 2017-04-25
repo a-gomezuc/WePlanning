@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import  {  Router,  ActivatedRoute  }  from  '@angular/router';
 
 import { UserService } from '../Services/user.service';
-
+import { PlanService } from '../Services/plan.service';
 import { User } from '../Class/user.model';
 import{ LoginService } from '../Services/login.service'
 
@@ -16,7 +16,7 @@ export class UserComponent {
   user: User;
   userFriends: User[];
 
-  constructor(private userService: UserService, private router:Router,private activatedRoute: ActivatedRoute, private loginService:LoginService) {
+  constructor(private userService: UserService, private router:Router,private activatedRoute: ActivatedRoute, private loginService:LoginService,private planService:PlanService) {
     let id = this.activatedRoute.snapshot.params['id'];
     this.userService.getUser(id).subscribe(
       User => {
@@ -51,13 +51,24 @@ export class UserComponent {
     this.userService.addFriend(user, id).subscribe(
       userSubs => { this.user=userSubs;
     this.userService.getFriends(this.loginService.getUserLogged().id).subscribe(
-      userFriends => {
-          this.userFriends=userFriends;
-          console.log(this.userFriends);
+      userFriendsSubs => { console.log("Nuevos amigos");
+                          console.log(userFriendsSubs);
+          this.loginService.setUserLoggedFriends(userFriendsSubs);
       }
     )
       }
     );
-    this.recharge(this.loginService.getUserLogged().id);
+    this.planService.initFriendsPlans();
+    this.recharge(id);
+  }
+  deleteFriendAndRoute(id:string){
+    this.userService.deleteFriend(id).subscribe(
+      userFriendsSubs => { console.log("Nuevos amigos ELIMINANDO");
+        console.log(userFriendsSubs);
+         this.loginService.setUserLoggedFriends(userFriendsSubs);
+      }
+    );
+    this.planService.initFriendsPlans();
+    this.recharge(id);
   }
 }

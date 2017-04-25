@@ -17,6 +17,9 @@ export class IndexComponent{
 
     constructor(private http:Http, private planService: PlanService, private loginService:LoginService){
       this.planService.initIndexPlans();
+      if (this.loginService.isUserLogged()){
+      this.planService.initFriendsPlans();
+      }
     }
 
     search(title:string, category:string, place:string){

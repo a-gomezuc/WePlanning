@@ -42,6 +42,15 @@ export class UserService {
             .catch(error => this.handleError(error));
 
     }
+    deleteFriend(id:string){
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        console.log(this.credentials);
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.delete("https://localhost:8443/api/user/friend/"+ id,{ headers: headers })
+            .map(response => response.json())
+            .catch(error => this.handleError(error));
+    }
 
     getUser(id: string) {
         return this.http.get("https://localhost:8443/api/user/" + id)
@@ -70,8 +79,6 @@ export class UserService {
         let friends: boolean;
         user_log=this.loginService.getUserLogged();
         friends = false;
-        console.log(user);
-        console.log(user_log);
         if(this.loginService.getUserLoggedFriends()!=undefined){
         for (let i = 0; i < this.loginService.getUserLoggedFriends().length; i++) {
             console.log(this.loginService.getUserLoggedFriends()[i].id+ "="+user.id);

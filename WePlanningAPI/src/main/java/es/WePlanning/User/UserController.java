@@ -168,11 +168,9 @@ public class UserController {
 	public ResponseEntity<List> deleteFriend(@PathVariable String id) {
 		User user = userService.findByIdIgnoreCase(userComponent.getLoggedUser().getId());
 		User friend = userService.findByIdIgnoreCase(id);
-		if ((user.getFriends().contains(friend)) && (friend.getFriends().contains(user))) {
+		if ((user.getFriends().contains(friend))) {
 			user.getFriends().remove(friend);
-			friend.getFriends().remove(user);
 			userService.save(user);
-			userService.save(friend);
 			return new ResponseEntity<>(user.getFriends(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

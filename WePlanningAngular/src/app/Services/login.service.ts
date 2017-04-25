@@ -31,6 +31,9 @@ export class LoginService {
     getUserLoggedId() {
         return this.userLogged.getId();
     }
+    setUserLoggedFriends(friends: User[]){
+        this.userLoggedFriends=friends;
+    }
     setCredentials(credentials: string) {
         this.credentials = credentials;
     }
@@ -70,7 +73,6 @@ export class LoginService {
         }
 
     }
-
     logout() {
         let headers = new Headers();
         headers.append('Authorization', 'Basic ' + this.credentials);

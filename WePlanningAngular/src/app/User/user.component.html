@@ -1,4 +1,4 @@
-<div  *ngIf = "user!= undefined" class="row">
+<div  *ngIf = "userService.getUserS()!= undefined" class="row">
 	<div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
 		<div class="card hovercard ">
 			<div class="card-background">
@@ -6,7 +6,7 @@
 
 			</div>
 			<div class="useravatar">
-				<img id="imagenPerfil" src="https://localhost:8443/image/{{user.profilePhotoTitle}}">
+				<img id="imagenPerfil" src="https://localhost:8443/image/{{userService.getUserS().profilePhotoTitle}}">
 			</div>
 			<div class="card-info">
 				<span id="tituloPerfil" class="card-title"></span>
@@ -40,9 +40,8 @@
 								<div *ngIf="!loginService.isThisUserLogged(userService.getUserS()) && !userService.isFriend(userService.getUserS())" class="btn-follow">
 									<button (click)="addFriendAndRoute(userService.getUserS(),userService.getUserS().id)" type="button" class="btn-info">Seguir Amigo</button>
 								</div>
-
 								<div *ngIf="userService.isFriend(userService.getUserS())" class="container-fluid">
-									<p id="nowAssist">¡Ya es tu amig@!</p>
+									<button (click)="deleteFriendAndRoute(userService.getUserS().id)" type="button" class="btn-info">Eliminar Amigo</button>
 								</div>
 								</div>
 							</div>
