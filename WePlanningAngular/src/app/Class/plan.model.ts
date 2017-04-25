@@ -18,7 +18,7 @@ export class Plan{
   ){}
 
   public author:User;
-  public imagePlanTitle:string;
+  public imagePlanTitle:string = "planDefault.jpg";
   
   
   getAuthorId(){

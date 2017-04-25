@@ -8,11 +8,11 @@
         </div>
         <div class="mainnw mainnw">
             <div class="formgnw center-block">
-                    <div class="preview col-md-6 col-sm-6">
+                    <div  class="preview col-md-6 col-sm-6">
                         <div class="preview-pic tab-content img-center">
                             <div class="tab-pane active" id="pic-1">
                                 <img *ngIf = "!showPreview" id="img-big" src="https://dummyimage.com/600x400/000/b4b5b8.png&text=A%C3%B1ade+la+foto+de+tu+plan" />
-                                <img *ngIf = "showPreview"id="img-big" [src]='fileReader' alt=""/>
+                                <img *ngIf = "showPreview && fileShow!=undefined"id="img-big" [src]='fileShow' alt=""/>
                             </div>
                         </div>
                     </div>

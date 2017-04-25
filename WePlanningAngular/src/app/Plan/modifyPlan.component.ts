@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import  {  Router,  ActivatedRoute  }  from  '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { Plan } from '../Class/plan.model';
 
@@ -16,7 +16,9 @@ import { LoginService } from '../Services/login.service';
 export class ModifyPlanComponent {
 
     private plan: Plan;
-    private file:File;
+    private fileShow: File;
+    private file: File;
+    private showPreview: boolean = false;
     constructor(private router: Router, private planService: PlanService, private activatedRoute: ActivatedRoute, private loginService: LoginService) {
         let id = this.activatedRoute.snapshot.params['id'];
         this.planService.getApiPlanById(id).subscribe(
@@ -26,9 +28,9 @@ export class ModifyPlanComponent {
             }
         );
     }
-    modifyPlan(planModified:Plan, title:string, category:string, place:string, date:string, address:string, prize:number, description:string){
+    modifyPlan(planModified: Plan, title: string, category: string, place: string, date: string, address: string, prize: number, description: string) {
         let id = this.plan.id;
-        planModified.title= title;
+        planModified.title = title;
         planModified.category = category;
         planModified.place = place;
         planModified.date = date;
@@ -38,14 +40,35 @@ export class ModifyPlanComponent {
         this.planService.modifyPlan(planModified).subscribe(
             plan => {
                 console.log(plan);
-                this.router.navigate(['/plan/'+id]);
+                if (this.file != undefined) {
+                    this.planService.selectImagePlan(this.file, plan.id).subscribe(
+                        plan => {
+                            this.planService.getApiPlanById(plan.id).subscribe(
+                                plan => {
+                                    this.plan = plan;
+                                    console.log(this.plan);
+                                }
+                            );
+                        }
+                    );
+                }
+                //this.planService.initIndexPlans();
+                this.router.navigate(['/plan/' + id]);
             },
             error => console.log(error)
         );
     }
 
-    changed(fileInput:any){
+    changed(fileInput: any) {
         this.file = fileInput.target.files[0];
+        this.showPreview = true;
+
+        var reader = new FileReader();
+
+        reader.onload = (event: any) => {
+            this.fileShow = event.target.result;
+        }
+        reader.readAsDataURL(fileInput.target.files[0]);
     }
 
 }
