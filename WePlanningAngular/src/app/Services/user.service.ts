@@ -96,7 +96,18 @@ export class UserService {
           console.log(this.userFriendsS);
       }
     )
+}
+isSponsor(user: User){
+    let sponsor: boolean;
+    sponsor=false;
+    if(user!=undefined){
+        if (user.sponsor){
+            sponsor=true;
+        }
     }
+    return sponsor;
+
+}
     private handleError(error: any) {
         console.error(error);
         switch (error.status) {
