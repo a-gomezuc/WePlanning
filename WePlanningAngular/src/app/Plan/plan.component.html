@@ -32,7 +32,7 @@
 			</div>
 			<div>
 				<p>
-					Subido por: <a [routerLink] class="creador-plan">{{plan.author.id}}</a>
+					Subido por: <a [routerLink]="['/profile', plan.author.id]"  class="creador-plan">{{plan.author.id}}</a>
 				</p>
 			</div>
 			<div class="precio-plan">

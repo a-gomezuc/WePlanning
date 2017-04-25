@@ -43,14 +43,9 @@ export class ModifyPlanComponent {
                 if (this.file != undefined) {
                     this.planService.selectImagePlan(this.file, plan.id).subscribe(
                         plan => {
-                            this.planService.getApiPlanById(plan.id).subscribe(
-                                plan => {
-                                    this.plan = plan;
                                     console.log(this.plan);
                                 }
                             );
-                        }
-                    );
                 }
                 //this.planService.initIndexPlans();
                 this.router.navigate(['/plan/' + id]);

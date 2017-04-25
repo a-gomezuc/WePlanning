@@ -9,7 +9,7 @@
 				<img id="imagenPerfil" src="https://localhost:8443/image/{{userService.getUserS().profilePhotoTitle}}">
 			</div>
 			<div class="card-info">
-				<span id="tituloPerfil" class="card-title"></span>
+				<span id="tituloPerfil" class="card-title">{{userService.getUserS()?.id}}</span>
 			</div>
 		</div>
 
@@ -111,6 +111,7 @@
 							</div>
 						</template>
 					</ngb-tab>
+					<div *ngIf="!userService.getUserS()?.sponsor">
 					<ngb-tab title="Lista de Amigos">
 						<template ngbTabContent>
 							<div class="friendsl" id="friendsl">
@@ -132,6 +133,7 @@
 							</div>
 						</template>
 					</ngb-tab>
+					</div>
 				</ngb-tabset>
 			</div>
 		</div>
