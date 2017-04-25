@@ -12,9 +12,9 @@ import { PlanService } from '../Services/plan.service';
     styleUrls: ['../app.component.css']
 })
 export class NewPlanComponent {
-
-    file: File;
-    showPreview:boolean = false;
+    private fileShow:File;
+    private file: File;
+    private showPreview:boolean = false;
     constructor(private router: Router, private http: Http, private planService: PlanService) { }
 
     newPlan(title: string, category: string, date: string, place: string,
@@ -24,9 +24,11 @@ export class NewPlanComponent {
             plan => {
                 console.log(plan);
                 console.log(this.file);
-                this.planService.selectImagePlan(this.file, plan.id).subscribe(
-                    plan => this.planService.initIndexPlans()
-                );
+                if(this.file != undefined){
+                    this.planService.selectImagePlan(this.file, plan.id).subscribe(
+                        plan => this.planService.initIndexPlans()
+                    );
+                }
                 this.router.navigate(['/index']);
             }
         );
@@ -34,14 +36,13 @@ export class NewPlanComponent {
 
     changed(fileInput: any) {
         this.file = fileInput.target.files[0];
-        /*this.fileReader.readAsDataURL(this.file);
-        console.log(this.file);*/
+        console.log(this.file);
         this.showPreview = true;
         
             var reader = new FileReader();
 
-            reader.onload = () => {
-                this.file = fileInput.target.result;
+            reader.onload = (event:any) => {
+                this.fileShow = event.target.result;
             }
 
             reader.readAsDataURL(fileInput.target.files[0]);
