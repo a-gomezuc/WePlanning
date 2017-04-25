@@ -260,6 +260,13 @@ body {
 
 
 /*--------------/top-plans------------*/
+/*--------------Modify-profile-photo--------*/
+
+#submit-profile{
+    max-width: 200px;
+}
+
+/*-------------/Modify-profile-photo-------*/
 /*------------Planning photographies-------*/
 
 .creador-plan {

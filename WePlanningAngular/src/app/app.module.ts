@@ -16,6 +16,7 @@ import { ModifyPlanComponent } from './Plan/modifyPlan.component';
 import { UserComponent } from './User/user.component';
 import { ModifyUserComponent } from './User/modifyUser.component';
 import { NewPlanComponent } from './Plan/newPlan.component';
+import { ModifyPhotoComponent } from './User/modifyPhoto.component';
 
 
 import { RouterModule } from '@angular/router';
@@ -33,7 +34,7 @@ import { CommentService } from './Services/comment.service';
 
     RegisterComponent, PlanComponent, UserComponent, NewPlanComponent,
 
-    ModifyPlanComponent, ModifyUserComponent
+    ModifyPlanComponent, ModifyUserComponent, ModifyPhotoComponent
 
 
   ],

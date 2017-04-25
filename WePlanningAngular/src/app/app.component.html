@@ -1,7 +1,7 @@
 <body>
     <div id="wrap">
         <div id="main" class="container clear-top">
-            <nav *ngIf = "loginService.isUserLogged()"class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
+            <nav *ngIf="loginService.isUserLogged()" class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -13,28 +13,27 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li> <a [routerLink]="['/aboutus']">¿Qué es WePlanning?</a> </li>
                             <li> <a [routerLink]="['/contact']">Contacta</a> </li>
-                            <li  (click)="showDropdown('loginMenu')" class="dropdown user-dropdown"> <a [routerLink] class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{userLogged.id}}<b class="caret"></b></a>
+                            <li (click)="showDropdown('loginMenu')" class="dropdown user-dropdown"> <a [routerLink] class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{userLogged.id}}<b class="caret"></b></a>
                                 <ul [ngbCollapse]="showMenu" class="dropdown-menu dropdown-tc">
                                     <form class="form-horizontal form_ini" role="form">
                                         <li>
-                                            <a (click)="userService.recharge(userLogged.id)" id="accesoPerfil">Accede a tu perfil</a>                                               
+                                            <a (click)="userService.recharge(userLogged.id)" id="accesoPerfil">Accede a tu perfil</a>
                                         </li>
                                         <li> </li>
                                         <li class="divider"></li>
                                         <li>
-                                            <a [routerLink]="['/newPlan']">Sube tu plan</a> 
+                                            <a [routerLink]="['/newPlan']">Sube tu plan</a>
                                         </li>
-                                        <li class = "divider"></li>
+                                        <li class="divider"></li>
                                         <li>
-										<div class="form-group">
-											<div class="col-lg-offset-2 col-lg-10">
-												<form>
-													<input (click)="logOut()" type="submit" class="btn btn-default"
-														value="Cerrar Sesión">
-												</form>
-											</div>
-										</div>
-									</li>
+                                            <div class="form-group">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <form>
+                                                        <input (click)="logOut()" type="submit" class="btn btn-default" value="Cerrar Sesión">
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </li>
                                     </form>
                                 </ul>
                             </li>
@@ -44,7 +43,7 @@
                 </div>
                 <!-- /.container -->
             </nav>
-            <nav *ngIf = "!loginService.isUserLogged()"class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
+            <nav *ngIf="!loginService.isUserLogged()" class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
                     <div class="navbar-header">
@@ -93,33 +92,34 @@
                 <!-- /.container -->
             </nav>
             <router-outlet></router-outlet>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="../assets/IMG/Logo.png" /> </div>
+
+                        <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+
+                            <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
+                            <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
+                            <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+
+                        </div>
+                        <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                            <a [routerLink]="['/aboutus']" id="aboutUs">Conócenos<br></a> <a [routerLink]="['/contact']"
+                                id="contacto">Contacto<br></a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="copyright">
+
+                            <hr id="lineaCopyright">
+                            <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" id="textoCopyright"> WePlanning &copy Copyright 2017</div>
+
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="../assets/IMG/Logo.png" /> </div>
-
-                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
-
-                    <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
-                    <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
-                    <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
-
-                </div>
-                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
-                    <a [routerLink]="['/aboutus']" id="aboutUs">Conócenos<br></a> <a [routerLink]="['/contact']" id="contacto">Contacto<br></a>
-                </div>
-            </div>
-            <div class="row">
-                <div id="copyright">
-
-                    <hr id="lineaCopyright">
-                    <div class="col-md-12 col-lg-12 col-xs-12 col-sm-12" id="textoCopyright"> WePlanning &copy Copyright 2017</div>
-
-                </div>
-            </div>
-        </div>
-    </footer>
 </body>

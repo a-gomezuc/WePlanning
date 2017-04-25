@@ -43,12 +43,12 @@ export class ModifyPlanComponent {
                 if (this.file != undefined) {
                     this.planService.selectImagePlan(this.file, plan.id).subscribe(
                         plan => {
-                                    console.log(this.plan);
-                                }
-                            );
+                            this.planService.initIndexPlans();
+                            console.log(this.plan);
+                        }
+                    );
                 }
-                //this.planService.initIndexPlans();
-                this.router.navigate(['/plan/' + id]);
+                this.router.navigate(['/index']);
             },
             error => console.log(error)
         );
