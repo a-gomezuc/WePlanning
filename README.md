@@ -155,3 +155,7 @@ En ellos se han modificado todos los aspectos de diseño principales y se ha man
 ## Entidades de la base de datos.</brt>
 
 ![BDDiagram](/Maquetación/IMG/Screenshots3/BDDiagram.png)
+
+## Diagrama componentes </br>
+
+![componentsDiagram](/Maquetación/IMG/Screenshots5/ComponentDiagram.png)
