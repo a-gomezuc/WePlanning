@@ -39,10 +39,10 @@ public class UserService {
 				resultados.add(userId);
 			return resultados;
 
-		} else if ((usearch.equals("")) && (filter.equals("name"))) {
+		} else if (!(usearch.equals("")) && (filter.equals("name"))) {
 			return userRepository.findByUnameIgnoreCase(usearch);
 
-		} else if ((usearch.equals("")) && (filter.equals("province"))) {
+		} else if (!(usearch.equals("")) && (filter.equals("province"))) {
 			return userRepository.findByProvinceIgnoreCase(usearch);
 		} else
 			return userRepository.findAll();

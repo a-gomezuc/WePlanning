@@ -71,4 +71,10 @@ export class UserComponent {
     this.planService.initFriendsPlans();
     this.recharge(id);
   }
+
+  searchUsers(filter:string, usearch:string){
+      this.userService.searchUsersBy(filter, usearch).subscribe();
+    }
+  
+  
 }

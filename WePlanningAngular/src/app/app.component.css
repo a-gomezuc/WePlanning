@@ -1236,4 +1236,16 @@ myplan-row {
 
     /* ----------- PaginationAngular -------- */
 
-
+#userSearch{
+    margin-top:10px;
+}
+#userSearch #filt{
+    margin-left: 200px;
+    width:80px;
+}
+#userSearch #inputSearch{
+    margin-top:80px;
+}
+#userSearch h4{
+    color:black;
+}

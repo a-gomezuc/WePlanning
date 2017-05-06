@@ -15,7 +15,7 @@ export class UserService {
     private credentials: string;
     private userS: User;
     private userFriendsS: User[];
-
+    private users: User[] = [];
     constructor(private http: Http, private loginService: LoginService, private router: Router) { }
 
     addUser(user: User) {
@@ -64,6 +64,9 @@ export class UserService {
     }
     getUserS() {
         return this.userS;
+    }
+     getUsers() {
+        return this.users;
     }
     getFriendsS() {
         return this.userFriendsS;
@@ -126,6 +129,15 @@ export class UserService {
         }
         return sponsor;
 
+    }
+    searchUsersBy(filter:string, usearch:string) {
+        this.credentials = this.loginService.getCredentials();
+        let headers = new Headers();
+        headers.append('Authorization', 'Basic ' + this.credentials);
+        return this.http.get("https://localhost:8443/api/user/search/filter=" + filter +
+            "/usearch=" + usearch)
+            .map(response => { return this.users = response.json() })
+            .catch(error => this.handleError(error))
     }
     private handleError(error: any) {
         console.error(error);

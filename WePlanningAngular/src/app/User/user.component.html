@@ -1,4 +1,4 @@
-<div  *ngIf = "userService.getUserS()!= undefined" class="row">
+<div *ngIf="userService.getUserS()!= undefined" class="row">
 	<div class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
 		<div class="card hovercard ">
 			<div class="card-background">
@@ -20,8 +20,8 @@
 						<template ngbTabContent>
 							<div class="profile-info n_center">
 								<h2 *ngIf="!userService.isSponsor(userService.getUserS())">Información Personal</h2>
-								
-								
+
+
 								<div *ngIf="isSame(userService.getUserS())">
 									<button [routerLink]="['/modifyProfile', userService.getUserS().id]" type="button" class="btn-info">Modificar Perfil</button>
 									<button [routerLink]="['/modifyProfilePhoto', userService.getUserS().id]" type="button" class="btn-info">Cambiar foto de perfil</button>
@@ -40,22 +40,24 @@
 									<strong>Descripción:</strong> {{userService.getUserS()?.description}}
 								</p>
 								<h2 *ngIf="userService.isSponsor(userService.getUserS())">Información del Anunciante</h2>
-								
+
 
 								<div *ngIf="loginService.isUserLogged() && !userService.isSponsor(loginService.getUserLogged())">
-								<div *ngIf="!loginService.isThisUserLogged(userService.getUserS()) && !userService.isFriend(userService.getUserS()) && !userService.isSponsor(userService.getUserS())" class="btn-follow">
-									<button (click)="addFriendAndRoute(userService.getUserS(),userService.getUserS().id)" type="button" class="btn-info">Añadir Amigo</button>
-								</div>
-								<div *ngIf="!loginService.isThisUserLogged(userService.getUserS()) && userService.isSponsor(userService.getUserS()) && !userService.isFriend(userService.getUserS())" class="btn-follow">
-									<button (click)="addFriendAndRoute(userService.getUserS(),userService.getUserS().id)" type="button" class="btn-info">Seguir Sponsor</button>
-								</div>
-								
-								<div *ngIf="userService.isFriend(userService.getUserS()) && !userService.isSponsor(userService.getUserS())" class="container-fluid">
-									<button (click)="deleteFriendAndRoute(userService.getUserS().id)" type="button" class="btn-info">Eliminar Amigo</button>
-								</div>
-								<div *ngIf="userService.isFriend(userService.getUserS()) && userService.isSponsor(userService.getUserS())" class="container-fluid">
-									<button (click)="deleteFriendAndRoute(userService.getUserS().id)" type="button" class="btn-info">Eliminar Sponsor</button>
-								</div>
+									<div *ngIf="!loginService.isThisUserLogged(userService.getUserS()) && !userService.isFriend(userService.getUserS()) && !userService.isSponsor(userService.getUserS())"
+									 class="btn-follow">
+										<button (click)="addFriendAndRoute(userService.getUserS(),userService.getUserS().id)" type="button" class="btn-info">Añadir Amigo</button>
+									</div>
+									<div *ngIf="!loginService.isThisUserLogged(userService.getUserS()) && userService.isSponsor(userService.getUserS()) && !userService.isFriend(userService.getUserS())"
+									 class="btn-follow">
+										<button (click)="addFriendAndRoute(userService.getUserS(),userService.getUserS().id)" type="button" class="btn-info">Seguir Sponsor</button>
+									</div>
+
+									<div *ngIf="userService.isFriend(userService.getUserS()) && !userService.isSponsor(userService.getUserS())" class="container-fluid">
+										<button (click)="deleteFriendAndRoute(userService.getUserS().id)" type="button" class="btn-info">Eliminar Amigo</button>
+									</div>
+									<div *ngIf="userService.isFriend(userService.getUserS()) && userService.isSponsor(userService.getUserS())" class="container-fluid">
+										<button (click)="deleteFriendAndRoute(userService.getUserS().id)" type="button" class="btn-info">Eliminar Sponsor</button>
+									</div>
 								</div>
 							</div>
 
@@ -93,28 +95,83 @@
 						</template>
 					</ngb-tab>
 					<div *ngIf="!userService.getUserS()?.sponsor">
-					<ngb-tab title="Lista de Amigos">
-						<template ngbTabContent>
-							<div class="friendsl" id="friendsl">
-								<div *ngFor="let friend of userService.getFriendsS()">
-									<div class="row friends-row">
-										<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
-											<div class="col-md-6 col-sm-4 col-xs-4 ">
-												<img class=" img-circle" src="https://localhost:8443/image/{{friend.profilePhotoTitle}}">
-											</div>
-											<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
-												<div class="n_center">
-													<a (click)="recharge(friend.id)" class="creador-plan">{{friend.id}}</a>
-													<p class="text-muted">{{friend.province}}</p>
+						<ngb-tab title="Lista de Amigos">
+							<template ngbTabContent>
+								<div class="friendsl" id="friendsl">
+									<div *ngFor="let friend of userService.getFriendsS()">
+										<div class="row friends-row">
+											<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+												<div class="col-md-6 col-sm-4 col-xs-4 ">
+													<img class=" img-circle" src="https://localhost:8443/image/{{friend.profilePhotoTitle}}">
+												</div>
+												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
+													<div class="n_center">
+														<a (click)="recharge(friend.id)" class="creador-plan">{{friend.id}}</a>
+														<p class="text-muted">{{friend.province}}</p>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</template>
-					</ngb-tab>
+								<div *ngIf="isSame(userService.getUserS())" class="row-search" id="userSearch">
+									<div class="profile-searchFriends">
+										<div class="row">
+											<form>
+
+												<div class="col-md-6">
+												
+														<div class="form-group" id="searchU">
+
+															<h4 class="page-header">Selecciona filtro</h4>
+															<div class="input-group" id="filt">
+																<select #filter id="busqueda" name="filter">
+																		<option value='ident'>ID</option>
+																		<option value='name'>Nombre</option>
+																		<option value='province'>Provincia</option>
+																	</select>
+															</div>
+
+														</div>
+													
+												</div>
+												<div class="col-md-6">
+													
+														<div class="input-group" id="inputSearch">
+															<input #usearch name="usearch" data-brackets-id="2191" type="text" class="sr-input" placeholder="Buscador de Usuarios" />
+															<button (click)="searchUsers(filter.value, usearch.value)" class="btn sr-btn btn-info" type="submit">
+																	Buscar <i class="fa fa-search"></i>
+																</button>
+														</div>
+													
+												</div>
+											</form>
+										</div>
+										<hr>
+
+										<div class="friendsl" id="friendsl">
+											<div *ngFor="let user of userService.getUsers()">
+												<div class="row friends-row">
+													<div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-2 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+														<div class="col-md-4 col-sm-4 col-xs-4 ">
+															<img class=" img-circle" src="https://localhost:8443/image/{{user.profilePhotoTitle}}">
+														</div>
+														<div class="col-md-4 col-sm-8 col-xs-8 friends-info">
+															<div class="n_center">
+																<a (click)="recharge(user.id)" class="creador-plan">{{user.id}}</a>
+																<p class="text-muted">{{user.province}}</p>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</template>
+						</ngb-tab>
 					</div>
+				
 				</ngb-tabset>
 			</div>
 		</div>
