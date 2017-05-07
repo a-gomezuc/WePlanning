@@ -1,0 +1,17 @@
+version: '2.0'
+
+
+services:
+  mysql:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=test
+  spring-repository:
+    depends_on:
+      - mysql
+    image: spring-backend
+    ports:
+      - 8443:8443
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/test
+

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>WePlanning - ¡Encuentra el mejor plan cerca de ti!</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/CSS/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="/CSS/styles.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div id="wrap">
+        <div id="main" class="container clear-top">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top navtop" role="navigation">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
+                        <a class="navbar-brand" href="/logged"> <img src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse " id="navbar-collapse1">
+                        <ul class="nav navbar-nav navbar-right">
+                            <li> <a href="/logged/aboutus">¿Qué es WePlanning?</a> </li>
+                            <li> <a href="/logged/contact">Contacta</a> </li>
+                            <li class="dropdown user-dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
+                                <ul class="dropdown-menu dropdown-tc">
+                                        <li>
+                                            <center> <a href="/logged/user/{{idConectado}}">Accede a tu perfil</a> </center>
+                                        </li>
+                                        <li> </li>
+                                        <li class="divider"></li>
+                                        <li>
+                                            <center> <a href="/newPlan">Sube tu plan</a> </center>
+                                        </li>
+                                        <li class="divider"></li>
+                                        <li>
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<form action="/logout">
+														<input type="submit" class="btn btn-default"
+															value="Cerrar Sesión">
+													</form>
+												</div>
+											</div>
+										</li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- /.navbar-collapse -->
+                </div>
+                <!-- /.container -->
+            </nav>
+           <!--- plan --->
+			{{#plan}}
+			<div class="row plan">
+			
+				<div class="col-md-12">
+					<h3>{{category}}</h3>
+					<div class="preview col-md-6">
+						<div class="preview-pic tab-content img-center">
+							<div class="tab-pane active" id="pic-1">
+								<img id="img-big" src="/image/{{imagePlanTitle}}"/> 
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 plan-desc">
+						<div class="col-md-12 nombre-plan">
+							<h3>{{title}}</h3>
+						</div>
+
+
+						<div class="provincia-plan">
+							<p>Provincia: {{place}}</p>
+							<div class="direccion-plan">
+								<p>Dirección: {{address}}</p>
+							</div>
+						</div>
+						<div class="fecha-plan">
+							<p>Fecha: {{date}}</p>
+						</div>
+						<div class="descripcion-plan">
+							<p>Descripción: {{description}}</p>
+						</div>
+						<div>
+							<p>
+								Subido por: <a class="creador-plan" href="/logged/user/{{author.id}}">{{author.id}}</a>
+							</p>
+						</div>
+						<div class="precio-plan">
+							<p>Precio: {{prize}}€</p>
+						</div>
+						<div class="asistentes-plan">
+							Asistirán:
+							<button class="boton btn-info ">{{numAsistents}}</button>
+						</div>
+						<article>
+							<div class="asisten" style="display: none;">
+								<center>
+									<div class="text">
+										<div class="tab-pane fade in" id="tab3">
+
+											<div id="listAssistents">
+												{{#assistentsPlan}} <a href="/logged/user/{{id}}">
+													<div class="col-md-12 col-sm-12 col-xs-12 lista-asisten">
+														<div class="col-md-4 asistenteImg">
+															<img class="img-responsive img-circle imgMinima"
+																src="/image/{{profilePhotoTitle}}" id="circulo">
+														</div>
+														<div class="col-md-8  list-info asistente">
+															<span class="creador-plan ">{{id}}</span>
+															<p class="text-muted">{{province}}</p>
+														</div>
+
+													</div>
+												</a> {{/assistentsPlan}}
+											</div>
+											<center>
+												<div id="spinner"></div>
+												<button id="btnMoreAssistents" value="{{id}}"
+													class="btn-info btn-mas">Mostrar más</button>
+											</center>
+										</div>
+									</div>
+								</center>
+							</div>
+						</article>
+						{{#noAssist}}
+						 <div class="asiste-btn">
+						 <form action="/logged/plan/{{id}}/assist" method="post">
+                        <button type="submit" class="btn btn-default btn-asiste btn-info">Voy a asistir!</button>
+                        </form>
+                    </div>
+                    {{/noAssist}}
+                    {{#assist}}
+                    	<div><p>¡Ya asistes a este plan!</p></div>
+                    {{/assist}}
+                    
+					</div>
+					
+				</div>
+				
+			</div>
+			<!--- /plan --->
+            
+            <!--- comments -->
+   			<div class="row">
+				<center>
+					<h3 id="tit-com">Comentarios</h3>
+					{{#noExistComment}}
+					<p>Este plan no tiene comentarios</p>
+					{{/noExistComment}}
+					<section class="comments">
+						<div id="comments">
+							{{#commentsPlan}}
+							<article class="comment">
+								<div class="comment-body">
+									<div class="text">
+										<p>{{content}}</p>
+									</div>
+									<p class="attribution">
+										Comentado por <a class="creador-plan"
+											href="/user/{{author.id}}">{{author.id}}</a> {{date}}
+									</p>
+								</div>
+							</article>
+							{{/commentsPlan}}
+						</div>
+					</section>
+				</center>
+			</div>
+			<center>
+				<div id="spinner"></div>
+				<button id="btnMoreComments" value="{{id}}" class="btn-info btn-mas">Mostrar
+					más</button>
+			</center>
+            <center>
+                <div class="row add-comment">
+                    <form role="form" action="/logged/plan/{{id}}/addComment" method="post">
+                        <div class="form-group">
+                            <label for="comentario" >Escribe tu comentario</label>
+                            <textarea id="comentario" class="form-control" rows="1" name="cont"></textarea>
+                            <button type="submit" id="btnComment" class="btn btn-info">Comentar</button>
+                        </div>
+                    </form>
+                </div>
+            </center>
+        </div>
+    </div>
+    			{{/plan}}
+    <!--- /comments --->
+    <!--Footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <center>
+                    <div class="col-md-4 col-sm-4 col-xs-12" id="logo"> <img class="img-responsive" src="/IMG/Logo.png" /> </div>
+                </center>
+                <div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+                    <center>
+                        <a href="https://www.facebook.com/" class="fa fa-facebook-square fa-5x" target="_blank" aria-hidden="true"></a>
+                        <a href="https://twitter.com" class="fa fa-twitter-square fa-5x" target="_blank" aria-hidden="true"></a>
+                        <a href="https://www.instagram.com" class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+                    </center>
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12" id="links">
+                    <center> <a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a href="/logged/contact" id="contacto">Contacto<br></a> </center>
+                </div>
+            </div>
+            <div class="row">
+                <div id="copyright">
+                    <center>
+                        <hr id="lineaCopyright">
+                        <div class="col-md-12"> WePlanning &copy Copyright 2017</div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--FooterEnd-->
+    <!-- jQuery -->
+    <script src="/JS/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/JS/bootstrap.min.js"></script>
+    <script src="/JS/asisten.js"></script>
+    <script src="/JS/moreAssistentsLogged.js"></script>
+    <script src="/JS/moreCommentsLogged.js"></script>
+</body>
+
+</html>

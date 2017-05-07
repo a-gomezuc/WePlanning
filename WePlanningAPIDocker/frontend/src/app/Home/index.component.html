@@ -1,0 +1,193 @@
+<div class="container-fluid jumbo">
+	<div class="jumbotron">
+		<div class="jumbo-slogan">
+			<h1>Encuentra el mejor plan cerca de ti!</h1>
+			<p>Planea, Disfruta, Comenta, Comparte</p>
+			<p>Únete a WePlanning</p>
+		</div>
+	</div>
+</div>
+<!-- /Jumbotron -->
+<!-- row-ads -->
+<div class="container-fluid">
+	<div class="row center-block" id="row-ads">
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div class="ads">
+				<img id="ad1" class="image-responsive ads-img" src="assets/IMG/ad1.jpg">
+			</div>
+		</div>
+		<div class="col-md-6 col-sm-12 col-xs-12">
+			<div class="ads">
+				<img id="ad2" class="image-responsive ads-img" src="assets/IMG/ad2.jpg">
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="loginService.isUserLogged() && !loginService.getUserLogged()?.sponsor" class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">PLANES DE MIS AMIGOS</h2>
+		</div>
+		<div *ngFor="let plan of planService.getFriendPlans() | paginate :{itemsPerPage: 9, currentPage:p1, id: 'first'}" id="plans">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
+				<a [routerLink]="['/plan', plan.id]" class="planning-box"> <img class=" img-responsive img-center" src="https://localhost:8443/image/{{plan.imagePlanTitle}}" alt="">
+					<div class="planning-box-caption">
+						<div class="planning-box-caption-content">
+							<div class="user-name text-faded">Detalles</div>
+						</div>
+					</div>
+				</a>
+				<p class="datosPlan">
+					Título: {{plan.title}} <br> Autor: <a [routerLink] = "['/profile', plan.author.id]"  class="creador-plan">{{plan.author.id}}</a><br> Lugar: {{plan.place}}
+					<br> Fecha: {{plan.date}}
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="row col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+			<div class="pagination col-md-offset-12">
+				<pagination-controls  class="my-pagination" (pageChange)="p1 = $event" id="first" maxSize="9" directionLinks="true" autoHide="true" previousLabel="Anterior"
+                      nextLabel="Siguiente">
+				</pagination-controls>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="row ">
+		<div class="col-lg-12">
+			<h2 class="page-header">Encuentra tu plan</h2>
+		</div>
+	</div>
+	<div class="row ">
+		<div class="col-md-12 col-sm-12 col-xs-12 search">
+			<div class="input-append" class="col-md-12">
+				<form action="/searchPlans" method="get">
+					<div id="inputSearch" class="col-md-12 col-md-offset-5">
+						<input #title name="title" type="text" class="sr-input" placeholder="Busca un plan">
+						<button (click)="search(title.value, category.value, place.value)" type="submit" class="btn sr-btn btn-info" type="button">
+										<i class="fa fa-search"></i>
+									</button>
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<h4 class="page-header">Categorías</h4>
+							<div class="input-group" class="center-block">
+								<select #category id="busquedaprovincia" name="category">
+														<option value="">Seleccione categoría</option>
+														<option value='Musica'>Música</option>
+														<option value='Cine'>Cine</option>
+														<option value='Fiestas'>Fiestas</option>
+														<option value='Naturaleza'>Naturaleza</option>
+														<option value='Deportes'>Deportes</option>
+														<option value='Cultura'>Cultura</option>
+													</select>
+							</div>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-md-6 col-sm-6 col-xs-6">
+							<h4 class="page-header">Provincias</h4>
+							<div class="input-group" class="block-center">
+								<select #place id="busquedaprovincia" name="place">
+														<option value="">Seleccione provincia</option>
+														<option value='alava'>Álava</option>
+														<option value='albacete'>Albacete</option>
+														<option value='alicante'>Alicante/Alacant</option>
+														<option value='almeria'>Almería</option>
+														<option value='asturias'>Asturias</option>
+														<option value='avila'>Ávila</option>
+														<option value='badajoz'>Badajoz</option>
+														<option value='barcelona'>Barcelona</option>
+														<option value='burgos'>Burgos</option>
+														<option value='caceres'>Cáceres</option>
+														<option value='cadiz'>Cádiz</option>
+														<option value='cantabria'>Cantabria</option>
+														<option value='castellon'>Castellón/Castelló</option>
+														<option value='ceuta'>Ceuta</option>
+														<option value='ciudadreal'>Ciudad Real</option>
+														<option value='cordoba'>Córdoba</option>
+														<option value='cuenca'>Cuenca</option>
+														<option value='girona'>Girona</option>
+														<option value='laspalmas'>Las Palmas</option>
+														<option value='granada'>Granada</option>
+														<option value='guadalajara'>Guadalajara</option>
+														<option value='guipuzcoa'>Guipúzcoa</option>
+														<option value='huelva'>Huelva</option>
+														<option value='huesca'>Huesca</option>
+														<option value='illesbalears'>Illes Balears</option>
+														<option value='jaen'>Jaén</option>
+														<option value='acoruña'>A Coruña</option>
+														<option value='larioja'>La Rioja</option>
+														<option value='leon'>León</option>
+														<option value='lleida'>Lleida</option>
+														<option value='lugo'>Lugo</option>
+														<option value='madrid'>Madrid</option>
+														<option value='malaga'>Málaga</option>
+														<option value='melilla'>Melilla</option>
+														<option value='murcia'>Murcia</option>
+														<option value='navarra'>Navarra</option>
+														<option value='ourense'>Ourense</option>
+														<option value='palencia'>Palencia</option>
+														<option value='pontevedra'>Pontevedra</option>
+														<option value='salamanca'>Salamanca</option>
+														<option value='segovia'>Segovia</option>
+														<option value='sevilla'>Sevilla</option>
+														<option value='soria'>Soria</option>
+														<option value='tarragona'>Tarragona</option>
+														<option value='santacruztenerife'>Santa Cruz de
+															Tenerife</option>
+														<option value='teruel'>Teruel</option>
+														<option value='toledo'>Toledo</option>
+														<option value='valencia'>Valencia/Valéncia</option>
+														<option value='valladolid'>Valladolid</option>
+														<option value='vizcaya'>Vizcaya</option>
+														<option value='zamora'>Zamora</option>
+														<option value='zaragoza'>Zaragoza</option>
+													</select>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-lg-12">
+			<h2 class="page-header">TOP PLANNING</h2>
+		</div>
+		<div *ngFor="let plan of planService.getPlans() | paginate :{itemsPerPage: 9, currentPage:p2, id: 'second'}" id="plans">
+			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 photography">
+				<a [routerLink]="['/plan', plan.id]" class="planning-box"> <img class=" img-responsive img-center" src="https://localhost:8443/image/{{plan.imagePlanTitle}}" alt="">
+					<div class="planning-box-caption">
+						<div class="planning-box-caption-content">
+							<div class="user-name text-faded">Detalles</div>
+						</div>
+					</div>
+				</a>
+				<p class="datosPlan">
+					Título: {{plan.title}} <br> Autor: <a [routerLink] = "['/profile', plan.author.id]" class="creador-plan">{{plan.author.id}}</a><br> Lugar:
+					{{plan.place}} <br> Fecha: {{plan.date}}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+<div id="spinner"></div>
+<!--div class="col-md-4 col-md-offset-5 col-sm-4 col-sm-offset-5 col-xs-4 col-xs-offset-5">
+	<button id="btnMorePlans" type="button" class="btn-info btn-mas">Mostrar más</button>
+</div-->
+<!--paginacion-->
+<div class="container">
+	<div class="row col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
+		<div class="pagination col-md-offset-12">
+			<pagination-controls class="my-pagination" (pageChange)="p2 = $event" id="second" maxSize="9" directionLinks="true" autoHide="true" previousLabel="Anterior"
+                      nextLabel="Siguiente">
+			</pagination-controls>
+		</div>
+	</div>
+</div>

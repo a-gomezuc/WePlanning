@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="row maincon">
+        <div class="panel-heading" id="panelcon">
+            <div class="panel-title text-center">
+                <h1 class="page-header">Contacta con WePlanning </h1>
+                <hr class="lineaNegra" /> </div>
+        </div>
+        <div class="mainl mainc">
+            <form action="" class="form-horizontal track-event-form bv-form" data-goaltype="”General”" data-formname="”ContactUs”" method="post"
+                id="contact-us-all" novalidate="novalidate">
+                <div class="formgs">
+                    <div class="form-group formgc">
+                        <div class="col-sm-6" id="nombre">
+                            <div class="input-group" id="nomCont">
+                                <div class="input-group-addon"> <i class="fa fa-user fa-fw"></i> </div>
+                                <input #firstname type="text" class="form-control" id="exampleInputFirstName" placeholder="Nombre" name="C_FirstName" data-bv-field="C_FirstName">                                </div> <small data-bv-validator="notEmpty" data-bv-validator-for="C_FirstName" class="help-block"
+                                style="display: none;">Required</small></div>
+                        <div class="col-sm-6 " id="apellido">
+                            <div class="input-group">
+                                <div class="input-group-addon"> <i class="fa fa-user fa-fw"></i> </div>
+                                <input #lastname type="text" class="form-control" id="exampleInputLastName" placeholder="Apellido" name="C_LastName" data-bv-field="C_LastName">                                </div> <small data-bv-validator="notEmpty" data-bv-validator-for="C_LastName" class="help-block"
+                                style="display: none;">Required</small></div>
+                    </div>
+                    <div class="form-group formgc">
+                        <div class="col-sm-6" id="compañia">
+                            <div class="input-group">
+                                <div class="input-group-addon"> <i class="fa fa-briefcase fa-fw"></i> </div>
+                                <input #company type="text" class="form-control" id="exampleInputCompany" placeholder="Compañia" name="C_Company">                                </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="input-group" id="telefono">
+                                <div class="input-group-addon"> <i class="fa fa-phone fa-fw"></i> </div>
+                                <input #telephone type="text" class="form-control" id="C_BusPhone" placeholder="Telefono" name="C_BusPhone">                                </div>
+                        </div>
+                    </div>
+                    <div class="form-group formgc">
+                        <div class="col-sm-12" id="emailc">
+                            <div class="input-group">
+                                <div class="input-group-addon"> <i class="fa fa-envelope fa-fw"></i> </div>
+                                <input #email type="text" class="form-control" id="exampleInputEmail1" placeholder="Email" name="C_EmailAddress" data-bv-field="C_EmailAddress">                                </div> <small data-bv-validator="notEmpty" data-bv-validator-for="C_EmailAddress" class="help-block"
+                                style="display: none;">Required</small></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12" id="textcon">
+                        <div class="input-group">
+                            <div class="input-group-addon"> <i class="fa fa-comment fa-fw"></i> </div>
+                            <textarea #message class="form-control" name="Comments" id="Comments" rows="5" style="width:99.9%" placeholder="Introduzca su mensaje"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group formga">
+                    <div class="col-sm-12">
+                        <button (click)="newContact(firstname.value, lastname.value, telephone.value, email.value, company.value, message.value)" id="contacts-submit" type="submit" class="btn btn-default btn-info">Enviar</button>
+                    </div>
+                </div>
+                <input type="hidden" value=""> </form>
+        </div>
+    </div>
+</div>

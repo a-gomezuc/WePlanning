@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="">
+<meta name="author" content="">
+<title>Contacta con nosotros</title>
+<!-- Bootstrap Core CSS -->
+<link href="/CSS/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/CSS/styles.css" rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
+	rel="stylesheet">
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="main" class="container clear-top">
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
+				role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#navbar-collapse1">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/"> <img
+							src="IMG/LogoBlanco.png" id="logoBarra" /></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse " id="navbar-collapse1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="/contact">Contacta</a></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Tu Cuenta<b class="caret"></b></a>
+								<ul class="dropdown-menu dropdown-tc">
+									<form action="/" class="form-horizontal form_ini" role="form"
+										method="post">
+										<li>
+											<div class="form-group">
+												<label for="email" class="col-lg-2 control-label">Id</label>
+												<div class="col-lg-10">
+													<input type="text" class="form-control" name="id"
+														id="email" placeholder="Email">
+												</div>
+											</div>
+										</li>
+										<li>
+											<div class="form-group">
+												<label for="password" class="col-lg-2 control-label">Contraseña</label>
+												<div class="col-lg-10">
+													<input type="password" class="form-control" name="pass"
+														id="password" placeholder="Contraseña">
+												</div>
+											</div>
+										</li>
+										<li class="divider"></li>
+										<li>
+											<div class="form-group">
+												<div class="col-lg-offset-2 col-lg-10">
+													<input type="submit" class="btn btn-default" value="Entrar">
+												</div>
+											</div>
+										</li>
+										<li><a href="/register">No tengo usuario. Registrarme</a></li>
+									</form>
+								</ul></li>
+							<li><a href="/register">Registrate</a></li>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container -->
+			</nav>
+			<!--contacto-->
+			<div class="container">
+				<div class="row maincon">
+					<div class="panel-heading" id="panelcon">
+						<div class="panel-title text-center">
+							<h1 class="page-header">Contacta con WePlanning</h1>
+							<hr class="lineaNegra" />
+						</div>
+					</div>
+					<div class="mainl mainc">
+						<form class="form-horizontal" method="post"
+							action="/registerContact">
+							<div class="formgs">
+								<div class="form-group formgc">
+									<div class="col-sm-6" id="nombre">
+										<div class="input-group" id="nomCont">
+											<div class="input-group-addon">
+												<i class="fa fa-user fa-fw"></i>
+											</div>
+											<input type="text" class="form-control"
+												id="exampleInputFirstName" placeholder="Nombre"
+												name="C_FirstName" data-bv-field="C_FirstName">
+										</div>
+										<small data-bv-validator="notEmpty"
+											data-bv-validator-for="C_FirstName" class="help-block"
+											style="display: none;">Required</small>
+									</div>
+									<div class="col-sm-6 " id="apellido">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-user fa-fw"></i>
+											</div>
+											<input type="text" class="form-control"
+												id="exampleInputLastName" placeholder="Apellido"
+												name="C_LastName" data-bv-field="C_LastName">
+										</div>
+										<small data-bv-validator="notEmpty"
+											data-bv-validator-for="C_LastName" class="help-block"
+											style="display: none;">Required</small>
+									</div>
+								</div>
+								<div class="form-group formgc">
+									<div class="col-sm-6" id="compañia">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-briefcase fa-fw"></i>
+											</div>
+											<input type="text" class="form-control"
+												id="exampleInputCompany" placeholder="Compañia"
+												name="C_Company">
+										</div>
+									</div>
+									<div class="col-sm-6">
+										<div class="input-group" id="telefono">
+											<div class="input-group-addon">
+												<i class="fa fa-phone fa-fw"></i>
+											</div>
+											<input type="text" class="form-control" id="C_BusPhone"
+												placeholder="Telefono" name="C_BusPhone">
+										</div>
+									</div>
+								</div>
+								<div class="form-group formgc">
+									<div class="col-sm-12" id="emailc">
+										<div class="input-group">
+											<div class="input-group-addon">
+												<i class="fa fa-envelope fa-fw"></i>
+											</div>
+											<input type="text" class="form-control"
+												id="exampleInputEmail1" placeholder="Email"
+												name="C_EmailAddress" data-bv-field="C_EmailAddress">
+										</div>
+										<small data-bv-validator="notEmpty"
+											data-bv-validator-for="C_EmailAddress" class="help-block"
+											style="display: none;">Required</small>
+									</div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-12" id="textcon">
+									<div class="input-group">
+										<div class="input-group-addon">
+											<i class="fa fa-comment fa-fw"></i>
+										</div>
+										<textarea class="form-control" name="description"
+											id="Comments" rows="5" style="width: 99.9%"
+											placeholder="Introduzca su mensaje"></textarea>
+									</div>
+								</div>
+							</div>
+							<center>
+								<div class="form-group formga">
+									<div class="col-sm-12">
+										<button id="contacts-submit" type="submit"
+											class="btn btn-default btn-info">Enviar</button>
+										<input type="reset" value="Borrar datos"
+											class="btn btn-default btn-info">
+									</div>
+								</div>
+							</center>
+							<input type="hidden" value="">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--FIN contacto-->
+	<!--Footer-->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<center>
+					<div class="col-md-4 col-sm-4 col-xs-12" id="logo">
+						<img class="img-responsive" src="IMG/Logo.png" />
+					</div>
+				</center>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+					<center>
+						<a href="https://www.facebook.com/"
+							class="fa fa-facebook-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://twitter.com"
+							class="fa fa-twitter-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://www.instagram.com"
+							class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+					</center>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="links">
+					<center>
+						<a href="/aboutus" id="aboutUs">Conócenos<br></a> <a
+							href="/contact" id="contacto">Contacto<br></a>
+					</center>
+				</div>
+			</div>
+			<div class="row">
+				<div id="copyright">
+					<center>
+						<hr id="lineaCopyright">
+						<div class="col-md-12">WePlanning &copy Copyright 2017</div>
+					</center>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--FooterEnd-->
+	<script src="/JS/jquery.js"></script>
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/asisten.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Perfil</title>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="/CSS/bootstrap.min.css">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet"
+	integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+	crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/CSS/styles.css">
+<link href="https://fonts.googleapis.com/css?family=Fjalla+One"
+	rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Anton|Josefin+Sans"
+	rel="stylesheet">
+</head>
+
+<body>
+	<div id="wrap">
+		<div id="main" class="container clear-top">
+			<!-- Navigation -->
+			<nav class="navbar navbar-inverse navbar-fixed-top navtop"
+				role="navigation">
+				<div class="container">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse"
+							data-target="#navbar-collapse1">
+							<span class="sr-only">Toggle navigation</span> <span
+								class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="/logged"> <img
+							src="/IMG/LogoBlanco.png" id="logoBarra" /></a>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse " id="navbar-collapse1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="/logged/aboutus">¿Qué es WePlanning?</a></li>
+							<li><a href="/logged/contact">Contacta</a></li>
+							<li class="dropdown user-dropdown"><a href="#"
+								class="dropdown-toggle" data-toggle="dropdown"><i
+									class="fa fa-user"></i>{{idConectado}}<b class="caret"></b></a>
+								<ul class="dropdown-menu dropdown-tc">
+									<li>
+										<center>
+											<a href="/logged/user/{{idConectado}}">Accede a tu perfil</a>
+										</center>
+									</li>
+									<li></li>
+									<li class="divider"></li>
+									<li>
+										<center>
+											<a href="/newPlan">Sube tu plan</a>
+										</center>
+									</li>
+									<li class="divider"></li>
+									<li>
+										<div class="form-group">
+											<div class="col-lg-offset-2 col-lg-10">
+												<form action="/logout">
+													<input type="submit" class="btn btn-default"
+														value="Cerrar Sesión">
+												</form>
+											</div>
+										</div>
+					</div>
+					</li>
+					</ul>
+					</li>
+					</ul>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container -->
+			</nav>
+			{{#user}}
+			<div class="container-fluid">
+				<div class="row">
+					<div
+						class="col-lg-8 col-sm-8 col-md-offset-2 col-lg-offset-2 col-sm-offset-2">
+						<div class="card hovercard ">
+							<div class="card-background">
+								<img class="card-bkimg" alt="" src="/IMG/imgplan8.jpg">
+								
+							</div>
+							<div class="useravatar">
+								<img id="imagenPerfil" src="/image/{{profilePhotoTitle}}">
+
+							</div>
+							<div class="card-info">
+								<span id="tituloPerfil" class="card-title">{{uname}}</span>
+							</div>
+						</div>
+						<div class="btn-pref btn-group btn-group-justified btn-group-lg"
+							role="group" aria-label="...">
+							<div class="btn-group" role="group">
+								<button type="button" id="btninfoPerfil" class="btn btn-primary"
+									href="#tab1" data-toggle="tab">
+									<span class="fa fa-user" aria-hidden="true"></span>
+									<div class="hidden-xs">Información</div>
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" id="btnplanesPerfil"
+									class="btn btn-default" href="#tab2" data-toggle="tab">
+									<span class="fa fa-search" aria-hidden="true"></span>
+									<div class="hidden-xs">Planes</div>
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" id="btnamigosPerfil"
+									class="btn btn-default" href="#tab3" data-toggle="tab">
+									<span class="fa fa-users" aria-hidden="true"></span>
+									<div class="hidden-xs">Lista de amigos</div>
+								</button>
+							</div>
+							<div class="btn-group" role="group">
+								<button type="button" id="btnamigosPerfil"
+									class="btn btn-default" href="#tab4" data-toggle="tab">
+									<span class="fa fa-globe""></span>
+									<div class="hidden-xs">Encuentra a tus amigos</div>
+								</button>
+							</div>
+						</div>
+						<div class="well" id="escrituraPerfil">
+							<div class="tab-content">
+								<div class="tab-pane fade in active" id="tab1">
+									<center>
+										<div class="profile-info">
+											<button onclick="location.href = '/logged/change/{{id}}'"
+												type="button"
+												class="btn btn-primary pull-left btn-xs btn-edit">
+												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+											</button>
+											<span><form action="/logged/{{id}}/changePhoto"
+													method="post">
+													<button type="submit" id="btneliminar"
+														class="btn btn-primary btn-xs btn-edit">
+														<i class="fa fa-user" aria-hidden="true"> </i>
+													</button>
+												</form></span>
+											<h2>Información Personal</h2>
+											<hr />
+											<p>
+												<strong>Alias:</strong>&nbsp; {{id}}
+											</p>
+											<p>
+												<strong>Provincia:</strong>&nbsp; {{Province}}
+											</p>
+											<p>
+												<strong>Edad:</strong>&nbsp; {{age}}
+											</p>
+
+
+											<p>
+												<strong>Descripción:</strong>&nbsp; {{description}}
+											</p>
+										</div>
+									</center>
+								</div>
+								<div class="tab-pane fade in" id="tab2">
+									<div class="planscroll">
+										<div id="plans">
+											{{#plansUser}}
+											<div class="container-fluid ">
+												<div class="container-fluid">
+													<div class="row myplan-row">
+														<div class="col-md-6 img-myplan  ">
+															<img class="img-responsive" src="/image/{{imagePlanTitle}}">
+														</div>
+														<div class="col-md-6">
+															<h3>
+																<strong>{{title}}</strong>
+															</h3>
+															<hr />
+															<p>En {{place}}</p>
+															<button onclick="location.href = '/logged/plan/{{id}}'"
+																type="button" class="btn-info">Ver Plan</button>
+																<button onclick="location.href = '/logged/modifyPlan/{{id}}'"
+															type="button" class="btn-info">Modificar Plan</button>
+
+														</div>
+													</div>
+												</div>
+											</div>
+											{{/plansUser}}
+										</div>
+										<center>
+											<div id="spinner"></div>
+											<button id="btnMorePlans" value="{{id}}"
+												class="btn-info btn-mas">Mostrar más</button>
+										</center>
+									</div>
+								</div>
+								<div class="tab-pane fade in" id="tab3">
+									<div class="friendsl" id="friendsl">
+										{{#friendsUser}}
+										<div class="row friends-row">
+											<div
+												class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-6 col-xs-offset-3 friends-preview">
+												<div class="col-md-6 col-sm-4 col-xs-4 ">
+													<img class=" img-circle"
+														src="/image/{{profilePhotoTitle}}">
+												</div>
+												<div class="col-md-6 col-sm-8 col-xs-8 friends-info">
+													<center>
+														<a href="/logged/user/{{id}}" class="creador-plan">{{id}}</a>
+														<p class="text-muted">{{province}}</p>
+													</center>
+												</div>
+											</div>
+										</div>
+										{{/friendsUser}}
+
+									</div>
+									<center>
+										<div id="spinner"></div>
+										<button id="btnMoreFriends" value="{{id}}"
+											class="btn-info btn-mas">Mostrar más</button>
+									</center>
+								</div>
+								<div class="tab-pane fade in" id="tab4">
+									<div class="row-search">
+										<div class="profile-searchFriends">
+											<div class="row">
+												<form action="/logged/user/{{id}}/searchUsers" method="get">
+
+													<div class="col-md-6">
+														<center>
+															<div class="form-group" id="searchU">
+
+																<h4 class="page-header">Selecciona filtro</h4>
+																<div class="input-group">
+																	<select id="busqueda" name="filter">
+																		<option value='ident'>ID</option>
+																		<option value='name'>Nombre</option>
+																		<option value='province'>Provincia</option>
+																	</select>
+																</div>
+
+															</div>
+														</center>
+													</div>
+													<div class="col-md-6">
+														<center>
+															<div class="input-group" id="inputSearch">
+																<input name="usearch" data-brackets-id="2191"
+																	type="text" class="sr-input"
+																	placeholder="Buscador de Usuarios" />
+																<button class="btn sr-btn btn-info" type="submit">
+																	Buscar <i class="fa fa-search"></i>
+																</button>
+															</div>
+														</center>
+													</div>
+												</form>
+											</div>
+											<hr>
+											{{#noUsers}}
+											<div>
+												<p>No se han encontrado usuarios en la búsqueda</p>
+											</div>
+											{{/noUsers}} 
+											<div id="AllUsers">{{#AllUsers}}
+											<div class="profile-search">
+												<div class="row friends-search-row">
+													<div
+														class="col-md-8 col-sm-8 col-xs-8 col-md-offset-2 col-sm-offset-2 col-lg-offset2 col-xs-offset-2  friends-preview">
+														<div class="col-md-4">
+															<img class="img-responsive img-circle img-f"
+																src="/image/{{profilePhotoTitle}}">
+														</div>
+														<div class="col-md-8  friends-search-info">
+															<a href="/logged/user/{{id}}" class="creador-plan">{{id}}</a>
+															<p class="text-muted">{{province}}</p>
+															<p>
+																<strong>Descripción:</strong>&nbsp;{{description}}
+															</p>
+														</div>
+													</div>
+												</div>
+												{{/AllUsers}}
+											</div>
+											</div>
+										</div>
+									</div>
+									<center>
+										<div id="spinner"></div>
+										<button id="btnMoreAllUsers" value="{{id}}"
+											class="btn-info btn-mas">Mostrar más</button>
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{{/user}}
+		</div>
+	</div>
+	<!--Footer-->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<center>
+					<div class="col-md-4 col-sm-4 col-xs-12" id="logo">
+						<img class="img-responsive" src="/IMG/Logo.png" />
+					</div>
+				</center>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="redesSociales">
+					<center>
+						<a href="https://www.facebook.com/"
+							class="fa fa-facebook-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://twitter.com"
+							class="fa fa-twitter-square fa-5x" target="_blank"
+							aria-hidden="true"></a> <a href="https://www.instagram.com"
+							class="fa fa-instagram fa-5x" target="_blank" aria-hidden="true"></a>
+					</center>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12" id="links">
+					<center>
+						<a href="/logged/aboutus" id="aboutUs">Conócenos<br></a> <a
+							href="/logged/contact" id="contacto">Contacto<br></a>
+					</center>
+				</div>
+			</div>
+			<div class="row">
+				<div id="copyright">
+					<center>
+						<hr id="lineaCopyright">
+						<div class="col-md-12">WePlanning &copy Copyright 2017</div>
+					</center>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--FooterEnd-->
+	<script src="/JS/jquery.js"></script>
+	<script src="/JS/bootstrap.min.js"></script>
+	<script src="/JS/morePlansUserLogged.js"></script>
+	<script src="/JS/moreFriendsLogged.js"></script>
+	<script src="/JS/moreUsersSearch.js"></script>
+</body>
+</html>
