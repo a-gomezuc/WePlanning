@@ -152,10 +152,10 @@ En ellos se han modificado todos los aspectos de diseño principales y se ha man
 
 ![ClassDiagram](/Maquetación/IMG/Screenshots4/ClassDiagram.png)
 
-## Entidades de la base de datos.</brt>
+## Entidades de la base de datos.</br>
 
 ![BDDiagram](/Maquetación/IMG/Screenshots3/BDDiagram.png)
 
-## Diagrama componentes </br>
+## Diagrama de componentes </brt>
 
-![componentsDiagram](/Maquetación/IMG/Screenshots5/ComponentDiagram.png)
+![componentDiagram](/Maquetación/IMG/Screenshot5/ComponentDiagram.png)
